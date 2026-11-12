@@ -208,8 +208,9 @@ body {
   -webkit-text-fill-color: transparent;
 }
 
-.text-gradient-orange {
-  background: linear-gradient(135deg, #c2410c 0%, #ea580c 35%, #f97316 70%, #fb923c 100%);
+.text-gradient-orange,
+.text-gradient-orange-luminous {
+  background: linear-gradient(120deg, #ea580c 0%, #ff6b35 30%, #f97316 60%, #fbbf24 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   display: inline-block;

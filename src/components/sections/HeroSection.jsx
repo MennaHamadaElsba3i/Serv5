@@ -54,31 +54,17 @@ export default function HeroSection({ onOpenConsultation, lang = 'ar' }) {
               {isRtl ? (
                 <>
                   بناء <span className="text-gradient-ice">الأنظمة الرقمية المتقدمة</span>،{' '}
-                  <span className="text-gradient-navy">تطبيقات الجوال</span> وحلول{' '}
-                  <span
-                    style={{
-                      background: 'linear-gradient(135deg, #ea580c 0%, #f97316 60%, #245aa7 100%)',
-                      WebkitBackgroundClip: 'text',
-                      WebkitTextFillColor: 'transparent',
-                      display: 'inline-block'
-                    }}
-                  >
-                    النمو المتسارع
+                  <span className="text-gradient-navy">تطبيقات الجوال</span>{' '}
+                  <span className="text-gradient-orange-luminous">
+                    وحلول النمو المتسارع
                   </span>
                 </>
               ) : (
                 <>
                   Architecting <span className="text-gradient-ice">Enterprise Systems</span>,{' '}
-                  <span className="text-gradient-navy">Mobile Platforms</span> &amp;{' '}
-                  <span
-                    style={{
-                      background: 'linear-gradient(135deg, #ea580c 0%, #f97316 60%, #245aa7 100%)',
-                      WebkitBackgroundClip: 'text',
-                      WebkitTextFillColor: 'transparent',
-                      display: 'inline-block'
-                    }}
-                  >
-                    High-Velocity Growth
+                  <span className="text-gradient-navy">Mobile Platforms</span>{' '}
+                  <span className="text-gradient-orange-luminous">
+                    &amp; High-Velocity Growth
                   </span>
                 </>
               )}

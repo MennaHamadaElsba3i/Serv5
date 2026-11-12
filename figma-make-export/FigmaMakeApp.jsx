@@ -189,7 +189,7 @@ export default function App() {
             <h1 className="hero-heading">
               {current.hero.title1}{' '}
               <span className="text-highlight-blue">{current.hero.title2}</span>{' '}
-              {current.hero.title3}
+              <span className="text-highlight-orange">{current.hero.title3}</span>
             </h1>
 
             <p className="hero-subtext">
@@ -542,6 +542,12 @@ export default function App() {
 
         .text-highlight-blue {
           background: linear-gradient(135deg, #ffffff 0%, #cbd5e1 30%, #60a5fa 70%, #2563eb 100%);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+        }
+
+        .text-highlight-orange {
+          background: linear-gradient(120deg, #ea580c 0%, #ff6b35 30%, #f97316 60%, #fbbf24 100%);
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
         }
