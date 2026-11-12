@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Offices & Engagement | Contact SERV5</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,500;0,600;1,400&family=Tajawal:wght@300;400;500;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="subtle-grain" aria-hidden="true"></div>
+  <!-- Interactive Ambient Background Canvas (Reacts to Scroll Velocity) -->
+  <canvas id="ambientScrollCanvas" aria-hidden="true"></canvas>
+  <div class="cursor-dot" id="cursorDot"></div>
+  <div class="cursor-ring" id="cursorRing"><span class="cursor-tag" id="cursorTag"></span></div>
+
+  <div class="volumetric-aura" aria-hidden="true">
+    <div class="aura-orb aura-1"></div>
+    <div class="aura-orb aura-2"></div>
+  </div>
+
+  <div class="site-hud">
+    <div class="hud-status">
+      <span class="status-indicator"><span class="status-dot"></span> DIRECT INTAKE</span>
+      <span>//</span>
+      <span>15-MINUTE FAST TRACK RESPONSE</span>
+    </div>
+    <div class="hud-actions">
+      <button class="hud-btn magnetic" id="langSwitch"><span>🌐</span><span id="langLabel">العربية</span></button>
+      <button class="hud-btn magnetic" id="audioToggle"><span id="audioIcon">🔊</span></button>
+    </div>
+  </div>
+
+  <header class="master-nav">
+    <div class="nav-container">
+      <a href="index.html" class="brand-link magnetic" data-cursor="HOME">
+        <div class="brand-symbol">
+          <svg width="24" height="24" viewBox="0 0 40 40" fill="none">
+            <rect width="40" height="40" rx="10" fill="#0F172A"/>
+            <path d="M12 14C12 12.3431 13.3431 11 15 11H25C26.6569 11 28 12.3431 28 14V17C28 18.6569 26.6569 20 25 20H17C15.3431 20 14 21.3431 14 23V26C14 27.6569 15.3431 29 17 29H27" stroke="#60A5FA" stroke-width="3.5" stroke-linecap="round"/>
+            <circle cx="21" cy="20" r="2.5" fill="#FFFFFF"/>
+          </svg>
+        </div>
+        <div>
+          <span class="brand-name">serv<span class="brand-digit">5</span></span>
+          <span class="brand-subtitle">DIGITAL GROWTH STUDIO</span>
+        </div>
+      </a>
+
+      <nav class="page-links">
+        <a href="index.html" class="page-link magnetic" data-cursor="INDEX">Home</a>
+        <a href="services.html" class="page-link magnetic" data-cursor="SERVICES">Capabilities</a>
+        <a href="portfolio.html" class="page-link magnetic" data-cursor="WORK">Case Studies</a>
+        <a href="estimator.html" class="page-link magnetic" data-cursor="CALC">ROI Estimator</a>
+        <a href="about.html" class="page-link magnetic" data-cursor="AGENCY">Agency & History</a>
+        <a href="contact.html" class="page-link active magnetic" data-cursor="CONTACT">Offices & Contact</a>
+      </nav>
+
+      <a href="contact.html" class="btn-primary magnetic" data-cursor="START">
+        <span>Start Project</span>
+        <span>→</span>
+      </a>
+    </div>
+  </header>
+
+  <main class="container">
+    
+    <div class="page-hero-header">
+      <div class="section-pill">
+        <span class="pill-spark"></span>
+        <span>START THE CONVERSATION</span>
+      </div>
+      <h1 class="page-main-title">
+        Let's build<br>
+        <span class="serif-italic text-ice">what's next together.</span>
+      </h1>
+      <p class="page-lead-subtitle">
+        Connect directly with our regional leadership in Riyadh, Saudi Arabia, or our engineering hubs in Cairo and Mansoura.
+      </p>
+    </div>
+
+    <!-- CONTACT GRID -->
+    <div style="display: grid; grid-template-columns: 1fr 1.2fr; gap: 60px; margin-bottom: 120px;">
+      
+      <!-- Left Offices Info -->
+      <div>
+        <h3 style="font-size: 1.6rem; font-weight: 700; margin-bottom: 24px;">Regional Headquarters</h3>
+        
+        <div style="display: flex; flex-direction: column; gap: 24px; margin-bottom: 40px;">
+          
+          <div class="pillar-card" style="padding: 24px;">
+            <div style="font-size: 1.8rem; margin-bottom: 8px;">🇸🇦</div>
+            <strong style="font-size: 1.15rem; color: #FFF; display: block; margin-bottom: 4px;">Kingdom of Saudi Arabia (GCC HQ)</strong>
+            <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 8px;">Olaya Financial District, Riyadh, Saudi Arabia</p>
+            <a href="tel:+966500000000" style="color: var(--accent-ice); font-weight: 600; font-family: var(--font-mono); font-size: 0.88rem;">+966 50 000 0000</a>
+          </div>
+
+          <div class="pillar-card" style="padding: 24px;">
+            <div style="font-size: 1.8rem; margin-bottom: 8px;">🇪🇬</div>
+            <strong style="font-size: 1.15rem; color: #FFF; display: block; margin-bottom: 4px;">Egypt Engineering & Innovation Labs</strong>
+            <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 8px;">New Cairo & El-Gomhoreya St, Mansoura, Egypt</p>
+            <a href="tel:+2010128886361" style="color: var(--accent-ice); font-weight: 600; font-family: var(--font-mono); font-size: 0.88rem;">+20 101 288 8636</a>
+          </div>
+
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 12px;">
+          <a href="https://wa.me/2010128886361" target="_blank" rel="noopener" class="btn-secondary" style="border-color: rgba(16, 185, 129, 0.4); color: var(--accent-emerald);">
+            <span>💬</span>
+            <span>WhatsApp Direct (15-min response)</span>
+          </a>
+          <a href="mailto:sales@serv5.com" class="btn-secondary">
+            <span>✉️</span>
+            <span>sales@serv5.com</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Right Form Panel -->
+      <div class="glass-cockpit-card">
+        <h3 style="font-size: 1.6rem; font-weight: 700; margin-bottom: 8px;">Project Intake Form</h3>
+        <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 24px;">
+          Submit your project requirements to schedule a strategic discovery call.
+        </p>
+
+        <form id="contactIntakeForm" style="display: flex; flex-direction: column; gap: 16px;">
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+            <div>
+              <label style="display: block; font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-dim); margin-bottom: 6px;">YOUR NAME *</label>
+              <input type="text" name="name" required placeholder="e.g. Sultan Al-Otaibi" style="width: 100%; padding: 14px; background: rgba(0,0,0,0.4); border: 1px solid var(--border-subtle); border-radius: 8px; color: #FFF;">
+            </div>
+            <div>
+              <label style="display: block; font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-dim); margin-bottom: 6px;">BUSINESS EMAIL *</label>
+              <input type="email" name="email" required placeholder="name@company.com" style="width: 100%; padding: 14px; background: rgba(0,0,0,0.4); border: 1px solid var(--border-subtle); border-radius: 8px; color: #FFF;">
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+            <div>
+              <label style="display: block; font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-dim); margin-bottom: 6px;">PHONE / WHATSAPP *</label>
+              <input type="tel" name="phone" required placeholder="+966 5X XXX XXXX" style="width: 100%; padding: 14px; background: rgba(0,0,0,0.4); border: 1px solid var(--border-subtle); border-radius: 8px; color: #FFF;">
+            </div>
+            <div>
+              <label style="display: block; font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-dim); margin-bottom: 6px;">PRIMARY OBJECTIVE *</label>
+              <select name="objective" style="width: 100%; padding: 14px; background: rgba(0,0,0,0.4); border: 1px solid var(--border-subtle); border-radius: 8px; color: #FFF;">
+                <option value="web">Next.js Web / Headless E-Commerce</option>
+                <option value="ksa">Saudi Market Entry & Compliance</option>
+                <option value="mobile">Custom Mobile App (iOS / Android)</option>
+                <option value="marketing">Advanced SEO & Paid Media</option>
+                <option value="erp">Legal / Enterprise Practice ERP</option>
+              </select>
+            </div>
+          </div>
+
+          <div>
+            <label style="display: block; font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-dim); margin-bottom: 6px;">PROJECT VISION & TIMELINE</label>
+            <textarea name="message" rows="4" placeholder="Tell us about your business goals, target markets, or technical requirements..." style="width: 100%; padding: 14px; background: rgba(0,0,0,0.4); border: 1px solid var(--border-subtle); border-radius: 8px; color: #FFF;"></textarea>
+          </div>
+
+          <button type="submit" class="btn-primary magnetic" style="width: 100%; justify-content: center; padding: 16px;">
+            <span>Submit Project Brief</span>
+            <span>→</span>
+          </button>
+
+          <small style="text-align: center; color: var(--text-dim); font-size: 0.75rem;">
+            🔒 Protected by Strict Mutual NDA. Your competitive data remains 100% confidential.
+          </small>
+        </form>
+
+        <div id="contactSuccessMsg" style="display: none; padding: 40px; text-align: center; background: rgba(16, 185, 129, 0.08); border: 1px solid var(--accent-emerald); border-radius: 16px;">
+          <h3 style="color: var(--accent-emerald); margin-bottom: 10px;">Brief Received Successfully</h3>
+          <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.6;">Our Managing Director in Riyadh & Cairo has received your request. We will review your parameters and reach out within 15 to 30 minutes.</p>
+        </div>
+
+      </div>
+
+    </div>
+
+  </main>
+
+  <footer class="master-footer">
+    <div class="container footer-bottom-row">
+      <div>© 2008 – 2027 SERV5 DIGITAL BUSINESS GROUP. ALL RIGHTS RESERVED.</div>
+      <div>RIYADH • CAIRO • MANSOURA • GLOBAL</div>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
+

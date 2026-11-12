@@ -1,0 +1,35 @@
+@import "tailwindcss";
+@source "../**/*.{js,jsx,ts,tsx}";
+
+/* Continuous Infinite Testimonials Marquee Drift */
+@keyframes testimonialsDrift {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes testimonialsDriftRtl {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(50%);
+  }
+}
+
+.animate-testimonials-drift {
+  display: flex !important;
+  width: max-content !important;
+  animation: testimonialsDrift 35s linear infinite !important;
+}
+
+[dir="rtl"] .animate-testimonials-drift {
+  animation: testimonialsDriftRtl 35s linear infinite !important;
+}
+
+.animate-testimonials-drift:hover {
+  animation-play-state: paused !important;
+}

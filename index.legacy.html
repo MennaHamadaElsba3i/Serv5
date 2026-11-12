@@ -1,0 +1,1012 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SERV5 | Digital Business Architecture & Enterprise Engineering</title>
+  <meta name="description" content="Serv5 is an elite digital business partner combining performance marketing, bespoke engineering, and commercial strategy for high-growth enterprises in Saudi Arabia and globally.">
+  
+  <!-- Modern Clean Typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,500;0,600;1,400&family=Tajawal:wght@300;400;500;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Subtle Film Grain Overlay -->
+  <div class="subtle-grain" aria-hidden="true"></div>
+
+  <!-- INTERACTIVE SCROLL-REACTIVE BACKGROUND CANVAS (Captivating, Fluid & Non-Intrusive) -->
+  <canvas id="ambientScrollCanvas" aria-hidden="true"></canvas>
+
+  <!-- Magnetic Silk Cursor -->
+  <div class="cursor-dot" id="cursorDot"></div>
+  <div class="cursor-ring" id="cursorRing">
+    <span class="cursor-tag" id="cursorTag"></span>
+  </div>
+
+  <!-- Volumetric Deep Aura -->
+  <div class="volumetric-aura" aria-hidden="true">
+    <div class="aura-orb aura-1"></div>
+    <div class="aura-orb aura-2"></div>
+  </div>
+
+  <!-- TOP SYSTEM HUD BAR -->
+  <div class="site-hud">
+    <div class="hud-status">
+      <div class="status-indicator">
+        <span class="status-dot"></span>
+        <span data-i18n="hud.active">Q1/Q2 2027 ENGAGEMENTS OPEN</span>
+      </div>
+      <span>//</span>
+      <span>GOOGLE CWV: <strong class="text-emerald">100/100</strong></span>
+      <span>//</span>
+      <span>REGION: <strong class="text-ice">KSA (RIYADH) • GLOBAL</strong></span>
+      <span>//</span>
+      <span class="scroll-speed-meter">SCROLL SPEED: <strong id="scrollSpeedDisplay" class="text-ice">0 px/s</strong></span>
+    </div>
+
+    <div class="hud-actions">
+      <!-- Language Switcher -->
+      <button class="hud-btn magnetic" id="langSwitch" data-cursor="LANG">
+        <span>🌐</span>
+        <span id="langLabel">العربية</span>
+      </button>
+      
+      <!-- Audio Feedback Toggle -->
+      <button class="hud-btn magnetic" id="audioToggle" data-cursor="SFX">
+        <span id="audioIcon">🔊</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- MASTER MULTI-PAGE NAVIGATION -->
+  <header class="master-nav">
+    <div class="nav-container">
+      
+      <!-- Brand Monogram -->
+      <a href="index.html" class="brand-link magnetic" data-cursor="HOME">
+        <div class="brand-symbol">
+          <svg width="24" height="24" viewBox="0 0 40 40" fill="none">
+            <rect width="40" height="40" rx="10" fill="#0F172A"/>
+            <path d="M12 14C12 12.3431 13.3431 11 15 11H25C26.6569 11 28 12.3431 28 14V17C28 18.6569 26.6569 20 25 20H17C15.3431 20 14 21.3431 14 23V26C14 27.6569 15.3431 29 17 29H27" stroke="#60A5FA" stroke-width="3.5" stroke-linecap="round"/>
+            <circle cx="21" cy="20" r="2.5" fill="#FFFFFF"/>
+          </svg>
+        </div>
+        <div>
+          <span class="brand-name">serv<span class="brand-digit">5</span></span>
+          <span class="brand-subtitle" data-i18n="nav.sub">DIGITAL GROWTH STUDIO</span>
+        </div>
+      </a>
+
+      <!-- Real Multi-Page Links (Opening Separate Dedicated Pages!) -->
+      <nav class="page-links">
+        <a href="index.html" class="page-link active magnetic" data-cursor="INDEX" data-i18n="nav.home">Home</a>
+        <a href="services.html" class="page-link magnetic" data-cursor="SERVICES" data-i18n="nav.services">Capabilities</a>
+        <a href="portfolio.html" class="page-link magnetic" data-cursor="WORK" data-i18n="nav.work">Case Studies</a>
+        <a href="estimator.html" class="page-link magnetic" data-cursor="CALC" data-i18n="nav.estimator">ROI Estimator</a>
+        <a href="about.html" class="page-link magnetic" data-cursor="AGENCY" data-i18n="nav.about">Agency & History</a>
+        <a href="contact.html" class="page-link magnetic" data-cursor="CONTACT" data-i18n="nav.contact">Offices & Contact</a>
+      </nav>
+
+      <!-- Primary Action CTA -->
+      <a href="contact.html" class="btn-primary magnetic" data-cursor="START">
+        <span data-i18n="nav.cta">Start Project</span>
+        <span>→</span>
+      </a>
+
+    </div>
+  </header>
+
+  <main>
+    
+    <!-- ==================== 1. HERO SECTION ==================== -->
+    <section class="hero-luxury">
+      <div class="container hero-luxury-grid">
+        
+        <div class="hero-content-col reveal-on-scroll is-revealed">
+          <div class="section-pill">
+            <span class="pill-spark"></span>
+            <span data-i18n="hero.badge">STRATEGIC DIGITAL PARTNER • RIYADH & GLOBAL</span>
+          </div>
+
+          <h1 class="hero-headline">
+            <span class="headline-span" data-i18n="hero.h1">Good businesses deserve</span>
+            <span class="headline-span serif-italic text-ice" data-i18n="hero.h2">better digital engines.</span>
+          </h1>
+
+          <p class="hero-lead-text" data-i18n="hero.desc">
+            We merge commercial management consulting with high-velocity web engineering and precision performance marketing. Eliminating technical bloat, winning page #1 on Google, and unlocking sustainable revenue across the GCC and global markets.
+          </p>
+
+          <div class="hero-cta-group">
+            <a href="estimator.html" class="btn-primary magnetic" data-cursor="ESTIMATE">
+              <span data-i18n="hero.ctaPrimary">Calculate Project Scope</span>
+              <span>↗</span>
+            </a>
+            <a href="portfolio.html" class="btn-secondary magnetic" data-cursor="CASES">
+              <span data-i18n="hero.ctaSecondary">Explore Proven Work</span>
+              <span>→</span>
+            </a>
+          </div>
+
+          <!-- Authority Strip -->
+          <div class="hero-authority-strip">
+            <div class="authority-item">
+              <strong class="counter" data-target="16">16</strong>+
+              <span data-i18n="hero.stat1">Years Industry Mastery</span>
+            </div>
+            <div class="authority-sep"></div>
+            <div class="authority-item">
+              <strong class="counter" data-target="20000">20,000</strong>+
+              <span data-i18n="hero.stat2">Successful Deployments</span>
+            </div>
+            <div class="authority-sep"></div>
+            <div class="authority-item">
+              <strong>99.8%</strong>
+              <span data-i18n="hero.stat3">SLA Adherence Rate</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3D GLASS COCKPIT VISUAL -->
+        <div class="hero-visual-col reveal-on-scroll is-revealed stagger-2">
+          <div class="glass-cockpit-card magnetic" id="glassCard" data-cursor="INSPECT">
+            
+            <div class="cockpit-header">
+              <span class="cockpit-title-tag">SERV5 ANALYTICS & DEPLOYMENT COCKPIT</span>
+              <div class="cockpit-live-tag">
+                <span class="live-beacon"></span>
+                <span>REAL-TIME ENGINE</span>
+              </div>
+            </div>
+
+            <div class="cockpit-stats-grid">
+              <div class="c-stat-box">
+                <span class="c-lbl" data-i18n="cockpit.speed">GOOGLE SPEED INDEX</span>
+                <div class="c-val text-emerald">100/100</div>
+                <div class="c-sub">0.28s LCP • 0 CLS</div>
+              </div>
+              <div class="c-stat-box">
+                <span class="c-lbl" data-i18n="cockpit.roas">PORTFOLIO ROAS</span>
+                <div class="c-val text-ice">6.8x</div>
+                <div class="c-sub">Blended Ad Efficiency</div>
+              </div>
+              <div class="c-stat-box">
+                <span class="c-lbl" data-i18n="cockpit.growth">ANNUAL GROWTH</span>
+                <div class="c-val text-gold">+380%</div>
+                <div class="c-sub">Client Median Uplift</div>
+              </div>
+            </div>
+
+            <div class="cockpit-chart-wrap">
+              <div class="chart-header">
+                <span>CONVERSION VELOCITY BY SECTOR</span>
+                <span class="text-ice">LIVE FEED</span>
+              </div>
+              <div class="chart-columns">
+                <div class="chart-col" style="--h: 48%">
+                  <span class="col-fill"></span>
+                  <span class="col-label">Strategy</span>
+                </div>
+                <div class="chart-col" style="--h: 70%">
+                  <span class="col-fill"></span>
+                  <span class="col-label">Code</span>
+                </div>
+                <div class="chart-col" style="--h: 86%">
+                  <span class="col-fill"></span>
+                  <span class="col-label">Traffic</span>
+                </div>
+                <div class="chart-col active" style="--h: 96%">
+                  <span class="col-fill"></span>
+                  <span class="col-label">Revenue</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="cockpit-footer-tags">
+              <span>🇸🇦 Saudi Vision 2030 Ready</span>
+              <span>🔒 ISO 27001 Cloud Security</span>
+              <span>⚡ Next.js 15 Stacks</span>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==================== 2. CLIENT TRUST & LOGOS MARQUEE ==================== -->
+    <section class="client-marquee-section" aria-hidden="true">
+      <div class="client-marquee-track">
+        <div class="client-marquee-row">
+          <span class="client-badge-item">BANK AL-JAZIRA <span class="client-bullet">✦</span></span>
+          <span class="client-badge-item">MAWTEN REAL ESTATE <span class="client-bullet">✦</span></span>
+          <span class="client-badge-item">PIZZA PLAZA RESTAURANTS <span class="client-bullet">✦</span></span>
+          <span class="client-badge-item">BARON PALACE HOSPITALITY <span class="client-bullet">✦</span></span>
+          <span class="client-badge-item">AL-RAYAN GROUP <span class="client-bullet">✦</span></span>
+          <span class="client-badge-item">RIYADH LEGAL CHAMBERS <span class="client-bullet">✦</span></span>
+          <span class="client-badge-item">ALYA HEALTHCARE NETWORK <span class="client-bullet">✦</span></span>
+          <span class="client-badge-item">LUXURY LIFE E-COMMERCE <span class="client-bullet">✦</span></span>
+        </div>
+        <div class="client-marquee-row" aria-hidden="true">
+          <span class="client-badge-item">BANK AL-JAZIRA <span class="client-bullet">✦</span></span>
+          <span class="client-badge-item">MAWTEN REAL ESTATE <span class="client-bullet">✦</span></span>
+          <span class="client-badge-item">PIZZA PLAZA RESTAURANTS <span class="client-bullet">✦</span></span>
+          <span class="client-badge-item">BARON PALACE HOSPITALITY <span class="client-bullet">✦</span></span>
+          <span class="client-badge-item">AL-RAYAN GROUP <span class="client-bullet">✦</span></span>
+          <span class="client-badge-item">RIYADH LEGAL CHAMBERS <span class="client-bullet">✦</span></span>
+          <span class="client-badge-item">ALYA HEALTHCARE NETWORK <span class="client-bullet">✦</span></span>
+          <span class="client-badge-item">LUXURY LIFE E-COMMERCE <span class="client-bullet">✦</span></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== 3. STRATEGIC NARRATIVE & PHILOSOPHY ==================== -->
+    <section class="pillars-section">
+      <div class="container">
+        
+        <div class="section-header-block reveal-on-scroll">
+          <div class="section-pill">
+            <span class="pill-spark"></span>
+            <span data-i18n="pillars.pill">01 // THE BIGGER PICTURE</span>
+          </div>
+          <h2 class="section-headline">
+            <span data-i18n="pillars.h1">Not a menu of services.</span>
+            <em class="serif-italic text-ice" data-i18n="pillars.h2">An operational point of view.</em>
+          </h2>
+          <p class="section-description" data-i18n="pillars.desc">
+            Most agencies operate as order-takers. Serv5 operates as a commercial partner. Every technical choice, design line, and marketing dollar is tuned directly to net profitability and sustainable market defense.
+          </p>
+        </div>
+
+        <div class="pillars-grid">
+          
+          <div class="pillar-card spotlight-card reveal-on-scroll stagger-1">
+            <div>
+              <div class="pillar-num">01 / EXPANSION</div>
+              <h3 class="pillar-title" data-i18n="pillars.p1_title">Saudi Market Entry & Compliance</h3>
+              <p class="pillar-text" data-i18n="pillars.p1_desc">
+                From initial legal advisory and MISA licensing to Mada payment conduits and ZATCA electronic tax invoicing. We build the complete commercial and digital conduit for Saudi Arabia and the GCC.
+              </p>
+            </div>
+            <a href="services.html" class="pillar-link">
+              <span data-i18n="pillars.link">Explore Expansion Framework</span>
+              <span>→</span>
+            </a>
+          </div>
+
+          <div class="pillar-card spotlight-card reveal-on-scroll stagger-2">
+            <div>
+              <div class="pillar-num">02 / VELOCITY</div>
+              <h3 class="pillar-title" data-i18n="pillars.p2_title">High-Performance Engineering</h3>
+              <p class="pillar-text" data-i18n="pillars.p2_desc">
+                Clean, unbloated codebases crafted with Next.js, Flutter, and native microservices. Loading under 0.5s, delivering 100/100 Core Web Vitals, and maintaining seamless 99.99% cloud uptime.
+              </p>
+            </div>
+            <a href="services.html" class="pillar-link">
+              <span data-i18n="pillars.link">Review Technology Stack</span>
+              <span>→</span>
+            </a>
+          </div>
+
+          <div class="pillar-card spotlight-card reveal-on-scroll stagger-3">
+            <div>
+              <div class="pillar-num">03 / REVENUE</div>
+              <h3 class="pillar-title" data-i18n="pillars.p3_title">Data-Driven Growth & SEO</h3>
+              <p class="pillar-text" data-i18n="pillars.p3_desc">
+                Conquering high-intent search queries in Riyadh, Dubai, and international hubs. Constructing precision customer acquisition funnels that turn clicks into verified bank transactions.
+              </p>
+            </div>
+            <a href="services.html" class="pillar-link">
+              <span data-i18n="pillars.link">View Growth Methodologies</span>
+              <span>→</span>
+            </a>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==================== 4. FULL CAPABILITIES MATRIX (6 CORE SERVICES) ==================== -->
+    <section class="capabilities-matrix-section">
+      <div class="container">
+        
+        <div class="section-header-block reveal-on-scroll">
+          <div class="section-pill">
+            <span class="pill-spark"></span>
+            <span>02 // FULL-SPECTRUM CAPABILITIES</span>
+          </div>
+          <h2 class="section-headline">
+            Engineered for speed.<br>
+            <span class="serif-italic text-ice">Architected for business impact.</span>
+          </h2>
+          <p class="section-description">
+            Explore the comprehensive digital solutions powering high-concurrency enterprises across 14 countries.
+          </p>
+        </div>
+
+        <div class="services-full-grid">
+          
+          <div class="spotlight-card service-matrix-card reveal-on-scroll stagger-1">
+            <div class="s-icon-box">💻</div>
+            <h3>Custom Web & Headless Commerce</h3>
+            <p>
+              High-concurrency web platforms, microservices, and headless e-commerce built with Next.js. Page load speeds under 0.5 seconds and zero CLS.
+            </p>
+            <ul class="s-features-list">
+              <li><span>✓</span> Next.js 15 & React Server Components</li>
+              <li><span>✓</span> Headless Shopify & WooCommerce Engines</li>
+              <li><span>✓</span> Mada, Apple Pay, Tabby & Tamara</li>
+            </ul>
+            <a href="services.html" class="pillar-link">Read Service Specs →</a>
+          </div>
+
+          <div class="spotlight-card service-matrix-card reveal-on-scroll stagger-2">
+            <div class="s-icon-box">🇸🇦</div>
+            <h3>Saudi Market Entry & ZATCA Conduits</h3>
+            <p>
+              Turnkey digital company formation, MISA licensing compliance, and official ZATCA Phase 2 electronic invoicing integrations.
+            </p>
+            <ul class="s-features-list">
+              <li><span>✓</span> ZATCA Phase 2 Tax Compliance</li>
+              <li><span>✓</span> Saudi Cloud Data Centers (CITC Ready)</li>
+              <li><span>✓</span> Arabic High-Intent Search Intent</li>
+            </ul>
+            <a href="services.html" class="pillar-link">Read Service Specs →</a>
+          </div>
+
+          <div class="spotlight-card service-matrix-card reveal-on-scroll stagger-3">
+            <div class="s-icon-box">📱</div>
+            <h3>Mobile Applications (iOS & Android)</h3>
+            <p>
+              Silky smooth mobile applications designed for retention. Cross-platform Flutter and native Swift/Kotlin with offline sync and push automation.
+            </p>
+            <ul class="s-features-list">
+              <li><span>✓</span> 60 FPS Native Touch Interactions</li>
+              <li><span>✓</span> Real-Time Geo-Location & Delivery Sync</li>
+              <li><span>✓</span> Automated Push Engagement Engines</li>
+            </ul>
+            <a href="services.html" class="pillar-link">Read Service Specs →</a>
+          </div>
+
+          <div class="spotlight-card service-matrix-card reveal-on-scroll stagger-1">
+            <div class="s-icon-box">📈</div>
+            <h3>Advanced Google SEO & Paid Media</h3>
+            <p>
+              Dominating page #1 of Google in competitive commercial queries. High-ROAS paid acquisition across Google Search, Meta, TikTok, and Snapchat.
+            </p>
+            <ul class="s-features-list">
+              <li><span>✓</span> Programmatic SEO & Structured Schema</li>
+              <li><span>✓</span> Full-Funnel Attribution & Analytics</li>
+              <li><span>✓</span> 5.4x to 8.8x Median Blended ROAS</li>
+            </ul>
+            <a href="services.html" class="pillar-link">Read Service Specs →</a>
+          </div>
+
+          <div class="spotlight-card service-matrix-card reveal-on-scroll stagger-2">
+            <div class="s-icon-box">☁️</div>
+            <h3>Cloud Hosting & DevOps SLA</h3>
+            <p>
+              Dedicated enterprise cloud servers, daily automated backups, cloud disaster recovery, and 24/7 technical monitoring with 99.99% uptime guarantee.
+            </p>
+            <ul class="s-features-list">
+              <li><span>✓</span> Multi-Region AWS & Saudi Cloud Fabric</li>
+              <li><span>✓</span> Anti-DDoS Enterprise Hardening</li>
+              <li><span>✓</span> 24/7 Dedicated Support Engineering</li>
+            </ul>
+            <a href="services.html" class="pillar-link">Read Service Specs →</a>
+          </div>
+
+          <div class="spotlight-card service-matrix-card reveal-on-scroll stagger-3">
+            <div class="s-icon-box">🤖</div>
+            <h3>Autonomous AI & Practice ERP</h3>
+            <p>
+              Battle-tested ERP solutions: Legal practice software, WhatsApp AI sales bots, and customized workflow automation saving 65% staff hours.
+            </p>
+            <ul class="s-features-list">
+              <li><span>✓</span> Serv5 Legal ERP for Law Practices</li>
+              <li><span>✓</span> Official WhatsApp Business API Bots</li>
+              <li><span>✓</span> Automated Intake & Dispatch Engines</li>
+            </ul>
+            <a href="services.html" class="pillar-link">Read Service Specs →</a>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==================== 5. INTERACTIVE 5-PHASE PROCESS ROADMAP WITH ENERGY PULSE ==================== -->
+    <section class="process-roadmap-section">
+      <div class="container">
+        
+        <div class="section-header-block reveal-on-scroll">
+          <div class="section-pill">
+            <span class="pill-spark"></span>
+            <span>03 // THE ENGINEERING ROADMAP</span>
+          </div>
+          <h2 class="section-headline">
+            How we take you from concept to<br>
+            <span class="serif-italic text-ice">undisputed category leader.</span>
+          </h2>
+          <p class="section-description">
+            A battle-tested 5-stage deployment framework with continuous progress telemetry.
+          </p>
+        </div>
+
+        <div class="roadmap-timeline-grid">
+          <!-- Animated Energy Pulse Running Across the Line -->
+          <div class="roadmap-energy-beam" aria-hidden="true">
+            <div class="beam-pulse-dot"></div>
+          </div>
+          
+          <div class="roadmap-step-card spotlight-card reveal-on-scroll stagger-1">
+            <div class="step-number-circle">01</div>
+            <h4>Strategic Discovery & Audit</h4>
+            <p>We dissect your revenue goals, competitor moats, and technical debt to design an airtight commercial architecture.</p>
+            <div class="step-progress-indicator"><span class="step-dot active"></span> Milestone: Blueprint</div>
+          </div>
+
+          <div class="roadmap-step-card spotlight-card reveal-on-scroll stagger-2">
+            <div class="step-number-circle">02</div>
+            <h4>Tactile UI/UX Prototyping</h4>
+            <p>Crafting micro-interactions, frictionless customer journeys, and high-fidelity prototypes tested with real target users.</p>
+            <div class="step-progress-indicator"><span class="step-dot active"></span> Milestone: Interactive Prototype</div>
+          </div>
+
+          <div class="roadmap-step-card spotlight-card reveal-on-scroll stagger-3">
+            <div class="step-number-circle">03</div>
+            <h4>Sub-Second Engineering</h4>
+            <p>Clean code written with strict performance budgets: Next.js, Flutter, and microservices guaranteeing 100/100 CWV.</p>
+            <div class="step-progress-indicator"><span class="step-dot active"></span> Milestone: Code Freeze</div>
+          </div>
+
+          <div class="roadmap-step-card spotlight-card reveal-on-scroll stagger-4">
+            <div class="step-number-circle">04</div>
+            <h4>Launch & High-ROAS Media</h4>
+            <p>Seamless zero-downtime deployment coupled with full-funnel paid media campaigns and programmatic SEO activation.</p>
+            <div class="step-progress-indicator"><span class="step-dot active"></span> Milestone: Go-Live</div>
+          </div>
+
+          <div class="roadmap-step-card spotlight-card reveal-on-scroll stagger-1">
+            <div class="step-number-circle">05</div>
+            <h4>Continuous Optimization</h4>
+            <p>24/7 cloud monitoring, A/B conversion rate testing, security patches, and ongoing revenue scale iterations.</p>
+            <div class="step-progress-indicator"><span class="step-dot active"></span> Milestone: Scale Horizon</div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==================== 6. READY-MADE ENTERPRISE SOFTWARE SUITES ==================== -->
+    <section class="products-showcase-section">
+      <div class="container">
+        
+        <div class="section-header-block reveal-on-scroll">
+          <div class="section-pill">
+            <span class="pill-spark"></span>
+            <span>04 // PROPRIETARY SOFTWARE SUITES</span>
+          </div>
+          <h2 class="section-headline">
+            Turnkey enterprise systems.<br>
+            <span class="serif-italic text-ice">Tested, proven, and operational.</span>
+          </h2>
+          <p class="section-description">
+            Beyond bespoke development, Serv5 delivers specialized enterprise platforms refined over 16 years.
+          </p>
+        </div>
+
+        <!-- Interactive Tabs for Products -->
+        <div class="products-tabs-row">
+          <button class="prod-tab-btn active magnetic" data-prod="legal">Serv5 Legal Suite (ERP)</button>
+          <button class="prod-tab-btn magnetic" data-prod="whatsapp">WhatsApp Business AI CRM</button>
+          <button class="prod-tab-btn magnetic" data-prod="food">Restaurant & Delivery Platform</button>
+          <button class="prod-tab-btn magnetic" data-prod="medical">Clinic & Healthcare Network</button>
+        </div>
+
+        <div class="product-display-panel spotlight-card reveal-on-scroll" id="productDisplayPanel">
+          <div class="product-content-side">
+            <div class="product-badges-list">
+              <span class="p-tag" id="prodTag1">SAUDI ZATCA COMPLIANT</span>
+              <span class="p-tag" id="prodTag2">75+ FIRMS IN RIYADH</span>
+            </div>
+            <h3 id="prodTitle">Serv5 Legal Suite: Enterprise Practice ERP</h3>
+            <p id="prodDesc">
+              The leading automated software powering top corporate law firms across the Kingdom of Saudi Arabia. Features automated court alert dispatching, litigation case sync with Najiz, client portals, and ZATCA Phase 2 compliant tax billing.
+            </p>
+            <a href="contact.html" class="btn-primary magnetic" id="prodCta">Request Product Demo →</a>
+          </div>
+
+          <div class="product-visual-side">
+            <div class="terminal-mini-header">
+              <span class="t-dot t-red"></span>
+              <span class="t-dot t-yellow"></span>
+              <span class="t-dot t-green"></span>
+              <span class="terminal-title" id="terminalTitle">serv5-erp-telemetry.sh</span>
+            </div>
+            
+            <div class="live-terminal-stream" id="terminalStream">
+              <code><span class="text-dim">&gt;</span> SYSTEM STATUS: ONLINE</code>
+              <code><span class="text-emerald">&gt;</span> ZATCA Tax Engine: Verified 100%</code>
+              <code><span class="text-ice">&gt;</span> Najiz Court Alert API: Connected</code>
+            </div>
+
+            <div style="text-align: center; margin-top: auto; padding-top: 14px; border-top: 1px solid var(--border-subtle);">
+              <span style="font-size: 2.6rem; font-weight: 800; color: var(--accent-ice);" id="prodStatVal">-65%</span>
+              <span style="display: block; font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted);" id="prodStatLbl">ADMIN OVERHEAD REDUCTION</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==================== 7. IN-HOME PROJECT & ROI ESTIMATOR ==================== -->
+    <section class="pillars-section" style="background: #04060C; border-top: 1px solid var(--border-subtle); border-bottom: 1px solid var(--border-subtle);">
+      <div class="container">
+        
+        <div class="section-header-block reveal-on-scroll">
+          <div class="section-pill">
+            <span class="pill-spark"></span>
+            <span>05 // PREDICTIVE ROI ESTIMATOR</span>
+          </div>
+          <h2 class="section-headline">
+            Configure your parameters.<br>
+            <span class="serif-italic text-ice">Visualize commercial return.</span>
+          </h2>
+          <p class="section-description">
+            Interact with our algorithm to calculate projected deployment velocity, architectural stack, and revenue multiplier.
+          </p>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1.3fr 0.9fr; gap: 40px; align-items: start;">
+          
+          <div style="display: flex; flex-direction: column; gap: 24px;">
+            
+            <div class="pillar-card" style="padding: 24px;">
+              <label style="display: block; font-family: var(--font-mono); font-size: 0.75rem; color: var(--accent-ice); margin-bottom: 14px;">
+                01 // CORE DEPLOYMENT ASSET
+              </label>
+              <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px;" id="simArchOptions">
+                <button class="param-btn active magnetic" data-arch="web" style="padding: 14px; border: 1px solid var(--border-subtle); border-radius: 12px; text-align: left; cursor: pointer;">
+                  <strong style="display: block; font-size: 0.95rem; margin-bottom: 2px;">Next.js Web Platform</strong>
+                  <small style="color: var(--text-dim);">Core Web Vitals 100/100</small>
+                </button>
+                <button class="param-btn magnetic" data-arch="ecommerce" style="padding: 14px; border: 1px solid var(--border-subtle); border-radius: 12px; text-align: left; cursor: pointer;">
+                  <strong style="display: block; font-size: 0.95rem; margin-bottom: 2px;">Mada / GCC E-Commerce</strong>
+                  <small style="color: var(--text-dim);">Multi-Vendor & Omnichannel</small>
+                </button>
+                <button class="param-btn magnetic" data-arch="mobile" style="padding: 14px; border: 1px solid var(--border-subtle); border-radius: 12px; text-align: left; cursor: pointer;">
+                  <strong style="display: block; font-size: 0.95rem; margin-bottom: 2px;">Flutter Mobile App</strong>
+                  <small style="color: var(--text-dim);">iOS & Android Native API</small>
+                </button>
+                <button class="param-btn magnetic" data-arch="erp" style="padding: 14px; border: 1px solid var(--border-subtle); border-radius: 12px; text-align: left; cursor: pointer;">
+                  <strong style="display: block; font-size: 0.95rem; margin-bottom: 2px;">Enterprise Practice ERP</strong>
+                  <small style="color: var(--text-dim);">Legal & Medical Workflow</small>
+                </button>
+              </div>
+            </div>
+
+            <div class="pillar-card" style="padding: 24px;">
+              <label style="display: block; font-family: var(--font-mono); font-size: 0.75rem; color: var(--accent-ice); margin-bottom: 14px;">
+                02 // OPERATIONAL JURISDICTION
+              </label>
+              <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px;" id="simRegionOptions">
+                <button class="param-btn active magnetic" data-region="ksa" style="padding: 14px; border: 1px solid var(--border-subtle); border-radius: 12px; text-align: left; cursor: pointer;">
+                  <strong style="display: block; font-size: 0.95rem; margin-bottom: 2px;">🇸🇦 Saudi Arabia</strong>
+                  <small style="color: var(--text-dim);">ZATCA & Vision 2030</small>
+                </button>
+                <button class="param-btn magnetic" data-region="global" style="padding: 14px; border: 1px solid var(--border-subtle); border-radius: 12px; text-align: left; cursor: pointer;">
+                  <strong style="display: block; font-size: 0.95rem; margin-bottom: 2px;">🌍 Global Markets</strong>
+                  <small style="color: var(--text-dim);">Stripe, Multi-Currency</small>
+                </button>
+                <button class="param-btn magnetic" data-region="egypt" style="padding: 14px; border: 1px solid var(--border-subtle); border-radius: 12px; text-align: left; cursor: pointer;">
+                  <strong style="display: block; font-size: 0.95rem; margin-bottom: 2px;">🇪🇬 Egypt / Regional</strong>
+                  <small style="color: var(--text-dim);">Fawry & InstaPay</small>
+                </button>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Estimator Output Box -->
+          <div class="glass-cockpit-card">
+            <span style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--accent-ice); letter-spacing: 0.1em; display: block; margin-bottom: 6px;">
+              ESTIMATED SPECIFICATION
+            </span>
+            <h3 style="font-size: 1.45rem; font-weight: 800; margin-bottom: 20px;" id="resProjectName">Next.js Headless Platform</h3>
+
+            <div style="display: flex; flex-direction: column; gap: 14px; margin-bottom: 28px;">
+              <div style="display: flex; justify-content: space-between; font-size: 0.9rem;">
+                <span style="color: var(--text-dim);">Stack</span>
+                <strong class="text-ice" id="resStack">Next.js 15 Edge + Cloudflare</strong>
+              </div>
+              <div style="display: flex; justify-content: space-between; font-size: 0.9rem;">
+                <span style="color: var(--text-dim);">Velocity</span>
+                <strong id="resTimeline">3 to 5 Weeks</strong>
+              </div>
+              <div style="display: flex; justify-content: space-between; font-size: 0.9rem;">
+                <span style="color: var(--text-dim);">CWV Speed</span>
+                <strong class="text-emerald" id="resSpeed">100 / 100 Sub-Second</strong>
+              </div>
+              <div style="display: flex; justify-content: space-between; font-size: 0.9rem;">
+                <span style="color: var(--text-dim);">Projected Lift</span>
+                <strong class="text-ice" id="resLift">+220% to +350%</strong>
+              </div>
+            </div>
+
+            <a href="contact.html" class="btn-primary magnetic" style="width: 100%; justify-content: center;" id="lockScopeBtn">
+              <span>Lock Scope & Get Proposal</span>
+              <span>→</span>
+            </a>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==================== 8. FEATURED CASE STUDIES & THE VAULT ==================== -->
+    <section class="showcase-section">
+      <div class="container">
+        
+        <div class="showcase-header reveal-on-scroll">
+          <div>
+            <div class="section-pill">
+              <span class="pill-spark"></span>
+              <span data-i18n="cases.pill">06 // PROVEN COMMERCIAL IMPACT</span>
+            </div>
+            <h2 class="section-headline">
+              <span data-i18n="cases.h1">Selected work crafted to</span>
+              <em class="serif-italic text-ice" data-i18n="cases.h2">dominate markets.</em>
+            </h2>
+          </div>
+          <a href="portfolio.html" class="all-cases-link magnetic" data-cursor="ALL CASES">
+            <span data-i18n="cases.all">View Full Portfolio (20K+ Projects)</span>
+            <span>↗</span>
+          </a>
+        </div>
+
+        <div class="case-grid-home">
+          
+          <!-- Case 1: Pizza Plaza -->
+          <article class="home-case-card reveal-on-scroll stagger-1">
+            <div class="case-visual-frame">
+              <span class="case-badge-pill">F&B DIGITAL COMMERCE</span>
+              <div class="case-screen-mock">
+                <div class="mock-header">
+                  <span>PIZZA PLAZA PLATFORM</span>
+                  <span class="text-emerald">● 0.4s SPEED</span>
+                </div>
+                <div class="mock-big text-ice">+184% DIRECT ORDERS</div>
+              </div>
+            </div>
+            <div class="case-details-block">
+              <span class="case-sector">E-Commerce & Food Logistics • Egypt & GCC</span>
+              <h3 class="case-heading">Pizza Plaza: The Sub-Second Direct Ordering Engine</h3>
+              <p class="case-desc">
+                Redesigned the entire digital ordering architecture, eliminating third-party aggregator fee drains and fueling direct customer orders through high-conversion social ad funnels.
+              </p>
+              <div class="case-metrics-bar">
+                <div class="m-box">
+                  <strong>+184%</strong>
+                  <span>Online Revenue</span>
+                </div>
+                <div class="m-box">
+                  <strong>-42%</strong>
+                  <span>CPA Cost</span>
+                </div>
+                <div class="m-box">
+                  <strong>0.4s</strong>
+                  <span>Checkout Speed</span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Case 2: Baron Palace -->
+          <article class="home-case-card reveal-on-scroll stagger-2">
+            <div class="case-visual-frame">
+              <span class="case-badge-pill">LUXURY & HOSPITALITY</span>
+              <div class="case-screen-mock">
+                <div class="mock-header">
+                  <span>BARON PALACE CONCIERGE</span>
+                  <span class="text-gold">● VIP PORTAL</span>
+                </div>
+                <div class="mock-big text-gold">+320% SURGE</div>
+              </div>
+            </div>
+            <div class="case-details-block">
+              <span class="case-sector">Hospitality & Concierge • High Net Worth</span>
+              <h3 class="case-heading">Baron Palace: Ultra-Luxury Virtual Showcase & Booking</h3>
+              <p class="case-desc">
+                Crafted an award-winning digital experience with 3D WebGL virtual spatial tours, private concierge workflows, and localized VIP booking suites.
+              </p>
+              <div class="case-metrics-bar">
+                <div class="m-box">
+                  <strong class="text-gold">+320%</strong>
+                  <span>Direct Bookings</span>
+                </div>
+                <div class="m-box">
+                  <strong class="text-gold">4.8 min</strong>
+                  <span>Dwell Time</span>
+                </div>
+                <div class="m-box">
+                  <strong class="text-gold">100%</strong>
+                  <span>Mobile Flow</span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Case 3: Saudi Law Firm ERP -->
+          <article class="home-case-card reveal-on-scroll stagger-3">
+            <div class="case-visual-frame">
+              <span class="case-badge-pill">SAUDI LEGAL TECH / ERP</span>
+              <div class="case-screen-mock">
+                <div class="mock-header">
+                  <span>SERV5 LEGAL SUITE</span>
+                  <span class="text-emerald">● ZATCA COMPLIANT</span>
+                </div>
+                <div class="mock-big text-emerald">75+ FIRMS IN RIYADH</div>
+              </div>
+            </div>
+            <div class="case-details-block">
+              <span class="case-sector">Legal ERP Software • Kingdom of Saudi Arabia</span>
+              <h3 class="case-heading">Enterprise Legal Practice Management Software</h3>
+              <p class="case-desc">
+                The leading automated enterprise software powering premier corporate law practices across Riyadh and Jeddah with court alerts, case sync, and automated tax reporting.
+              </p>
+              <div class="case-metrics-bar">
+                <div class="m-box">
+                  <strong class="text-emerald">-65%</strong>
+                  <span>Admin Overhead</span>
+                </div>
+                <div class="m-box">
+                  <strong class="text-emerald">100%</strong>
+                  <span>ZATCA Ready</span>
+                </div>
+                <div class="m-box">
+                  <strong class="text-emerald">24/7</strong>
+                  <span>Najiz Alert Bot</span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==================== 9. COMPARISON: SERV5 VS TRADITIONAL AGENCIES ==================== -->
+    <section class="comparison-section">
+      <div class="container">
+        
+        <div class="section-header-block reveal-on-scroll">
+          <div class="section-pill">
+            <span class="pill-spark"></span>
+            <span>07 // THE SERV5 ADVANTAGE</span>
+          </div>
+          <h2 class="section-headline">
+            Why market leaders choose Serv5<br>
+            <span class="serif-italic text-ice">over generic web agencies.</span>
+          </h2>
+          <p class="section-description">
+            A direct, honest comparison between standard template shops and high-performance digital engineering.
+          </p>
+        </div>
+
+        <div class="comparison-table-wrap reveal-on-scroll">
+          <div class="compare-row header-row">
+            <span>DIMENSION / CAPABILITY</span>
+            <span>TRADITIONAL AGENCIES</span>
+            <span class="serv5-col">SERV5 ARCHITECTURE</span>
+          </div>
+
+          <div class="compare-row spotlight-row">
+            <div class="comp-feature">
+              <strong>Code Quality & Speed</strong>
+              <span>Core Web Vitals & Payload size</span>
+            </div>
+            <div class="comp-trad">Bloated WordPress templates, 3s+ load time</div>
+            <div class="comp-serv5">✓ Clean Next.js 15, &lt; 0.5s load, 100/100 CWV</div>
+          </div>
+
+          <div class="compare-row spotlight-row">
+            <div class="comp-feature">
+              <strong>Saudi & GCC Compliance</strong>
+              <span>ZATCA, Mada & local legal frameworks</span>
+            </div>
+            <div class="comp-trad">Superficial Arabic translation plugins</div>
+            <div class="comp-serv5">✓ Native ZATCA Phase 2, Mada, MISA & Vision 2030 ready</div>
+          </div>
+
+          <div class="compare-row spotlight-row">
+            <div class="comp-feature">
+              <strong>Commercial Focus</strong>
+              <span>How success is measured</span>
+            </div>
+            <div class="comp-trad">Vanity metrics: impressions, clicks, superficial likes</div>
+            <div class="comp-serv5">✓ Net bank deposits, verified ROAS & customer LTV</div>
+          </div>
+
+          <div class="compare-row spotlight-row">
+            <div class="comp-feature">
+              <strong>Security & Hosting SLA</strong>
+              <span>Uptime and disaster recovery</span>
+            </div>
+            <div class="comp-trad">Shared budget hosting, manual backups</div>
+            <div class="comp-serv5">✓ Multi-Region Cloud, ISO 27001, 99.99% uptime SLA</div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==================== 10. FREQUENTLY ASKED QUESTIONS (ACCORDION) ==================== -->
+    <section class="faq-section">
+      <div class="container">
+        
+        <div class="section-header-block reveal-on-scroll" style="text-align: center; margin: 0 auto 60px auto;">
+          <div class="section-pill">
+            <span class="pill-spark"></span>
+            <span>08 // COMMON INQUIRIES</span>
+          </div>
+          <h2 class="section-headline">
+            Frequently Asked<br>
+            <span class="serif-italic text-ice">Commercial & Technical Questions.</span>
+          </h2>
+          <p class="section-description" style="margin: 0 auto;">
+            Clear, transparent answers about our timelines, contracts, and technology standards.
+          </p>
+        </div>
+
+        <div class="faq-accordion-list reveal-on-scroll">
+          
+          <div class="faq-item active">
+            <button class="faq-question-btn">
+              <span>How do you guarantee Google Core Web Vitals 100/100?</span>
+              <span class="faq-arrow">▼</span>
+            </button>
+            <div class="faq-answer">
+              We enforce strict performance budgets during development. By leveraging modern headless architecture (Next.js 15, edge serverless rendering, minimal critical CSS, and predictive asset preloading), our platforms eliminate layout shifts (CLS = 0) and achieve sub-second Largest Contentful Paint (LCP &lt; 0.5s) right out of the box.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question-btn">
+              <span>Do you provide full compliance with Saudi Arabia's ZATCA Phase 2?</span>
+              <span class="faq-arrow">▼</span>
+            </button>
+            <div class="faq-answer">
+              Yes, 100%. All enterprise e-commerce and ERP software we deploy for the Saudi market is architected to seamlessly generate cryptographic stamps, QR codes, and direct XML API transmissions required by the Zakat, Tax and Customs Authority (ZATCA).
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question-btn">
+              <span>What is your typical project delivery timeline?</span>
+              <span class="faq-arrow">▼</span>
+            </button>
+            <div class="faq-answer">
+              High-performance web platforms and bespoke landing systems typically deploy within 3 to 5 weeks. Full-scale e-commerce platforms and mobile applications require 6 to 9 weeks, executed in transparent 2-week agile sprints with continuous staging access.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question-btn">
+              <span>Do we own the full source code and intellectual property?</span>
+              <span class="faq-arrow">▼</span>
+            </button>
+            <div class="faq-answer">
+              Absolutely. Upon final project sign-off and deployment, 100% of the custom source code, design assets, and intellectual property rights are transferred entirely to your organization with zero vendor lock-in.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question-btn">
+              <span>How do your ongoing maintenance and Cloud SLAs operate?</span>
+              <span class="faq-arrow">▼</span>
+            </button>
+            <div class="faq-answer">
+              We offer comprehensive 24/7 SLA maintenance tiers covering automated cloud backups, security hardening, continuous Core Web Vitals monitoring, and rapid emergency response times under 15 minutes.
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==================== 11. FINAL HIGH-CONVERTING CTA ==================== -->
+    <section class="call-to-action-section">
+      <div class="container">
+        
+        <div class="cta-card-luxury reveal-on-scroll">
+          <div>
+            <h2 data-i18n="cta.h1">Ready to engineer your next leap?</h2>
+            <p data-i18n="cta.desc">Schedule a strategic discovery session with our Managing Directors in Riyadh, Cairo, or online.</p>
+          </div>
+          <div class="cta-buttons-wrap">
+            <a href="estimator.html" class="btn-primary magnetic" data-cursor="CALC">
+              <span data-i18n="cta.btn1">Configure Project Scope</span>
+              <span>→</span>
+            </a>
+            <a href="contact.html" class="btn-secondary magnetic" data-cursor="CONTACT">
+              <span data-i18n="cta.btn2">Contact Direct</span>
+              <span>↗</span>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==================== MASTER FOOTER ==================== -->
+  <footer class="master-footer">
+    <div class="container">
+      
+      <div class="footer-top-grid">
+        <div>
+          <span class="brand-name">serv<span class="brand-digit">5</span></span>
+          <p class="f-desc">
+            Bespoke software engineering, performance marketing, and digital business architecture. 16+ years of verified industry leadership.
+          </p>
+          <div style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-dim);">
+            RIYADH • CAIRO • MANSOURA • GLOBAL
+          </div>
+        </div>
+
+        <div>
+          <h4 class="f-title">Solutions</h4>
+          <ul class="f-nav">
+            <li><a href="services.html">High-Velocity Web Engineering</a></li>
+            <li><a href="services.html">Saudi Market Expansion & Setup</a></li>
+            <li><a href="services.html">Mobile Applications (iOS/Android)</a></li>
+            <li><a href="services.html">Advanced SEO & Paid Media</a></li>
+            <li><a href="services.html">Legal & Medical Enterprise ERP</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="f-title">Company</h4>
+          <ul class="f-nav">
+            <li><a href="about.html">About Serv5 Agency</a></li>
+            <li><a href="portfolio.html">Case Studies Portfolio</a></li>
+            <li><a href="estimator.html">Project ROI Estimator</a></li>
+            <li><a href="contact.html">Offices & Locations</a></li>
+            <li><a href="contact.html">Career Inquiries</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="f-title">Direct Offices</h4>
+          <ul class="f-nav">
+            <li><strong style="color:#FFF;">🇸🇦 Riyadh:</strong> Olaya District, KSA</li>
+            <li><strong style="color:#FFF;">🇪🇬 Cairo:</strong> New Cairo, Egypt</li>
+            <li><strong style="color:#FFF;">✉️ Email:</strong> sales@serv5.com</li>
+            <li><strong style="color:#FFF;">💬 WhatsApp:</strong> +20 101 288 8636</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom-row">
+        <div>© 2008 – 2027 SERV5 DIGITAL BUSINESS GROUP. ALL RIGHTS RESERVED.</div>
+        <div>STRICT NDA PROTECTION • ISO 27001 CLOUD SECURITY • ZATCA ACCREDITED</div>
+      </div>
+
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

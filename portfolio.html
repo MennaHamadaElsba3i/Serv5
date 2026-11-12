@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Case Studies & Selected Work | SERV5 Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,500;0,600;1,400&family=Tajawal:wght@300;400;500;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="subtle-grain" aria-hidden="true"></div>
+  <!-- Interactive Ambient Background Canvas (Reacts to Scroll Velocity) -->
+  <canvas id="ambientScrollCanvas" aria-hidden="true"></canvas>
+  <div class="cursor-dot" id="cursorDot"></div>
+  <div class="cursor-ring" id="cursorRing"><span class="cursor-tag" id="cursorTag"></span></div>
+
+  <div class="volumetric-aura" aria-hidden="true">
+    <div class="aura-orb aura-1"></div>
+    <div class="aura-orb aura-2"></div>
+  </div>
+
+  <div class="site-hud">
+    <div class="hud-status">
+      <span class="status-indicator"><span class="status-dot"></span> THE PROVEN VAULT</span>
+      <span>//</span>
+      <span>20,000+ DEPLOYMENTS</span>
+    </div>
+    <div class="hud-actions">
+      <button class="hud-btn magnetic" id="langSwitch"><span>🌐</span><span id="langLabel">العربية</span></button>
+      <button class="hud-btn magnetic" id="audioToggle"><span id="audioIcon">🔊</span></button>
+    </div>
+  </div>
+
+  <header class="master-nav">
+    <div class="nav-container">
+      <a href="index.html" class="brand-link magnetic" data-cursor="HOME">
+        <div class="brand-symbol">
+          <svg width="24" height="24" viewBox="0 0 40 40" fill="none">
+            <rect width="40" height="40" rx="10" fill="#0F172A"/>
+            <path d="M12 14C12 12.3431 13.3431 11 15 11H25C26.6569 11 28 12.3431 28 14V17C28 18.6569 26.6569 20 25 20H17C15.3431 20 14 21.3431 14 23V26C14 27.6569 15.3431 29 17 29H27" stroke="#60A5FA" stroke-width="3.5" stroke-linecap="round"/>
+            <circle cx="21" cy="20" r="2.5" fill="#FFFFFF"/>
+          </svg>
+        </div>
+        <div>
+          <span class="brand-name">serv<span class="brand-digit">5</span></span>
+          <span class="brand-subtitle">DIGITAL GROWTH STUDIO</span>
+        </div>
+      </a>
+
+      <nav class="page-links">
+        <a href="index.html" class="page-link magnetic" data-cursor="INDEX">Home</a>
+        <a href="services.html" class="page-link magnetic" data-cursor="SERVICES">Capabilities</a>
+        <a href="portfolio.html" class="page-link active magnetic" data-cursor="WORK">Case Studies</a>
+        <a href="estimator.html" class="page-link magnetic" data-cursor="CALC">ROI Estimator</a>
+        <a href="about.html" class="page-link magnetic" data-cursor="AGENCY">Agency & History</a>
+        <a href="contact.html" class="page-link magnetic" data-cursor="CONTACT">Offices & Contact</a>
+      </nav>
+
+      <a href="contact.html" class="btn-primary magnetic" data-cursor="START">
+        <span>Start Project</span>
+        <span>→</span>
+      </a>
+    </div>
+  </header>
+
+  <main class="container">
+    
+    <div class="page-hero-header">
+      <div class="section-pill">
+        <span class="pill-spark"></span>
+        <span>PROVEN COMMERCIAL OUTCOMES</span>
+      </div>
+      <h1 class="page-main-title">
+        The proof is in the<br>
+        <span class="serif-italic text-ice">verified outcomes.</span>
+      </h1>
+      <p class="page-lead-subtitle">
+        Explore in-depth case studies showcasing how we transformed regional brands into category leaders across the GCC and international markets.
+      </p>
+    </div>
+
+    <!-- CASE STUDIES DETAILED LIST -->
+    <div style="display: flex; flex-direction: column; gap: 40px; margin-bottom: 100px;">
+      
+      <!-- Project 1: Pizza Plaza -->
+      <article class="home-case-card" style="display: grid; grid-template-columns: 1fr 1.2fr; gap: 40px; align-items: center; padding: 24px;">
+        <div class="case-visual-frame" style="height: 320px; border-radius: 16px;">
+          <span class="case-badge-pill">F&B HYPER-GROWTH</span>
+          <div class="case-screen-mock" style="width: 90%; height: 85%;">
+            <div class="mock-header">
+              <span>PIZZA PLAZA ONLINE ECOSYSTEM</span>
+              <span class="text-emerald">● 0.4s SPEED</span>
+            </div>
+            <div style="text-align: center; margin: auto;">
+              <span style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-dim);">DIRECT ONLINE SALES</span>
+              <div class="mock-big text-ice">+184% GROWTH</div>
+            </div>
+          </div>
+        </div>
+        <div class="case-details-block" style="padding: 10px;">
+          <span class="case-sector">E-Commerce & Food Logistics • Egypt & Saudi Arabia</span>
+          <h2 class="case-heading" style="font-size: 1.8rem;">Pizza Plaza: The Sub-Second Direct Ordering Engine</h2>
+          <p class="case-desc">
+            Pizza Plaza was losing significant operating margin to third-party delivery apps. Serv5 re-architected their entire ordering platform using Next.js with sub-second checkout, coupled with TikTok and Meta performance video ads that drove customer acquisition directly to the web app.
+          </p>
+          <div class="case-metrics-bar">
+            <div class="m-box">
+              <strong>+184%</strong>
+              <span>Online Revenue</span>
+            </div>
+            <div class="m-box">
+              <strong>-42%</strong>
+              <span>Acquisition CPA</span>
+            </div>
+            <div class="m-box">
+              <strong>0.4s</strong>
+              <span>Checkout Flow</span>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Project 2: Baron Palace -->
+      <article class="home-case-card" style="display: grid; grid-template-columns: 1fr 1.2fr; gap: 40px; align-items: center; padding: 24px;">
+        <div class="case-visual-frame" style="height: 320px; border-radius: 16px;">
+          <span class="case-badge-pill">LUXURY & HOSPITALITY</span>
+          <div class="case-screen-mock" style="width: 90%; height: 85%;">
+            <div class="mock-header">
+              <span>BARON PALACE CONCIERGE</span>
+              <span class="text-gold">● VIP PORTAL</span>
+            </div>
+            <div style="text-align: center; margin: auto;">
+              <span style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-dim);">DIRECT VIP INQUIRIES</span>
+              <div class="mock-big text-gold">+320% SURGE</div>
+            </div>
+          </div>
+        </div>
+        <div class="case-details-block" style="padding: 10px;">
+          <span class="case-sector">Hospitality & VIP Concierge • High Net Worth Individuals</span>
+          <h2 class="case-heading" style="font-size: 1.8rem;">Baron Palace: Ultra-Luxury Virtual Showcase & Booking</h2>
+          <p class="case-desc">
+            Crafted a bespoke digital experience reflecting the heritage and prestige of Baron Palace. Integrated 3D interactive virtual tours, automated concierge reservations, multi-currency payments, and VIP suite booking management.
+          </p>
+          <div class="case-metrics-bar">
+            <div class="m-box">
+              <strong class="text-gold">+320%</strong>
+              <span>Direct Bookings</span>
+            </div>
+            <div class="m-box">
+              <strong class="text-gold">4.8 min</strong>
+              <span>Avg Dwell Time</span>
+            </div>
+            <div class="m-box">
+              <strong class="text-gold">100%</strong>
+              <span>Mobile Responsive</span>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Project 3: Saudi Law Firm ERP -->
+      <article class="home-case-card" style="display: grid; grid-template-columns: 1fr 1.2fr; gap: 40px; align-items: center; padding: 24px;">
+        <div class="case-visual-frame" style="height: 320px; border-radius: 16px;">
+          <span class="case-badge-pill">SAUDI LEGAL TECH / ERP</span>
+          <div class="case-screen-mock" style="width: 90%; height: 85%;">
+            <div class="mock-header">
+              <span>SERV5 LEGAL SUITE</span>
+              <span class="text-emerald">● ZATCA APPROVED</span>
+            </div>
+            <div style="text-align: center; margin: auto;">
+              <span style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-dim);">ADMIN OVERHEAD SAVED</span>
+              <div class="mock-big text-emerald">-65% COSTS</div>
+            </div>
+          </div>
+        </div>
+        <div class="case-details-block" style="padding: 10px;">
+          <span class="case-sector">Legal Tech ERP • Riyadh & Jeddah Firms</span>
+          <h2 class="case-heading" style="font-size: 1.8rem;">Enterprise Legal Practice Management Software</h2>
+          <p class="case-desc">
+            Implemented across 75+ premier law firms in Saudi Arabia. Automated litigation tracking, court alert dispatching, ZATCA Phase 2 compliant tax billing, and private client portals.
+          </p>
+          <div class="case-metrics-bar">
+            <div class="m-box">
+              <strong class="text-emerald">75+</strong>
+              <span>Firms Deployed</span>
+            </div>
+            <div class="m-box">
+              <strong class="text-emerald">-65%</strong>
+              <span>Manual Admin Work</span>
+            </div>
+            <div class="m-box">
+              <strong class="text-emerald">100%</strong>
+              <span>ZATCA Ready</span>
+            </div>
+          </div>
+        </div>
+      </article>
+
+    </div>
+
+    <!-- CTA -->
+    <div class="cta-card-luxury" style="margin-bottom: 100px;">
+      <div>
+        <h2>Ready to build your category leader?</h2>
+        <p>Let's evaluate your roadmap and architect a solution that produces real commercial outcomes.</p>
+      </div>
+      <div class="cta-buttons-wrap">
+        <a href="estimator.html" class="btn-primary magnetic">Calculate Scope →</a>
+        <a href="contact.html" class="btn-secondary magnetic">Direct Inquiry ↗</a>
+      </div>
+    </div>
+
+  </main>
+
+  <footer class="master-footer">
+    <div class="container footer-bottom-row">
+      <div>© 2008 – 2027 SERV5 DIGITAL BUSINESS GROUP. ALL RIGHTS RESERVED.</div>
+      <div>RIYADH • CAIRO • MANSOURA • GLOBAL</div>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
+

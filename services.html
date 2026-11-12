@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Capabilities & Solutions | SERV5 Enterprise Digital Engine</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,500;0,600;1,400&family=Tajawal:wght@300;400;500;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="subtle-grain" aria-hidden="true"></div>
+  <!-- Interactive Ambient Background Canvas (Reacts to Scroll Velocity) -->
+  <canvas id="ambientScrollCanvas" aria-hidden="true"></canvas>
+  <div class="cursor-dot" id="cursorDot"></div>
+  <div class="cursor-ring" id="cursorRing"><span class="cursor-tag" id="cursorTag"></span></div>
+
+  <div class="volumetric-aura" aria-hidden="true">
+    <div class="aura-orb aura-1"></div>
+    <div class="aura-orb aura-2"></div>
+  </div>
+
+  <!-- HUD -->
+  <div class="site-hud">
+    <div class="hud-status">
+      <span class="status-indicator"><span class="status-dot"></span> SOLUTIONS DIRECTORY</span>
+      <span>//</span>
+      <span>GOOGLE CWV: <strong class="text-emerald">100/100</strong></span>
+    </div>
+    <div class="hud-actions">
+      <button class="hud-btn magnetic" id="langSwitch"><span>🌐</span><span id="langLabel">العربية</span></button>
+      <button class="hud-btn magnetic" id="audioToggle"><span id="audioIcon">🔊</span></button>
+    </div>
+  </div>
+
+  <!-- NAVIGATION -->
+  <header class="master-nav">
+    <div class="nav-container">
+      <a href="index.html" class="brand-link magnetic" data-cursor="HOME">
+        <div class="brand-symbol">
+          <svg width="24" height="24" viewBox="0 0 40 40" fill="none">
+            <rect width="40" height="40" rx="10" fill="#0F172A"/>
+            <path d="M12 14C12 12.3431 13.3431 11 15 11H25C26.6569 11 28 12.3431 28 14V17C28 18.6569 26.6569 20 25 20H17C15.3431 20 14 21.3431 14 23V26C14 27.6569 15.3431 29 17 29H27" stroke="#60A5FA" stroke-width="3.5" stroke-linecap="round"/>
+            <circle cx="21" cy="20" r="2.5" fill="#FFFFFF"/>
+          </svg>
+        </div>
+        <div>
+          <span class="brand-name">serv<span class="brand-digit">5</span></span>
+          <span class="brand-subtitle">DIGITAL GROWTH STUDIO</span>
+        </div>
+      </a>
+
+      <nav class="page-links">
+        <a href="index.html" class="page-link magnetic" data-cursor="INDEX">Home</a>
+        <a href="services.html" class="page-link active magnetic" data-cursor="SERVICES">Capabilities</a>
+        <a href="portfolio.html" class="page-link magnetic" data-cursor="WORK">Case Studies</a>
+        <a href="estimator.html" class="page-link magnetic" data-cursor="CALC">ROI Estimator</a>
+        <a href="about.html" class="page-link magnetic" data-cursor="AGENCY">Agency & History</a>
+        <a href="contact.html" class="page-link magnetic" data-cursor="CONTACT">Offices & Contact</a>
+      </nav>
+
+      <a href="contact.html" class="btn-primary magnetic" data-cursor="START">
+        <span>Start Project</span>
+        <span>→</span>
+      </a>
+    </div>
+  </header>
+
+  <!-- MAIN PAGE CONTENT -->
+  <main class="container">
+    
+    <div class="page-hero-header">
+      <div class="section-pill">
+        <span class="pill-spark"></span>
+        <span>FULL-SPECTRUM CAPABILITIES</span>
+      </div>
+      <h1 class="page-main-title">
+        Engineered for speed.<br>
+        <span class="serif-italic text-ice">Architected for net revenue.</span>
+      </h1>
+      <p class="page-lead-subtitle">
+        Every technical asset, headless platform, and search acquisition funnel we deliver is built to eliminate operational friction and scale aggressively.
+      </p>
+    </div>
+
+    <!-- DETAILED SERVICES GRID -->
+    <div class="detailed-services-grid">
+      
+      <!-- Service 1: Web & E-Commerce Engineering -->
+      <div class="detailed-service-card">
+        <div class="d-icon-wrap">💻</div>
+        <h3>High-Velocity Web & Headless Commerce</h3>
+        <p>
+          We build custom web platforms using Next.js 15, edge computing, and modern microservices. With page load speeds under 0.5 seconds and zero CLS, we ensure your digital storefront maximizes conversions and commands Google’s highest search trust.
+        </p>
+        <ul class="deliverables-list">
+          <li><span>✓</span> Headless Shopify, WooCommerce & Custom Node.js Backends</li>
+          <li><span>✓</span> Sub-Second Core Web Vitals (100/100 CWV Guaranteed)</li>
+          <li><span>✓</span> Saudi & GCC Payment Integrations (Mada, Apple Pay, Tabby, Tamara)</li>
+          <li><span>✓</span> Edge Serverless Caching & Micro-Frontends</li>
+        </ul>
+      </div>
+
+      <!-- Service 2: Saudi Market Expansion & Setup -->
+      <div class="detailed-service-card">
+        <div class="d-icon-wrap">🇸🇦</div>
+        <h3>Saudi Market Expansion & GCC Digital Setup</h3>
+        <p>
+          Complete commercial and digital infrastructure for international and regional brands entering the Kingdom of Saudi Arabia. We handle legal digital compliance, localized Arabic consumer UX, and tax integrations.
+        </p>
+        <ul class="deliverables-list">
+          <li><span>✓</span> MISA Licensing Guidance & Company Digital Formation</li>
+          <li><span>✓</span> ZATCA Phase 2 E-Invoicing Compliant Platforms</li>
+          <li><span>✓</span> Local Arabic SEO & High-Intent GCC Keyword Targeting</li>
+          <li><span>✓</span> Saudi Cloud Hosting (Local KSA Data Centers)</li>
+        </ul>
+      </div>
+
+      <!-- Service 3: Mobile App Development -->
+      <div class="detailed-service-card">
+        <div class="d-icon-wrap">📱</div>
+        <h3>Mobile Application Development (iOS & Android)</h3>
+        <p>
+          Fluid, tactile mobile experiences designed for consumer retention. Native Swift/Kotlin or high-velocity Flutter cross-platform architecture with real-time push alerts, offline sync, and payment conduits.
+        </p>
+        <ul class="deliverables-list">
+          <li><span>✓</span> 60 FPS Native Touch Interactions & Tactile Micro-Animations</li>
+          <li><span>✓</span> Real-Time Order Tracking & Geo-Location Mapping</li>
+          <li><span>✓</span> Seamless Push Notification Engagement Engines</li>
+          <li><span>✓</span> App Store & Google Play Store Optimization (ASO)</li>
+        </ul>
+      </div>
+
+      <!-- Service 4: Advanced Search & Performance Marketing -->
+      <div class="detailed-service-card">
+        <div class="d-icon-wrap">📈</div>
+        <h3>Advanced SEO Domination & Paid Media</h3>
+        <p>
+          Data-backed acquisition funnels across Google Search, Meta, TikTok, Snapchat, and LinkedIn. We optimize every touchpoint from ad creative to landing page velocity to deliver verified 5x to 9x blended ROAS.
+        </p>
+        <ul class="deliverables-list">
+          <li><span>✓</span> Technical Google Audit, Schema Markup & Page #1 Ranking</li>
+          <li><span>✓</span> Full-Funnel Multi-Touch Attribution & Analytics</li>
+          <li><span>✓</span> High-Converting Landing Page Design & A/B Testing</li>
+          <li><span>✓</span> Continuous Ad Creative Production & Copywriting</li>
+        </ul>
+      </div>
+
+      <!-- Service 5: Ready-Made Enterprise Software (ERP) -->
+      <div class="detailed-service-card">
+        <div class="d-icon-wrap">⚖️</div>
+        <h3>Enterprise Legal ERP & Healthcare Suites</h3>
+        <p>
+          Turnkey enterprise management software refined over 16 years. Our Legal ERP platform powers over 75 premier law practices across Riyadh and Jeddah with automatic court schedule alerts, case litigation sync, and billing.
+        </p>
+        <ul class="deliverables-list">
+          <li><span>✓</span> Serv5 Legal Practice Suite (Najiz & Ministry of Justice Sync)</li>
+          <li><span>✓</span> Clinic & Multi-Specialty Hospital Management Systems</li>
+          <li><span>✓</span> Automated ZATCA-Compliant Tax Invoicing</li>
+          <li><span>✓</span> Role-Based Security & Audit Logging</li>
+        </ul>
+      </div>
+
+      <!-- Service 6: AI Workflow Automation -->
+      <div class="detailed-service-card">
+        <div class="d-icon-wrap">⚡</div>
+        <h3>Autonomous AI Agents & WhatsApp CRM Bots</h3>
+        <p>
+          Custom conversational AI agents integrated with your existing CRM and WhatsApp Business API. Automatically qualify leads, book calendar consultations, dispatch invoices, and resolve client inquiries in seconds.
+        </p>
+        <ul class="deliverables-list">
+          <li><span>✓</span> WhatsApp Official Business API Conversational Bots</li>
+          <li><span>✓</span> Automated Lead Dispatch to Sales Reps in &lt; 2 Minutes</li>
+          <li><span>✓</span> Custom LLM Fine-Tuned on Your Internal Knowledge Base</li>
+          <li><span>✓</span> Zero Staff Friction & 24/7 Instant Response SLA</li>
+        </ul>
+      </div>
+
+    </div>
+
+    <!-- CALL TO ACTION STRIP -->
+    <div class="cta-card-luxury" style="margin-bottom: 100px;">
+      <div>
+        <h2>Have a specific architectural requirement?</h2>
+        <p>Our senior technology directors can evaluate your stack and provide a technical feasibility roadmap.</p>
+      </div>
+      <div class="cta-buttons-wrap">
+        <a href="estimator.html" class="btn-primary magnetic">Calculate Scope →</a>
+        <a href="contact.html" class="btn-secondary magnetic">Book Consultation ↗</a>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="master-footer">
+    <div class="container footer-bottom-row">
+      <div>© 2008 – 2027 SERV5 DIGITAL BUSINESS GROUP. ALL RIGHTS RESERVED.</div>
+      <div>RIYADH • CAIRO • MANSOURA • GLOBAL</div>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
+
