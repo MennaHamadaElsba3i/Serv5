@@ -21,29 +21,6 @@ export default function HeroSection({ onOpenConsultation, lang = 'ar' }) {
         <div className="row justify-content-center">
           {/* Centered Main Hero Narrative */}
           <div className="col-lg-10 col-xl-9 text-center hero-content-centered">
-            {/* Top Pill / Eyebrow with Blue-to-Orange touch */}
-            <motion.div
-              initial={{ opacity: 0, y: -15, scale: 0.95 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full mb-5 text-xs font-semibold"
-              style={{
-                background: 'linear-gradient(135deg, rgba(36, 90, 167, 0.08) 0%, rgba(234, 88, 12, 0.08) 100%)',
-                border: '1px solid rgba(36, 90, 167, 0.2)',
-                boxShadow: '0 2px 10px rgba(36, 90, 167, 0.06)'
-              }}
-            >
-              <span
-                className="w-2 h-2 rounded-full animate-pulse"
-                style={{
-                  background: 'linear-gradient(135deg, #2563eb, #ea580c)'
-                }}
-              />
-              <span className="text-slate-700 tracking-wide">
-                {isRtl ? 'محرك التحول الرقمي والأنظمة السحابية الكبرى' : 'ENTERPRISE DIGITAL ENGINE · RIYADH & CAIRO'}
-              </span>
-            </motion.div>
-
             {/* Main Headline with Framer Motion */}
             <motion.h1
               initial={{ opacity: 0, y: 30 }}

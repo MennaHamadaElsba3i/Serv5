@@ -200,16 +200,6 @@ export default function Serv5Testimonials({ onOpenConsultation, lang = 'ar' }) {
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
         >
-          <motion.div
-            className="testimonials-v2-eyebrow"
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={isInView ? { opacity: 1, scale: 1 } : {}}
-            transition={{ duration: 0.6, delay: 0.1 }}
-          >
-            <Sparkles size={14} />
-            <span>{isRtl ? 'آراء العملاء والشركاء' : 'CLIENT VOICES & PARTNER STORIES'}</span>
-          </motion.div>
-
           <h2 className="testimonials-v2-title">
             {isRtl ? (
               <>
@@ -224,25 +214,11 @@ export default function Serv5Testimonials({ onOpenConsultation, lang = 'ar' }) {
             )}
           </h2>
 
-          <p className="testimonials-v2-subtitle">
+          <p className="testimonials-v2-subtitle" style={{ marginBottom: 0 }}>
             {isRtl
               ? 'شهادات حقيقية من قادة أعمال ومؤسسات رائدة في مصر والخليج العربي وثقوا في فريق سيرف فايف لتحويل رؤيتهم الرقمية إلى واقع.'
               : 'Real testimonials from business leaders and enterprises across the Middle East who trusted SERV5 to architect their digital vision into reality.'}
           </p>
-
-          {/* Google Reviews Trust Badge */}
-          <motion.div
-            className="testimonials-google-badge"
-            initial={{ opacity: 0, y: 10 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.3 }}
-          >
-            <span className="google-g-icon">G</span>
-            <div className="google-badge-stars">★★★★★</div>
-            <span className="google-badge-text">4.9</span>
-            <span className="google-badge-count">{isRtl ? '(تقييمات موثقة)' : '(Verified Reviews)'}</span>
-            <ShieldCheck size={14} className="google-badge-shield" />
-          </motion.div>
         </motion.div>
 
         {/* ── Main Interactive Card Stage ── */}
