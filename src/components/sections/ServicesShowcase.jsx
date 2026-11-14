@@ -140,8 +140,8 @@ export default function ServicesShowcase({ onOpenConsultation, lang = 'ar' }) {
         visionImageRef.current,
         {
           scale: 1.08,
-          opacity: 0.28,
-          filter: 'blur(3px)',
+          opacity: 0.6,
+          filter: 'brightness(1.08) blur(5px)',
           duration: 1.2,
           ease: 'power2.inOut'
         },
