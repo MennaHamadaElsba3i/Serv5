@@ -360,14 +360,20 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1.1rem 0;
+  padding: 0.85rem 0;
+  gap: 1.5rem;
 }
 
 .desktop-nav .nav-menu {
   list-style: none;
   display: flex;
   align-items: center;
-  gap: 2rem;
+  justify-content: center;
+  gap: clamp(0.7rem, 1.35vw, 1.5rem);
+  margin: 0;
+  padding: 0;
+  flex-wrap: nowrap;
+  white-space: nowrap;
 }
 
 .nav-link {
@@ -377,7 +383,9 @@ body {
   font-weight: 600;
   letter-spacing: 0.01em;
   position: relative;
-  padding: 0.25rem 0;
+  padding: 0.35rem 0.2rem;
+  white-space: nowrap;
+  display: inline-block;
   transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -407,14 +415,15 @@ body {
 .navbar-actions {
   display: flex;
   align-items: center;
-  gap: 1.15rem;
+  gap: 0.95rem;
+  flex-shrink: 0;
 }
 
 .lang-switcher-pill {
   display: inline-flex;
   align-items: center;
   gap: 0.45rem;
-  padding: 0.45rem 0.95rem;
+  padding: 0.42rem 0.85rem;
   border-radius: 9999px;
   background: #f8fafc;
   border: 1.5px solid #cbd5e1;
@@ -424,6 +433,7 @@ body {
   cursor: pointer;
   box-shadow: 0 1px 3px rgba(15, 23, 42, 0.06);
   transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  white-space: nowrap;
 }
 
 .lang-switcher-pill .lang-globe-icon {
@@ -444,22 +454,54 @@ body {
 }
 
 .nav-phone-link {
-  color: #475569;
+  color: #1e3a8a;
   text-decoration: none;
-  font-size: 0.85rem;
-  font-weight: 600;
+  font-size: 0.84rem;
+  font-weight: 700;
   display: inline-flex;
   align-items: center;
-  gap: 0.45rem;
-  padding: 0.35rem 0.65rem;
+  gap: 0.55rem;
+  padding: 0.38rem 0.85rem;
   border-radius: 9999px;
-  transition: all 0.25s ease;
+  background: #f0f7ff;
+  border: 1.5px solid #bfdbfe;
+  box-shadow: 0 1px 3px rgba(37, 99, 235, 0.08);
+  white-space: nowrap;
+  direction: ltr !important;
+  unicode-bidi: isolate;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .nav-phone-link:hover {
-  color: #ea580c;
-  background: rgba(234, 88, 12, 0.06);
+  color: #1d4ed8;
+  background: #e0f2fe;
+  border-color: #3b82f6;
   transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.18);
+}
+
+.phone-icon-bubble {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #2563eb;
+  color: #ffffff;
+  box-shadow: 0 0 8px rgba(37, 99, 235, 0.4);
+  flex-shrink: 0;
+}
+
+.nav-phone-num {
+  font-family: 'Space Grotesk', system-ui, sans-serif;
+  letter-spacing: 0.04em;
+  font-weight: 700;
+  font-size: 0.84rem;
+  color: #1e3a8a;
+  direction: ltr !important;
+  unicode-bidi: isolate;
+  display: inline-block;
 }
 
 .btn-launch-nav {

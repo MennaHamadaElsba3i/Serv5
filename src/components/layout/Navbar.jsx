@@ -17,35 +17,35 @@ export default function Navbar({ onOpenConsultation, lang = 'ar', onToggleLang }
 
   const navLinks = isRtl
     ? [
-        { label: 'عن الشركة', href: '#about' },
-        { label: 'خدماتنا', href: '#services' },
-        { label: 'منتجات متميزة', href: '#products' },
-        { label: 'أعمالنا المميزة', href: '#portfolio' },
-        { label: 'عملاء نعتز بثقتهم', href: '#testimonials' },
-        { label: 'مدونة سيرف فايف', href: '#blog' },
-        { label: 'للتواصل معنا', href: '#contact' }
-      ]
+      { label: 'عن الشركة', href: '#about' },
+      { label: 'خدماتنا', href: '#services' },
+      { label: 'منتجاتنا', href: '#products' },
+      { label: 'أعمالنا', href: '#portfolio' },
+      { label: 'عملاؤنا', href: '#testimonials' },
+      { label: 'المدونة', href: '#blog' },
+      { label: 'تواصل معنا', href: '#contact' }
+    ]
     : [
-        { label: 'About Us', href: '#about' },
-        { label: 'Our Services', href: '#services' },
-        { label: 'Featured Products', href: '#products' },
-        { label: 'Featured Works', href: '#portfolio' },
-        { label: 'Valued Clients', href: '#testimonials' },
-        { label: 'SERV5 Blog', href: '#blog' },
-        { label: 'Contact Us', href: '#contact' }
-      ];
+      { label: 'About Us', href: '#about' },
+      { label: 'Services', href: '#services' },
+      { label: 'Products', href: '#products' },
+      { label: 'Portfolio', href: '#portfolio' },
+      { label: 'Clients', href: '#testimonials' },
+      { label: 'Blog', href: '#blog' },
+      { label: 'Contact', href: '#contact' }
+    ];
 
   return (
     <header className={`world-navbar ${scrolled ? 'scrolled' : ''}`}>
-      <div className="container">
+      <div className="container-fluid px-3 px-xl-5">
         <div className="navbar-inner">
           {/* Brand Logo */}
           <a href="#hero" className="navbar-brand">
-            <Serv5Logo size={38} />
+            <Serv5Logo size={36} />
           </a>
 
           {/* Desktop Nav Items */}
-          <nav className="desktop-nav">
+          <nav className="desktop-nav d-none d-xl-flex">
             <ul className="nav-menu">
               {navLinks.map((link, idx) => (
                 <li key={idx} className="nav-item">
@@ -72,9 +72,19 @@ export default function Navbar({ onOpenConsultation, lang = 'ar', onToggleLang }
               </button>
             )}
 
-            <a href="tel:+201288744744" className="nav-phone-link" title={isRtl ? 'اتصل بنا مباشرة' : 'Call Us Direct'}>
-              <Phone size={14} />
-              <span className="d-none d-lg-inline">+20 128 874 4744</span>
+            {/* Premium Formatted Phone Number Pill */}
+            <a
+              href="tel:+201288744744"
+              className="nav-phone-link"
+              title={isRtl ? 'اتصل بنا مباشرة: 01288744744' : 'Call Direct: +20 128 874 4744'}
+              dir="ltr"
+            >
+              <span className="phone-icon-bubble">
+                <Phone size={12} />
+              </span>
+              <span className="nav-phone-num" dir="ltr">
+                +20 128 874 4744
+              </span>
             </a>
 
             <button
@@ -88,7 +98,7 @@ export default function Navbar({ onOpenConsultation, lang = 'ar', onToggleLang }
             {/* Mobile Hamburger Toggle */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="mobile-toggle-btn d-lg-none"
+              className="mobile-toggle-btn d-xl-none"
               aria-label="Toggle Navigation"
             >
               {mobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
