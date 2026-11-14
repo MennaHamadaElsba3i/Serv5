@@ -13,11 +13,24 @@ import Serv5ReadyForLiftoff from './components/sections/Serv5ReadyForLiftoff';
 import Serv5Footer from './components/sections/Serv5Footer';
 import ProjectConsultationModal from './components/modals/ProjectConsultationModal';
 import RobotMascotGuide from './components/mascot/RobotMascotGuide';
+import Serv5KineticIntro from './components/intro/Serv5KineticIntro';
+import { Play } from 'lucide-react';
 
 export default function App() {
   const [lang, setLang] = useState('ar');
   const [modalOpen, setModalOpen] = useState(false);
   const [modalSubject, setModalSubject] = useState('General Consultation');
+  const [showIntro, setShowIntro] = useState(true);
+  const [introKey, setIntroKey] = useState(1);
+
+  const handleReplayIntro = () => {
+    setIntroKey(prev => prev + 1);
+    setShowIntro(true);
+  };
+
+  useEffect(() => {
+    window.__replayIntro = handleReplayIntro;
+  }, []);
 
   useEffect(() => {
     document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
@@ -39,6 +52,29 @@ export default function App() {
 
   return (
     <div className={`serv5-world-root ${lang === 'ar' ? 'dir-rtl' : 'dir-ltr'}`}>
+      {/* TYSHA-INSPIRED BRUTALIST & ARCHITECTURAL KINETIC INTRO PRELOADER */}
+      {showIntro && (
+        <Serv5KineticIntro
+          key={`kinetic-intro-${introKey}`}
+          onComplete={() => setShowIntro(false)}
+          lang={lang}
+        />
+      )}
+
+      {/* FLOATING REPLAY PILL TO TRIGGER KINETIC INTRO AT ANY TIME */}
+      {!showIntro && (
+        <button
+          onClick={handleReplayIntro}
+          className="serv5-replay-intro-pill"
+          title={lang === 'ar' ? 'إعادة مشاهدة العرض السينمائي (TYSHA Style)' : 'Replay Cinematic Intro (TYSHA Style)'}
+        >
+          <div className="pill-play-icon">
+            <Play size={10} fill="currentColor" />
+          </div>
+          <span>{lang === 'ar' ? 'العرض السينمائي SERV5' : 'SERV5 Kinetic Intro'}</span>
+        </button>
+      )}
+
       {/* 3D SURREAL & SCULPTURAL ART INSTALLATION CANVAS */}
       <SculpturalWorld3D />
 
@@ -56,6 +92,7 @@ export default function App() {
         onOpenConsultation={handleOpenConsultation}
         lang={lang}
         onToggleLang={toggleLanguage}
+        onReplayIntro={handleReplayIntro}
       />
 
       {/* INTERACTIVE 3D ROBOT MASCOT & TOUR GUIDE */}

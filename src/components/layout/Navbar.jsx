@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { ArrowUpRight, Menu, X, Sparkles, Phone, Globe } from 'lucide-react';
+import { ArrowUpRight, Menu, X, Sparkles, Phone, Globe, Film } from 'lucide-react';
 import Serv5Logo from '../Serv5Logo';
 
-export default function Navbar({ onOpenConsultation, lang = 'ar', onToggleLang }) {
+export default function Navbar({ onOpenConsultation, lang = 'ar', onToggleLang, onReplayIntro }) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const isRtl = lang === 'ar';
@@ -69,6 +69,28 @@ export default function Navbar({ onOpenConsultation, lang = 'ar', onToggleLang }
               >
                 <Globe size={14} className="lang-globe-icon" />
                 <span className="lang-label">{isRtl ? 'English' : 'العربية'}</span>
+              </button>
+            )}
+
+            {onReplayIntro && (
+              <button
+                onClick={onReplayIntro}
+                className="d-none d-md-flex align-items-center gap-1.5"
+                title={isRtl ? 'مشاهدة المقدمة السينمائية (ستايل TYSHA)' : 'Play Kinetic Intro'}
+                style={{
+                  background: 'rgba(59, 130, 246, 0.12)',
+                  border: '1px solid rgba(96, 165, 250, 0.25)',
+                  borderRadius: '20px',
+                  padding: '6px 12px',
+                  color: '#93c5fd',
+                  fontSize: '0.82rem',
+                  fontWeight: 600,
+                  cursor: 'pointer',
+                  transition: 'all 0.2s ease'
+                }}
+              >
+                <Film size={14} />
+                <span>{isRtl ? 'المقدمة' : 'Intro'}</span>
               </button>
             )}
 
