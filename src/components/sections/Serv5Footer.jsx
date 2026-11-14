@@ -30,14 +30,14 @@ export default function Serv5Footer({ onOpenConsultation, lang = 'ar' }) {
     <footer className="serv5-footer-section" id="serv5-footer">
       <div className="serv5-footer-container">
         {/* 4-Column Main Sitemap & Details */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-10 pb-12 border-b border-slate-200">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-14 pb-14 border-b border-slate-200">
           {/* Col 1: Brand & Pedigree (4 cols) */}
           <div className="lg:col-span-4 flex flex-col justify-between">
             <div>
-              <div className="mb-4">
-                <Serv5Logo size={40} light={false} />
+              <div className="mb-5">
+                <Serv5Logo size={42} light={false} />
               </div>
-              <p className="text-slate-600 text-sm leading-relaxed mb-6 max-w-sm">
+              <p className="text-slate-600 text-base leading-relaxed mb-7 max-w-sm">
                 {isRtl
                   ? 'شركة سيرف فايف (SERV5) للحلول الرقمية وتطوير البرمجيات منذ عام 2008. أكثر من 16 عاماً من الخبرة و 20,000 مشروع ناجح عبر الشرق الأوسط.'
                   : 'SERV5 Enterprise Software & Cloud Architectures since 2008. Over 16 years of engineering excellence and 20,000+ delivered platforms across the Middle East.'}
@@ -45,8 +45,8 @@ export default function Serv5Footer({ onOpenConsultation, lang = 'ar' }) {
             </div>
 
             <div>
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-gradient-to-r from-blue-50 to-orange-50 border border-blue-200/80 text-slate-800 text-xs font-semibold shadow-sm">
-                <ShieldCheck size={16} className="text-blue-600 flex-shrink-0" />
+              <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-xl bg-gradient-to-r from-blue-50 to-orange-50 border border-blue-200/80 text-slate-800 text-sm font-semibold shadow-sm">
+                <ShieldCheck size={18} className="text-blue-600 flex-shrink-0" />
                 <span>{isRtl ? 'شركة معتمدة رسمياً ومحمية بالكامل' : 'ISO & Enterprise Certified Partner'}</span>
               </div>
             </div>
@@ -102,9 +102,9 @@ export default function Serv5Footer({ onOpenConsultation, lang = 'ar' }) {
             <div className="serv5-footer-contact-list">
               <div className="serv5-footer-contact-item">
                 <div className="serv5-footer-icon-pill">
-                  <MapPin size={15} />
+                  <MapPin size={18} />
                 </div>
-                <span className="leading-relaxed text-slate-600 text-sm">
+                <span className="leading-relaxed text-slate-700 text-base">
                   {isRtl
                     ? 'المنصورة، شارع قناة السويس، برج المهندسين، مصر'
                     : 'Engineers Tower, Suez Canal St., Mansoura, Egypt'}
@@ -113,18 +113,18 @@ export default function Serv5Footer({ onOpenConsultation, lang = 'ar' }) {
 
               <div className="serv5-footer-contact-item">
                 <div className="serv5-footer-icon-pill">
-                  <Phone size={15} />
+                  <Phone size={18} />
                 </div>
-                <a href="tel:00201288863831" dir="ltr" className="text-blue-600 font-bold hover:text-orange-600 transition-colors text-sm">
+                <a href="tel:00201288863831" dir="ltr" className="text-blue-600 font-bold hover:text-orange-600 transition-colors text-base">
                   +20 128 888 63831
                 </a>
               </div>
 
               <div className="serv5-footer-contact-item">
                 <div className="serv5-footer-icon-pill">
-                  <Mail size={15} />
+                  <Mail size={18} />
                 </div>
-                <a href="mailto:sales@serv5.com" className="text-slate-700 hover:text-blue-600 transition-colors text-sm font-semibold">
+                <a href="mailto:sales@serv5.com" className="text-slate-700 hover:text-blue-600 transition-colors text-base font-semibold">
                   sales@serv5.com
                 </a>
               </div>
@@ -133,9 +133,9 @@ export default function Serv5Footer({ onOpenConsultation, lang = 'ar' }) {
         </div>
 
         {/* Bottom Bar: Live SLA & Copyright */}
-        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500 font-mono">
+        <div className="pt-10 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-slate-500 font-mono">
           <div className="flex items-center gap-2.5">
-            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+            <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse" />
             <span className="font-semibold text-slate-700">All Cloud Systems Operational</span>
             <span className="text-slate-400 font-medium">(99.98% SLA)</span>
           </div>
