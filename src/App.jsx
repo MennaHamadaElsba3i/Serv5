@@ -92,7 +92,6 @@ export default function App() {
         onOpenConsultation={handleOpenConsultation}
         lang={lang}
         onToggleLang={toggleLanguage}
-        onReplayIntro={handleReplayIntro}
       />
 
       {/* INTERACTIVE 3D ROBOT MASCOT & TOUR GUIDE */}
