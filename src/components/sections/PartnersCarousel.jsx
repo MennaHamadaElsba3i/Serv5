@@ -1,7 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 export default function PartnersCarousel({ lang = 'ar' }) {
   const isRtl = lang === 'ar';
+  const [activeItem, setActiveItem] = useState(null);
+
+  const handleItemClick = (item) => {
+    setActiveItem((prev) => (prev === item ? null : item));
+  };
 
   const blueRibbonItems = isRtl
     ? [
@@ -60,25 +65,57 @@ export default function PartnersCarousel({ lang = 'ar' }) {
       <div className="angled-ribbon-stage" aria-label="Enterprise Alliances Counter Ticker">
         {/* Top/Back Electric Blue Ribbon (Direction 1) */}
         <div className="angled-ribbon ribbon-accent-blue">
-          <div className="ribbon-marquee-track track-reverse">
-            {blueLoop.map((item, idx) => (
-              <span key={`blue-${idx}`} className="ribbon-item">
-                <span className="ribbon-text">{item}</span>
-                <span className="ribbon-star star-white" aria-hidden="true">✦</span>
-              </span>
-            ))}
+          <div className={`ribbon-marquee-track track-reverse ${activeItem ? 'is-paused' : ''}`}>
+            {blueLoop.map((item, idx) => {
+              const isSelected = activeItem === item;
+              return (
+                <span
+                  key={`blue-${idx}`}
+                  className={`ribbon-item ${isSelected ? 'is-active' : ''}`}
+                  onClick={() => handleItemClick(item)}
+                  role="button"
+                  tabIndex={0}
+                  title={isRtl ? `شريك نجاح: ${item}` : `Partner: ${item}`}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                      e.preventDefault();
+                      handleItemClick(item);
+                    }
+                  }}
+                >
+                  <span className="ribbon-text">{item}</span>
+                  <span className="ribbon-star star-white" aria-hidden="true">✦</span>
+                </span>
+              );
+            })}
           </div>
         </div>
 
         {/* Bottom/Front Dark Navy Ribbon (Direction 2 - Counter direction!) */}
         <div className="angled-ribbon ribbon-main-navy">
-          <div className="ribbon-marquee-track track-forward">
-            {navyLoop.map((item, idx) => (
-              <span key={`navy-${idx}`} className="ribbon-item">
-                <span className="ribbon-text">{item}</span>
-                <span className="ribbon-star star-orange" aria-hidden="true">✦</span>
-              </span>
-            ))}
+          <div className={`ribbon-marquee-track track-forward ${activeItem ? 'is-paused' : ''}`}>
+            {navyLoop.map((item, idx) => {
+              const isSelected = activeItem === item;
+              return (
+                <span
+                  key={`navy-${idx}`}
+                  className={`ribbon-item ${isSelected ? 'is-active' : ''}`}
+                  onClick={() => handleItemClick(item)}
+                  role="button"
+                  tabIndex={0}
+                  title={isRtl ? `شريك نجاح: ${item}` : `Partner: ${item}`}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                      e.preventDefault();
+                      handleItemClick(item);
+                    }
+                  }}
+                >
+                  <span className="ribbon-text">{item}</span>
+                  <span className="ribbon-star star-orange" aria-hidden="true">✦</span>
+                </span>
+              );
+            })}
           </div>
         </div>
       </div>

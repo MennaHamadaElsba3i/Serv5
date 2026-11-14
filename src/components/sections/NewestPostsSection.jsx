@@ -304,10 +304,10 @@ export default function NewestPostsSection({ onOpenConsultation, lang = 'ar' }) 
   const count = filteredProjects.length || 1;
 
   return (
-    <section className="newest-works-section" id="newest-works">
+    <section className="newest-works-section" id="portfolio">
       <div className="container">
         {/* =========================================================
-            HEADER & SEARCH BAR (DESIGN ZEITGEIST COMPOSITION)
+            HEADER & SEARCH BAR (FEATURED WORKS COMPOSITION)
            ========================================================= */}
         <div className="newest-header-wrapper">
           <motion.div
@@ -324,7 +324,7 @@ export default function NewestPostsSection({ onOpenConsultation, lang = 'ar' }) 
               transition={{ duration: 0.75, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
               className="newest-main-heading"
             >
-              {isRtl ? 'Design Zeitgeist' : 'Design Zeitgeist'}
+              {isRtl ? 'أعمالنا المميزة' : 'Our Featured Works'}
             </motion.h2>
             <motion.p
               initial={{ opacity: 0, y: 15 }}
@@ -334,8 +334,8 @@ export default function NewestPostsSection({ onOpenConsultation, lang = 'ar' }) 
               className="newest-sub-heading"
             >
               {isRtl
-                ? 'مجموعة مختارة من أحدث المواقع والمنصات الرقمية التي صممتها ونفذتها سيرف فايف.'
-                : 'A curated collection of flagship platforms, mobile architectures and websites architected by SERV5.'}
+                ? 'نماذج حية لمشاريع وتطبيقات ومنصات صممت بأعلى معايير الإبداع الرقمي والأداء الفائق'
+                : 'Live showcases of enterprise platforms and software architectures engineered for scale'}
             </motion.p>
           </motion.div>
 

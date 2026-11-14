@@ -64,26 +64,28 @@
 
 /* Big Section Titles */
 .serv5-heading-2 {
-  font-size: 2rem;
+  font-size: clamp(2.1rem, 3.8vw, 3.1rem);
   font-weight: 800;
   color: #0b1728;
   line-height: 1.25;
-  letter-spacing: -0.02em;
-  margin-bottom: 0.75rem;
+  letter-spacing: -0.025em;
+  margin-bottom: 0.95rem;
+  text-align: center;
 }
 
 @media (min-width: 768px) {
   .serv5-heading-2 {
-    font-size: 2.75rem;
+    font-size: clamp(2.1rem, 3.8vw, 3.1rem);
   }
 }
 
 .serv5-subheading {
-  font-size: 1.05rem;
-  line-height: 1.7;
+  font-size: clamp(1.02rem, 1.2vw, 1.14rem);
+  line-height: 1.78;
   color: #475569;
-  max-width: 680px;
-  margin-bottom: 2rem;
+  max-width: 720px;
+  margin: 0 auto 2.2rem;
+  text-align: center;
 }
 
 /* ----------------------------------------------------
@@ -496,20 +498,22 @@
 }
 
 .testimonials-v2-title {
-  font-size: clamp(1.9rem, 3.8vw, 3rem);
+  font-size: clamp(2.1rem, 3.8vw, 3.1rem);
   font-weight: 800;
   line-height: 1.25;
   letter-spacing: -0.025em;
   color: #0f172a;
-  margin-bottom: 1.2rem;
+  margin-bottom: 0.95rem;
+  text-align: center;
 }
 
 .testimonials-v2-subtitle {
-  font-size: clamp(1rem, 1.2vw, 1.12rem);
-  line-height: 1.8;
-  color: #64748b;
-  max-width: 700px;
-  margin: 0 auto 1.5rem;
+  font-size: clamp(1.02rem, 1.2vw, 1.14rem);
+  line-height: 1.78;
+  color: #475569;
+  max-width: 720px;
+  margin: 0 auto 2.2rem;
+  text-align: center;
 }
 
 /* Google badge */

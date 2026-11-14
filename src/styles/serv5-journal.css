@@ -82,12 +82,13 @@
 }
 
 .journal-main-title {
-  font-size: clamp(2rem, 3.4vw, 2.85rem);
+  font-size: clamp(2.1rem, 3.8vw, 3.1rem);
   font-weight: 800;
-  color: #142d4e;
+  color: #0b1728;
   line-height: 1.25;
-  letter-spacing: -0.02em;
-  margin: 0 0 0.65rem 0;
+  letter-spacing: -0.025em;
+  margin: 0 0 0.95rem 0;
+  text-align: center;
 }
 
 .serv5-highlight-orange {
@@ -98,11 +99,12 @@
 }
 
 .journal-sub-desc {
-  font-size: clamp(0.95rem, 1.25vw, 1.1rem);
-  line-height: 1.75;
+  font-size: clamp(1.02rem, 1.2vw, 1.14rem);
+  line-height: 1.78;
   color: #475569;
-  max-width: 740px;
-  margin: 0 auto;
+  max-width: 720px;
+  margin: 0 auto 2.2rem;
+  text-align: center;
 }
 
 /* ----------------------------------------------------

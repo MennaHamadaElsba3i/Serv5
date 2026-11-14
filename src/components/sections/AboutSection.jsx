@@ -17,23 +17,24 @@ export default function AboutSection({ onOpenConsultation, lang = 'ar' }) {
 
       <div className="container position-relative z-10">
         <div className="about-monument-stage text-center">
-          {/* Giant Monument Watermark "15+" in Background with Floating Motion */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.88, y: 35 }}
-            whileInView={{ opacity: 1, scale: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.25 }}
-            transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1] }}
-            className="about-giant-watermark"
-            aria-hidden="true"
-          >
-            <motion.span
-              animate={{ y: [0, -8, 0] }}
-              transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
-              style={{ display: 'inline-block' }}
+          {/* Giant Monument Watermark "15+" Centered Perfectly in Background with Floating Motion */}
+          <div className="about-giant-watermark-wrapper" aria-hidden="true">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.88, y: 25 }}
+              whileInView={{ opacity: 1, scale: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.25 }}
+              transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1] }}
+              className="about-giant-watermark"
             >
-              15<span className="watermark-plus-orange">+</span>
-            </motion.span>
-          </motion.div>
+              <motion.span
+                animate={{ y: [0, -8, 0] }}
+                transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
+                style={{ display: 'inline-block' }}
+              >
+                15<span className="watermark-plus-orange">+</span>
+              </motion.span>
+            </motion.div>
+          </div>
 
           {/* Overlapping Foreground Content */}
           <div className="about-content-stack">
@@ -47,6 +48,9 @@ export default function AboutSection({ onOpenConsultation, lang = 'ar' }) {
             >
               {isRtl ? (
                 <>
+                  <span className="block text-serv5-blue text-sm md:text-base font-bold tracking-wider mb-2">
+                    عن الشركة
+                  </span>
                   أكثر من 15 عاماً من <span className="text-gradient-ice">الابتكار الرقمي</span> وصناعة{' '}
                   <span
                     style={{
@@ -61,6 +65,9 @@ export default function AboutSection({ onOpenConsultation, lang = 'ar' }) {
                 </>
               ) : (
                 <>
+                  <span className="block text-serv5-blue text-sm md:text-base font-bold tracking-wider mb-2">
+                    About Us
+                  </span>
                   Over 15 Years of <span className="text-gradient-ice">Digital Innovation</span> &amp;{' '}
                   <span
                     style={{

@@ -29,7 +29,7 @@ export default function Serv5GetInTouch({ onOpenConsultation, lang = 'ar' }) {
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-12">
           <h2 className="serv5-heading-2">
-            {isRtl ? 'تواصل معنا مباشرة لبدء مشروعك' : 'Get in Touch with Our Engineering Team'}
+            {isRtl ? 'للتواصل معنا | ابدأ مشروعك التقني مع سيرف فايف' : 'Contact Us | Start Your Project with SERV5'}
           </h2>
 
           <p className="serv5-subheading mx-auto" style={{ marginBottom: 0 }}>

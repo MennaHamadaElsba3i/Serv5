@@ -225,6 +225,13 @@ export default function ServicesShowcase({ onOpenConsultation, lang = 'ar' }) {
             )}
           </h2>
 
+          {/* Unified Subtitle Description */}
+          <p className="services-screen-desc">
+            {isRtl
+              ? 'حلول رقمية وسحابية شاملة مصممة خصيصاً لتسريع نمو أعمالك وتحقيق أهدافك المؤسسية بأعلى معايير الجودة.'
+              : 'End-to-end digital and enterprise architectures engineered to accelerate business scale and performance.'}
+          </p>
+
           {/* Services Rows List (Image 4 Design + Image 5 Content + System Colors) */}
           <div className="services-rows-list" ref={servicesListRef}>
             {displayedServices.map((service) => (

@@ -19,20 +19,20 @@ export default function Navbar({ onOpenConsultation, lang = 'ar', onToggleLang, 
     ? [
         { label: 'عن الشركة', href: '#about' },
         { label: 'خدماتنا', href: '#services' },
-        { label: 'منتجاتنا', href: '#products' },
-        { label: 'أعمالنا', href: '#portfolio' },
-        { label: 'لماذا سيرف فايف', href: '#why-serv5' },
-        { label: 'المدونة', href: '#blog' },
-        { label: 'تواصل معنا', href: '#contact' }
+        { label: 'منتجات متميزة', href: '#products' },
+        { label: 'أعمالنا المميزة', href: '#portfolio' },
+        { label: 'عملاء نعتز بثقتهم', href: '#testimonials' },
+        { label: 'مدونة سيرف فايف', href: '#blog' },
+        { label: 'للتواصل معنا', href: '#contact' }
       ]
     : [
-        { label: 'About', href: '#about' },
-        { label: 'Services', href: '#services' },
-        { label: 'Products', href: '#products' },
-        { label: 'Portfolio', href: '#portfolio' },
-        { label: 'Why SERV5', href: '#why-serv5' },
-        { label: 'Blog', href: '#blog' },
-        { label: 'Contact', href: '#contact' }
+        { label: 'About Us', href: '#about' },
+        { label: 'Our Services', href: '#services' },
+        { label: 'Featured Products', href: '#products' },
+        { label: 'Featured Works', href: '#portfolio' },
+        { label: 'Valued Clients', href: '#testimonials' },
+        { label: 'SERV5 Blog', href: '#blog' },
+        { label: 'Contact Us', href: '#contact' }
       ];
 
   return (
@@ -69,28 +69,6 @@ export default function Navbar({ onOpenConsultation, lang = 'ar', onToggleLang, 
               >
                 <Globe size={14} className="lang-globe-icon" />
                 <span className="lang-label">{isRtl ? 'English' : 'العربية'}</span>
-              </button>
-            )}
-
-            {onReplayIntro && (
-              <button
-                onClick={onReplayIntro}
-                className="d-none d-md-flex align-items-center gap-1.5"
-                title={isRtl ? 'مشاهدة المقدمة السينمائية (ستايل TYSHA)' : 'Play Kinetic Intro'}
-                style={{
-                  background: 'rgba(59, 130, 246, 0.12)',
-                  border: '1px solid rgba(96, 165, 250, 0.25)',
-                  borderRadius: '20px',
-                  padding: '6px 12px',
-                  color: '#93c5fd',
-                  fontSize: '0.82rem',
-                  fontWeight: 600,
-                  cursor: 'pointer',
-                  transition: 'all 0.2s ease'
-                }}
-              >
-                <Film size={14} />
-                <span>{isRtl ? 'المقدمة' : 'Intro'}</span>
               </button>
             )}
 

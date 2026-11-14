@@ -203,12 +203,14 @@ export default function Serv5Testimonials({ onOpenConsultation, lang = 'ar' }) {
           <h2 className="testimonials-v2-title">
             {isRtl ? (
               <>
-                أكثر من <span className="text-gradient-ice">20,000 عميل</span> يثقون في{' '}
+                عملاء نعتز بثقتهم |{' '}
+                <span className="text-gradient-ice">20,000+ عميل</span> يثقون في{' '}
                 <span className="text-gradient-orange-luminous">سيرف فايف</span>
               </>
             ) : (
               <>
-                Over <span className="text-gradient-ice">20,000 Clients</span> Trust{' '}
+                Valued Clients | Over{' '}
+                <span className="text-gradient-ice">20,000+ Enterprises</span> Trust{' '}
                 <span className="text-gradient-orange-luminous">SERV5</span>
               </>
             )}

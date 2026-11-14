@@ -238,7 +238,7 @@ export default function Serv5NewestPosts({ onOpenConsultation, lang = 'ar' }) {
           <h2 className="journal-main-title">
             {isRtl ? (
               <>
-                رؤى تقنية{' '}
+                مدونة سيرف فايف |{' '}
                 <span
                   style={{
                     background: 'linear-gradient(135deg, #245aa7 0%, #ea580c 100%)',
@@ -247,13 +247,13 @@ export default function Serv5NewestPosts({ onOpenConsultation, lang = 'ar' }) {
                     display: 'inline-block'
                   }}
                 >
-                  تصنع الفارق
+                  رؤى تقنية تصنع الفارق
                 </span>{' '}
                 لمشروعك
               </>
             ) : (
               <>
-                Insights That{' '}
+                SERV5 Blog |{' '}
                 <span
                   style={{
                     background: 'linear-gradient(135deg, #245aa7 0%, #ea580c 100%)',
