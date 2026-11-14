@@ -62,26 +62,13 @@ export default function Navbar({ onOpenConsultation, lang = 'ar', onToggleLang, 
             {/* Language Switcher Pill */}
             {onToggleLang && (
               <button
+                type="button"
                 onClick={onToggleLang}
                 className="lang-switcher-pill"
                 title={isRtl ? 'Switch to English' : 'التحويل إلى العربية'}
-                style={{
-                  background: 'rgba(255, 255, 255, 0.06)',
-                  border: '1px solid rgba(255, 255, 255, 0.12)',
-                  borderRadius: '20px',
-                  padding: '6px 12px',
-                  color: '#e2e8f0',
-                  fontSize: '0.82rem',
-                  fontWeight: 600,
-                  cursor: 'pointer',
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '6px',
-                  transition: 'all 0.2s ease'
-                }}
               >
-                <Globe size={14} />
-                <span>{isRtl ? 'EN' : 'العربية'}</span>
+                <Globe size={14} className="lang-globe-icon" />
+                <span className="lang-label">{isRtl ? 'English' : 'العربية'}</span>
               </button>
             )}
 

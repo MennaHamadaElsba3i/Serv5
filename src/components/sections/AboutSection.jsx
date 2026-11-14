@@ -37,29 +37,6 @@ export default function AboutSection({ onOpenConsultation, lang = 'ar' }) {
 
           {/* Overlapping Foreground Content */}
           <div className="about-content-stack">
-            {/* Pill Tag with subtle Blue-Orange border & pulse dot */}
-            <motion.div
-              initial={{ opacity: 0, y: 18, scale: 0.95 }}
-              whileInView={{ opacity: 1, y: 0, scale: 1 }}
-              viewport={{ once: true, amount: 0.3 }}
-              transition={{ duration: 0.65, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
-              className="about-ref-pill"
-              style={{
-                background: 'linear-gradient(135deg, rgba(238, 246, 255, 0.9) 0%, rgba(255, 247, 240, 0.9) 100%)',
-                border: '1px solid rgba(234, 88, 12, 0.25)',
-                boxShadow: '0 4px 14px rgba(36, 90, 167, 0.08)'
-              }}
-            >
-              <span
-                className="ref-pill-dot"
-                style={{
-                  background: 'linear-gradient(135deg, #245aa7, #ea580c)',
-                  boxShadow: '0 0 8px rgba(234, 88, 12, 0.5)'
-                }}
-              />
-              <span>{isRtl ? 'خبرة تقنية ممتدة منذ 2008' : 'ESTABLISHED ENTERPRISE PARTNER SINCE 2008'}</span>
-            </motion.div>
-
             {/* Prominent Centered Headline */}
             <motion.h2
               initial={{ opacity: 0, y: 25 }}

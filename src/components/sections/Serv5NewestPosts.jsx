@@ -235,54 +235,6 @@ export default function Serv5NewestPosts({ onOpenConsultation, lang = 'ar' }) {
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           className="journal-header text-center"
         >
-          <div className="journal-eyebrow-wrap justify-center flex-wrap gap-2">
-            <span
-              className="journal-eyebrow-pill"
-              style={{
-                background: 'linear-gradient(135deg, rgba(238, 246, 255, 0.95) 0%, rgba(255, 247, 240, 0.95) 100%)',
-                border: '1px solid rgba(234, 88, 12, 0.25)',
-                boxShadow: '0 2px 10px rgba(36, 90, 167, 0.08)'
-              }}
-            >
-              <span
-                className="journal-eyebrow-dot"
-                style={{
-                  background: 'linear-gradient(135deg, #245aa7, #ea580c)'
-                }}
-              />
-              <span>{isRtl ? 'أحدث المقالات ودراسات الحالة' : 'SERV5 JOURNAL · LATEST INSIGHTS'}</span>
-            </span>
-
-            {/* Interactive Dynamic Assembly State Indicator */}
-            <button
-              type="button"
-              onClick={() => setIsScattered((prev) => !prev)}
-              className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold cursor-pointer transition-all duration-300"
-              style={{
-                background: isScattered
-                  ? 'linear-gradient(135deg, rgba(234, 88, 12, 0.12) 0%, rgba(249, 115, 22, 0.15) 100%)'
-                  : 'linear-gradient(135deg, rgba(36, 90, 167, 0.1) 0%, rgba(234, 88, 12, 0.1) 100%)',
-                border: isScattered
-                  ? '1px solid rgba(234, 88, 12, 0.4)'
-                  : '1px solid rgba(36, 90, 167, 0.25)',
-                color: isScattered ? '#c2410c' : '#1e40af'
-              }}
-              title={isRtl ? 'اضغط لتفكيك أو تجميع قطع البازل' : 'Click to scatter or interlock puzzle'}
-            >
-              <span
-                className="w-1.5 h-1.5 rounded-full animate-ping"
-                style={{
-                  background: isScattered ? '#ea580c' : '#2563eb'
-                }}
-              />
-              <span>
-                {isScattered
-                  ? (isRtl ? 'تفكيك تفاعلي للقطع...' : 'Dynamic Separation...')
-                  : (isRtl ? 'ترابط بازل متكامل' : 'Interlocked State')}
-              </span>
-            </button>
-          </div>
-
           <h2 className="journal-main-title">
             {isRtl ? (
               <>
