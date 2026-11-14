@@ -32,33 +32,43 @@ export default function Serv5ReadyForLiftoff({ onOpenConsultation, lang = 'ar' }
             {/* Left Content */}
             <div className="max-w-2xl">
               <h2 className="serv5-liftoff-title">
-                {isRtl ? 'مستعد للانطلاق نحو المستقبل الرقمي؟' : 'READY FOR DIGITAL LIFTOFF?'}
+                {isRtl ? (
+                  <>
+                    مستعد للانطلاق نحو{' '}
+                    <span className="text-gradient-orange-luminous">المستقبل الرقمي؟</span>
+                  </>
+                ) : (
+                  <>
+                    READY FOR DIGITAL{' '}
+                    <span className="text-gradient-orange-luminous">LIFTOFF?</span>
+                  </>
+                )}
               </h2>
 
-              <p className="text-lg sm:text-xl font-bold text-sky-100 mb-3">
+              <p className="text-lg sm:text-xl font-bold text-blue-900 mb-3">
                 {isRtl
                   ? 'أطلق العنان لقوة الابتكار, وابدأ اليوم مع سيرف فايف!'
                   : 'Unlock the power of innovation, get started today!'}
               </p>
 
-              <p className="text-white/90 text-sm sm:text-base leading-relaxed mb-6 max-w-xl">
+              <p className="text-slate-600 text-sm sm:text-base leading-relaxed mb-6 max-w-xl">
                 {isRtl
                   ? 'ارتقِ بعملك مع أحدث الحلول البرمجية من سيرف فايف. حان الوقت لإطلاق قوة حلولنا البرمجية المتقدمة المصممة خصيصاً مع وضع أهداف عملك الفريدة في الاعتبار وبأعلى درجات الاستقرار السحابي.'
                   : 'Level up your business with cutting-edge software solutions from SERV5. Unlock your full potential today with custom architectures designed for scalable revenue.'}
               </p>
 
               {/* Fast Perks */}
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 text-xs font-bold text-white mb-2">
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 text-xs font-bold text-slate-800 mb-2">
                 <div className="flex items-center gap-2">
-                  <CheckCircle2 size={16} className="text-emerald-300 flex-shrink-0" />
+                  <CheckCircle2 size={16} className="text-emerald-600 flex-shrink-0" />
                   <span>{isRtl ? 'استشارة ودراسة مجانية' : 'Free Initial Scope'}</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <ShieldCheck size={16} className="text-emerald-300 flex-shrink-0" />
+                  <ShieldCheck size={16} className="text-blue-600 flex-shrink-0" />
                   <span>{isRtl ? 'ضمان استقرار 99.98%' : '99.98% Uptime SLA'}</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <Zap size={16} className="text-emerald-300 flex-shrink-0" />
+                  <Zap size={16} className="text-orange-500 flex-shrink-0" />
                   <span>{isRtl ? 'دعم فني استباقي 24/7' : '24/7 Dedicated NOC'}</span>
                 </div>
               </div>

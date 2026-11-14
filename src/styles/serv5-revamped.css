@@ -1000,7 +1000,7 @@
 }
 
 /* ----------------------------------------------------
-   4. READY FOR LIFTOFF (FULL-WIDTH LUXURY MESH GRADIENT)
+   4. READY FOR LIFTOFF (LIGHT PALETTE WITH VIBRANT SYSTEM GRADIENT MIX)
    ---------------------------------------------------- */
 .serv5-liftoff-section {
   width: 100%;
@@ -1015,16 +1015,17 @@
   width: 100%;
   border-radius: 0;
   padding: 5.5rem 1.5rem 5rem 1.5rem;
-  color: #ffffff;
+  color: #0f172a;
   position: relative;
   overflow: hidden;
-  /* Ambient Diffused Mesh Gradient: Deep Navy base with smooth extended Orange & Ice-Blue blends */
+  /* Light Architectural Mixed Gradient: Soft Ice-Blue into Crisp White with Warm Luminous Orange & Azure ambient orbs */
   background: 
-    radial-gradient(ellipse 65% 75% at 85% 20%, rgba(234, 88, 12, 0.32) 0%, rgba(249, 115, 22, 0.14) 40%, rgba(251, 146, 60, 0.03) 65%, transparent 75%),
-    radial-gradient(ellipse 60% 70% at 15% 85%, rgba(56, 189, 248, 0.28) 0%, rgba(37, 99, 235, 0.12) 45%, transparent 75%),
-    linear-gradient(135deg, #0b1a3d 0%, #112a64 30%, #163c87 65%, #0e2456 100%);
-  border-top: 1px solid rgba(255, 255, 255, 0.12);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 25px 60px -15px rgba(11, 26, 61, 0.3);
+    radial-gradient(ellipse 70% 80% at 88% 20%, rgba(234, 88, 12, 0.12) 0%, rgba(249, 115, 22, 0.05) 45%, transparent 70%),
+    radial-gradient(ellipse 65% 75% at 12% 80%, rgba(37, 99, 235, 0.14) 0%, rgba(56, 189, 248, 0.06) 45%, transparent 70%),
+    linear-gradient(135deg, #eff6ff 0%, #ffffff 45%, #fff7ed 100%);
+  border-top: 1px solid #bfdbfe;
+  border-bottom: 1px solid #fed7aa;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9), 0 20px 45px -15px rgba(37, 99, 235, 0.07);
 }
 
 @media (min-width: 768px) {
@@ -1050,10 +1051,10 @@
 .serv5-liftoff-title {
   font-size: 2.25rem;
   font-weight: 900;
-  color: #ffffff;
-  line-height: 1.2;
+  color: #0f172a;
+  line-height: 1.22;
   margin-bottom: 1rem;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.025em;
 }
 
 @media (min-width: 768px) {
@@ -1062,7 +1063,7 @@
   }
 }
 
-/* Polished Liftoff Action Buttons */
+/* Polished Liftoff Action Buttons (System Colors & Mixed Gradient) */
 .serv5-btn-liftoff-primary {
   display: inline-flex;
   align-items: center;
@@ -1070,13 +1071,13 @@
   gap: 0.75rem;
   padding: 1rem 2.2rem;
   border-radius: 9999px;
-  background: linear-gradient(180deg, #ffffff 0%, #f1f5f9 100%);
-  color: #16205d !important;
+  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 50%, #ea580c 100%);
+  color: #ffffff !important;
   font-size: 0.95rem;
   font-weight: 800;
-  border: 1px solid rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.4);
   cursor: pointer;
-  box-shadow: 0 10px 25px -4px rgba(0, 0, 0, 0.28), 0 0 20px rgba(255, 255, 255, 0.15);
+  box-shadow: 0 10px 25px -4px rgba(37, 99, 235, 0.32), 0 4px 12px rgba(234, 88, 12, 0.22);
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   text-decoration: none;
   white-space: nowrap;
@@ -1084,9 +1085,9 @@
 
 .serv5-btn-liftoff-primary:hover {
   transform: translateY(-2px) scale(1.02);
-  background: #ffffff;
-  color: #0f1738 !important;
-  box-shadow: 0 16px 36px -4px rgba(0, 0, 0, 0.35), 0 0 30px rgba(234, 88, 12, 0.3);
+  background: linear-gradient(135deg, #ea580c 0%, #f97316 45%, #2563eb 100%);
+  color: #ffffff !important;
+  box-shadow: 0 16px 36px -4px rgba(234, 88, 12, 0.4), 0 0 25px rgba(37, 99, 235, 0.25);
 }
 
 .serv5-btn-liftoff-primary .btn-arrow-icon {
@@ -1108,13 +1109,12 @@
   gap: 0.65rem;
   padding: 1rem 2rem;
   border-radius: 9999px;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1.5px solid rgba(255, 255, 255, 0.25);
-  color: #ffffff !important;
+  background: #ffffff;
+  border: 1.5px solid #cbd5e1;
+  color: #0f172a !important;
   font-size: 0.92rem;
   font-weight: 700;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.05);
   cursor: pointer;
   transition: all 0.25s ease;
   text-decoration: none;
@@ -1122,23 +1122,24 @@
 }
 
 .serv5-btn-liftoff-secondary:hover {
-  background: rgba(255, 255, 255, 0.18);
-  border-color: rgba(255, 255, 255, 0.55);
+  background: #eff6ff;
+  border-color: #2563eb;
+  color: #1d4ed8 !important;
   transform: translateY(-2px);
-  color: #ffffff !important;
+  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.15);
 }
 
 /* ----------------------------------------------------
-   5. COMPREHENSIVE ARCHITECTURAL FOOTER (SEAMLESS DEEP NAVY)
+   5. COMPREHENSIVE ARCHITECTURAL FOOTER (LIGHT PALETTE & MIXED GRADIENT ACCENTS)
    ---------------------------------------------------- */
 .serv5-footer-section {
   width: 100%;
   background: 
-    radial-gradient(ellipse 60% 70% at 15% 30%, rgba(56, 189, 248, 0.14) 0%, transparent 65%),
-    radial-gradient(ellipse 55% 65% at 85% 80%, rgba(234, 88, 12, 0.12) 0%, transparent 65%),
-    linear-gradient(180deg, #091530 0%, #060e22 100%) !important;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
-  color: #94a3b8;
+    radial-gradient(ellipse 60% 70% at 10% 20%, rgba(37, 99, 235, 0.07) 0%, transparent 60%),
+    radial-gradient(ellipse 55% 65% at 90% 75%, rgba(234, 88, 12, 0.07) 0%, transparent 60%),
+    linear-gradient(180deg, #f8fafc 0%, #eff6ff 45%, #ffffff 100%) !important;
+  border-top: 1px solid #e2e8f0;
+  color: #64748b;
   padding-top: 5rem;
   padding-bottom: 3rem;
   font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
@@ -1163,7 +1164,7 @@
 .serv5-footer-heading {
   font-size: 0.92rem;
   font-weight: 800;
-  color: #ffffff;
+  color: #0f172a;
   margin-bottom: 1.35rem;
   letter-spacing: 0.03em;
   text-transform: uppercase;
@@ -1182,7 +1183,7 @@
   display: inline-block;
   font-size: 0.9rem;
   line-height: 1.45;
-  color: #94a3b8;
+  color: #475569;
   text-decoration: none;
   margin: 0;
   padding: 0.12rem 0;
@@ -1190,7 +1191,7 @@
 }
 
 .serv5-footer-link:hover {
-  color: var(--serv5-orange, #ea580c);
+  color: #2563eb;
   transform: translateX(4px);
 }
 
@@ -1210,7 +1211,7 @@
   gap: 0.75rem;
   margin: 0;
   font-size: 0.88rem;
-  color: #cbd5e1;
+  color: #334155;
 }
 
 .serv5-footer-contact-item:first-child {
@@ -1218,15 +1219,16 @@
 }
 
 .serv5-footer-icon-pill {
-  width: 30px;
-  height: 30px;
-  border-radius: 8px;
-  background-color: rgba(255, 255, 255, 0.08);
-  color: #38bdf8;
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  width: 32px;
+  height: 32px;
+  border-radius: 9px;
+  background-color: #ffffff;
+  color: #2563eb;
+  border: 1px solid #bfdbfe;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.08);
 }
 
