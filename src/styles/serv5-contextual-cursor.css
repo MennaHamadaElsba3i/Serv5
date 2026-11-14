@@ -1,0 +1,209 @@
+/* ==========================================================================
+   SERV5 CONTEXTUAL DYNAMIC ACTION CURSOR
+   White & Sapphire Blue Brand Identity with Contextual Action Badges
+   ========================================================================== */
+
+.serv5-contextual-cursor-system {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 9999999;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.serv5-contextual-cursor-system.is-visible {
+  opacity: 1;
+}
+
+/* ==========================================================================
+   PRECISION INNER DOT
+   ========================================================================== */
+.serv5-cursor-dot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 8px;
+  height: 8px;
+  margin-top: -4px;
+  margin-left: -4px;
+  background-color: #2563eb;
+  border-radius: 50%;
+  pointer-events: none;
+  box-shadow: 0 0 12px rgba(37, 99, 235, 0.8), 0 0 4px #ffffff;
+  transition: transform 0.05s linear;
+  will-change: transform;
+}
+
+.serv5-contextual-cursor-system.is-clicking .serv5-cursor-dot {
+  transform: scale(1.6);
+  background-color: #1d4ed8;
+}
+
+/* ==========================================================================
+   TRAILING FOLLOWER
+   ========================================================================== */
+.serv5-cursor-follower {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  will-change: transform;
+  display: block;
+}
+
+/* ==========================================================================
+   DYNAMIC ACTION BADGE PILL (حرّك, ابحث, تصفّح, قراءة, استكشف, انقر)
+   ========================================================================== */
+.serv5-cursor-badge {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translate(14px, 14px);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px;
+  border-radius: 9999px;
+  background: rgba(15, 23, 42, 0.92);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(147, 197, 253, 0.45);
+  box-shadow: 
+    0 10px 25px -4px rgba(15, 23, 42, 0.45),
+    0 0 16px rgba(37, 99, 235, 0.35),
+    inset 0 1px 1px rgba(255, 255, 255, 0.3);
+  white-space: nowrap;
+  pointer-events: none;
+  transition: transform 0.15s cubic-bezier(0.16, 1, 0.3, 1), background 0.25s ease, border-color 0.25s ease;
+  direction: ltr;
+}
+
+[dir="rtl"] .serv5-cursor-badge {
+  direction: rtl;
+}
+
+/* Flip near screen edges */
+.serv5-cursor-badge.flip-x {
+  transform: translate(-105%, 14px);
+}
+
+.serv5-cursor-badge.flip-y {
+  transform: translate(14px, -115%);
+}
+
+.serv5-cursor-badge.flip-x.flip-y {
+  transform: translate(-105%, -115%);
+}
+
+.cursor-badge-icon-wrap {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #60a5fa;
+  filter: drop-shadow(0 0 6px rgba(96, 165, 250, 0.7));
+}
+
+.cursor-badge-label {
+  font-family: 'Syne', 'Cairo', 'Space Grotesk', system-ui, sans-serif;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: #ffffff;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+/* Contextual color & glow variants */
+
+/* حرّك / Move (Cyan / 3D / Slider) */
+.serv5-cursor-follower.type-move .serv5-cursor-badge {
+  border-color: rgba(6, 182, 212, 0.6);
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(8, 51, 68, 0.92));
+  box-shadow: 0 10px 25px -4px rgba(6, 182, 212, 0.3), 0 0 16px rgba(6, 182, 212, 0.3);
+}
+.serv5-cursor-follower.type-move .cursor-badge-icon-wrap {
+  color: #22d3ee;
+}
+
+/* ابحث / Search (Sky Blue) */
+.serv5-cursor-follower.type-search .serv5-cursor-badge {
+  border-color: rgba(56, 189, 248, 0.6);
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(3, 105, 161, 0.92));
+  box-shadow: 0 10px 25px -4px rgba(56, 189, 248, 0.3), 0 0 16px rgba(56, 189, 248, 0.3);
+}
+.serv5-cursor-follower.type-search .cursor-badge-icon-wrap {
+  color: #38bdf8;
+}
+
+/* تصفّح / Browse (Sapphire Blue & Navy Brand System) */
+.serv5-cursor-follower.type-browse .serv5-cursor-badge,
+.serv5-cursor-follower.type-testimonials .serv5-cursor-badge {
+  border-color: rgba(96, 165, 250, 0.55);
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(30, 58, 138, 0.92));
+  box-shadow: 0 10px 25px -4px rgba(37, 99, 235, 0.35), 0 0 16px rgba(37, 99, 235, 0.35);
+}
+.serv5-cursor-follower.type-browse .cursor-badge-icon-wrap {
+  color: #93c5fd;
+}
+
+/* قراءة / Read (Indigo) */
+.serv5-cursor-follower.type-read .serv5-cursor-badge {
+  border-color: rgba(129, 140, 248, 0.6);
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(49, 46, 129, 0.92));
+  box-shadow: 0 10px 25px -4px rgba(99, 102, 241, 0.3), 0 0 16px rgba(99, 102, 241, 0.3);
+}
+.serv5-cursor-follower.type-read .cursor-badge-icon-wrap {
+  color: #a5b4fc;
+}
+
+/* استكشف / Explore (Purple / Violet) */
+.serv5-cursor-follower.type-explore .serv5-cursor-badge {
+  border-color: rgba(168, 85, 247, 0.6);
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(88, 28, 135, 0.92));
+  box-shadow: 0 10px 25px -4px rgba(168, 85, 247, 0.3), 0 0 16px rgba(168, 85, 247, 0.3);
+}
+.serv5-cursor-follower.type-explore .cursor-badge-icon-wrap {
+  color: #c084fc;
+}
+
+/* انقر / Click (Electric Blue Highlight) */
+.serv5-cursor-follower.type-click .serv5-cursor-badge {
+  border-color: rgba(59, 130, 246, 0.8);
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.96), rgba(29, 78, 216, 0.95));
+  box-shadow: 0 10px 25px -4px rgba(37, 99, 235, 0.45), 0 0 20px rgba(37, 99, 235, 0.45);
+}
+.serv5-cursor-follower.type-click .cursor-badge-icon-wrap {
+  color: #60a5fa;
+}
+
+/* تشغيل / Play (Emerald Green) */
+.serv5-cursor-follower.type-play .serv5-cursor-badge {
+  border-color: rgba(34, 197, 94, 0.6);
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(20, 83, 45, 0.92));
+  box-shadow: 0 10px 25px -4px rgba(34, 197, 94, 0.3), 0 0 16px rgba(34, 197, 94, 0.3);
+}
+.serv5-cursor-follower.type-play .cursor-badge-icon-wrap {
+  color: #4ade80;
+}
+
+/* تواصل / Contact (Teal) */
+.serv5-cursor-follower.type-contact .serv5-cursor-badge,
+.serv5-cursor-follower.type-call .serv5-cursor-badge {
+  border-color: rgba(20, 184, 166, 0.6);
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(19, 78, 74, 0.92));
+  box-shadow: 0 10px 25px -4px rgba(20, 184, 166, 0.3), 0 0 16px rgba(20, 184, 166, 0.3);
+}
+.serv5-cursor-follower.type-contact .cursor-badge-icon-wrap,
+.serv5-cursor-follower.type-call .cursor-badge-icon-wrap {
+  color: #2dd4bf;
+}
+
+/* Mobile & Touch Screens: Disabled */
+@media (hover: none) and (pointer: coarse) {
+  .serv5-contextual-cursor-system {
+    display: none !important;
+  }
+}
