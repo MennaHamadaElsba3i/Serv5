@@ -14,6 +14,7 @@ import Serv5Footer from './components/sections/Serv5Footer';
 import ProjectConsultationModal from './components/modals/ProjectConsultationModal';
 import RobotMascotGuide from './components/mascot/RobotMascotGuide';
 import Serv5KineticIntro from './components/intro/Serv5KineticIntro';
+import Serv5ContextualCursor from './components/ui/Serv5ContextualCursor';
 import { Play } from 'lucide-react';
 
 export default function App() {
@@ -52,6 +53,9 @@ export default function App() {
 
   return (
     <div className={`serv5-world-root ${lang === 'ar' ? 'dir-rtl' : 'dir-ltr'}`}>
+      {/* CONTEXTUAL MAGNETIC & DYNAMIC ACTION CURSOR */}
+      <Serv5ContextualCursor lang={lang} />
+
       {/* TYSHA-INSPIRED BRUTALIST & ARCHITECTURAL KINETIC INTRO PRELOADER */}
       {showIntro && (
         <Serv5KineticIntro
@@ -92,7 +96,6 @@ export default function App() {
         onOpenConsultation={handleOpenConsultation}
         lang={lang}
         onToggleLang={toggleLanguage}
-        onReplayIntro={handleReplayIntro}
       />
 
       {/* INTERACTIVE 3D ROBOT MASCOT & TOUR GUIDE */}

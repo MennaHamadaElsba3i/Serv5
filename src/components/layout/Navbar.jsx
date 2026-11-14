@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { ArrowUpRight, Menu, X, Sparkles, Phone, Globe, Film } from 'lucide-react';
+import { ArrowUpRight, Menu, X, Sparkles, Phone, Globe } from 'lucide-react';
 import Serv5Logo from '../Serv5Logo';
 
-export default function Navbar({ onOpenConsultation, lang = 'ar', onToggleLang, onReplayIntro }) {
+export default function Navbar({ onOpenConsultation, lang = 'ar', onToggleLang }) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const isRtl = lang === 'ar';
