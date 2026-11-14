@@ -135,12 +135,13 @@ export default function ServicesShowcase({ onOpenConsultation, lang = 'ar' }) {
         0
       );
 
-      // Step B: Vision image gently dims and zooms slightly for cinematic depth
+      // Step B: Vision image gently softens and zooms slightly for cinematic depth on light background
       tl.to(
         visionImageRef.current,
         {
           scale: 1.08,
-          filter: 'brightness(0.35) blur(4px)',
+          opacity: 0.28,
+          filter: 'blur(3px)',
           duration: 1.2,
           ease: 'power2.inOut'
         },
@@ -211,7 +212,17 @@ export default function ServicesShowcase({ onOpenConsultation, lang = 'ar' }) {
 
           {/* Main Headline */}
           <h2 className="services-screen-heading" ref={headingRef}>
-            {isRtl ? 'خدمات صُممت لتلبي كافة تطلعاتك' : 'Services designed to meet all your needs'}
+            {isRtl ? (
+              <>
+                خدمات صُممت لتلبي{' '}
+                <span className="text-gradient-orange-luminous">كافة تطلعاتك</span>
+              </>
+            ) : (
+              <>
+                Services designed to meet{' '}
+                <span className="text-gradient-orange-luminous">all your needs</span>
+              </>
+            )}
           </h2>
 
           {/* Services Rows List (Image 4 Design + Image 5 Content + System Colors) */}
