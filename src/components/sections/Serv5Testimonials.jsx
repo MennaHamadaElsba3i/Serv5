@@ -266,28 +266,30 @@ export default function Serv5Testimonials({ onOpenConsultation, lang = 'ar' }) {
       <div className="serv5-container">
         {/* ── Section Header ── */}
         <motion.div
-          className="testimonials-v2-header"
-          initial={{ opacity: 0, y: 40 }}
+          className="text-center max-w-3xl mx-auto mb-10 lg:mb-14"
+          initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
         >
-          <h2 className="testimonials-v2-title">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight mb-4 leading-tight">
             {isRtl ? (
               <>
-                عملاء نعتز بثقتهم |{' '}
-                <span className="text-gradient-ice">20,000+ عميل</span> يثقون في{' '}
-                <span className="text-gradient-orange-luminous">سيرف فايف</span>
+                عملاء نعتز بثقتهم.{' '}
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 via-amber-500 to-orange-600">
+                  20,000+ عميل يثقون بنا.
+                </span>
               </>
             ) : (
               <>
-                Valued Clients | Over{' '}
-                <span className="text-gradient-ice">20,000+ Enterprises</span> Trust{' '}
-                <span className="text-gradient-orange-luminous">SERV5</span>
+                Valued Clients.{' '}
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 via-amber-500 to-orange-600">
+                  20,000+ Enterprises Trust Us.
+                </span>
               </>
             )}
           </h2>
 
-          <p className="testimonials-v2-subtitle" style={{ marginBottom: 0 }}>
+          <p className="text-slate-600 text-base sm:text-lg leading-relaxed">
             {isRtl
               ? 'شهادات حقيقية متنوعة تشمل تسجيلات صوتية موثقة 🎙️، ومراجعات نصية 📝، وإثباتات رسائل حقيقية 📱 لشركاء نجاح سيرف فايف.'
               : 'Real testimonials featuring verified voice notes 🎙️, written reviews 📝, and authentic proof snapshots 📱.'}

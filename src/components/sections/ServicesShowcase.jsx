@@ -20,10 +20,8 @@ gsap.registerPlugin(ScrollTrigger);
 export default function ServicesShowcase({ onOpenConsultation, lang = 'ar' }) {
   const isRtl = lang === 'ar';
   const sectionRef = useRef(null);
-  const visionImageRef = useRef(null);
   const portalScreenRef = useRef(null);
   const servicesListRef = useRef(null);
-  const eyebrowRef = useRef(null);
   const headingRef = useRef(null);
   const [showAllServices, setShowAllServices] = useState(false);
 
@@ -100,6 +98,7 @@ export default function ServicesShowcase({ onOpenConsultation, lang = 'ar' }) {
   useEffect(() => {
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (prefersReducedMotion) return;
+    if (!sectionRef.current) return;
 
     const ctx = gsap.context(() => {
       // Simple, smooth non-pinned reveal animation
@@ -112,22 +111,26 @@ export default function ServicesShowcase({ onOpenConsultation, lang = 'ar' }) {
       });
 
       // Smooth card entrance with gentle scale
-      tl.fromTo(
-        portalScreenRef.current,
-        { opacity: 0, y: 40, scale: 0.96 },
-        { opacity: 1, y: 0, scale: 1, duration: 0.85, ease: 'power3.out' }
-      );
+      if (portalScreenRef.current) {
+        tl.fromTo(
+          portalScreenRef.current,
+          { opacity: 0, y: 40, scale: 0.96 },
+          { opacity: 1, y: 0, scale: 1, duration: 0.85, ease: 'power3.out' }
+        );
+      }
 
-      // Eyebrow and heading reveal
-      tl.fromTo(
-        [eyebrowRef.current, headingRef.current],
-        { opacity: 0, y: 20 },
-        { opacity: 1, y: 0, duration: 0.6, stagger: 0.12, ease: 'power2.out' },
-        '-=0.45'
-      );
+      // Heading reveal
+      if (headingRef.current) {
+        tl.fromTo(
+          headingRef.current,
+          { opacity: 0, y: 20 },
+          { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out' },
+          '-=0.45'
+        );
+      }
 
       // Staggered service tech pills
-      if (servicesListRef.current) {
+      if (servicesListRef.current && servicesListRef.current.children.length > 0) {
         const rows = servicesListRef.current.children;
         tl.fromTo(
           rows,
@@ -136,7 +139,7 @@ export default function ServicesShowcase({ onOpenConsultation, lang = 'ar' }) {
           '-=0.3'
         );
       }
-    }, sectionRef);
+    }, sectionRef.current);
 
     return () => ctx.revert();
   }, [showAllServices]);
@@ -165,34 +168,33 @@ export default function ServicesShowcase({ onOpenConsultation, lang = 'ar' }) {
           {/* Subtle Electric-Blue Space Aura */}
           <div className="services-space-aura" aria-hidden="true" />
 
-          {/* Eyebrow Pill Badge (System Colors: Ice Blue & Electric Blue) */}
-          <div className="services-badge-pill" ref={eyebrowRef}>
-            <span className="badge-star">✦</span>
-            <span className="badge-label">{isRtl ? 'خدماتنا الهندسية' : 'Services'}</span>
-            <span className="badge-star">✦</span>
-          </div>
-
           {/* Main Headline */}
-          <h2 className="services-screen-heading" ref={headingRef}>
-            {isRtl ? (
-              <>
-                خدمات صُممت لتلبي{' '}
-                <span className="text-gradient-orange-luminous">كافة تطلعاتك</span>
-              </>
-            ) : (
-              <>
-                Services designed to meet{' '}
-                <span className="text-gradient-orange-luminous">all your needs</span>
-              </>
-            )}
-          </h2>
+          <div className="text-center max-w-3xl mx-auto mb-10 lg:mb-14">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight mb-4 leading-tight" ref={headingRef}>
+              {isRtl ? (
+                <>
+                  خدمات صُممت لتلبي{' '}
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 via-amber-500 to-orange-600">
+                    كافة تطلعاتك.
+                  </span>
+                </>
+              ) : (
+                <>
+                  Services Designed to Meet{' '}
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 via-amber-500 to-orange-600">
+                    All Your Needs.
+                  </span>
+                </>
+              )}
+            </h2>
 
-          {/* Unified Subtitle Description */}
-          <p className="services-screen-desc">
-            {isRtl
-              ? 'حلول رقمية وسحابية شاملة مصممة خصيصاً لتسريع نمو أعمالك وتحقيق أهدافك المؤسسية بأعلى معايير الجودة.'
-              : 'End-to-end digital and enterprise architectures engineered to accelerate business scale and performance.'}
-          </p>
+            {/* Unified Subtitle Description */}
+            <p className="text-slate-600 text-base sm:text-lg leading-relaxed">
+              {isRtl
+                ? 'حلول رقمية وسحابية شاملة مصممة خصيصاً لتسريع نمو أعمالك وتحقيق أهدافك المؤسسية بأعلى معايير الجودة.'
+                : 'End-to-end digital and enterprise architectures engineered to accelerate business scale and performance.'}
+            </p>
+          </div>
 
           {/* Services Rows List (Image 4 Design + Image 5 Content + System Colors) */}
           <div className="services-rows-list" ref={servicesListRef}>

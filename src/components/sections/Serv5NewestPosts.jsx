@@ -325,51 +325,27 @@ export default function Serv5NewestPosts({ onOpenConsultation, lang = 'ar' }) {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          className="journal-header text-center"
+          className="text-center max-w-3xl mx-auto mb-10 lg:mb-14"
         >
-          {/* Eyebrow Pill */}
-          <div className="journal-eyebrow-wrap">
-            <span className="journal-eyebrow-pill">
-              <Sparkles size={13} className="text-blue-600" />
-              <span>{isRtl ? 'مدونة سيرف فايف | رؤى تقنية تصنع الفارق' : 'SERV5 JOURNAL | INSIGHTS THAT SHAPE SUCCESS'}</span>
-            </span>
-          </div>
-
-          <h2 className="journal-main-title">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight mb-4 leading-tight">
             {isRtl ? (
               <>
-                مدونة سيرف فايف |{' '}
-                <span
-                  style={{
-                    background: 'linear-gradient(135deg, #245aa7 0%, #ea580c 100%)',
-                    WebkitBackgroundClip: 'text',
-                    WebkitTextFillColor: 'transparent',
-                    display: 'inline-block'
-                  }}
-                >
-                  رؤى تقنية تصنع الفارق
-                </span>{' '}
-                لمشروعك
+                مدونة سيرف فايف.{' '}
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 via-amber-500 to-orange-600">
+                  رؤى تقنية تصنع الفارق.
+                </span>
               </>
             ) : (
               <>
-                SERV5 Blog |{' '}
-                <span
-                  style={{
-                    background: 'linear-gradient(135deg, #245aa7 0%, #ea580c 100%)',
-                    WebkitBackgroundClip: 'text',
-                    WebkitTextFillColor: 'transparent',
-                    display: 'inline-block'
-                  }}
-                >
-                  Insights That Move Business
-                </span>{' '}
-                Forward
+                SERV5 Journal.{' '}
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 via-amber-500 to-orange-600">
+                  Insights That Shape Success.
+                </span>
               </>
             )}
           </h2>
 
-          <p className="journal-sub-desc mx-auto">
+          <p className="text-slate-600 text-base sm:text-lg leading-relaxed">
             {isRtl
               ? 'استكشف أحدث المقالات والدراسات البرمجية والحلول السحابية المبتكرة من واقع خبرتنا الميدانية في سيرف فايف.'
               : 'Explore the latest architectural insights, enterprise case studies, and modern tech trends architected by SERV5.'}

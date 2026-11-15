@@ -55,12 +55,26 @@ export default function Serv5GetInTouch({ onOpenConsultation, lang = 'ar' }) {
     <section className="serv5-revamped-section serv5-contact-section" id="contact">
       <div className="serv5-container">
         {/* Header */}
-        <div className="text-center max-w-3xl mx-auto mb-12">
-          <h2 className="serv5-heading-2">
-            {isRtl ? 'للتواصل معنا | ابدأ مشروعك التقني مع سيرف فايف' : 'Contact Us | Start Your Project with SERV5'}
+        <div className="text-center max-w-3xl mx-auto mb-10 lg:mb-14">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight mb-4 leading-tight">
+            {isRtl ? (
+              <>
+                تواصل معنا.{' '}
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 via-amber-500 to-orange-600">
+                  لنبدأ رحلة نجاحك الرقمي.
+                </span>
+              </>
+            ) : (
+              <>
+                Contact Us.{' '}
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 via-amber-500 to-orange-600">
+                  Let's Architect Your Flagship.
+                </span>
+              </>
+            )}
           </h2>
 
-          <p className="serv5-subheading mx-auto" style={{ marginBottom: 0 }}>
+          <p className="text-slate-600 text-base sm:text-lg leading-relaxed">
             {isRtl
               ? 'تواصل معنا لمناقشة أفكارك وتطلعاتك. فريقنا الهندسي متاح دائماً لدراسة المتطلبات وتقديم الاستشارة الفنية وعروض الأسعار المناسبة.'
               : 'Connect with our engineering leadership to architect, scope, and deploy your next digital flagship.'}

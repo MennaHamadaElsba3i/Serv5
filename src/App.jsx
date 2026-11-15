@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import SculpturalWorld3D from './components/3d/SculpturalWorld3D';
 import Navbar from './components/layout/Navbar';
 import HeroSection from './components/sections/HeroSection';
-import AboutSection from './components/sections/AboutSection';
+
 import PartnersCarousel from './components/sections/PartnersCarousel';
 import ServicesShowcase from './components/sections/ServicesShowcase';
 import Serv5ProductsShowcase from './components/sections/Serv5ProductsShowcase';
@@ -110,10 +110,7 @@ export default function App() {
         {/* 1. HERO SCENE */}
         <HeroSection onOpenConsultation={handleOpenConsultation} lang={lang} />
 
-        {/* 2. ABOUT SERV5 & 16+ YEARS EXPERTISE */}
-        <AboutSection onOpenConsultation={handleOpenConsultation} lang={lang} />
-
-        {/* 3. PARTNERS & CERTIFICATIONS MARQUEE */}
+        {/* 2. PARTNERS & CERTIFICATIONS MARQUEE */}
         <PartnersCarousel lang={lang} />
 
         {/* 4. DIGITAL DOMAINS & SERVICES SHOWCASE */}

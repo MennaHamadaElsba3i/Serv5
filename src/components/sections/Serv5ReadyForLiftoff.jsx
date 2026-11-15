@@ -40,16 +40,20 @@ export default function Serv5ReadyForLiftoff({ onOpenConsultation, lang = 'ar' }
           <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-10">
             {/* Left Content */}
             <div className="max-w-2xl">
-              <h2 className="serv5-liftoff-title">
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight mb-4 leading-tight">
                 {isRtl ? (
                   <>
                     مستعد للانطلاق نحو{' '}
-                    <span className="text-gradient-orange-luminous">المستقبل الرقمي؟</span>
+                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 via-amber-500 to-orange-600">
+                      المستقبل الرقمي؟
+                    </span>
                   </>
                 ) : (
                   <>
-                    READY FOR DIGITAL{' '}
-                    <span className="text-gradient-orange-luminous">LIFTOFF?</span>
+                    Ready for Digital{' '}
+                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 via-amber-500 to-orange-600">
+                      Liftoff?
+                    </span>
                   </>
                 )}
               </h2>

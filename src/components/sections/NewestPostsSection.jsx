@@ -733,20 +733,29 @@ export default function NewestPostsSection({ onOpenConsultation, lang = 'ar' }) 
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.7 }}
-            className="newest-title-group"
+            className="text-center max-w-3xl mx-auto mb-8"
           >
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50 border border-blue-200 text-blue-700 text-xs font-bold mb-3 shadow-xs">
-              <Sparkles size={13} className="text-blue-600" />
-              <span>{isRtl ? 'سجل الإنجازات والمنظومات الرقمية المعتمدة' : 'Verified Enterprise Showcase Matrix'}</span>
-            </div>
-
-            <h2 className="newest-main-heading">
-              {isRtl ? 'أعمالنا المميزة' : 'Our Featured Works'}
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight mb-4 leading-tight">
+              {isRtl ? (
+                <>
+                  أعمال استثنائية.{' '}
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 via-amber-500 to-orange-600">
+                    إنجازات تدوم.
+                  </span>
+                </>
+              ) : (
+                <>
+                  Featured Works.{' '}
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 via-amber-500 to-orange-600">
+                    Lasting Impact.
+                  </span>
+                </>
+              )}
             </h2>
 
-            <p className="newest-sub-heading">
+            <p className="text-slate-600 text-base sm:text-lg leading-relaxed">
               {isRtl
-                ? 'استكشف كافة المنظومات والتطبيقات الرائدة المطورة بواسطة سيرف فايف والتي تخدم ملايين المستخدمين يومياً'
+                ? 'استكشف كافة المنظومات والتطبيقات الرائدة المطورة بواسطة سيرف فايف والتي تخدم ملايين المستخدمين يومياً.'
                 : 'Explore our deployed enterprise platforms, cloud architectures, and mobile ecosystems serving millions daily.'}
             </p>
           </motion.div>

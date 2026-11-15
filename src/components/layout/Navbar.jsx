@@ -17,7 +17,6 @@ export default function Navbar({ onOpenConsultation, lang = 'ar', onToggleLang }
 
   const navLinks = isRtl
     ? [
-      { label: 'عن الشركة', href: '#about' },
       { label: 'خدماتنا', href: '#services' },
       { label: 'منتجاتنا', href: '#products' },
       { label: 'أعمالنا', href: '#portfolio' },
@@ -26,7 +25,6 @@ export default function Navbar({ onOpenConsultation, lang = 'ar', onToggleLang }
       { label: 'تواصل معنا', href: '#contact' }
     ]
     : [
-      { label: 'About Us', href: '#about' },
       { label: 'Services', href: '#services' },
       { label: 'Products', href: '#products' },
       { label: 'Portfolio', href: '#portfolio' },
