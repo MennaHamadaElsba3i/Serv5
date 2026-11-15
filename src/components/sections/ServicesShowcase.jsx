@@ -102,79 +102,38 @@ export default function ServicesShowcase({ onOpenConsultation, lang = 'ar' }) {
     if (prefersReducedMotion) return;
 
     const ctx = gsap.context(() => {
-      // Pinned Aperture Scroll Experience
-      // 1. Initial view: Full Vision Image
-      // 2. Scroll scrubs: Center black screen opens and expands
-      // 3. Services appear sequentially one by one
+      // Simple, smooth non-pinned reveal animation
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: sectionRef.current,
-          start: 'top top',
-          end: '+=160%',
-          pin: true,
-          scrub: 0.85,
-          anticipatePin: 1
+          start: 'top 75%',
+          toggleActions: 'play none none none'
         }
       });
 
-      // Step A: The black aperture screen expands from center over the vision image
+      // Smooth card entrance with gentle scale
       tl.fromTo(
         portalScreenRef.current,
-        {
-          clipPath: 'inset(42% 42% 42% 42% round 32px)',
-          opacity: 0.2,
-          scale: 0.8
-        },
-        {
-          clipPath: 'inset(0% 0% 0% 0% round 24px)',
-          opacity: 1,
-          scale: 1,
-          duration: 1.2,
-          ease: 'power2.inOut'
-        },
-        0
+        { opacity: 0, y: 40, scale: 0.96 },
+        { opacity: 1, y: 0, scale: 1, duration: 0.85, ease: 'power3.out' }
       );
 
-      // Step B: Vision image gently softens and zooms slightly for cinematic depth on light background
-      tl.to(
-        visionImageRef.current,
-        {
-          scale: 1.08,
-          opacity: 0.6,
-          filter: 'brightness(1.08) blur(5px)',
-          duration: 1.2,
-          ease: 'power2.inOut'
-        },
-        0
-      );
-
-      // Step C: Eyebrow and Heading fade in as aperture finishes expanding
+      // Eyebrow and heading reveal
       tl.fromTo(
         [eyebrowRef.current, headingRef.current],
-        { opacity: 0, y: 25 },
-        { opacity: 1, y: 0, duration: 0.6, stagger: 0.15, ease: 'power2.out' },
-        0.8
+        { opacity: 0, y: 20 },
+        { opacity: 1, y: 0, duration: 0.6, stagger: 0.12, ease: 'power2.out' },
+        '-=0.45'
       );
 
-      // Step D: Services items appear sequentially ONE BY ONE
+      // Staggered service tech pills
       if (servicesListRef.current) {
         const rows = servicesListRef.current.children;
         tl.fromTo(
           rows,
-          {
-            opacity: 0,
-            y: 35,
-            scale: 0.96
-          },
-          {
-            opacity: 1,
-            y: 0,
-            scale: 1,
-            duration: 0.7,
-            stagger: 0.22,
-            ease: 'power3.out'
-          },
-          1.1
+          { opacity: 0, y: 24 },
+          { opacity: 1, y: 0, duration: 0.5, stagger: 0.08, ease: 'power2.out' },
+          '-=0.3'
         );
       }
     }, sectionRef);
@@ -184,18 +143,21 @@ export default function ServicesShowcase({ onOpenConsultation, lang = 'ar' }) {
 
   return (
     <section className="services-vision-section" id="services" ref={sectionRef}>
-      {/* Background Visual Layer: The Tech Vision Image */}
-      <div className="services-vision-backdrop" aria-hidden="true">
-        <img
-          ref={visionImageRef}
-          src="/images/serv5-tech-vision.jpg"
-          alt="SERV5 Digital Engineering & Cloud Vision"
-          className="vision-hero-image"
-          loading="lazy"
-        />
-        {/* Soft Ambient Vignette */}
-        <div className="vision-ambient-overlay" />
-      </div>
+      {/* Light Architectural Visible Gradient Orbs (Ice-Blue + Soft Orange) */}
+      <div
+        className="pointer-events-none absolute -top-28 right-0 w-[650px] h-[650px] rounded-full opacity-70 blur-[130px]"
+        style={{
+          background: 'radial-gradient(circle, rgba(219, 234, 254, 0.95) 0%, rgba(254, 215, 170, 0.5) 50%, transparent 75%)'
+        }}
+        aria-hidden="true"
+      />
+      <div
+        className="pointer-events-none absolute -bottom-28 left-0 w-[650px] h-[650px] rounded-full opacity-60 blur-[130px]"
+        style={{
+          background: 'radial-gradient(circle, rgba(191, 219, 254, 0.9) 0%, rgba(255, 237, 213, 0.45) 55%, transparent 75%)'
+        }}
+        aria-hidden="true"
+      />
 
       {/* Center Expanding Obsidian Black Screen (Opens from the middle on scroll) */}
       <div className="services-aperture-screen" ref={portalScreenRef}>

@@ -9,9 +9,9 @@
 .serv5-revamped-section {
   position: relative;
   width: 100%;
-  background: #ffffff;
+  background: transparent;
   padding: 5rem 1.5rem;
-  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  font-family: inherit;
   color: #0f172a;
   box-sizing: border-box;
 }
@@ -459,10 +459,10 @@
 .serv5-testimonials-v2 {
   position: relative;
   width: 100%;
-  background: linear-gradient(175deg, #f8fbff 0%, #ffffff 35%, #f0f7ff 70%, #f8fbff 100%);
+  background: transparent;
   padding: 6rem 1.5rem;
   overflow: hidden;
-  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  font-family: inherit;
   color: #0f172a;
 }
 
@@ -539,7 +539,7 @@
 }
 
 .google-g-icon {
-  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-family: inherit;
   font-weight: 800;
   font-size: 1rem;
   background: linear-gradient(135deg, #4285f4, #ea4335, #fbbc05, #34a853);
@@ -902,8 +902,7 @@
    3. GET IN TOUCH / DIRECT CONTACT (BRIGHT & CRISP)
    ---------------------------------------------------- */
 .serv5-contact-section {
-  background: #ffffff;
-  border-top: 1px solid #e2e8f0;
+  background: transparent;
 }
 
 .serv5-contact-info-card {
@@ -1163,7 +1162,7 @@
   color: #64748b;
   padding-top: 5rem;
   padding-bottom: 3rem;
-  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  font-family: inherit;
   position: relative;
   z-index: 30;
 }

@@ -92,9 +92,66 @@ export default function AboutSection({ onOpenConsultation, lang = 'ar' }) {
               className="about-ref-desc"
             >
               {isRtl
-                ? 'على مدار أكثر من 15 عاماً من التطوير والابتكار المستمر، لم نكن مجرد مزود للخدمات التقنية، بل الشريك الاستراتيجي الذي يقود كبرى المؤسسات والهيئات الحكومية والشركات الواعدة نحو التحول الرقمي الشامل والريادة السوقية المستدامة.'
-                : 'Behind every milestone is a success story. For over 15 years of continuous development and innovation, SERV5 has never been just a service provider—we have been the strategic architectural partner that empowers enterprises and government entities to lead their industries with sustainable digital impact.'}
+                ? 'على مدار أكثر من 16 عاماً من التطوير والابتكار المستمر، لم نكن مجرد مزود للخدمات التقنية، بل الشريك الاستراتيجي الذي يقود كبرى المؤسسات والهيئات الحكومية والشركات الواعدة نحو التحول الرقمي الشامل والريادة السوقية المستدامة.'
+                : 'Behind every milestone is a success story. For over 16 years of continuous development and innovation, SERV5 has never been just a service provider—we have been the strategic architectural partner that empowers enterprises and government entities to lead their industries with sustainable digital impact.'}
             </motion.p>
+
+            {/* Living Innovation Horizon Milestones (3 Epoch Cards) */}
+            <div className="about-milestones-grid mt-4">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                className="about-milestone-card"
+              >
+                <div className="milestone-year-badge">2008</div>
+                <h4 className="milestone-title">
+                  {isRtl ? 'التأسيس والأنظمة المؤسسية' : 'Foundation & Architecture'}
+                </h4>
+                <p className="milestone-desc">
+                  {isRtl
+                    ? 'انطلاق مسيرة سيرف فايف في بناء أولى منظومات إدارة الشركات وقواعد البيانات الكبرى.'
+                    : 'Pioneered custom software architectures and high-availability database engines.'}
+                </p>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.35 }}
+                className="about-milestone-card active-epoch"
+              >
+                <div className="milestone-year-badge highlight">2016</div>
+                <h4 className="milestone-title">
+                  {isRtl ? 'الثورة السحابية والموبايل' : 'Cloud & Mobile Ecosystems'}
+                </h4>
+                <p className="milestone-desc">
+                  {isRtl
+                    ? 'التوسع الإقليمي عبر تطبيقات الجوال المتطورة ومنصات التجارة الإلكترونية فائقة السرعة.'
+                    : 'Scaled regional footprint with real-time iOS/Android apps and omnichannel e-commerce.'}
+                </p>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.5 }}
+                className="about-milestone-card"
+              >
+                <div className="milestone-year-badge">2024</div>
+                <h4 className="milestone-title">
+                  {isRtl ? 'الذكاء الاصطناعي و ZATCA' : 'AI, FinTech & Compliance'}
+                </h4>
+                <p className="milestone-desc">
+                  {isRtl
+                    ? 'اعتماد الفوترة الإلكترونية المرحلة الثانية وتكاملات ناجز والأنظمة المعمارية الذكية.'
+                    : 'Full ZATCA Phase-2 certification, judicial integrations, and edge cloud infrastructure.'}
+                </p>
+              </motion.div>
+            </div>
           </div>
         </div>
       </div>
