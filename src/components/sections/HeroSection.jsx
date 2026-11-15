@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowRight, ArrowUpRight, Sparkles } from 'lucide-react';
+import { ArrowRight, ArrowUpRight } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { serv5Data } from '../../data/serv5Data';
 
@@ -8,11 +8,13 @@ export default function HeroSection({ onOpenConsultation, lang = 'ar' }) {
 
   return (
     <section className="world-hero-section world-hero-centered relative overflow-hidden" id="hero">
-      {/* Subtle Atmospheric Blue-to-Orange Gradient Halo behind Hero */}
+      {/* Blueprint Grid & Ambient Gradient Halos */}
+      <div className="hero-blueprint-grid" aria-hidden="true" />
+
       <div
-        className="pointer-events-none absolute -top-24 left-1/2 -translate-x-1/2 w-[800px] h-[480px] rounded-full opacity-35 blur-[120px]"
+        className="pointer-events-none absolute -top-28 left-1/2 -translate-x-1/2 w-[880px] h-[520px] rounded-full opacity-40 blur-[130px]"
         style={{
-          background: 'radial-gradient(ellipse at center, rgba(37, 99, 235, 0.28) 0%, rgba(234, 88, 12, 0.18) 55%, transparent 75%)'
+          background: 'radial-gradient(ellipse at center, rgba(36, 90, 167, 0.32) 0%, rgba(234, 88, 12, 0.16) 55%, transparent 75%)'
         }}
         aria-hidden="true"
       />
@@ -64,7 +66,7 @@ export default function HeroSection({ onOpenConsultation, lang = 'ar' }) {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.75, delay: 0.42, ease: [0.16, 1, 0.3, 1] }}
-              className="hero-action-group hero-actions-centered"
+              className="hero-action-group hero-actions-centered mb-5"
             >
               <motion.button
                 whileHover={{ scale: 1.04, y: -2 }}
@@ -85,6 +87,34 @@ export default function HeroSection({ onOpenConsultation, lang = 'ar' }) {
                 <span>{isRtl ? 'استكشف الخدمات الهندسية' : 'Explore Engineering Domains'}</span>
                 <ArrowUpRight size={15} />
               </motion.a>
+            </motion.div>
+
+            {/* Living KPI Stat Bar Layer */}
+            <motion.div
+              initial={{ opacity: 0, y: 25 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.85, delay: 0.55 }}
+              className="hero-kpi-strip"
+            >
+              <div className="hero-kpi-item">
+                <span className="hero-kpi-val">16+</span>
+                <span className="hero-kpi-lbl">{isRtl ? 'عاماً من الخبرة' : 'Years Experience'}</span>
+              </div>
+              <div className="hero-kpi-divider" />
+              <div className="hero-kpi-item">
+                <span className="hero-kpi-val">500+</span>
+                <span className="hero-kpi-lbl">{isRtl ? 'عميل ومؤسسة كبرى' : 'Enterprise Clients'}</span>
+              </div>
+              <div className="hero-kpi-divider" />
+              <div className="hero-kpi-item">
+                <span className="hero-kpi-val">14</span>
+                <span className="hero-kpi-lbl">{isRtl ? 'دولة نخدمها حول العالم' : 'Countries Served'}</span>
+              </div>
+              <div className="hero-kpi-divider" />
+              <div className="hero-kpi-item">
+                <span className="hero-kpi-val">4.9 ★</span>
+                <span className="hero-kpi-lbl">{isRtl ? 'تقييم رضا العملاء' : 'Client Rating'}</span>
+              </div>
             </motion.div>
           </div>
         </div>

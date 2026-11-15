@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { Sparkles, MessageCircle, ArrowUp, X } from 'lucide-react';
+import { Sparkles, MessageCircle, ArrowUp, X, Layers, Cpu, ArrowRight, CheckCircle2 } from 'lucide-react';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -13,28 +13,29 @@ export default function RobotMascotGuide({ lang = 'ar', onOpenConsultation }) {
   const [bubbleText, setBubbleText] = useState('');
   const [currentSection, setCurrentSection] = useState('hero');
   const [bubbleVisible, setBubbleVisible] = useState(true);
+  const [showQuickActions, setShowQuickActions] = useState(false);
 
   // Section-specific dialogue messages in Arabic & English
   const messages = {
     ar: {
-      hero: 'مرحباً بك في سيرف فايف! أنا دليلك الذكي 👋',
-      about: '15 عاماً من الابتكار والتطوير المستمر 🚀',
-      services: 'استكشف منظومة خدماتنا البرمجية المتكاملة ⚡',
-      products: 'أنظمتنا السحابية جاهزة لإطلاق مشروعك 💼',
-      portfolio: 'قصص نجاح حقيقية نفذناها في 14 دولة 🏆',
-      whyUs: 'معايير جودة ودعم فني متواصل 24/7 🛡️',
-      blog: 'أحدث المقالات والرؤى الهندسية 💡',
-      contact: 'جاهز لبدء مشروعك؟ تواصل معنا الآن! 💬'
+      hero: 'مرحباً بك في سيرف فايف! أنا دليلك الذكي 👋 انقر علي للمساعدة السريعة',
+      about: '16+ عاماً من الابتكار الهندسي وتطوير الأنظمة السحابية 🚀',
+      services: 'استكشف لوحة حلولنا البرمجية المتقدمة المصممة حولك ⚡',
+      products: 'أنظمتنا السحابية المؤسسية الجاهزة للإطلاق الفوري 💼',
+      portfolio: 'قصص نجاح ومشاريع حقيقية تم تشغيلها عبر 14 دولة 🏆',
+      whyUs: 'معايير أداء فائقة 100/100 ودعم هندسي 24/7 🛡️',
+      blog: 'أحدث الرؤى والخرائط المعمارية من مهندسي سيرف فايف 💡',
+      contact: 'جاهز لبدء مشروعك القادم؟ انقر هنا لنبدأ فوراً! 💬'
     },
     en: {
-      hero: 'Welcome to SERV5! I am your digital guide 👋',
-      about: '15+ Years of continuous digital excellence 🚀',
-      services: 'Explore our integrated engineering domains ⚡',
-      products: 'Turnkey enterprise software ready to launch 💼',
-      portfolio: 'Proven case studies across 14 countries 🏆',
-      whyUs: 'Uncompromising speed, security & 24/7 SLA 🛡️',
-      blog: 'Latest architectural & growth blueprints 💡',
-      contact: "Ready to launch? Let's engineer your project! 💬"
+      hero: 'Welcome to SERV5! I am your AI Guide 👋 Click me for quick navigation',
+      about: '16+ Years of verified engineering & cloud architecture 🚀',
+      services: 'Explore our modular digital solutions switchboard ⚡',
+      products: 'Turnkey enterprise software suites ready to deploy 💼',
+      portfolio: 'Monumental case studies engineered across 14 nations 🏆',
+      whyUs: 'Uncompromising 100/100 performance & 24/7 support SLA 🛡️',
+      blog: 'Latest engineering blueprints from SERV5 tech leads 💡',
+      contact: "Ready to engineer your platform? Let's connect now! 💬"
     }
   };
 
@@ -49,7 +50,6 @@ export default function RobotMascotGuide({ lang = 'ar', onOpenConsultation }) {
     if (!mascot || !robotImg) return;
 
     if (prefersReducedMotion) {
-      // Accessible fallback: static docked position without motion
       gsap.set(mascot, { opacity: 1, visibility: 'visible', scale: 0.85 });
       return;
     }
@@ -58,22 +58,11 @@ export default function RobotMascotGuide({ lang = 'ar', onOpenConsultation }) {
       // 1. Initial Hero Entrance Animation
       gsap.fromTo(
         mascot,
-        {
-          opacity: 0,
-          scale: 0.7,
-          y: 60
-        },
-        {
-          opacity: 1,
-          scale: 1,
-          y: 0,
-          duration: 1.2,
-          ease: 'power3.out',
-          delay: 0.3
-        }
+        { opacity: 0, scale: 0.7, y: 60 },
+        { opacity: 1, scale: 1, y: 0, duration: 1.2, ease: 'power3.out', delay: 0.3 }
       );
 
-      // 2. Continuous Organic Respiration & Floating Levitation
+      // 2. Continuous Organic Levitation
       gsap.to(robotImg, {
         y: -10,
         rotationZ: 1.5,
@@ -83,9 +72,7 @@ export default function RobotMascotGuide({ lang = 'ar', onOpenConsultation }) {
         ease: 'sine.inOut'
       });
 
-      // 3. Master Coordinated Scroll-Triggered Guide Journey
-      // Sections: #hero, #about, #services, #products, #portfolio, #why-serv5, #blog, #contact
-
+      // 3. Scroll-Triggered Guide Journey
       const sections = [
         { id: '#hero', name: 'hero', y: 0, x: 0, scale: 1, rot: 0 },
         { id: '#about', name: 'about', y: 15, x: isRtl ? 20 : -20, scale: 0.94, rot: isRtl ? 3 : -3 },
@@ -138,6 +125,20 @@ export default function RobotMascotGuide({ lang = 'ar', onOpenConsultation }) {
     return () => ctx.revert();
   }, [isRtl, lang]);
 
+  const handleActionClick = (targetId, subject) => {
+    setShowQuickActions(false);
+    if (targetId) {
+      const el = document.querySelector(targetId);
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth' });
+        return;
+      }
+    }
+    if (onOpenConsultation && subject) {
+      onOpenConsultation(subject);
+    }
+  };
+
   return (
     <div
       ref={mascotRef}
@@ -145,11 +146,53 @@ export default function RobotMascotGuide({ lang = 'ar', onOpenConsultation }) {
       aria-label="SERV5 3D Mascot Guide"
     >
       <div className="mascot-inner-container">
+        {/* Interactive Concierge Quick Action Menu */}
+        {showQuickActions && (
+          <div className={`mascot-quick-menu ${isRtl ? 'menu-rtl' : 'menu-ltr'}`}>
+            <div className="quick-menu-header">
+              <span className="quick-menu-title">
+                {isRtl ? 'دليل SERV5 الذكي' : 'SERV5 Quick Concierge'}
+              </span>
+              <button
+                onClick={() => setShowQuickActions(false)}
+                className="quick-menu-close"
+              >
+                <X size={13} />
+              </button>
+            </div>
+            <div className="quick-menu-body">
+              <button
+                className="quick-menu-item"
+                onClick={() => handleActionClick('#services', 'Services')}
+              >
+                <Cpu size={14} className="text-blue-600" />
+                <span>{isRtl ? 'استعراض الخدمات الرقمية' : 'Explore Services'}</span>
+              </button>
+              <button
+                className="quick-menu-item"
+                onClick={() => handleActionClick('#products', 'Products')}
+              >
+                <Layers size={14} className="text-orange-600" />
+                <span>{isRtl ? 'منتجاتنا السحابية الجاهزة' : 'Enterprise Products'}</span>
+              </button>
+              <button
+                className="quick-menu-item highlight"
+                onClick={() => handleActionClick(null, 'Mascot Direct Proposal')}
+              >
+                <Sparkles size={14} className="text-amber-500" />
+                <span>{isRtl ? 'طلب دراسة معمارية للمشروع' : 'Request Architecture Proposal'}</span>
+              </button>
+            </div>
+          </div>
+        )}
+
         {/* Interactive Speech & Guidance Bubble */}
-        {bubbleVisible && bubbleText && (
+        {!showQuickActions && bubbleVisible && bubbleText && (
           <div
             ref={speechBubbleRef}
             className={`mascot-speech-bubble ${isRtl ? 'bubble-rtl' : 'bubble-ltr'}`}
+            onClick={() => setShowQuickActions(true)}
+            style={{ cursor: 'pointer' }}
           >
             <div className="bubble-content">
               <span className="bubble-icon">✨</span>
@@ -169,15 +212,11 @@ export default function RobotMascotGuide({ lang = 'ar', onOpenConsultation }) {
           </div>
         )}
 
-        {/* Mascot Avatar Card */}
+        {/* Mascot Avatar Stage */}
         <div
           className="mascot-character-stage"
-          onClick={() => {
-            if (onOpenConsultation) {
-              onOpenConsultation(`Mascot Guide Consultation (${currentSection})`);
-            }
-          }}
-          title={isRtl ? 'انقر للتحدث مع مستشار سيرف فايف' : 'Click to chat with a SERV5 specialist'}
+          onClick={() => setShowQuickActions((prev) => !prev)}
+          title={isRtl ? 'انقر لفتح الدليل الذكي واختصارات التصفح' : 'Click to open AI Concierge'}
         >
           {/* Subtle Ambient Ice-Blue Glow Halo behind the robot */}
           <div className="mascot-ambient-halo" />

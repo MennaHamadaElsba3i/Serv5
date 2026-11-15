@@ -14,6 +14,62 @@ import {
 
 export default function NewestPostsSection({ onOpenConsultation, lang = 'ar' }) {
   const isRtl = lang === 'ar';
+  const [modalDevice, setModalDevice] = useState('desktop');
+
+  const renderProjectIcon = (id, accentColor) => {
+    switch (id) {
+      case 'pizza-plaza':
+        return (
+          <svg viewBox="0 0 48 48" className="w-9 h-9" fill="none" stroke={accentColor} strokeWidth="2.5">
+            <circle cx="24" cy="24" r="20" stroke="#f59e0b" fill="#fffbeb" />
+            <path d="M24 10 L34 36 L14 36 Z" fill="#ef4444" stroke="#b91c1c" />
+            <circle cx="24" cy="22" r="2.5" fill="#fef08a" />
+            <circle cx="20" cy="28" r="2" fill="#ffffff" />
+            <circle cx="28" cy="29" r="2" fill="#ffffff" />
+          </svg>
+        );
+      case 'medpulse-cloud':
+        return (
+          <svg viewBox="0 0 48 48" className="w-9 h-9" fill="none" stroke={accentColor} strokeWidth="2.5">
+            <rect x="6" y="6" width="36" height="36" rx="10" fill="#ecfdf5" stroke="#10b981" />
+            <path d="M12 24 H20 L23 16 L27 32 L30 24 H36" stroke="#059669" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+        );
+      case 'luxestore-arabia':
+        return (
+          <svg viewBox="0 0 48 48" className="w-9 h-9" fill="none" stroke={accentColor} strokeWidth="2.5">
+            <circle cx="24" cy="24" r="18" fill="#fffbeb" stroke="#d97706" />
+            <polygon points="24,14 32,22 28,34 20,34 16,22" fill="#fef3c7" stroke="#b45309" strokeWidth="2" />
+          </svg>
+        );
+      case 'zatca-gateway':
+        return (
+          <svg viewBox="0 0 48 48" className="w-9 h-9" fill="none" stroke={accentColor} strokeWidth="2.5">
+            <rect x="8" y="8" width="32" height="32" rx="8" fill="#eff6ff" stroke="#2563eb" />
+            <path d="M24 14 V34 M14 24 H34" stroke="#1d4ed8" strokeWidth="3" strokeLinecap="round" />
+            <circle cx="24" cy="24" r="5" fill="#3b82f6" />
+          </svg>
+        );
+      case 'nauz-cafe':
+        return (
+          <svg viewBox="0 0 48 48" className="w-9 h-9" fill="none" stroke={accentColor} strokeWidth="2.5">
+            <circle cx="24" cy="24" r="18" fill="#fff7ed" stroke="#b45309" />
+            <path d="M16 20 H32 V26 C32 30 28 34 24 34 C20 34 16 30 16 26 Z" fill="#fed7aa" stroke="#78350f" strokeWidth="2" />
+            <path d="M32 22 H36 C38 22 38 26 36 26 H32" stroke="#78350f" strokeWidth="2" />
+          </svg>
+        );
+      case 'alrajhi-gateway':
+        return (
+          <svg viewBox="0 0 48 48" className="w-9 h-9" fill="none" stroke={accentColor} strokeWidth="2.5">
+            <rect x="6" y="6" width="36" height="36" rx="10" fill="#f0f9ff" stroke="#0284c7" />
+            <path d="M24 12 L34 24 L24 36 L14 24 Z" fill="#0284c7" />
+            <path d="M24 17 L29 24 L24 31 L19 24 Z" fill="#ffffff" />
+          </svg>
+        );
+      default:
+        return <Sparkles size={28} className="text-blue-600" />;
+    }
+  };
 
   // 6 Flagship platforms engineered by SERV5
   const projects = [
@@ -458,7 +514,9 @@ export default function NewestPostsSection({ onOpenConsultation, lang = 'ar' }) 
                     {/* Card Visual Graphic Mockup */}
                     <div className="card-graphic-frame">
                       <div className="card-graphic-mockup">
-                        <span className="card-mockup-badge">{project.mockupPlaceholder}</span>
+                        <div className="card-mockup-badge">
+                          {renderProjectIcon(project.id, project.accentColor)}
+                        </div>
                         <div className="card-mockup-lines">
                           <span className="line-bar bar-long" />
                           <span className="line-bar bar-short" />
@@ -599,25 +657,45 @@ export default function NewestPostsSection({ onOpenConsultation, lang = 'ar' }) 
               {/* Visual Column */}
               <div className="modal-visual-column">
                 <div className="modal-browser-mockup">
-                  <div className="mockup-browser-bar">
-                    <div className="browser-traffic-dots">
-                      <span className="dot-red" />
-                      <span className="dot-yellow" />
-                      <span className="dot-green" />
+                  <div className="mockup-browser-bar flex items-center justify-between">
+                    <div className="flex items-center gap-2">
+                      <div className="browser-traffic-dots">
+                        <span className="dot-red" />
+                        <span className="dot-yellow" />
+                        <span className="dot-green" />
+                      </div>
+                      <div className="browser-address-field">
+                        <span className="browser-secure-lock">🔒</span>
+                        <span className="browser-url-text">{selectedProject.url}</span>
+                      </div>
                     </div>
-                    <div className="browser-address-field">
-                      <span className="browser-secure-lock">🔒</span>
-                      <span className="browser-url-text">{selectedProject.url}</span>
+                    {/* Device Viewport Toggle Buttons */}
+                    <div className="flex items-center gap-1 bg-slate-800/80 p-0.5 rounded-lg border border-slate-700/60">
+                      <button
+                        type="button"
+                        onClick={() => setModalDevice('desktop')}
+                        className={`px-2 py-0.5 rounded text-[10px] font-bold transition-all ${modalDevice === 'desktop' ? 'bg-blue-600 text-white' : 'text-slate-400 hover:text-white'}`}
+                      >
+                        💻 Desktop
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => setModalDevice('mobile')}
+                        className={`px-2 py-0.5 rounded text-[10px] font-bold transition-all ${modalDevice === 'mobile' ? 'bg-blue-600 text-white' : 'text-slate-400 hover:text-white'}`}
+                      >
+                        📱 Mobile
+                      </button>
                     </div>
-                    <span className="browser-status-chip">LIVE</span>
                   </div>
 
-                  <div className="mockup-screen-preview">
+                  <div className={`mockup-screen-preview ${modalDevice === 'mobile' ? 'preview-mobile-frame' : 'preview-desktop-frame'}`}>
                     <div className="preview-hero-art">
-                      <span className="preview-giant-glyph">{selectedProject.mockupPlaceholder}</span>
+                      <div className="preview-icon-wrapper mb-2">
+                        {renderProjectIcon(selectedProject.id, selectedProject.accentColor)}
+                      </div>
                       <div className="preview-headline-box">
                         <span className="preview-mini-title">{selectedProject.title}</span>
-                        <span className="preview-mini-author">Engineered by SERV5</span>
+                        <span className="preview-mini-author">Engineered by SERV5 • {selectedProject.year}</span>
                       </div>
                     </div>
                   </div>
