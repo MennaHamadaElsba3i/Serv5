@@ -237,27 +237,93 @@ export const serv5Data = {
   blogPosts: [
     {
       id: "zatca-phase-2-guide",
-      title: "Architecting ZATCA Phase 2 Integration: An Engineering Blueprint",
-      excerpt: "Technical deep-dive on implementing cryptographic stamps, UUIDs, and automated clearance pipelines for Saudi e-invoicing.",
-      date: "Nov 2024",
-      readTime: "6 min read",
-      category: "Enterprise Tech"
+      title: "هندسة تكامل ZATCA المرحلة الثانية: مخطط تقني شامل",
+      excerpt: "تعمق تقني في تطبيق الأختام التشفيرية ومعرّفات UUID وخطوط المقاصة الآلية للفوترة الإلكترونية السعودية.",
+      date: "نوف 2024",
+      readTime: "6 دقائق",
+      category: "تقنية المؤسسات",
+      icon: "🏛️",
+      accentColor: "#1e40af"
     },
     {
       id: "core-web-vitals-scale",
-      title: "How We Achieve 100/100 Google Core Web Vitals on Massive React Apps",
-      excerpt: "Practical optimization techniques covering code splitting, modern image pipelines, and edge SSR caching.",
-      date: "Oct 2024",
-      readTime: "8 min read",
-      category: "Performance"
+      title: "كيف نحقق 100/100 في Core Web Vitals على تطبيقات React الضخمة",
+      excerpt: "تقنيات تحسين عملية تشمل تقسيم الكود وخطوط معالجة الصور الحديثة والتخزين المؤقت لحافة SSR.",
+      date: "أكت 2024",
+      readTime: "8 دقائق",
+      category: "الأداء والسرعة",
+      icon: "⚡",
+      accentColor: "#0891b2"
     },
     {
       id: "roas-scaling-gcc",
-      title: "Maximizing E-Commerce ROAS Across Saudi Arabia and the Gulf in 2025",
-      excerpt: "Strategic insights into omnichannel ad targeting on TikTok and Snapchat paired with frictionless Mada checkouts.",
-      date: "Oct 2024",
-      readTime: "5 min read",
-      category: "Growth & CRO"
+      title: "تعظيم ROAS للتجارة الإلكترونية في السعودية والخليج 2025",
+      excerpt: "رؤى استراتيجية في استهداف الإعلانات متعدد القنوات على TikTok وSnapchat مع مدفوعات مدى السلسة.",
+      date: "أكت 2024",
+      readTime: "5 دقائق",
+      category: "النمو والتحويل",
+      icon: "📈",
+      accentColor: "#7c3aed"
+    },
+    {
+      id: "flutter-enterprise-mobile",
+      title: "Flutter للمؤسسات: بناء تطبيق POS لـ 50 ألف طلب يومياً",
+      excerpt: "معمارية Flutter المؤسسية مع معالجة الحالة بـ Riverpod وتكامل الدفع الآني ومزامنة الأسطول اللحظية.",
+      date: "سبت 2024",
+      readTime: "7 دقائق",
+      category: "تطبيقات الجوال",
+      icon: "📱",
+      accentColor: "#0369a1"
+    },
+    {
+      id: "hipaa-cloud-architecture",
+      title: "بنية السحابة المتوافقة مع HIPAA للمنصات الصحية الإقليمية",
+      excerpt: "كيف صممنا بنية تحتية سحابية لـ 14 مركزاً صحياً مع تشفير EHR من طرف إلى طرف واستمرارية الخدمة 99.99%.",
+      date: "سبت 2024",
+      readTime: "10 دقائق",
+      category: "الحوسبة السحابية",
+      icon: "🏥",
+      accentColor: "#059669"
+    },
+    {
+      id: "headless-commerce-mena",
+      title: "التجارة الإلكترونية Headless في الشرق الأوسط: دليل الممارس",
+      excerpt: "بناء متجر Headless بـ Shopify Plus يتحمل 15 ألف منتج مع فلترة O(1) واستجابة أقل من 0.4 ثانية.",
+      date: "أغس 2024",
+      readTime: "9 دقائق",
+      category: "التجارة الإلكترونية",
+      icon: "🛍️",
+      accentColor: "#b45309"
+    },
+    {
+      id: "sama-banking-bridge",
+      title: "جسر API المصرفي المتوافق مع معايير مؤسسة النقد SAMA",
+      excerpt: "بناء برمجيات وسيطة مصرفية آمنة مع HSM وتشفير AES-256 ومعالجة 80ms بزمن استجابة حقيقي.",
+      date: "يول 2024",
+      readTime: "11 دقيقة",
+      category: "التقنية المالية",
+      icon: "💳",
+      accentColor: "#1e3a8a"
+    },
+    {
+      id: "ai-menu-ordering",
+      title: "الذكاء الاصطناعي في منظومة المطاعم: التحضير قبل الوصول",
+      excerpt: "تكامل GPS للتحضير التلقائي عند اقتراب العميل، وشخصية التوصيات، ونظام الولاء الذكي لسلاسل القهوة.",
+      date: "يون 2024",
+      readTime: "6 دقائق",
+      category: "الذكاء الاصطناعي",
+      icon: "☕",
+      accentColor: "#92400e"
+    },
+    {
+      id: "micro-frontend-scale",
+      title: "معمارية Micro-Frontend للمنصات الحكومية الكبرى",
+      excerpt: "تقسيم المنصات الضخمة إلى خدمات مستقلة قابلة للنشر بشكل مستقل مع Module Federation وCI/CD متكامل.",
+      date: "مايو 2024",
+      readTime: "12 دقيقة",
+      category: "هندسة البرمجيات",
+      icon: "🔧",
+      accentColor: "#6d28d9"
     }
   ]
 };

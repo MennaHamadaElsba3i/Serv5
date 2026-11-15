@@ -1,21 +1,445 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react';
-import { motion } from 'framer-motion';
+import React, { useState, useEffect, useRef } from 'react';
+import { motion, AnimatePresence, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import {
   ExternalLink,
   Search,
-  ChevronLeft,
-  ChevronRight,
   X,
   Sparkles,
   ArrowUpRight,
   CheckCircle2,
-  Maximize2
+  Layers,
+  Activity,
+  Code2,
+  TrendingUp,
+  Cpu,
+  ShieldCheck,
+  Zap,
+  MapPin,
+  Heart,
+  Lock
 } from 'lucide-react';
+
+/* ───────────────────────────────────────────────────────────────────
+   SERV5 FEATURED WORKS — INTERACTIVE 3D ARCHITECTURE MATRIX
+   - All 6 enterprise platforms clearly visible to the client at once
+   - Natural page scroll (zero scroll-hijacking)
+   - Dynamic 3D magnetic card tilt responding to cursor coordinates
+   - Living micro-UIs with animated telemetry, routes, lasers & circuits
+   - Cursor-tracking holographic glare & traveling laser borders
+   - Interactive category filtering + live instant search
+   - Deep-dive Case Study Modal with full architecture specs
+   ─────────────────────────────────────────────────────────────────── */
+
+/* ── 1. PIZZA PLAZA MICRO-UI: Live Fleet GPS & Order Dispatch ── */
+function PizzaPlazaMockup({ isRtl }) {
+  return (
+    <div className="pizza-mockup-canvas">
+      {/* Route SVG Map */}
+      <svg className="pizza-map-bg" viewBox="0 0 280 120" fill="none">
+        <path d="M10 30 H270 M10 60 H270 M10 90 H270 M60 10 V110 M140 10 V110 M220 10 V110" stroke="#cbd5e1" strokeWidth="0.8" strokeDasharray="3 3" opacity="0.4" />
+        <path
+          d="M 30 85 C 80 85, 100 35, 170 35 C 210 35, 230 70, 250 70"
+          stroke="#2563eb"
+          strokeWidth="3.5"
+          strokeLinecap="round"
+          className="pizza-route-path"
+        />
+        <circle cx="30" cy="85" r="5" fill="#2563eb" />
+        <circle cx="250" cy="70" r="14" fill="#2563eb" opacity="0.3" className="pizza-beacon-ripple" />
+        <circle cx="250" cy="70" r="5" fill="#ef4444" />
+      </svg>
+
+      {/* Floating Order Alert Toast */}
+      <div className="pizza-order-toast">
+        <div className="flex items-center gap-2">
+          <div className="w-6 h-6 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center text-xs font-bold pizza-scooter-pulse">
+            🛵
+          </div>
+          <div className="text-right">
+            <div className="text-[10px] font-bold text-slate-800 leading-tight">
+              {isRtl ? 'طلب #4829 - جاري التوصيل' : 'Order #4829 In Transit'}
+            </div>
+            <div className="text-[9px] text-emerald-600 font-semibold">ETA: 12m · Live GPS</div>
+          </div>
+        </div>
+
+        {/* Live Audio / Dispatch Equalizer */}
+        <div className="audio-equalizer-bars">
+          <div className="eq-bar" />
+          <div className="eq-bar" />
+          <div className="eq-bar" />
+          <div className="eq-bar" />
+        </div>
+      </div>
+
+      {/* Bottom Dispatch Info */}
+      <div className="flex items-center justify-between text-[10px] font-mono text-slate-600 px-1">
+        <span className="flex items-center gap-1 font-bold text-blue-600">
+          <span className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-ping" />
+          {isRtl ? '38 فرعاً نشطاً' : '38 Active Hubs'}
+        </span>
+        <span className="text-emerald-700 font-bold">1.2M+ Orders</span>
+      </div>
+    </div>
+  );
+}
+
+/* ── 2. MEDPULSE HEALTH MICRO-UI: Live ECG Oscilloscope & Cloud Sync ── */
+function MedPulseMockup({ isRtl }) {
+  return (
+    <div className="medpulse-mockup-canvas">
+      {/* Top Telemetry Bar */}
+      <div className="flex items-center justify-between px-1 text-[10px] font-mono">
+        <div className="flex items-center gap-1.5">
+          <Heart size={13} className="text-rose-500 medpulse-heart-icon" fill="#f43f5e" />
+          <span className="font-bold text-slate-800">74 BPM</span>
+        </div>
+        <div className="flex items-center gap-1 text-emerald-600 font-bold">
+          <Activity size={12} className="animate-pulse" />
+          <span>99.99% Uptime</span>
+        </div>
+      </div>
+
+      {/* Glowing ECG Waveform SVG */}
+      <div className="relative py-1">
+        <svg className="medpulse-ecg-svg" viewBox="0 0 280 60" fill="none">
+          <path
+            d="M 0 30 L 50 30 L 60 10 L 70 50 L 80 15 L 90 35 L 100 30 L 170 30 L 180 8 L 190 52 L 200 18 L 210 33 L 220 30 L 280 30"
+            stroke="#10b981"
+            strokeWidth="2.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className="heartbeat-svg-wave"
+          />
+        </svg>
+      </div>
+
+      {/* Cloud Nodes Sync Strip */}
+      <div className="cloud-sync-orbit">
+        <div className="sync-node-ring">
+          <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+        </div>
+        <div className="text-[10px] font-bold text-slate-700 bg-white/90 border border-emerald-200 px-2.5 py-0.5 rounded-full shadow-xs">
+          {isRtl ? '14 مركز طبي مربوط مشفر EHR' : '14 EHR Clinics Encrypted'}
+        </div>
+        <div className="sync-node-ring">
+          <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ── 3. LUXESTORE ARABIA MICRO-UI: 3D Holographic Luxury & Speed Gauge ── */
+function LuxeStoreMockup({ isRtl }) {
+  return (
+    <div className="luxestore-mockup-canvas">
+      {/* Speed Gauge */}
+      <div className="luxe-speed-gauge">
+        <Zap size={11} className="text-amber-500" fill="#f59e0b" />
+        <span>0.4s Headless API</span>
+      </div>
+
+      {/* 3D Floating Luxury Hologram */}
+      <div className="luxe-floating-gem my-1">
+        <span className="text-4xl filter drop-shadow-md">💎</span>
+      </div>
+
+      {/* Gold Shimmer Tag */}
+      <div className="luxe-gold-shimmer-tag mb-1.5">
+        {isRtl ? 'تشكيلة الخليج الفاخرة · Core Web Vitals 100/100' : 'Luxury Flagship · 100/100 Vitals'}
+      </div>
+
+      <div className="text-[10px] font-mono text-amber-800 font-bold">
+        $4.6M+ GMV · +185% Conversion
+      </div>
+    </div>
+  );
+}
+
+/* ── 4. ZATCA TAX GATEWAY MICRO-UI: Holographic Laser Scanner ── */
+function ZatcaMockup({ isRtl }) {
+  return (
+    <div className="zatca-mockup-canvas">
+      {/* Holographic Laser Scanner Beam */}
+      <div className="zatca-scanner-line" />
+
+      {/* Top Compliance Badge */}
+      <div className="flex items-center justify-between px-1">
+        <div className="zatca-verified-stamp">
+          <ShieldCheck size={12} className="text-emerald-600" />
+          <span>{isRtl ? 'معتمد ZATCA المرحلة الثانية' : 'ZATCA Phase 2 Cleared'}</span>
+        </div>
+        <span className="text-[10px] font-mono text-blue-700 font-bold">99.98% Rate</span>
+      </div>
+
+      {/* QR & Cryptographic Matrix */}
+      <div className="flex items-center justify-center gap-3 my-1">
+        <div className="w-12 h-12 bg-white border border-slate-300 p-1 rounded-md shadow-xs grid grid-cols-4 gap-0.5">
+          {Array.from({ length: 16 }).map((_, i) => (
+            <span
+              key={i}
+              className={`rounded-[1px] ${
+                [0, 1, 3, 4, 7, 8, 10, 12, 15].includes(i) ? 'bg-slate-800' : 'bg-slate-100'
+              }`}
+            />
+          ))}
+        </div>
+        <div className="text-right">
+          <div className="text-[11px] font-bold text-slate-800">XML Digital Stamp</div>
+          <div className="text-[9px] font-mono text-emerald-600 font-bold">&lt;DigestMethod SHA-256&gt;</div>
+          <div className="text-[9px] font-mono text-blue-600 font-semibold">Latency: &lt;120ms</div>
+        </div>
+      </div>
+
+      {/* Scrolling Hash Stream */}
+      <div className="zatca-hash-stream">
+        7f83b1657ff1fc53b92dc18148a1d65dfc2d4b1fa3d677284addd200126d9069 5.8M+ Invoices
+      </div>
+    </div>
+  );
+}
+
+/* ── 5. NAUZ COFFEE MICRO-UI: Procedural Steam & Geofence Radar ── */
+function NauzCafeMockup({ isRtl }) {
+  return (
+    <div className="nauz-mockup-canvas">
+      {/* Radar geofence expanding ring */}
+      <div className="nauz-geofence-pulse" />
+
+      {/* Steaming Coffee Cup with Animated Steam */}
+      <div className="nauz-steam-cup-wrap my-1">
+        <div className="flex items-center justify-center gap-1.5 h-6">
+          <span className="text-xs steam-wisp-1 opacity-70">~</span>
+          <span className="text-sm steam-wisp-2 opacity-80">~</span>
+          <span className="text-xs steam-wisp-3 opacity-60">~</span>
+        </div>
+        <span className="text-3xl filter drop-shadow-md">☕</span>
+      </div>
+
+      {/* Proximity Alert Pill */}
+      <div className="bg-amber-100/90 border border-amber-300 text-amber-900 text-[10px] font-bold px-3 py-0.5 rounded-full shadow-xs flex items-center gap-1.5 mb-1">
+        <MapPin size={11} className="text-amber-700 animate-bounce" />
+        <span>{isRtl ? 'اقتراب العميل (450م): بدأ التحضير' : 'Proximity 450m: Auto-Brewing'}</span>
+      </div>
+
+      <div className="text-[10px] font-mono text-amber-800 font-bold">
+        180K+ Users · 85% Skip-The-Line
+      </div>
+    </div>
+  );
+}
+
+/* ── 6. AL-RAJHI BANKING BRIDGE MICRO-UI: Golden Microchip & Circuit Traces ── */
+function AlRajhiMockup({ isRtl }) {
+  return (
+    <div className="alrajhi-mockup-canvas">
+      {/* Top Security Header */}
+      <div className="flex items-center justify-between px-1">
+        <div className="crypto-shield-badge">
+          <Lock size={11} className="text-blue-700" />
+          <span>AES-256 SAMA Compliant</span>
+        </div>
+        <span className="text-[10px] font-mono text-emerald-600 font-bold">80ms RT</span>
+      </div>
+
+      {/* Cyber Chip & Circuit Traces */}
+      <div className="flex items-center justify-center gap-4 my-1">
+        <div className="alrajhi-chip-body flex items-center justify-center">
+          <div className="alrajhi-chip-lines" />
+          <Cpu size={18} className="text-amber-900/70" />
+        </div>
+
+        {/* Animated Electric Circuit SVG */}
+        <svg width="100" height="35" viewBox="0 0 100 35" fill="none">
+          <path
+            d="M 0 17 H 30 L 45 5 H 70 L 85 28 H 100"
+            stroke="#38bdf8"
+            strokeWidth="2"
+            strokeLinecap="round"
+            className="electric-circuit-trace"
+          />
+          <circle cx="100" cy="28" r="3" fill="#10b981" />
+        </svg>
+      </div>
+
+      {/* Daily Volume Ticker */}
+      <div className="flex items-center justify-between text-[10px] font-mono px-1">
+        <span className="text-slate-600">{isRtl ? 'التسوية الآلية اليومية:' : 'Daily Volume:'}</span>
+        <span className="font-bold text-blue-700 text-[11px]">$12M+ / Day</span>
+      </div>
+    </div>
+  );
+}
+
+/* ── 3D MAGNETIC PERSPECTIVE SHOWCASE CARD ── */
+function ProjectCard3D({ project, idx, isRtl, onOpen }) {
+  const cardRef = useRef(null);
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+
+  const mouseXSpring = useSpring(x, { stiffness: 220, damping: 22 });
+  const mouseYSpring = useSpring(y, { stiffness: 220, damping: 22 });
+
+  const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], ['10deg', '-10deg']);
+  const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ['-10deg', '10deg']);
+
+  const [glarePos, setGlarePos] = useState({ x: 50, y: 50 });
+
+  const handleMouseMove = (e) => {
+    if (!cardRef.current) return;
+    const rect = cardRef.current.getBoundingClientRect();
+    const mouseX = e.clientX - rect.left;
+    const mouseY = e.clientY - rect.top;
+    const xPct = mouseX / rect.width - 0.5;
+    const yPct = mouseY / rect.height - 0.5;
+    x.set(xPct);
+    y.set(yPct);
+    setGlarePos({
+      x: (mouseX / rect.width) * 100,
+      y: (mouseY / rect.height) * 100
+    });
+  };
+
+  const handleMouseLeave = () => {
+    x.set(0);
+    y.set(0);
+  };
+
+  const renderMicroUI = () => {
+    switch (project.id) {
+      case 'pizza-plaza':
+        return <PizzaPlazaMockup isRtl={isRtl} />;
+      case 'medpulse-cloud':
+        return <MedPulseMockup isRtl={isRtl} />;
+      case 'luxestore-arabia':
+        return <LuxeStoreMockup isRtl={isRtl} />;
+      case 'zatca-gateway':
+        return <ZatcaMockup isRtl={isRtl} />;
+      case 'nauz-cafe':
+        return <NauzCafeMockup isRtl={isRtl} />;
+      case 'alrajhi-gateway':
+        return <AlRajhiMockup isRtl={isRtl} />;
+      default:
+        return null;
+    }
+  };
+
+  return (
+    <motion.div
+      ref={cardRef}
+      layout
+      initial={{ opacity: 0, y: 30, scale: 0.95 }}
+      whileInView={{ opacity: 1, y: 0, scale: 1 }}
+      viewport={{ once: true, amount: 0.15 }}
+      exit={{ opacity: 0, scale: 0.95 }}
+      transition={{ duration: 0.5, delay: idx * 0.06 }}
+      style={{
+        rotateX,
+        rotateY,
+        transformStyle: 'preserve-3d'
+      }}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      onClick={onOpen}
+      className="serv5-portfolio-card"
+      role="button"
+      tabIndex={0}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          onOpen();
+        }
+      }}
+    >
+      {/* Traveling Laser Border Beam */}
+      <div className="card-border-laser" />
+
+      {/* Dynamic Cursor-Tracking Glare */}
+      <div
+        className="portfolio-card-glare"
+        style={{
+          background: `radial-gradient(circle 240px at ${glarePos.x}% ${glarePos.y}%, rgba(37, 99, 235, 0.12), transparent 70%)`
+        }}
+      />
+
+      {/* Top Accent Stripe */}
+      <div
+        className="portfolio-card-accent-bar"
+        style={{ background: `linear-gradient(90deg, ${project.accentColor}, #38bdf8)` }}
+      />
+
+      {/* 1. Visual Device Mockup Frame with Live Micro-UI */}
+      <div
+        className="portfolio-device-frame"
+        style={{ background: project.cardColor }}
+      >
+        {/* Browser Header Bar */}
+        <div className="device-frame-header">
+          <div className="device-frame-dots">
+            <span className="device-dot bg-rose-400" />
+            <span className="device-dot bg-amber-400" />
+            <span className="device-dot bg-emerald-400" />
+          </div>
+
+          <div className="flex items-center gap-1.5 text-[10px] font-mono text-slate-500">
+            <span>{project.number}</span>
+            <span>·</span>
+            <span className="font-bold text-emerald-600 flex items-center gap-1">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+              LIVE TELEMETRY
+            </span>
+          </div>
+        </div>
+
+        {/* Device Interior Content: Live Interactive Micro-UI */}
+        <div className="device-frame-body">
+          {renderMicroUI()}
+        </div>
+      </div>
+
+      {/* 2. Editorial Metadata */}
+      <div className="portfolio-card-content">
+        <span
+          className="portfolio-card-category"
+          style={{ color: project.accentColor }}
+        >
+          {project.categoryLabel}
+        </span>
+
+        <h3 className="portfolio-card-title">{project.title}</h3>
+        <p className="portfolio-card-client">{project.client}</p>
+        <p className="portfolio-card-desc">{project.overview}</p>
+
+        {/* Tech Stack Chips */}
+        <div className="portfolio-tech-tags">
+          {project.techStack.slice(0, 3).map((tech, tIdx) => (
+            <span key={tIdx} className="portfolio-tech-tag">
+              {tech}
+            </span>
+          ))}
+          {project.techStack.length > 3 && (
+            <span className="portfolio-tech-tag font-bold text-blue-600">
+              +{project.techStack.length - 3}
+            </span>
+          )}
+        </div>
+      </div>
+
+      {/* 3. Card Action Footer */}
+      <div className="portfolio-card-action">
+        <span>{isRtl ? 'استكشف تفاصيل المنظومة' : 'Inspect Architecture'}</span>
+        <div className="w-7 h-7 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center portfolio-action-arrow">
+          <ArrowUpRight size={14} />
+        </div>
+      </div>
+    </motion.div>
+  );
+}
 
 export default function NewestPostsSection({ onOpenConsultation, lang = 'ar' }) {
   const isRtl = lang === 'ar';
 
-  // 6 Flagship platforms engineered by SERV5
   const projects = [
     {
       id: 'pizza-plaza',
@@ -181,7 +605,7 @@ export default function NewestPostsSection({ onOpenConsultation, lang = 'ar' }) 
     }
   ];
 
-  // Filtering
+  // Filtering State
   const [searchQuery, setSearchQuery] = useState('');
   const [activeCategory, setActiveCategory] = useState('all');
   const [selectedProject, setSelectedProject] = useState(null);
@@ -195,86 +619,6 @@ export default function NewestPostsSection({ onOpenConsultation, lang = 'ar' }) 
       p.overview.toLowerCase().includes(searchQuery.toLowerCase());
     return matchesCategory && matchesSearch;
   });
-
-  // Continuous 3D drifting & physics state
-  const [scrollProgress, setScrollProgress] = useState(2.0);
-  const progressRef = useRef(2.0);
-  const velocityRef = useRef(0.0035); // Base auto-drift velocity
-  const isDraggingRef = useRef(false);
-  const startXRef = useRef(0);
-  const isHoveredRef = useRef(false);
-  const stageRef = useRef(null);
-
-  // Animation Frame Loop for 60fps Continuous Drifting (Exact Evil Rabbit / Deimos mechanics)
-  useEffect(() => {
-    let animId;
-
-    const loop = () => {
-      if (!isDraggingRef.current) {
-        // Auto drift: slows when hovered, smoothly cruises otherwise
-        const targetVelocity = isHoveredRef.current ? 0.0006 : 0.0035;
-        velocityRef.current += (targetVelocity - velocityRef.current) * 0.05;
-        progressRef.current += velocityRef.current;
-        setScrollProgress(progressRef.current);
-      }
-      animId = requestAnimationFrame(loop);
-    };
-
-    animId = requestAnimationFrame(loop);
-    return () => cancelAnimationFrame(animId);
-  }, []);
-
-  // Wheel listener: mouse wheel scrolling drives the stream along the 3D curve
-  const handleWheel = useCallback((e) => {
-    e.preventDefault();
-    const delta = (e.deltaY || e.deltaX) * 0.0018;
-    progressRef.current += delta;
-    velocityRef.current = delta * 0.3;
-    setScrollProgress(progressRef.current);
-  }, []);
-
-  // Dragging support
-  const handlePointerDown = (e) => {
-    isDraggingRef.current = true;
-    startXRef.current = e.clientX;
-  };
-
-  const handlePointerMove = (e) => {
-    if (!isDraggingRef.current) return;
-    const deltaX = (e.clientX - startXRef.current) * 0.005;
-    const dir = isRtl ? 1 : -1;
-    progressRef.current += deltaX * dir;
-    velocityRef.current = deltaX * dir * 0.2;
-    startXRef.current = e.clientX;
-    setScrollProgress(progressRef.current);
-  };
-
-  const handlePointerUp = () => {
-    isDraggingRef.current = false;
-  };
-
-  // Spot UV Coating Specular Mousemove
-  const handleCardMouseMove = (e) => {
-    const card = e.currentTarget;
-    const rect = card.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    card.style.setProperty('--spot-x', `${x}px`);
-    card.style.setProperty('--spot-y', `${y}px`);
-  };
-
-  // Safe navigation controls
-  const handlePrev = () => {
-    progressRef.current -= 1;
-    velocityRef.current = -0.04;
-    setScrollProgress(progressRef.current);
-  };
-
-  const handleNext = () => {
-    progressRef.current += 1;
-    velocityRef.current = 0.04;
-    setScrollProgress(progressRef.current);
-  };
 
   // Close modal with ESC
   useEffect(() => {
@@ -301,43 +645,78 @@ export default function NewestPostsSection({ onOpenConsultation, lang = 'ar' }) 
     }, 280);
   };
 
-  const count = filteredProjects.length || 1;
-
   return (
-    <section className="newest-works-section" id="portfolio">
+    <section className="newest-works-section relative overflow-hidden" id="portfolio">
+      {/* ── AMBIENT FLOATING TECH GLOW ORBS IN SECTION BACKGROUND ── */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden -z-10">
+        <motion.div
+          animate={{
+            x: [0, 30, 0],
+            y: [0, -25, 0],
+            scale: [1, 1.1, 1]
+          }}
+          transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut' }}
+          className="absolute top-1/4 -left-20 w-96 h-96 rounded-full bg-blue-400/10 blur-3xl"
+        />
+        <motion.div
+          animate={{
+            x: [0, -35, 0],
+            y: [0, 30, 0],
+            scale: [1, 1.15, 1]
+          }}
+          transition={{ duration: 15, repeat: Infinity, ease: 'easeInOut' }}
+          className="absolute bottom-1/4 -right-20 w-96 h-96 rounded-full bg-indigo-400/10 blur-3xl"
+        />
+      </div>
+
       <div className="container">
-        {/* =========================================================
-            HEADER & SEARCH BAR (FEATURED WORKS COMPOSITION)
-           ========================================================= */}
+        {/* ── HEADER & SEARCH / FILTER CONTROLS ── */}
         <div className="newest-header-wrapper">
           <motion.div
-            initial={{ opacity: 0, y: 28 }}
+            initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.4 }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.7 }}
             className="newest-title-group"
           >
-            <motion.h2
-              initial={{ opacity: 0, x: isRtl ? 20 : -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, amount: 0.4 }}
-              transition={{ duration: 0.75, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-              className="newest-main-heading"
-            >
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50 border border-blue-200 text-blue-700 text-xs font-bold mb-3 shadow-xs">
+              <Sparkles size={13} className="text-blue-600" />
+              <span>{isRtl ? 'سجل الإنجازات والمنظومات الرقمية المعتمدة' : 'Verified Enterprise Showcase Matrix'}</span>
+            </div>
+
+            <h2 className="newest-main-heading">
               {isRtl ? 'أعمالنا المميزة' : 'Our Featured Works'}
-            </motion.h2>
-            <motion.p
-              initial={{ opacity: 0, y: 15 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.4 }}
-              transition={{ duration: 0.75, delay: 0.22, ease: [0.16, 1, 0.3, 1] }}
-              className="newest-sub-heading"
-            >
+            </h2>
+
+            <p className="newest-sub-heading">
               {isRtl
-                ? 'نماذج حية لمشاريع وتطبيقات ومنصات صممت بأعلى معايير الإبداع الرقمي والأداء الفائق'
-                : 'Live showcases of enterprise platforms and software architectures engineered for scale'}
-            </motion.p>
+                ? 'استكشف كافة المنظومات والتطبيقات الرائدة المطورة بواسطة سيرف فايف والتي تخدم ملايين المستخدمين يومياً'
+                : 'Explore our deployed enterprise platforms, cloud architectures, and mobile ecosystems serving millions daily.'}
+            </p>
           </motion.div>
+
+          {/* Search Bar + Live Count */}
+          <div className="w-full max-w-md mx-auto mb-6">
+            <div className="newest-search-bar">
+              <Search size={18} className="search-icon-dim" />
+              <input
+                type="text"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                placeholder={isRtl ? 'ابحث عن منصة، تقنية، أو قطاع عمل...' : 'Search by platform, tech, or industry...'}
+                className="newest-search-input"
+              />
+              {searchQuery && (
+                <button
+                  type="button"
+                  onClick={() => setSearchQuery('')}
+                  className="text-slate-400 hover:text-slate-600 cursor-pointer"
+                >
+                  <X size={15} />
+                </button>
+              )}
+            </div>
+          </div>
 
           {/* Category Filter Pills */}
           <div className="newest-category-pills">
@@ -345,149 +724,52 @@ export default function NewestPostsSection({ onOpenConsultation, lang = 'ar' }) 
               className={`cat-pill-btn ${activeCategory === 'all' ? 'active' : ''}`}
               onClick={() => setActiveCategory('all')}
             >
-              {isRtl ? 'كافة المنصات' : 'All Works'}
-            </button>
-            <button
-              className={`cat-pill-btn ${activeCategory === 'ecommerce' ? 'active' : ''}`}
-              onClick={() => setActiveCategory('ecommerce')}
-            >
-              {isRtl ? 'متاجر إلكترونية' : 'E-Commerce'}
+              {isRtl ? 'كافة المنصات (6)' : 'All Works (6)'}
             </button>
             <button
               className={`cat-pill-btn ${activeCategory === 'mobile' ? 'active' : ''}`}
               onClick={() => setActiveCategory('mobile')}
             >
-              {isRtl ? 'تطبيقات الجوال' : 'Mobile Apps'}
+              {isRtl ? 'تطبيقات الجوال والـ POS (2)' : 'Mobile & POS (2)'}
+            </button>
+            <button
+              className={`cat-pill-btn ${activeCategory === 'ecommerce' ? 'active' : ''}`}
+              onClick={() => setActiveCategory('ecommerce')}
+            >
+              {isRtl ? 'المتاجر الإلكترونية (1)' : 'E-Commerce (1)'}
             </button>
             <button
               className={`cat-pill-btn ${activeCategory === 'cloud' ? 'active' : ''}`}
               onClick={() => setActiveCategory('cloud')}
             >
-              {isRtl ? 'منظومات سحابية' : 'Cloud Architecture'}
+              {isRtl ? 'منظومات سحابية وERP (1)' : 'Cloud & ERP (1)'}
             </button>
             <button
               className={`cat-pill-btn ${activeCategory === 'enterprise' ? 'active' : ''}`}
               onClick={() => setActiveCategory('enterprise')}
             >
-              {isRtl ? 'مؤسسات وFinTech' : 'Enterprise & FinTech'}
+              {isRtl ? 'مؤسسات وZATCA (2)' : 'Enterprise & ZATCA (2)'}
             </button>
           </div>
         </div>
 
-        {/* =========================================================
-            3D PERSPECTIVE SPLINE STREAM VIEWPORT (DEIMOS / ZEITGEIST REPLICA)
-           ========================================================= */}
-        <div
-          className="zeitgeist-stream-viewport"
-          ref={stageRef}
-          onWheel={handleWheel}
-          onPointerDown={handlePointerDown}
-          onPointerMove={handlePointerMove}
-          onPointerUp={handlePointerUp}
-          onPointerCancel={handlePointerUp}
-          onMouseEnter={() => { isHoveredRef.current = true; }}
-          onMouseLeave={() => { isHoveredRef.current = false; isDraggingRef.current = false; }}
-          aria-label="3D Projects Carousel"
-        >
-          {/* Depth of Field Blur Curtains (Left Bokeh Vignette) */}
-          <div className="zeitgeist-blur-curtain" aria-hidden="true" />
-
-          <div className="zeitgeist-cards-stage">
-            {filteredProjects.map((project, idx) => {
-              // Calculate continuous circular offset along the 3D spline trajectory
-              let offset = ((idx - scrollProgress) % count);
-              if (offset < -count / 2) offset += count;
-              if (offset > count / 2) offset -= count;
-
-              // Parametric 3D curve trajectory (replicates Evil Rabbit's swooping arc)
-              const u = offset; // normalized distance from focal focal center (-3 to +3)
-              const absU = Math.abs(u);
-
-              // Position along 3D space:
-              // X: horizontal sweep across viewport (-500px to +500px)
-              // Y: vertical swoop downwards in foreground
-              // Z: deep in distance on right, close in center, very close at left
-              const sign = isRtl ? -1 : 1;
-              const posX = u * 240 * sign;
-              const posY = Math.sin(u * 0.6) * 35 - u * 15;
-              const posZ = -absU * 90 + (absU < 0.8 ? (0.8 - absU) * 60 : 0);
-              const rotY = -u * 17 * sign;
-              const rotX = 4 + Math.sin(u * 0.5) * 4;
-              const scale = Math.max(0.35, 1 - absU * 0.1);
-              const opacity = Math.max(0.15, 1 - absU * 0.28);
-              const blurAmount = u < -1.8 ? (Math.abs(u) - 1.8) * 6 : 0;
-              const isCenter = absU < 0.5;
-
-              return (
-                <div
-                  key={project.id}
-                  className={`zeitgeist-card-item ${isCenter ? 'card-active-spot' : ''}`}
-                  style={{
-                    transform: `translate3d(${posX}px, ${posY}px, ${posZ}px) rotateY(${rotY}deg) rotateX(${rotX}deg) scale(${scale})`,
-                    opacity: opacity,
-                    filter: blurAmount > 0 ? `blur(${blurAmount}px)` : 'none',
-                    zIndex: Math.round(100 - absU * 15),
-                    '--card-tint': project.cardColor,
-                    '--card-accent': project.accentColor
-                  }}
-                  onMouseMove={handleCardMouseMove}
-                  onClick={() => handleOpenProject(project)}
-                  role="button"
-                  tabIndex={0}
-                  onKeyDown={(e) => {
-                    if (e.key === 'Enter' || e.key === ' ') {
-                      e.preventDefault();
-                      handleOpenProject(project);
-                    }
-                  }}
-                  title={isRtl ? `انقر لفتح دراسة ${project.title}` : `Click to inspect ${project.title}`}
-                >
-                  <div className="zeitgeist-card-surface">
-                    {/* Spot UV Specular Gloss Layer */}
-                    <div className="spot-uv-sheen" aria-hidden="true" />
-
-                    {/* 3D Book Spine Rim Accent */}
-                    <div className="card-spine-edge" style={{ background: project.accentColor }} />
-
-                    {/* Card Top Meta */}
-                    <div className="card-top-bar">
-                      <span className="card-project-num">{project.number}</span>
-                      <span className="card-project-year">{project.year}</span>
-                    </div>
-
-                    {/* Card Visual Graphic Mockup */}
-                    <div className="card-graphic-frame">
-                      <div className="card-graphic-mockup">
-                        <span className="card-mockup-badge">{project.mockupPlaceholder}</span>
-                        <div className="card-mockup-lines">
-                          <span className="line-bar bar-long" />
-                          <span className="line-bar bar-short" />
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Card Typography & Book Editorial Meta */}
-                    <div className="card-info-bottom">
-                      <span className="card-category-tag">{project.categoryLabel}</span>
-                      <h3 className="card-project-name">{project.title}</h3>
-                      <p className="card-client-sub">{project.client}</p>
-
-                      <div className="card-action-bar">
-                        <span className="card-read-label">{isRtl ? 'عرض المنظومة' : 'Inspect'}</span>
-                        <ArrowUpRight size={14} className="card-read-arrow" />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
+        {/* ── ALL WORK VISIBLE: 3-COLUMN RESPONSIVE BENTO MATRIX (NO SCROLL HIJACKING) ── */}
+        <div className="serv5-portfolio-matrix">
+          <AnimatePresence mode="popLayout">
+            {filteredProjects.map((project, idx) => (
+              <ProjectCard3D
+                key={project.id}
+                project={project}
+                idx={idx}
+                isRtl={isRtl}
+                onOpen={() => handleOpenProject(project)}
+              />
+            ))}
+          </AnimatePresence>
         </div>
       </div>
 
-      {/* =========================================================
-          MORPHING FULL PROJECT INSPECTOR MODAL (PHASE 2 EXPANSION)
-         ========================================================= */}
+      {/* ── FULL PROJECT DETAIL INSPECTOR MODAL ── */}
       {selectedProject && (
         <div
           className={`project-detail-overlay ${isModalAnimating ? 'is-visible' : 'is-hiding'}`}
@@ -511,7 +793,7 @@ export default function NewestPostsSection({ onOpenConsultation, lang = 'ar' }) 
 
               <button
                 type="button"
-                className="btn-modal-close"
+                className="btn-modal-close cursor-pointer"
                 onClick={handleCloseProject}
                 aria-label={isRtl ? 'إغلاق' : 'Close details'}
               >
@@ -561,27 +843,9 @@ export default function NewestPostsSection({ onOpenConsultation, lang = 'ar' }) 
 
                 {/* Actions */}
                 <div className="modal-actions-row">
-                  <a
-                    href={selectedProject.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="btn-live-preview"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      alert(
-                        isRtl
-                          ? `جاري فتح المعاينة المباشرة لمنصة: ${selectedProject.title}`
-                          : `Opening live preview for: ${selectedProject.title}`
-                      );
-                    }}
-                  >
-                    <span>{isRtl ? 'مشاهدة الموقع لايف ↗' : 'Visit Live Website ↗'}</span>
-                    <ExternalLink size={16} />
-                  </a>
-
                   <button
                     type="button"
-                    className="btn-request-similar"
+                    className="btn-request-similar cursor-pointer"
                     onClick={() => {
                       handleCloseProject();
                       onOpenConsultation(
@@ -591,7 +855,8 @@ export default function NewestPostsSection({ onOpenConsultation, lang = 'ar' }) 
                       );
                     }}
                   >
-                    <span>{isRtl ? 'طلب مشروع مماثل' : 'Build Similar Platform'}</span>
+                    <span>{isRtl ? 'طلب مشروع مماثل الآن' : 'Build Similar Platform'}</span>
+                    <ArrowUpRight size={16} />
                   </button>
                 </div>
               </div>

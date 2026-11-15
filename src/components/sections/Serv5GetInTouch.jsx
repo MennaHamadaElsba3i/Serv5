@@ -1,5 +1,21 @@
 import React, { useState } from 'react';
-import { Phone, Mail, MapPin, Clock, Send, ShieldCheck, MessageSquare, Sparkles, CheckCircle2, MessageCircle } from 'lucide-react';
+import {
+  Phone,
+  Mail,
+  MapPin,
+  Clock,
+  Send,
+  ShieldCheck,
+  MessageSquare,
+  Sparkles,
+  CheckCircle2,
+  MessageCircle,
+  ExternalLink,
+  Navigation,
+  Building2,
+  Compass,
+  Check
+} from 'lucide-react';
 
 export default function Serv5GetInTouch({ onOpenConsultation, lang = 'ar' }) {
   const isRtl = lang === 'ar';
@@ -12,6 +28,18 @@ export default function Serv5GetInTouch({ onOpenConsultation, lang = 'ar' }) {
     message: ''
   });
   const [submitted, setSubmitted] = useState(false);
+
+  // Official Headquarters from real Serv5 website (serv5.com.eg)
+  const headquarters = {
+    name: isRtl ? 'المقر الرئيسي المعتمد (المنصورة)' : 'Corporate Headquarters (Mansoura)',
+    city: isRtl ? 'المنصورة - مصر' : 'Mansoura, Egypt',
+    address: isRtl
+      ? 'جمهورية مصر العربية - المنصورة - شارع قناة السويس - برج المهندسين (أعلى صيدلية د. رامي)'
+      : 'Egypt - Mansoura - Suez Canal St. - Engineers Tower (above Dr. Ramy pharmacy)',
+    googleMapsUrl: 'https://maps.google.com/maps?q=%D8%B3%D9%8A%D8%B1%D9%81+%D9%81%D8%A7%D9%8A%D9%81+%D9%84%D8%AE%D8%AF%D9%85%D8%A7%D8%AA+%D8%A7%D9%84%D9%88%D9%8A%D8%A8&t=&z=16&ie=UTF8&iwloc=&output=embed',
+    directDirectionsUrl: 'https://maps.google.com/?q=سيرف+فايف+لخدمات+الويب+المنصورة',
+    phone: '00201288863831'
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -151,8 +179,8 @@ export default function Serv5GetInTouch({ onOpenConsultation, lang = 'ar' }) {
             </div>
           </div>
 
-          {/* Right Column (7 cols): Interactive Clean Form */}
-          <div className="lg:col-span-7">
+          {/* Right Column (7 cols): Interactive Clean Form & Compact Map */}
+          <div className="lg:col-span-7 flex flex-col gap-4">
             <div className="serv5-contact-form-card">
               <div className="mb-6">
                 <h3 className="text-xl sm:text-2xl font-black text-slate-900">
@@ -275,6 +303,49 @@ export default function Serv5GetInTouch({ onOpenConsultation, lang = 'ar' }) {
                   </div>
                 </form>
               )}
+            </div>
+
+            {/* Compact Map placed directly underneath the form */}
+            <div className="serv5-map-card overflow-hidden">
+              {/* Compact Map Bar */}
+              <div className="px-4 py-2.5 bg-slate-50 border-b border-slate-200 flex items-center justify-between gap-2 text-xs">
+                <div className="flex items-center gap-2 overflow-hidden">
+                  <div className="w-6 h-6 rounded-md bg-blue-600 text-white flex items-center justify-center flex-shrink-0 shadow-xs">
+                    <MapPin size={13} />
+                  </div>
+                  <div className="truncate">
+                    <span className="font-bold text-slate-800 me-1.5">{headquarters.name}</span>
+                    <span className="text-slate-500 text-[11px] hidden sm:inline">
+                      ({headquarters.address})
+                    </span>
+                  </div>
+                </div>
+
+                <a
+                  href={headquarters.directDirectionsUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1 px-2.5 py-1 rounded-md bg-white border border-slate-200 text-blue-600 font-bold hover:bg-blue-50 transition-all flex-shrink-0 shadow-xs text-[11px] cursor-pointer"
+                >
+                  <span>{isRtl ? 'خرائط جوجل' : 'Google Maps'}</span>
+                  <ExternalLink size={11} />
+                </a>
+              </div>
+
+              {/* Compact Google Map Iframe (175px) */}
+              <div className="relative w-full h-[175px] bg-slate-100 overflow-hidden">
+                <iframe
+                  src={headquarters.googleMapsUrl}
+                  title={headquarters.name}
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0 }}
+                  allowFullScreen=""
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  className="w-full h-full"
+                />
+              </div>
             </div>
           </div>
         </div>

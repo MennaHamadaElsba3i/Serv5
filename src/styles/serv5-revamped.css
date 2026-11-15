@@ -126,9 +126,17 @@
   border-radius: 50%;
 }
 
-.serv5-browser-dot.red { background-color: #ef4444; }
-.serv5-browser-dot.yellow { background-color: #f59e0b; }
-.serv5-browser-dot.green { background-color: #10b981; }
+.serv5-browser-dot.red {
+  background-color: #ef4444;
+}
+
+.serv5-browser-dot.yellow {
+  background-color: #f59e0b;
+}
+
+.serv5-browser-dot.green {
+  background-color: #10b981;
+}
 
 .serv5-browser-address {
   display: flex;
@@ -659,19 +667,14 @@
   background: #ffffff;
   border: 1.5px solid #e2e8f0;
   border-radius: 1.75rem;
-  padding: 2.5rem;
+  padding: 2rem 2.25rem;
   box-shadow:
     0 20px 50px -10px rgba(15, 23, 42, 0.08),
     0 8px 20px -6px rgba(15, 23, 42, 0.04),
     0 0 0 1px rgba(255, 255, 255, 0.8) inset;
-  cursor: grab;
   user-select: none;
   overflow: hidden;
   transform-style: preserve-3d;
-}
-
-.testimonials-active-card:active {
-  cursor: grabbing;
 }
 
 /* Accent gradient bar at top */
@@ -989,18 +992,32 @@
   border-radius: 0.75rem;
   background-color: #2563eb;
   color: #ffffff;
-  font-size: 1rem;
   font-weight: 700;
-  border: none;
+  font-size: 0.95rem;
+  transition: all 0.2s ease;
   cursor: pointer;
-  transition: all 0.25s ease;
-  box-shadow: 0 6px 20px rgba(37, 99, 235, 0.35);
+  border: none;
 }
 
 .serv5-btn-primary:hover {
   background-color: #1d4ed8;
-  transform: translateY(-2px);
-  box-shadow: 0 10px 25px rgba(37, 99, 235, 0.45);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.25);
+}
+
+/* Map Card */
+.serv5-map-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 1.75rem;
+  overflow: hidden;
+  box-shadow: 0 16px 40px -10px rgba(15, 23, 42, 0.08);
+  transition: all 0.3s ease;
+}
+
+.serv5-map-card:hover {
+  box-shadow: 0 20px 50px -10px rgba(37, 99, 235, 0.12);
+  border-color: #bfdbfe;
 }
 
 /* ----------------------------------------------------
@@ -1023,7 +1040,7 @@
   position: relative;
   overflow: hidden;
   /* Light Architectural Mixed Gradient: Soft Ice-Blue into Crisp White with Warm Luminous Orange & Azure ambient orbs */
-  background: 
+  background:
     radial-gradient(ellipse 70% 80% at 88% 20%, rgba(234, 88, 12, 0.12) 0%, rgba(249, 115, 22, 0.05) 45%, transparent 70%),
     radial-gradient(ellipse 65% 75% at 12% 80%, rgba(37, 99, 235, 0.14) 0%, rgba(56, 189, 248, 0.06) 45%, transparent 70%),
     linear-gradient(135deg, #eff6ff 0%, #ffffff 45%, #fff7ed 100%);
@@ -1138,7 +1155,7 @@
    ---------------------------------------------------- */
 .serv5-footer-section {
   width: 100%;
-  background: 
+  background:
     radial-gradient(ellipse 60% 70% at 10% 20%, rgba(37, 99, 235, 0.07) 0%, transparent 60%),
     radial-gradient(ellipse 55% 65% at 90% 75%, rgba(234, 88, 12, 0.07) 0%, transparent 60%),
     linear-gradient(180deg, #f8fafc 0%, #eff6ff 45%, #ffffff 100%) !important;
@@ -1236,4 +1253,3 @@
   flex-shrink: 0;
   box-shadow: 0 2px 8px rgba(37, 99, 235, 0.08);
 }
-

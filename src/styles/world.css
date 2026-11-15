@@ -1924,12 +1924,259 @@ body {
 }
 
 /* =========================================================
-   BLOG SECTION
+   BLOG SECTION — CINEMATIC CURTAIN REVEAL 3×3 GRID
    ========================================================= */
+
+/* Section wrapper */
+.blog-section-revamp {
+  position: relative;
+  padding: 90px 0 110px;
+  background: #f8fbff;
+  overflow: hidden;
+}
+
+/* Floating ambient glow blobs */
+.blog-bg-blob {
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  filter: blur(100px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.blog-blob-left {
+  top: -60px;
+  left: -120px;
+  background: rgba(37, 99, 235, 0.07);
+}
+
+.blog-blob-right {
+  bottom: -60px;
+  right: -120px;
+  background: rgba(99, 102, 241, 0.07);
+}
+
+/* Header area */
+.blog-section-header {
+  text-align: center;
+  margin-bottom: 56px;
+  position: relative;
+  z-index: 2;
+}
+
+.blog-eyebrow-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+  color: #2563eb;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  padding: 6px 16px;
+  border-radius: 9999px;
+  margin-bottom: 16px;
+}
+
+.blog-main-heading {
+  font-size: clamp(1.95rem, 3.5vw, 2.9rem);
+  font-weight: 800;
+  color: #0b1728;
+  line-height: 1.25;
+  margin-bottom: 14px;
+}
+
+.blog-heading-accent {
+  background: linear-gradient(135deg, #2563eb 0%, #38bdf8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.blog-sub-heading {
+  font-size: 1.02rem;
+  color: #536b88;
+  line-height: 1.75;
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+/* Stage: overflow hidden per-row for the curtain slide */
+.blog-grid-stage {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* Each row: 3 equal columns — overflow hidden clips the curtain travel */
+.blog-grid-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  /* overflow: hidden; ← NOT applied here so the spring bounce is visible */
+  will-change: transform, opacity, filter;
+}
+
+@media (max-width: 1024px) {
+  .blog-grid-row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .blog-grid-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Individual cell: clickable */
+.blog-grid-cell {
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  outline: none;
+}
+
+/* Blog card */
+.blog-card-cell {
+  background: #ffffff;
+  border: 1px solid #e2eaf4;
+  border-radius: 20px;
+  padding: 1.6rem;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  box-shadow: 0 4px 18px -4px rgba(15, 23, 42, 0.07);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.blog-card-cell:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 44px -8px rgba(37, 99, 235, 0.18);
+  border-color: #93c5fd;
+}
+
+/* Accent top bar */
+.blog-card-top-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  border-radius: 20px 20px 0 0;
+}
+
+/* Icon */
+.blog-card-icon-wrap {
+  display: flex;
+  align-items: center;
+  margin-top: 6px;
+}
+
+.blog-card-emoji {
+  font-size: 1.9rem;
+  line-height: 1;
+  filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.1));
+  transition: transform 0.3s ease;
+}
+
+.blog-card-cell:hover .blog-card-emoji {
+  transform: scale(1.15) rotate(5deg);
+}
+
+/* Meta row */
+.blog-card-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.blog-card-category {
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.blog-card-readtime {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.7rem;
+  color: #7e95b0;
+  font-weight: 600;
+}
+
+/* Title */
+.blog-card-title {
+  font-size: 1.02rem;
+  font-weight: 800;
+  color: #0f172a;
+  line-height: 1.4;
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+/* Excerpt */
+.blog-card-excerpt {
+  font-size: 0.84rem;
+  color: #536b88;
+  line-height: 1.65;
+  margin: 0;
+  flex: 1;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Footer */
+.blog-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 10px;
+  border-top: 1px solid #f1f5f9;
+  margin-top: auto;
+}
+
+.blog-card-date {
+  font-size: 0.72rem;
+  color: #94a3b8;
+  font-family: var(--font-mono, monospace);
+  font-weight: 600;
+}
+
+.blog-card-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.78rem;
+  font-weight: 800;
+  color: #2563eb;
+  transition: gap 0.2s ease;
+}
+
+.blog-card-cell:hover .blog-card-cta {
+  gap: 8px;
+}
+
+/* Keep old classes so other references don't break */
 .featured-article-card {
   background: var(--bg-card);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-lg);
   padding: 3rem;
@@ -1939,78 +2186,12 @@ body {
   justify-content: space-between;
 }
 
-.featured-article-badge {
-  display: inline-flex;
-  align-items: center;
-  background: rgba(197, 155, 99, 0.15);
-  border: 1px solid var(--border-bronze);
-  color: var(--bronze-light);
-  font-size: 0.74rem;
-  font-weight: 700;
-  padding: 0.28rem 0.8rem;
-  border-radius: var(--radius-full);
-}
-
-.article-meta-row {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  font-size: 0.78rem;
-  color: var(--text-dim);
-}
-
-.article-cat-pill {
-  color: var(--bronze-light);
-  font-weight: 700;
-  font-family: var(--font-mono);
-}
-
-.featured-article-title {
-  font-size: 1.85rem;
-  font-weight: 800;
-  color: var(--alabaster-white);
-  line-height: 1.35;
-}
-
-.featured-article-excerpt {
-  font-size: 1rem;
-  line-height: 1.8;
-  color: var(--text-muted);
-}
-
-.secondary-articles-stack {
-  display: flex;
-  flex-direction: column;
-  gap: 1.6rem;
-}
-
 .secondary-article-card {
   background: var(--bg-card);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-md);
   padding: 1.9rem;
   transition: all 0.25s ease;
-}
-
-.secondary-article-card:hover {
-  transform: translateX(4px);
-  border-color: var(--border-bronze);
-}
-
-.secondary-article-title {
-  font-size: 1.15rem;
-  font-weight: 700;
-  color: var(--alabaster-white);
-  line-height: 1.45;
-}
-
-.secondary-article-excerpt {
-  font-size: 0.9rem;
-  line-height: 1.65;
-  color: var(--text-muted);
-  margin-bottom: 0.9rem;
 }
 
 .secondary-read-link {
@@ -3052,151 +3233,649 @@ body {
 }
 
 /* =========================================================
-   3D PERSPECTIVE STREAM VIEWPORT
-   Replicating the Arc Flow with Left Foreground Blur
+   FEATURED WORKS BENTO & INTERACTIVE SHOWCASE GRID
    ========================================================= */
-
-.zeitgeist-stream-viewport {
-  position: relative;
+.serv5-portfolio-matrix {
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  gap: 1.75rem;
   width: 100%;
-  overflow: hidden;
-  padding: 40px 0 60px;
+  margin-top: 1.5rem;
   perspective: 1400px;
-  perspective-origin: 50% 50%;
-  min-height: 500px;
-  cursor: grab;
-  touch-action: pan-y pinch-zoom;
 }
 
-.zeitgeist-stream-viewport:active {
-  cursor: grabbing;
+@media (min-width: 768px) {
+  .serv5-portfolio-matrix {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
-/* Subtle Left Blur Curtain (Matching Reference Image 1 & 2) */
-.zeitgeist-blur-curtain {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  width: 250px;
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  background: linear-gradient(90deg, rgba(248, 251, 255, 0.96) 0%, rgba(248, 251, 255, 0.45) 70%, transparent 100%);
-  pointer-events: none;
-  z-index: 60;
+@media (min-width: 1100px) {
+  .serv5-portfolio-matrix {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
 }
 
-[dir="rtl"] .zeitgeist-blur-curtain {
-  left: auto;
-  right: 0;
-  background: linear-gradient(270deg, rgba(248, 251, 255, 0.96) 0%, rgba(248, 251, 255, 0.45) 70%, transparent 100%);
-}
-
-.zeitgeist-cards-stage {
+/* Individual Showcase Card */
+.serv5-portfolio-card {
   position: relative;
-  width: 100%;
-  height: 440px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transform-style: preserve-3d;
-}
-
-/* Individual 3D Perspective Card */
-.zeitgeist-card-item {
-  position: absolute;
-  width: 280px;
-  height: 400px;
-  border-radius: 20px;
-  user-select: none;
-  cursor: pointer;
-  transform-style: preserve-3d;
-  will-change: transform, opacity, filter;
-  transition: box-shadow 0.3s ease;
-}
-
-.zeitgeist-card-item.card-active-spot {
-  box-shadow: 0 24px 50px rgba(37, 99, 235, 0.18);
-}
-
-.zeitgeist-card-item:hover:not(.card-active-spot) {
-  box-shadow: 0 16px 36px rgba(37, 99, 235, 0.12);
-}
-
-/* Card Surface Styling with 3D Book Volume Look */
-.zeitgeist-card-surface {
-  width: 100%;
-  height: 100%;
-  background: var(--card-tint, #ffffff);
-  border: 1px solid rgba(15, 23, 42, 0.08);
-  border-radius: 20px;
-  padding: 22px 20px 18px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 1.5rem;
+  padding: 1.5rem;
+  box-shadow: 0 10px 30px -5px rgba(15, 23, 42, 0.05);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  box-sizing: border-box;
-  position: relative;
   overflow: hidden;
-  box-shadow: 0 12px 28px rgba(15, 23, 42, 0.06);
-  transition: border-color 0.3s ease, background 0.3s ease, transform 0.25s ease;
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
+  cursor: pointer;
+  transform-style: preserve-3d;
 }
 
-/* Spot UV Specular Gloss Layer (Exact Evil Rabbit / Deimos effect) */
-.spot-uv-sheen {
+.serv5-portfolio-card:hover {
+  border-color: #93c5fd;
+  box-shadow: 0 25px 50px -12px rgba(37, 99, 235, 0.22);
+}
+
+.portfolio-card-accent-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+}
+
+/* Dynamic Holographic Glare Sheen */
+.portfolio-card-glare {
   position: absolute;
   inset: 0;
   pointer-events: none;
-  border-radius: 20px;
+  border-radius: inherit;
   opacity: 0;
-  background: radial-gradient(circle 220px at var(--spot-x, 50%) var(--spot-y, 50%),
-      rgba(255, 255, 255, 0.65) 0%,
-      rgba(255, 255, 255, 0.15) 40%,
-      transparent 80%);
-  transition: opacity 0.25s ease;
-  z-index: 5;
+  transition: opacity 0.3s ease;
+  z-index: 10;
 }
 
-.zeitgeist-card-item:hover .spot-uv-sheen {
+.serv5-portfolio-card:hover .portfolio-card-glare {
   opacity: 1;
 }
 
-/* 3D Book Spine Rim Accent */
-.card-spine-edge {
+/* Traveling Laser Border Beam */
+.card-border-laser {
   position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  width: 4px;
-  border-radius: 20px 0 0 20px;
+  inset: 0;
+  border-radius: 1.5rem;
+  padding: 1.5px;
+  background: linear-gradient(90deg, transparent 20%, rgba(37, 99, 235, 0.85) 50%, transparent 80%);
+  background-size: 200% 100%;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  animation: laserTravel 3.5s linear infinite;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  z-index: 12;
+}
+
+.serv5-portfolio-card:hover .card-border-laser {
+  opacity: 1;
+}
+
+@keyframes laserTravel {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* Visual Device Mockup Frame */
+.portfolio-device-frame {
+  position: relative;
+  width: 100%;
+  height: 190px;
+  border-radius: 1.1rem;
+  background: linear-gradient(145deg, #f8fafc 0%, #f1f5f9 100%);
+  border: 1px solid #e2e8f0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1.25rem;
+  transform: translateZ(25px);
+  transform-style: preserve-3d;
+  transition: all 0.3s ease;
+}
+
+.serv5-portfolio-card:hover .portfolio-device-frame {
+  border-color: #bfdbfe;
+  box-shadow: 0 12px 28px -6px rgba(37, 99, 235, 0.15), inset 0 0 20px rgba(37, 99, 235, 0.05);
+}
+
+.device-frame-header {
+  padding: 8px 12px;
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid #e2e8f0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 5;
+}
+
+.device-frame-dots {
+  display: flex;
+  gap: 5px;
+}
+
+.device-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+}
+
+.device-frame-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding: 0.85rem;
+  overflow: hidden;
+}
+
+/* =========================================================
+   STRONG MICRO-UI ANIMATIONS FOR THE 6 PLATFORMS
+   ========================================================= */
+
+/* 1. PIZZA PLAZA: Real-time Dispatch Map & Order Alert */
+.pizza-mockup-canvas {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.pizza-map-bg {
+  position: absolute;
+  inset: 0;
   opacity: 0.85;
 }
 
-[dir="rtl"] .card-spine-edge {
-  left: auto;
-  right: 0;
-  border-radius: 0 20px 20px 0;
+.pizza-route-path {
+  stroke-dasharray: 6 4;
+  animation: routeDash 1.4s linear infinite;
 }
 
-.zeitgeist-card-item.card-active-spot .zeitgeist-card-surface {
-  border-color: rgba(37, 99, 235, 0.4);
-  box-shadow: inset 0 0 0 1px rgba(37, 99, 235, 0.2), 0 20px 45px rgba(37, 99, 235, 0.15);
+@keyframes routeDash {
+  from { stroke-dashoffset: 20; }
+  to { stroke-dashoffset: 0; }
 }
 
-.card-top-bar {
+.pizza-scooter-pulse {
+  animation: scooterBounce 2s ease-in-out infinite;
+}
+
+@keyframes scooterBounce {
+  0%, 100% { transform: scale(1); filter: drop-shadow(0 0 6px rgba(37, 99, 235, 0.6)); }
+  50% { transform: scale(1.18); filter: drop-shadow(0 0 12px rgba(37, 99, 235, 0.9)); }
+}
+
+.pizza-beacon-ripple {
+  animation: beaconPulse 1.8s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+  transform-origin: center;
+}
+
+@keyframes beaconPulse {
+  0% { transform: scale(0.6); opacity: 1; }
+  100% { transform: scale(2.4); opacity: 0; }
+}
+
+.pizza-order-toast {
+  position: relative;
+  z-index: 6;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(8px);
+  border: 1px solid #bfdbfe;
+  border-radius: 10px;
+  padding: 5px 10px;
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  font-family: var(--font-mono, monospace);
-  font-size: 0.76rem;
-  font-weight: 700;
+  justify-content: space-between;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.12);
+  animation: toastFloat 3s ease-in-out infinite alternate;
 }
 
-.card-project-num {
-  background: rgba(15, 23, 42, 0.06);
-  padding: 4px 9px;
+@keyframes toastFloat {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-4px); }
+}
+
+.audio-equalizer-bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 2px;
+  height: 14px;
+}
+
+.eq-bar {
+  width: 2.5px;
+  background: #2563eb;
+  border-radius: 2px;
+  animation: eqJump 0.8s ease-in-out infinite alternate;
+}
+
+.eq-bar:nth-child(1) { height: 40%; animation-delay: 0.1s; }
+.eq-bar:nth-child(2) { height: 85%; animation-delay: 0.3s; }
+.eq-bar:nth-child(3) { height: 60%; animation-delay: 0.2s; }
+.eq-bar:nth-child(4) { height: 100%; animation-delay: 0.4s; }
+
+@keyframes eqJump {
+  0% { height: 25%; }
+  100% { height: 100%; }
+}
+
+/* 2. MEDPULSE HEALTH: Glowing Oscilloscope ECG & Cloud Sync */
+.medpulse-mockup-canvas {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.medpulse-ecg-svg {
+  width: 100%;
+  height: 60px;
+  filter: drop-shadow(0 0 8px rgba(16, 185, 129, 0.7));
+}
+
+.heartbeat-svg-wave {
+  stroke-dasharray: 300;
+  stroke-dashoffset: 0;
+  animation: ecgFlow 2.4s linear infinite;
+}
+
+@keyframes ecgFlow {
+  0% { stroke-dashoffset: 300; }
+  100% { stroke-dashoffset: -300; }
+}
+
+.medpulse-heart-icon {
+  animation: heartThump 1s ease-in-out infinite;
+  transform-origin: center;
+}
+
+@keyframes heartThump {
+  0%, 100% { transform: scale(1); filter: drop-shadow(0 0 4px rgba(239, 68, 68, 0.4)); }
+  25% { transform: scale(1.22); filter: drop-shadow(0 0 10px rgba(239, 68, 68, 0.8)); }
+  40% { transform: scale(1.05); }
+  60% { transform: scale(1.2); filter: drop-shadow(0 0 8px rgba(239, 68, 68, 0.7)); }
+}
+
+.cloud-sync-orbit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  position: relative;
+}
+
+.sync-node-ring {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 1.5px dashed #10b981;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: rotateRing 6s linear infinite;
+}
+
+@keyframes rotateRing {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* 3. LUXESTORE ARABIA: 3D Holographic Fashion Product Showcase */
+.luxestore-mockup-canvas {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.luxe-floating-gem {
+  animation: luxeFloat 3.5s ease-in-out infinite;
+  transform-origin: center;
+  filter: drop-shadow(0 8px 18px rgba(217, 119, 6, 0.35));
+}
+
+@keyframes luxeFloat {
+  0%, 100% { transform: translateY(0px) rotate(0deg) scale(1); }
+  50% { transform: translateY(-8px) rotate(4deg) scale(1.06); }
+}
+
+.luxe-gold-shimmer-tag {
+  background: linear-gradient(90deg, #d97706 0%, #fbbf24 50%, #d97706 100%);
+  background-size: 200% auto;
+  color: #ffffff;
+  padding: 3px 10px;
+  border-radius: 9999px;
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  animation: goldShimmer 2.2s linear infinite;
+  box-shadow: 0 4px 12px rgba(217, 119, 6, 0.25);
+}
+
+@keyframes goldShimmer {
+  0% { background-position: 0% center; }
+  100% { background-position: 200% center; }
+}
+
+.luxe-speed-gauge {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid #fde68a;
+  border-radius: 9999px;
+  padding: 2px 7px;
+  font-size: 0.65rem;
+  font-weight: 800;
+  color: #b45309;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  box-shadow: 0 2px 6px rgba(217, 119, 6, 0.12);
+}
+
+/* 4. ZATCA GATEWAY: Holographic Laser Scanner & Hash Stream */
+.zatca-mockup-canvas {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+}
+
+.zatca-scanner-line {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 2.5px;
+  background: linear-gradient(90deg, transparent 5%, #10b981 30%, #38bdf8 70%, transparent 95%);
+  box-shadow: 0 0 14px #10b981, 0 0 24px rgba(56, 189, 248, 0.6);
+  animation: laserScan 2.4s ease-in-out infinite;
+  z-index: 10;
+  pointer-events: none;
+}
+
+@keyframes laserScan {
+  0% { top: 5%; opacity: 0.3; }
+  50% { top: 92%; opacity: 1; }
+  100% { top: 5%; opacity: 0.3; }
+}
+
+.zatca-hash-stream {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.62rem;
+  color: #1e3a8a;
+  opacity: 0.6;
+  white-space: nowrap;
+  animation: hashScroll 8s linear infinite;
+}
+
+@keyframes hashScroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+.zatca-verified-stamp {
+  background: rgba(16, 185, 129, 0.12);
+  border: 1px solid #10b981;
+  color: #047857;
+  border-radius: 9999px;
+  padding: 3px 10px;
+  font-size: 0.68rem;
+  font-weight: 800;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  box-shadow: 0 0 10px rgba(16, 185, 129, 0.2);
+  animation: stampPulse 2s ease-in-out infinite;
+}
+
+@keyframes stampPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+/* 5. NAUZ COFFEE: Rising Procedural Steam & Geofence Radar */
+.nauz-mockup-canvas {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.nauz-steam-cup-wrap {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.steam-wisp-1 {
+  animation: steamDrift 2.2s ease-out infinite;
+}
+.steam-wisp-2 {
+  animation: steamDrift 2.2s ease-out infinite 0.6s;
+}
+.steam-wisp-3 {
+  animation: steamDrift 2.2s ease-out infinite 1.2s;
+}
+
+@keyframes steamDrift {
+  0% { transform: translateY(0) scaleX(1); opacity: 0.8; }
+  50% { transform: translateY(-10px) scaleX(1.3) translateX(2px); opacity: 0.4; }
+  100% { transform: translateY(-20px) scaleX(1.6) translateX(-3px); opacity: 0; }
+}
+
+.nauz-geofence-pulse {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(180, 83, 9, 0.4);
+  animation: geofenceExpand 2.6s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+  pointer-events: none;
+}
+
+@keyframes geofenceExpand {
+  0% { transform: scale(0.3); opacity: 1; }
+  100% { transform: scale(2.2); opacity: 0; }
+}
+
+/* 6. AL-RAJHI BANKING: Golden Microchip & Electric Circuit Traces */
+.alrajhi-mockup-canvas {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.alrajhi-chip-body {
+  width: 38px;
+  height: 30px;
+  background: linear-gradient(135deg, #fbbf24 0%, #d97706 100%);
   border-radius: 6px;
-  letter-spacing: 0.04em;
+  border: 1px solid #fef3c7;
+  position: relative;
+  box-shadow: 0 4px 10px rgba(217, 119, 6, 0.4);
+}
+
+.alrajhi-chip-lines {
+  position: absolute;
+  inset: 4px;
+  border: 1px dashed rgba(255, 255, 255, 0.6);
+  border-radius: 3px;
+}
+
+.electric-circuit-trace {
+  stroke-dasharray: 40;
+  stroke-dashoffset: 40;
+  animation: electricFlow 2s linear infinite;
+}
+
+@keyframes electricFlow {
+  0% { stroke-dashoffset: 40; }
+  100% { stroke-dashoffset: -40; }
+}
+
+.crypto-shield-badge {
+  background: rgba(30, 58, 138, 0.08);
+  border: 1px solid #93c5fd;
+  color: #1e3a8a;
+  border-radius: 9999px;
+  padding: 3px 10px;
+  font-size: 0.66rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.device-glyph-icon {
+  font-size: 2.75rem;
+  margin-bottom: 0.35rem;
+  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.12));
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.serv5-portfolio-card:hover .device-glyph-icon {
+  transform: scale(1.18) rotate(4deg);
+}
+
+/* Metrics Pill Strip inside device frame */
+.device-metrics-strip {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  z-index: 4;
+}
+
+.device-metric-badge {
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid #cbd5e1;
+  padding: 2.5px 8.5px;
+  border-radius: 9999px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #1e293b;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+/* Card Editorial */
+.portfolio-card-content {
+  transform: translateZ(15px);
+}
+
+.portfolio-card-category {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 0.4rem;
+  display: block;
+}
+
+.portfolio-card-title {
+  font-size: 1.15rem;
+  font-weight: 800;
   color: #0f172a;
+  line-height: 1.35;
+  margin-bottom: 0.35rem;
+}
+
+.portfolio-card-client {
+  font-size: 0.8rem;
+  color: #64748b;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+}
+
+.portfolio-card-desc {
+  font-size: 0.82rem;
+  color: #475569;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.portfolio-tech-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-bottom: 1.25rem;
+}
+
+.portfolio-tech-tag {
+  background: #f1f5f9;
+  color: #334155;
+  font-size: 0.68rem;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 6px;
+  border: 1px solid #e2e8f0;
+}
+
+.portfolio-card-action {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 0.75rem;
+  border-top: 1px solid #f1f5f9;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #2563eb;
+  transition: color 0.2s ease;
+  transform: translateZ(20px);
+}
+
+.serv5-portfolio-card:hover .portfolio-card-action {
+  color: #1d4ed8;
+}
+
+.portfolio-action-arrow {
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.2s ease;
+}
+
+.serv5-portfolio-card:hover .portfolio-action-arrow {
+  transform: translate(3px, -3px) scale(1.1);
+  background-color: #2563eb;
+  color: #ffffff;
+}
+[dir="rtl"] .serv5-portfolio-card:hover .portfolio-action-arrow {
+  transform: translate(-3px, -3px) scale(1.1);
 }
 
 .card-project-year {
