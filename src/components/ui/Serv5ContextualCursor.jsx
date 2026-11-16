@@ -159,7 +159,7 @@ export default function Serv5ContextualCursor({ lang = 'ar' }) {
       // 8. Services / Products / Portfolio / Works -> "تصفّح"
       if (
         target.closest(
-          '#services, .services-vision-section, #products, .products-world-section, #portfolio, .portfolio-world-section, #newest-works, .newest-works-section, .showcase-card, .portfolio-card, [class*="mockup"], [class*="Mockup"], figure, [class*="gallery"], [class*="ProjectCard"], [class*="service-card"], [class*="ServicesShowcase"]'
+          '#services, .switchboard-section, .services-vision-section, #products, .products-world-section, #portfolio, .portfolio-world-section, #newest-works, .newest-works-section, .showcase-card, .portfolio-card, [class*="mockup"], [class*="Mockup"], figure, [class*="gallery"], [class*="ProjectCard"], [class*="service-card"], [class*="ServicesShowcase"]'
         )
       ) {
         setCursorBadge('browse', isRtl ? 'تصفّح' : 'Browse', false, flipX, flipY);

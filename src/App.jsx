@@ -4,7 +4,7 @@ import Navbar from './components/layout/Navbar';
 import HeroSection from './components/sections/HeroSection';
 
 import PartnersCarousel from './components/sections/PartnersCarousel';
-import ServicesShowcase from './components/sections/ServicesShowcase';
+import Serv5ServicesSwitchboard from './components/sections/Serv5ServicesSwitchboard';
 import Serv5ProductsShowcase from './components/sections/Serv5ProductsShowcase';
 import NewestPostsSection from './components/sections/NewestPostsSection';
 import Serv5NewestPosts from './components/sections/Serv5NewestPosts';
@@ -113,8 +113,8 @@ export default function App() {
         {/* 2. PARTNERS & CERTIFICATIONS MARQUEE */}
         <PartnersCarousel lang={lang} />
 
-        {/* 4. DIGITAL DOMAINS & SERVICES SHOWCASE */}
-        <ServicesShowcase onOpenConsultation={handleOpenConsultation} lang={lang} />
+        {/* 4. DIGITAL SERVICE SWITCHBOARD */}
+        <Serv5ServicesSwitchboard onOpenConsultation={handleOpenConsultation} lang={lang} />
 
         {/* 5. ENTERPRISE PRODUCTS SHOWCASE */}
         <Serv5ProductsShowcase onOpenConsultation={handleOpenConsultation} lang={lang} />

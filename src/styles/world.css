@@ -5703,6 +5703,11 @@ html[dir="ltr"] {
     max-height: 590px;
   }
 
+  .products-selector-pane,
+  .products-detail-pane {
+    grid-row: 1;
+  }
+
   /* In RTL (Arabic): Grid column 1 is on the RIGHT, column 2 is on the LEFT */
   [dir="rtl"] .products-split-stage {
     grid-template-columns: 360px 1fr;
