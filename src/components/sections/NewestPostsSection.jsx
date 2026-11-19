@@ -1,10 +1,8 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { motion, AnimatePresence, useMotionValue, useSpring, useTransform } from 'framer-motion';
+import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import {
   ExternalLink,
   X,
-  ChevronLeft,
-  ChevronRight,
   Sparkles,
   ArrowUpRight,
   CheckCircle2,
@@ -21,15 +19,11 @@ import {
 } from 'lucide-react';
 
 /* ───────────────────────────────────────────────────────────────────
-   SERV5 FEATURED WORKS — CATEGORY TABS & HORIZONTAL PROJECT SHOWCASE
-   - Projects are grouped by category inside one featured-work panel
-   - Matching projects scroll horizontally within the panel
-   - Natural page scroll (zero scroll-hijacking)
-   - Dynamic 3D magnetic card tilt responding to cursor coordinates
-   - Living micro-UIs with animated telemetry, routes, lasers & circuits
-   - Cursor-tracking holographic glare & traveling laser borders
-   - Category tabs with counts and internal carousel controls
-   - Deep-dive Case Study Modal with full architecture specs
+   SERV5 WORKS — INTERACTIVE ORBITAL PROJECT EXPLORER
+   - The SERV5 logo anchors the center of the desktop orbit
+   - Project cards move to a focus point when selected
+   - Category filters and project choices remain visible and clickable
+   - Existing project previews and case-study data are reused
    ─────────────────────────────────────────────────────────────────── */
 
 /* ── 1. PIZZA PLAZA MICRO-UI: Live Fleet GPS & Order Dispatch ── */
@@ -274,172 +268,52 @@ function AlRajhiMockup({ isRtl }) {
   );
 }
 
-/* ── 3D MAGNETIC PERSPECTIVE SHOWCASE CARD ── */
-function ProjectCard3D({ project, idx, isRtl, onOpen, slideRef }) {
-  const cardRef = useRef(null);
-  const x = useMotionValue(0);
-  const y = useMotionValue(0);
-
-  const mouseXSpring = useSpring(x, { stiffness: 220, damping: 22 });
-  const mouseYSpring = useSpring(y, { stiffness: 220, damping: 22 });
-
-  const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], ['10deg', '-10deg']);
-  const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ['-10deg', '10deg']);
-
-  const [glarePos, setGlarePos] = useState({ x: 50, y: 50 });
-
-  const handleMouseMove = (e) => {
-    if (!cardRef.current) return;
-    const rect = cardRef.current.getBoundingClientRect();
-    const mouseX = e.clientX - rect.left;
-    const mouseY = e.clientY - rect.top;
-    const xPct = mouseX / rect.width - 0.5;
-    const yPct = mouseY / rect.height - 0.5;
-    x.set(xPct);
-    y.set(yPct);
-    setGlarePos({
-      x: (mouseX / rect.width) * 100,
-      y: (mouseY / rect.height) * 100
-    });
-  };
-
-  const handleMouseLeave = () => {
-    x.set(0);
-    y.set(0);
-  };
-
-  const renderMicroUI = () => {
-    switch (project.id) {
-      case 'pizza-plaza':
-        return <PizzaPlazaMockup isRtl={isRtl} />;
-      case 'medpulse-cloud':
-        return <MedPulseMockup isRtl={isRtl} />;
-      case 'luxestore-arabia':
-        return <LuxeStoreMockup isRtl={isRtl} />;
-      case 'zatca-gateway':
-        return <ZatcaMockup isRtl={isRtl} />;
-      case 'nauz-cafe':
-        return <NauzCafeMockup isRtl={isRtl} />;
-      case 'alrajhi-gateway':
-        return <AlRajhiMockup isRtl={isRtl} />;
-      default:
-        return null;
-    }
-  };
-
+/* ── Featured project and its existing interface preview ── */
+function FeaturedProjectCard({ project, isRtl, onOpen }) {
   return (
-    <motion.div
-      ref={(node) => {
-        cardRef.current = node;
-        if (slideRef) slideRef(node);
-      }}
-      layout
-      initial={{ opacity: 0, y: 30, scale: 0.95 }}
-      whileInView={{ opacity: 1, y: 0, scale: 1 }}
-      viewport={{ once: true, amount: 0.15 }}
-      exit={{ opacity: 0, scale: 0.95 }}
-      transition={{ duration: 0.5, delay: idx * 0.06 }}
-      style={{
-        rotateX,
-        rotateY,
-        transformStyle: 'preserve-3d'
-      }}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-      onClick={onOpen}
-      className="serv5-portfolio-card serv5-portfolio-card-wide"
+    <motion.article
+      initial={{ opacity: 0, y: 12 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -8 }}
+      transition={{ duration: 0.24, ease: 'easeOut' }}
+      className="serv5-portfolio-card serv5-project-detail"
       dir={isRtl ? 'rtl' : 'ltr'}
-      role="button"
-      tabIndex={0}
-      onKeyDown={(e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault();
-          onOpen();
-        }
-      }}
     >
-      {/* Traveling Laser Border Beam */}
-      <div className="card-border-laser" />
-
-      {/* Dynamic Cursor-Tracking Glare */}
       <div
-        className="portfolio-card-glare"
-        style={{
-          background: `radial-gradient(circle 240px at ${glarePos.x}% ${glarePos.y}%, rgba(37, 99, 235, 0.12), transparent 70%)`
-        }}
-      />
-
-      {/* Top Accent Stripe */}
-      <div
-        className="portfolio-card-accent-bar"
-        style={{ background: `linear-gradient(90deg, ${project.accentColor}, #38bdf8)` }}
-      />
-
-      {/* 1. Visual Device Mockup Frame with Live Micro-UI */}
-      <div
-        className="portfolio-device-frame"
-        style={{ background: project.cardColor }}
+        className="serv5-website-preview"
+        style={{ background: project.cardColor, '--preview-accent': project.accentColor }}
       >
-        {/* Browser Header Bar */}
-        <div className="device-frame-header">
-          <div className="device-frame-dots">
-            <span className="device-dot bg-rose-400" />
-            <span className="device-dot bg-amber-400" />
-            <span className="device-dot bg-emerald-400" />
+        <div className="serv5-website-preview-nav">
+          <div className="serv5-website-preview-window-controls" aria-hidden="true">
+            <i /><i /><i />
           </div>
-
-          <div className="flex items-center gap-1.5 text-[10px] font-mono text-slate-500">
-            <span>{project.number}</span>
-            <span>·</span>
-            <span className="font-bold text-emerald-600 flex items-center gap-1">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-              LIVE TELEMETRY
-            </span>
-          </div>
+          <span className="serv5-website-preview-address" aria-hidden="true" />
+          <a
+            className="serv5-website-preview-open"
+            href={project.url}
+            target="_blank"
+            rel="noreferrer"
+            onClick={(event) => event.stopPropagation()}
+            aria-label={`${isRtl ? 'معاينة الموقع' : 'Preview website'}: ${project.title}`}
+          >
+            <span>{isRtl ? 'معاينة' : 'Preview'}</span>
+            <ExternalLink size={12} aria-hidden="true" />
+          </a>
         </div>
-
-        {/* Device Interior Content: Live Interactive Micro-UI */}
-        <div className="device-frame-body">
-          {renderMicroUI()}
+        <div className="serv5-website-preview-art">
+          <img src="/images/website-mockup-1.jpg" alt="" loading="lazy" />
         </div>
       </div>
 
-      {/* 2. Editorial Metadata */}
       <div className="portfolio-card-content">
-        <span
-          className="portfolio-card-category"
-          style={{ color: project.accentColor }}
-        >
-          {project.categoryLabel}
-        </span>
-
         <h3 className="portfolio-card-title">{project.title}</h3>
-        <p className="portfolio-card-client">{project.client}</p>
         <p className="portfolio-card-desc">{project.overview}</p>
-
-        {/* Tech Stack Chips */}
-        <div className="portfolio-tech-tags">
-          {project.techStack.slice(0, 3).map((tech, tIdx) => (
-            <span key={tIdx} className="portfolio-tech-tag">
-              {tech}
-            </span>
-          ))}
-          {project.techStack.length > 3 && (
-            <span className="portfolio-tech-tag font-bold text-blue-600">
-              +{project.techStack.length - 3}
-            </span>
-          )}
-        </div>
+        <button className="serv5-read-more" type="button" onClick={onOpen}>
+          <span>{isRtl ? 'اقرأ المزيد' : 'Read more'}</span>
+          <ArrowUpRight size={15} aria-hidden="true" />
+        </button>
       </div>
-
-      {/* 3. Card Action Footer */}
-      <div className="portfolio-card-action">
-        <span>{isRtl ? 'استكشف تفاصيل المنظومة' : 'Inspect Architecture'}</span>
-        <div className="w-7 h-7 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center portfolio-action-arrow">
-          <ArrowUpRight size={14} />
-        </div>
-      </div>
-    </motion.div>
+    </motion.article>
   );
 }
 
@@ -667,16 +541,14 @@ export default function NewestPostsSection({ onOpenConsultation, lang = 'ar' }) 
     }
   ];
 
-  // Category tabs and the in-panel project carousel are kept independent.
+  // Category selection and the featured project selection are separate controls.
   const [activeCategory, setActiveCategory] = useState('all');
-  const [activeSlide, setActiveSlide] = useState(0);
+  const [activeProjectId, setActiveProjectId] = useState(projects[0]?.id ?? null);
   const [selectedProject, setSelectedProject] = useState(null);
   const [isModalAnimating, setIsModalAnimating] = useState(false);
-  const portfolioTrackRef = useRef(null);
-  const portfolioSlidesRef = useRef([]);
 
   const categories = [
-    { id: 'all', label: isRtl ? 'كل الأعمال' : 'All work' },
+    { id: 'all', label: isRtl ? 'كل المشاريع' : 'All projects' },
     { id: 'mobile', label: isRtl ? 'تطبيقات الجوال وPOS' : 'Mobile & POS' },
     { id: 'ecommerce', label: isRtl ? 'التجارة الإلكترونية' : 'E-commerce' },
     { id: 'cloud', label: isRtl ? 'السحابة وERP' : 'Cloud & ERP' },
@@ -687,43 +559,28 @@ export default function NewestPostsSection({ onOpenConsultation, lang = 'ar' }) 
     return activeCategory === 'all' || p.category === activeCategory;
   });
 
-  const scrollToProject = (index) => {
-    const track = portfolioTrackRef.current;
-    const slide = portfolioSlidesRef.current[index];
-    if (!track || !slide) return;
-
-    const trackLeft = track.getBoundingClientRect().left;
-    const slideLeft = slide.getBoundingClientRect().left;
-    track.scrollBy({ left: slideLeft - trackLeft, behavior: 'smooth' });
-    setActiveSlide(index);
-  };
-
-  const updateActiveSlide = () => {
-    const track = portfolioTrackRef.current;
-    if (!track) return;
-
-    const trackCenter = track.getBoundingClientRect().left + track.clientWidth / 2;
-    let closestIndex = 0;
-    let closestDistance = Infinity;
-
-    portfolioSlidesRef.current.slice(0, filteredProjects.length).forEach((slide, index) => {
-      if (!slide) return;
-      const rect = slide.getBoundingClientRect();
-      const distance = Math.abs(rect.left + rect.width / 2 - trackCenter);
-      if (distance < closestDistance) {
-        closestDistance = distance;
-        closestIndex = index;
-      }
-    });
-
-    setActiveSlide((current) => current === closestIndex ? current : closestIndex);
-  };
-
   const selectCategory = (categoryId) => {
     setActiveCategory(categoryId);
-    setActiveSlide(0);
-    portfolioTrackRef.current?.scrollTo({ left: 0, behavior: 'smooth' });
+    const firstProject = projects.find((project) => categoryId === 'all' || project.category === categoryId);
+    setActiveProjectId(firstProject?.id ?? null);
   };
+
+  const featuredProject = filteredProjects.find((project) => project.id === activeProjectId) || filteredProjects[0];
+  const featuredIndex = filteredProjects.findIndex((project) => project.id === featuredProject?.id);
+
+  const orbitalProjects = filteredProjects.map((project, index) => {
+    const slot = filteredProjects.length
+      ? (index - featuredIndex + filteredProjects.length) % filteredProjects.length
+      : 0;
+    const angle = -Math.PI / 2 + (slot * Math.PI * 2) / Math.max(filteredProjects.length, 1);
+
+    return {
+      ...project,
+      orbitLeft: `${50 + Math.cos(angle) * 31}%`,
+      orbitTop: `${50 + Math.sin(angle) * 39}%`,
+      isSelected: project.id === featuredProject?.id
+    };
+  });
 
   // Close modal with ESC
   useEffect(() => {
@@ -752,28 +609,6 @@ export default function NewestPostsSection({ onOpenConsultation, lang = 'ar' }) 
 
   return (
     <section className="newest-works-section relative overflow-hidden" id="portfolio">
-      {/* ── AMBIENT FLOATING TECH GLOW ORBS IN SECTION BACKGROUND ── */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden -z-10">
-        <motion.div
-          animate={{
-            x: [0, 30, 0],
-            y: [0, -25, 0],
-            scale: [1, 1.1, 1]
-          }}
-          transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut' }}
-          className="absolute top-1/4 -left-20 w-96 h-96 rounded-full bg-blue-400/10 blur-3xl"
-        />
-        <motion.div
-          animate={{
-            x: [0, -35, 0],
-            y: [0, 30, 0],
-            scale: [1, 1.15, 1]
-          }}
-          transition={{ duration: 15, repeat: Infinity, ease: 'easeInOut' }}
-          className="absolute bottom-1/4 -right-20 w-96 h-96 rounded-full bg-indigo-400/10 blur-3xl"
-        />
-      </div>
-
       <div className="container">
         <div className="newest-header-wrapper serv5-portfolio-heading">
           <motion.div
@@ -811,7 +646,15 @@ export default function NewestPostsSection({ onOpenConsultation, lang = 'ar' }) 
         </div>
 
         <div className="serv5-portfolio-showcase">
-          <div className="serv5-portfolio-tabs" role="tablist" aria-label={isRtl ? 'تصنيفات الأعمال' : 'Work categories'}>
+          <motion.div
+            className="serv5-portfolio-tabs"
+            role="group"
+            aria-label={isRtl ? 'تصنيفات الأعمال' : 'Work categories'}
+            initial={{ opacity: 0, y: 14 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.45, ease: 'easeOut' }}
+          >
             {categories.map((category) => {
               const count = category.id === 'all'
                 ? projects.length
@@ -821,10 +664,7 @@ export default function NewestPostsSection({ onOpenConsultation, lang = 'ar' }) 
                 <button
                   key={category.id}
                   type="button"
-                  id={`portfolio-tab-${category.id}`}
-                  role="tab"
-                  aria-controls="portfolio-project-panel"
-                  aria-selected={activeCategory === category.id}
+                  aria-pressed={activeCategory === category.id}
                   className={`cat-pill-btn ${activeCategory === category.id ? 'active' : ''}`}
                   onClick={() => selectCategory(category.id)}
                 >
@@ -833,59 +673,77 @@ export default function NewestPostsSection({ onOpenConsultation, lang = 'ar' }) 
                 </button>
               );
             })}
-          </div>
+          </motion.div>
 
-          <div className="serv5-portfolio-showcase-frame">
+          <motion.div
+            className="serv5-orbital-explorer"
+            dir={isRtl ? 'rtl' : 'ltr'}
+            initial={{ opacity: 0, y: 22 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.12 }}
+            transition={{ duration: 0.6, ease: 'easeOut', delay: 0.08 }}
+          >
             <div
-              id="portfolio-project-panel"
-              role="tabpanel"
-              aria-labelledby={`portfolio-tab-${activeCategory}`}
-              ref={portfolioTrackRef}
-              className="serv5-portfolio-scroll-track"
-              dir="ltr"
-              onScroll={updateActiveSlide}
-              aria-live="polite"
+              className="serv5-orbital-stage"
+              role="group"
+              aria-label={isRtl ? 'مشاريع سيرف فايف حول شعار الشركة' : 'SERV5 projects orbiting the company logo'}
             >
-              <AnimatePresence initial={false} mode="popLayout">
-                {filteredProjects.map((project, idx) => (
-                  <ProjectCard3D
-                    key={project.id}
-                    project={project}
-                    idx={idx}
-                    isRtl={isRtl}
-                    slideRef={(node) => { portfolioSlidesRef.current[idx] = node; }}
-                    onOpen={() => handleOpenProject(project)}
-                  />
-                ))}
-              </AnimatePresence>
+              <div className="serv5-orbital-path serv5-orbital-path-primary" aria-hidden="true" />
+              <div className="serv5-orbital-path serv5-orbital-path-secondary" aria-hidden="true" />
+
+              <div className="serv5-orbital-core">
+                <img className="serv5-orbital-logo" src="/serv5-official-logo.webp" alt="SERV5" />
+              </div>
+
+              <div className="serv5-orbital-projects">
+                <AnimatePresence initial={false}>
+                  {orbitalProjects.map((project) => (
+                    <motion.button
+                      key={project.id}
+                      type="button"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      transition={{ duration: 0.2 }}
+                      className={`serv5-orbit-project-choice ${project.isSelected ? 'active' : ''}`}
+                      style={{
+                        left: project.orbitLeft,
+                        top: project.orbitTop,
+                        '--project-accent': project.accentColor,
+                        '--project-tint': project.cardColor
+                      }}
+                      onClick={() => setActiveProjectId(project.id)}
+                      aria-pressed={project.isSelected}
+                      aria-label={`${isRtl ? 'عرض مشروع' : 'Show project'}: ${project.title}`}
+                    >
+                      <span className="serv5-orbit-project-copy">
+                        <span className="serv5-orbit-project-title">{project.title}</span>
+                        <span className="serv5-orbit-project-category">{project.categoryLabel}</span>
+                      </span>
+                      {project.isSelected && (
+                        <span className="serv5-orbit-selected-label">
+                          {isRtl ? 'المشروع المختار' : 'Selected'}
+                        </span>
+                      )}
+                    </motion.button>
+                  ))}
+                </AnimatePresence>
+              </div>
             </div>
 
-            {filteredProjects.length > 1 && (
-              <div className="serv5-portfolio-carousel-controls" dir="ltr">
-                <span className="serv5-portfolio-slide-count" aria-live="polite">
-                  {activeSlide + 1} / {filteredProjects.length}
-                </span>
-                <div className="serv5-portfolio-carousel-buttons">
-                  <button
-                    type="button"
-                    aria-label={isRtl ? 'المشروع السابق' : 'Previous project'}
-                    onClick={() => scrollToProject(Math.max(0, activeSlide - 1))}
-                    disabled={activeSlide === 0}
-                  >
-                    {isRtl ? <ChevronRight size={18} /> : <ChevronLeft size={18} />}
-                  </button>
-                  <button
-                    type="button"
-                    aria-label={isRtl ? 'المشروع التالي' : 'Next project'}
-                    onClick={() => scrollToProject(Math.min(filteredProjects.length - 1, activeSlide + 1))}
-                    disabled={activeSlide >= filteredProjects.length - 1}
-                  >
-                    {isRtl ? <ChevronLeft size={18} /> : <ChevronRight size={18} />}
-                  </button>
-                </div>
-              </div>
-            )}
-          </div>
+            <div className="serv5-project-featured">
+              <AnimatePresence mode="wait" initial={false}>
+                {featuredProject && (
+                  <FeaturedProjectCard
+                    key={featuredProject.id}
+                    project={featuredProject}
+                    isRtl={isRtl}
+                    onOpen={() => handleOpenProject(featuredProject)}
+                  />
+                )}
+              </AnimatePresence>
+            </div>
+          </motion.div>
         </div>
       </div>
 
