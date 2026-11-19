@@ -2,8 +2,9 @@ import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import {
   ExternalLink,
-  Search,
   X,
+  ChevronLeft,
+  ChevronRight,
   Sparkles,
   ArrowUpRight,
   CheckCircle2,
@@ -20,13 +21,14 @@ import {
 } from 'lucide-react';
 
 /* ───────────────────────────────────────────────────────────────────
-   SERV5 FEATURED WORKS — INTERACTIVE 3D ARCHITECTURE MATRIX
-   - All 6 enterprise platforms clearly visible to the client at once
+   SERV5 FEATURED WORKS — CATEGORY TABS & HORIZONTAL PROJECT SHOWCASE
+   - Projects are grouped by category inside one featured-work panel
+   - Matching projects scroll horizontally within the panel
    - Natural page scroll (zero scroll-hijacking)
    - Dynamic 3D magnetic card tilt responding to cursor coordinates
    - Living micro-UIs with animated telemetry, routes, lasers & circuits
    - Cursor-tracking holographic glare & traveling laser borders
-   - Interactive category filtering + live instant search
+   - Category tabs with counts and internal carousel controls
    - Deep-dive Case Study Modal with full architecture specs
    ─────────────────────────────────────────────────────────────────── */
 
@@ -273,7 +275,7 @@ function AlRajhiMockup({ isRtl }) {
 }
 
 /* ── 3D MAGNETIC PERSPECTIVE SHOWCASE CARD ── */
-function ProjectCard3D({ project, idx, isRtl, onOpen }) {
+function ProjectCard3D({ project, idx, isRtl, onOpen, slideRef }) {
   const cardRef = useRef(null);
   const x = useMotionValue(0);
   const y = useMotionValue(0);
@@ -327,7 +329,10 @@ function ProjectCard3D({ project, idx, isRtl, onOpen }) {
 
   return (
     <motion.div
-      ref={cardRef}
+      ref={(node) => {
+        cardRef.current = node;
+        if (slideRef) slideRef(node);
+      }}
       layout
       initial={{ opacity: 0, y: 30, scale: 0.95 }}
       whileInView={{ opacity: 1, y: 0, scale: 1 }}
@@ -342,7 +347,8 @@ function ProjectCard3D({ project, idx, isRtl, onOpen }) {
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       onClick={onOpen}
-      className="serv5-portfolio-card"
+      className="serv5-portfolio-card serv5-portfolio-card-wide"
+      dir={isRtl ? 'rtl' : 'ltr'}
       role="button"
       tabIndex={0}
       onKeyDown={(e) => {
@@ -661,20 +667,63 @@ export default function NewestPostsSection({ onOpenConsultation, lang = 'ar' }) 
     }
   ];
 
-  // Filtering State
-  const [searchQuery, setSearchQuery] = useState('');
+  // Category tabs and the in-panel project carousel are kept independent.
   const [activeCategory, setActiveCategory] = useState('all');
+  const [activeSlide, setActiveSlide] = useState(0);
   const [selectedProject, setSelectedProject] = useState(null);
   const [isModalAnimating, setIsModalAnimating] = useState(false);
+  const portfolioTrackRef = useRef(null);
+  const portfolioSlidesRef = useRef([]);
+
+  const categories = [
+    { id: 'all', label: isRtl ? 'كل الأعمال' : 'All work' },
+    { id: 'mobile', label: isRtl ? 'تطبيقات الجوال وPOS' : 'Mobile & POS' },
+    { id: 'ecommerce', label: isRtl ? 'التجارة الإلكترونية' : 'E-commerce' },
+    { id: 'cloud', label: isRtl ? 'السحابة وERP' : 'Cloud & ERP' },
+    { id: 'enterprise', label: isRtl ? 'حلول المؤسسات' : 'Enterprise' }
+  ];
 
   const filteredProjects = projects.filter((p) => {
-    const matchesCategory = activeCategory === 'all' || p.category === activeCategory;
-    const matchesSearch =
-      p.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      p.client.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      p.overview.toLowerCase().includes(searchQuery.toLowerCase());
-    return matchesCategory && matchesSearch;
+    return activeCategory === 'all' || p.category === activeCategory;
   });
+
+  const scrollToProject = (index) => {
+    const track = portfolioTrackRef.current;
+    const slide = portfolioSlidesRef.current[index];
+    if (!track || !slide) return;
+
+    const trackLeft = track.getBoundingClientRect().left;
+    const slideLeft = slide.getBoundingClientRect().left;
+    track.scrollBy({ left: slideLeft - trackLeft, behavior: 'smooth' });
+    setActiveSlide(index);
+  };
+
+  const updateActiveSlide = () => {
+    const track = portfolioTrackRef.current;
+    if (!track) return;
+
+    const trackCenter = track.getBoundingClientRect().left + track.clientWidth / 2;
+    let closestIndex = 0;
+    let closestDistance = Infinity;
+
+    portfolioSlidesRef.current.slice(0, filteredProjects.length).forEach((slide, index) => {
+      if (!slide) return;
+      const rect = slide.getBoundingClientRect();
+      const distance = Math.abs(rect.left + rect.width / 2 - trackCenter);
+      if (distance < closestDistance) {
+        closestDistance = distance;
+        closestIndex = index;
+      }
+    });
+
+    setActiveSlide((current) => current === closestIndex ? current : closestIndex);
+  };
+
+  const selectCategory = (categoryId) => {
+    setActiveCategory(categoryId);
+    setActiveSlide(0);
+    portfolioTrackRef.current?.scrollTo({ left: 0, behavior: 'smooth' });
+  };
 
   // Close modal with ESC
   useEffect(() => {
@@ -726,8 +775,7 @@ export default function NewestPostsSection({ onOpenConsultation, lang = 'ar' }) 
       </div>
 
       <div className="container">
-        {/* ── HEADER & SEARCH / FILTER CONTROLS ── */}
-        <div className="newest-header-wrapper">
+        <div className="newest-header-wrapper serv5-portfolio-heading">
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -760,77 +808,84 @@ export default function NewestPostsSection({ onOpenConsultation, lang = 'ar' }) 
             </p>
           </motion.div>
 
-          {/* Search Bar + Live Count */}
-          <div className="w-full max-w-md mx-auto mb-6">
-            <div className="newest-search-bar">
-              <Search size={18} className="search-icon-dim" />
-              <input
-                type="text"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder={isRtl ? 'ابحث عن منصة، تقنية، أو قطاع عمل...' : 'Search by platform, tech, or industry...'}
-                className="newest-search-input"
-              />
-              {searchQuery && (
-                <button
-                  type="button"
-                  onClick={() => setSearchQuery('')}
-                  className="text-slate-400 hover:text-slate-600 cursor-pointer"
-                >
-                  <X size={15} />
-                </button>
-              )}
-            </div>
-          </div>
-
-          {/* Category Filter Pills */}
-          <div className="newest-category-pills">
-            <button
-              className={`cat-pill-btn ${activeCategory === 'all' ? 'active' : ''}`}
-              onClick={() => setActiveCategory('all')}
-            >
-              {isRtl ? 'كافة المنصات (6)' : 'All Works (6)'}
-            </button>
-            <button
-              className={`cat-pill-btn ${activeCategory === 'mobile' ? 'active' : ''}`}
-              onClick={() => setActiveCategory('mobile')}
-            >
-              {isRtl ? 'تطبيقات الجوال والـ POS (2)' : 'Mobile & POS (2)'}
-            </button>
-            <button
-              className={`cat-pill-btn ${activeCategory === 'ecommerce' ? 'active' : ''}`}
-              onClick={() => setActiveCategory('ecommerce')}
-            >
-              {isRtl ? 'المتاجر الإلكترونية (1)' : 'E-Commerce (1)'}
-            </button>
-            <button
-              className={`cat-pill-btn ${activeCategory === 'cloud' ? 'active' : ''}`}
-              onClick={() => setActiveCategory('cloud')}
-            >
-              {isRtl ? 'منظومات سحابية وERP (1)' : 'Cloud & ERP (1)'}
-            </button>
-            <button
-              className={`cat-pill-btn ${activeCategory === 'enterprise' ? 'active' : ''}`}
-              onClick={() => setActiveCategory('enterprise')}
-            >
-              {isRtl ? 'مؤسسات وZATCA (2)' : 'Enterprise & ZATCA (2)'}
-            </button>
-          </div>
         </div>
 
-        {/* ── ALL WORK VISIBLE: 3-COLUMN RESPONSIVE BENTO MATRIX (NO SCROLL HIJACKING) ── */}
-        <div className="serv5-portfolio-matrix">
-          <AnimatePresence mode="popLayout">
-            {filteredProjects.map((project, idx) => (
-              <ProjectCard3D
-                key={project.id}
-                project={project}
-                idx={idx}
-                isRtl={isRtl}
-                onOpen={() => handleOpenProject(project)}
-              />
-            ))}
-          </AnimatePresence>
+        <div className="serv5-portfolio-showcase">
+          <div className="serv5-portfolio-tabs" role="tablist" aria-label={isRtl ? 'تصنيفات الأعمال' : 'Work categories'}>
+            {categories.map((category) => {
+              const count = category.id === 'all'
+                ? projects.length
+                : projects.filter((project) => project.category === category.id).length;
+
+              return (
+                <button
+                  key={category.id}
+                  type="button"
+                  id={`portfolio-tab-${category.id}`}
+                  role="tab"
+                  aria-controls="portfolio-project-panel"
+                  aria-selected={activeCategory === category.id}
+                  className={`cat-pill-btn ${activeCategory === category.id ? 'active' : ''}`}
+                  onClick={() => selectCategory(category.id)}
+                >
+                  <span>{category.label}</span>
+                  <span className="serv5-portfolio-tab-count">{count}</span>
+                </button>
+              );
+            })}
+          </div>
+
+          <div className="serv5-portfolio-showcase-frame">
+            <div
+              id="portfolio-project-panel"
+              role="tabpanel"
+              aria-labelledby={`portfolio-tab-${activeCategory}`}
+              ref={portfolioTrackRef}
+              className="serv5-portfolio-scroll-track"
+              dir="ltr"
+              onScroll={updateActiveSlide}
+              aria-live="polite"
+            >
+              <AnimatePresence initial={false} mode="popLayout">
+                {filteredProjects.map((project, idx) => (
+                  <ProjectCard3D
+                    key={project.id}
+                    project={project}
+                    idx={idx}
+                    isRtl={isRtl}
+                    slideRef={(node) => { portfolioSlidesRef.current[idx] = node; }}
+                    onOpen={() => handleOpenProject(project)}
+                  />
+                ))}
+              </AnimatePresence>
+            </div>
+
+            {filteredProjects.length > 1 && (
+              <div className="serv5-portfolio-carousel-controls" dir="ltr">
+                <span className="serv5-portfolio-slide-count" aria-live="polite">
+                  {activeSlide + 1} / {filteredProjects.length}
+                </span>
+                <div className="serv5-portfolio-carousel-buttons">
+                  <button
+                    type="button"
+                    aria-label={isRtl ? 'المشروع السابق' : 'Previous project'}
+                    onClick={() => scrollToProject(Math.max(0, activeSlide - 1))}
+                    disabled={activeSlide === 0}
+                  >
+                    {isRtl ? <ChevronRight size={18} /> : <ChevronLeft size={18} />}
+                  </button>
+                  <button
+                    type="button"
+                    aria-label={isRtl ? 'المشروع التالي' : 'Next project'}
+                    onClick={() => scrollToProject(Math.min(filteredProjects.length - 1, activeSlide + 1))}
+                    disabled={activeSlide >= filteredProjects.length - 1}
+                  >
+                    {isRtl ? <ChevronLeft size={18} /> : <ChevronRight size={18} />}
+                  </button>
+                </div>
+              </div>
+            )}
+          </div>
         </div>
       </div>
 

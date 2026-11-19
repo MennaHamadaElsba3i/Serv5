@@ -29,7 +29,7 @@ export default function Serv5Footer({ onOpenConsultation, lang = 'ar' }) {
           <div className="lg:col-span-4">
             <div>
               <div className="mb-5">
-                <Serv5Logo size={42} light={false} />
+                <Serv5Logo size={52} light={false} showTagline={false} />
               </div>
               <p className="text-slate-600 text-base leading-relaxed mb-7 max-w-sm">
                 {isRtl

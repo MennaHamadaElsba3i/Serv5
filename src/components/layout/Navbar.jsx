@@ -39,7 +39,7 @@ export default function Navbar({ onOpenConsultation, lang = 'ar', onToggleLang }
         <div className="navbar-inner">
           {/* Brand Logo */}
           <a href="#hero" className="navbar-brand">
-            <Serv5Logo size={36} />
+            <Serv5Logo size={46} showTagline={false} />
           </a>
 
           {/* Desktop Nav Items */}

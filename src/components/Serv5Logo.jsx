@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function Serv5Logo({ size = 42, className = '', light = false }) {
+export default function Serv5Logo({ size = 42, className = '', light = false, showTagline = true }) {
   const isLight = light || className.includes('light') || className.includes('text-white');
   return (
     <div
@@ -39,12 +39,14 @@ export default function Serv5Logo({ size = 42, className = '', light = false }) 
         />
       </div>
       <div style={{ display: 'flex', flexDirection: 'column', lineHeight: 1.1 }}>
-        <span style={{ fontSize: '1.25rem', fontWeight: 800, letterSpacing: '-0.02em', color: isLight ? '#ffffff' : 'var(--serv5-navy, #16205d)' }}>
+        <span style={{ fontSize: `${size * 0.48}px`, fontWeight: 800, letterSpacing: '-0.02em', color: isLight ? '#ffffff' : 'var(--serv5-navy, #16205d)' }}>
           serv<span style={{ color: 'var(--serv5-orange, #ea580c)' }}>5</span>
         </span>
-        <span style={{ fontSize: '0.62rem', letterSpacing: '0.14em', color: isLight ? '#94a3b8' : '#64748b', textTransform: 'uppercase', fontWeight: 600 }}>
-          Digital Growth Studio
-        </span>
+        {showTagline && (
+          <span style={{ fontSize: '0.62rem', letterSpacing: '0.14em', color: isLight ? '#94a3b8' : '#64748b', textTransform: 'uppercase', fontWeight: 600 }}>
+            Digital Growth Studio
+          </span>
+        )}
       </div>
     </div>
   );
