@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import SculpturalWorld3D from './components/3d/SculpturalWorld3D';
 import Navbar from './components/layout/Navbar';
 import HeroSection from './components/sections/HeroSection';
 
-import PartnersCarousel from './components/sections/PartnersCarousel';
 import ServicesShowcase from './components/sections/ServicesShowcase';
 import Serv5ProductsShowcase from './components/sections/Serv5ProductsShowcase';
 import NewestPostsSection from './components/sections/NewestPostsSection';
@@ -80,9 +78,6 @@ export default function App() {
         </button>
       )}
 
-      {/* 3D SURREAL & SCULPTURAL ART INSTALLATION CANVAS */}
-      <SculpturalWorld3D />
-
       {/* AMBIENT LIGHTING MESH (DEEP OBSIDIAN NAVY, ELECTRIC SAPPHIRE, SOFT ICE BLUE & SIGNATURE ORANGE) */}
       <div className="world-ambient-lighting" aria-hidden="true">
         <div className="ambient-orb-navy" />
@@ -111,8 +106,6 @@ export default function App() {
         <HeroSection onOpenConsultation={handleOpenConsultation} lang={lang} />
 
         {/* 2. PARTNERS & CERTIFICATIONS MARQUEE */}
-        <PartnersCarousel lang={lang} />
-
         {/* 4. DIGITAL DOMAINS & SERVICES SHOWCASE */}
         <ServicesShowcase onOpenConsultation={handleOpenConsultation} lang={lang} />
 

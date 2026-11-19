@@ -113,7 +113,7 @@ export default function Serv5ContextualCursor({ lang = 'ar' }) {
       // 3. 3D Model Canvas, Robot, Carousels, Sliders, Swipers -> "حرّك" / "اسحب"
       if (
         target.closest(
-          '.sculptural-world-3d-canvas, canvas, .partners-world-section, #partners, [class*="carousel"], [class*="Carousel"], [class*="slider"], [class*="swiper"], [class*="mascot"], .robot-mascot-guide, .puzzle-mesh-viewport'
+          'canvas, .partners-world-section, #partners, [class*="carousel"], [class*="Carousel"], [class*="slider"], [class*="swiper"], [class*="mascot"], .robot-mascot-guide, .puzzle-mesh-viewport'
         )
       ) {
         setCursorBadge('move', isRtl ? 'حرّك' : 'Move', true, flipX, flipY);

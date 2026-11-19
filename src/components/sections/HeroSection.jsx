@@ -2,6 +2,7 @@ import React from 'react';
 import { ArrowRight, ArrowUpRight } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { serv5Data } from '../../data/serv5Data';
+import PartnersCarousel from './PartnersCarousel';
 
 export default function HeroSection({ onOpenConsultation, lang = 'ar' }) {
   const isRtl = lang === 'ar';
@@ -118,6 +119,10 @@ export default function HeroSection({ onOpenConsultation, lang = 'ar' }) {
             </motion.div>
           </div>
         </div>
+      </div>
+
+      <div className="hero-partners-dock">
+        <PartnersCarousel />
       </div>
     </section>
   );
