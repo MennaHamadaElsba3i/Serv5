@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { ArrowUpRight, Menu, X, Sparkles, Phone, Globe } from 'lucide-react';
-import Serv5Logo from '../Serv5Logo';
+import { ArrowUpRight, Menu, X, Phone, Globe } from 'lucide-react';
 
 export default function Navbar({ onOpenConsultation, lang = 'ar', onToggleLang }) {
   const [scrolled, setScrolled] = useState(false);
@@ -39,7 +38,7 @@ export default function Navbar({ onOpenConsultation, lang = 'ar', onToggleLang }
         <div className="navbar-inner">
           {/* Brand Logo */}
           <a href="#hero" className="navbar-brand">
-            <Serv5Logo size={46} showTagline={false} />
+            <img className="navbar-brand-mark" src="/serv5-official-logo.webp" alt="SERV5" />
           </a>
 
           {/* Desktop Nav Items */}
