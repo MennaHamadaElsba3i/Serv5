@@ -1020,6 +1020,540 @@
 }
 
 /* ----------------------------------------------------
+   SERV5 IDEA TRANSMISSION / ORBITAL TRANSFORMER
+   ---------------------------------------------------- */
+.serv5-idea-machine {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding-block: clamp(4.5rem, 8vw, 7.5rem);
+  background:
+    radial-gradient(ellipse at 16% 40%, rgba(196, 222, 255, 0.48), transparent 39%),
+    radial-gradient(ellipse at 85% 66%, rgba(255, 231, 210, 0.4), transparent 35%);
+}
+
+.serv5-machine-header {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(260px, 0.8fr);
+  align-items: end;
+  gap: 0.4rem 3rem;
+  max-width: 1100px;
+  margin: 0 auto 1.2rem;
+  text-align: start;
+}
+
+.serv5-machine-eyebrow {
+  display: inline-flex;
+  grid-column: 1 / -1;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.4rem;
+  color: #2563eb;
+  font-family: var(--font-mono, monospace);
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+}
+
+.serv5-machine-eyebrow > span {
+  width: 0.45rem;
+  height: 0.45rem;
+  border-radius: 50%;
+  background: #f28a30;
+  box-shadow: 0 0 0 4px rgba(242, 138, 48, 0.13);
+}
+
+.serv5-machine-header h2 {
+  max-width: 720px;
+  margin: 0;
+  color: #102642;
+  font-size: clamp(2.2rem, 5vw, 4.5rem);
+  font-weight: 900;
+  letter-spacing: -0.055em;
+  line-height: 1.08;
+}
+
+.serv5-machine-header h2 span {
+  color: #2563eb;
+  white-space: nowrap;
+}
+
+.serv5-machine-header p {
+  max-width: 350px;
+  margin: 0 0 0.35rem;
+  color: #5f738b;
+  font-size: 0.94rem;
+  line-height: 1.8;
+}
+
+.serv5-machine-universe {
+  position: relative;
+  max-width: 1320px;
+  margin-inline: auto;
+}
+
+.serv5-transform-stage {
+  --transform-accent: #2563eb;
+  position: relative;
+  min-height: 535px;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse at center, rgba(255, 255, 255, 0.92) 0, rgba(248, 252, 255, 0.48) 35%, transparent 70%);
+}
+
+.serv5-transform-ecommerce { --transform-accent: #e5792c; }
+.serv5-transform-custom { --transform-accent: #4b83cc; }
+
+.serv5-transform-atmosphere {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: min(48vw, 540px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(214, 234, 255, 0.7), rgba(231, 242, 255, 0.27) 46%, transparent 70%);
+  filter: blur(10px);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.serv5-transform-wiring {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.serv5-transform-orbit {
+  fill: none;
+  stroke: rgba(37, 99, 235, 0.19);
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
+}
+
+.orbit-outer { stroke-dasharray: 2 8; animation: serv5-orbit-slow 70s linear infinite; transform-origin: 50% 50%; }
+.orbit-inner { stroke: rgba(242, 138, 48, 0.19); stroke-dasharray: 1 7; }
+
+@keyframes serv5-orbit-slow {
+  to { transform: rotate(360deg); }
+}
+
+.serv5-transform-wire {
+  fill: none;
+  stroke: rgba(37, 99, 235, 0.17);
+  stroke-width: 1.1;
+  stroke-dasharray: 3 7;
+  vector-effect: non-scaling-stroke;
+  transition: stroke 0.35s ease, stroke-width 0.35s ease, opacity 0.35s ease;
+}
+
+.serv5-transform-wire.is-live {
+  stroke: var(--transform-accent);
+  stroke-width: 2;
+  stroke-dasharray: 5 7;
+  filter: drop-shadow(0 0 4px color-mix(in srgb, var(--transform-accent) 24%, transparent));
+}
+
+.serv5-transform-core {
+  position: absolute;
+  z-index: 3;
+  top: 50%;
+  left: 50%;
+  display: flex;
+  width: 214px;
+  align-items: center;
+  flex-direction: column;
+  transform: translate(-50%, -50%);
+}
+
+.serv5-transform-core-orbit {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 162px;
+  aspect-ratio: 1;
+  border: 1px solid rgba(37, 99, 235, 0.25);
+  border-radius: 50%;
+  transform: translateX(-50%);
+}
+
+.core-orbit-one { animation: serv5-core-turn 32s linear infinite; }
+.core-orbit-two {
+  top: -15px;
+  width: 192px;
+  border-color: rgba(242, 138, 48, 0.2);
+  border-style: dashed;
+  animation: serv5-core-turn 44s linear infinite reverse;
+}
+
+@keyframes serv5-core-turn { to { rotate: 360deg; } }
+
+.serv5-transform-core-mark {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  width: 132px;
+  height: 132px;
+  margin-top: 15px;
+  place-items: center;
+  border: 1px solid rgba(37, 99, 235, 0.2);
+  border-radius: 50%;
+  background: radial-gradient(circle at 36% 28%, #fff 0 22%, #f3f8ff 72%, #e7f1ff 100%);
+  box-shadow: 0 12px 38px rgba(36, 90, 167, 0.15), inset 0 0 0 8px rgba(255, 255, 255, 0.82);
+}
+
+.serv5-transform-core-mark::before,
+.serv5-transform-core-mark::after {
+  position: absolute;
+  z-index: -1;
+  border-radius: 50%;
+  content: '';
+}
+
+.serv5-transform-core-mark::before {
+  inset: -11px;
+  border: 1px solid rgba(37, 99, 235, 0.12);
+}
+
+.serv5-transform-core-mark::after {
+  top: 13px;
+  right: 17px;
+  width: 0.48rem;
+  height: 0.48rem;
+  background: #f28a30;
+  box-shadow: 0 0 0 5px rgba(242, 138, 48, 0.12);
+}
+
+.serv5-transform-core-mark img {
+  display: block;
+  width: 78px;
+  height: 78px;
+  object-fit: contain;
+}
+
+.serv5-transform-output {
+  display: grid;
+  justify-items: center;
+  gap: 0.38rem;
+  margin-top: 2.1rem;
+  text-align: center;
+}
+
+.serv5-transform-output strong {
+  color: #173454;
+  font-size: 0.82rem;
+  font-weight: 850;
+}
+
+.serv5-transform-output span {
+  color: #7b91a8;
+  font-family: var(--font-mono, monospace);
+  font-size: 0.48rem;
+  font-weight: 750;
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+}
+
+.serv5-transform-readout {
+  position: absolute;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #8195aa;
+  font-family: var(--font-mono, monospace);
+  font-size: 0.55rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+}
+
+.serv5-transform-readout i {
+  width: 0.4rem;
+  height: 0.4rem;
+  border-radius: 50%;
+  background: var(--transform-accent);
+}
+
+.readout-start { top: 8%; left: 5%; }
+.readout-end { right: 5%; bottom: 7%; }
+
+.serv5-transform-nodes { position: absolute; z-index: 5; inset: 0; }
+
+.serv5-transform-node {
+  position: absolute;
+  top: var(--node-y);
+  left: var(--node-x);
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: baseline;
+  gap: 0.48rem;
+  width: max-content;
+  max-width: 230px;
+  padding: 0.55rem 0.1rem;
+  border: 0;
+  border-bottom: 1px solid rgba(91, 123, 158, 0.24);
+  background: transparent;
+  color: #49627e;
+  text-align: start;
+  cursor: pointer;
+  transform: translate(-50%, -50%);
+  transition: color 0.25s ease, border-color 0.25s ease, letter-spacing 0.25s ease;
+}
+
+.serv5-transform-node:hover,
+.serv5-transform-node.is-selected {
+  border-color: var(--transform-accent);
+  color: #163f70;
+}
+
+.serv5-transform-node.is-selected { letter-spacing: 0.01em; }
+
+.serv5-transform-node-number {
+  color: #9aabc0;
+  font-family: var(--font-mono, monospace);
+  font-size: 0.58rem;
+  font-weight: 800;
+}
+
+.serv5-transform-node-title {
+  font-size: 0.82rem;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.serv5-transform-node-dot {
+  width: 0.34rem;
+  height: 0.34rem;
+  border: 1px solid #90a8c3;
+  border-radius: 50%;
+  background: #fff;
+  transition: background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.serv5-transform-node.is-selected .serv5-transform-node-dot {
+  border-color: var(--transform-accent);
+  background: var(--transform-accent);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--transform-accent) 14%, transparent);
+}
+
+.serv5-transmission-rail {
+  position: relative;
+  z-index: 6;
+  margin-top: -0.2rem;
+  padding: 1.1rem 1.2rem 0.65rem;
+  border-top: 1px solid rgba(37, 99, 235, 0.2);
+  background: linear-gradient(90deg, rgba(239, 246, 255, 0.8), rgba(255, 255, 255, 0.94) 45%, rgba(255, 247, 240, 0.72));
+}
+
+.serv5-transmission-heading {
+  display: flex;
+  align-items: baseline;
+  gap: 0.85rem;
+  margin-bottom: 0.85rem;
+}
+
+.serv5-transmission-index {
+  color: #8da1b8;
+  font-family: var(--font-mono, monospace);
+  font-size: 0.55rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+
+.serv5-transmission-heading strong { color: #173454; font-size: 0.87rem; font-weight: 850; }
+.serv5-transmission-service { margin-inline-start: auto; color: var(--transform-accent); font-size: 0.68rem; font-weight: 800; }
+
+.serv5-transmission-fields {
+  display: grid;
+  grid-template-columns: minmax(120px, 0.8fr) minmax(155px, 1fr) minmax(180px, 1.1fr) minmax(220px, 1.6fr) auto;
+  align-items: end;
+  gap: 0.8rem 1.15rem;
+}
+
+.serv5-transmission-fields label { display: grid; min-width: 0; gap: 0.35rem; }
+
+.serv5-transmission-fields label > span {
+  color: #8498ae;
+  font-family: var(--font-mono, monospace);
+  font-size: 0.55rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+}
+
+.serv5-transmission-fields input,
+.serv5-transmission-fields textarea {
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  padding: 0.35rem 0.1rem 0.55rem;
+  border: 0;
+  border-bottom: 1px solid #cbd8e7;
+  border-radius: 0;
+  outline: 0;
+  background: transparent;
+  color: #183957;
+  font: inherit;
+  font-size: 0.76rem;
+  line-height: 1.45;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.serv5-transmission-fields textarea { min-height: 2.1rem; max-height: 5rem; resize: vertical; }
+.serv5-transmission-fields input:focus,
+.serv5-transmission-fields textarea:focus { border-color: #2563eb; box-shadow: 0 2px 0 rgba(37, 99, 235, 0.14); }
+.serv5-transmission-fields input::placeholder,
+.serv5-transmission-fields textarea::placeholder { color: #9aaabd; }
+
+.serv5-transmission-submit {
+  display: inline-flex;
+  min-height: 2.75rem;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+  padding: 0 0.9rem;
+  border: 0;
+  border-radius: 0.75rem;
+  background: #2563eb;
+  color: #fff;
+  font: inherit;
+  font-size: 0.72rem;
+  font-weight: 850;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.serv5-transmission-submit:hover { transform: translateY(-2px); background: #1d4ed8; }
+.transmission-arrow { color: #ffbd83; font-size: 1rem; }
+
+.serv5-transmission-note {
+  margin: 0.65rem 0 0;
+  color: #8899ac;
+  font-size: 0.61rem;
+  text-align: end;
+}
+
+.serv5-machine-contact-rail {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem 1.25rem;
+  padding: 1.1rem 0.2rem;
+  border-bottom: 1px solid rgba(37, 99, 235, 0.16);
+  color: #627991;
+  font-size: 0.68rem;
+}
+
+.serv5-machine-contact-rail > a {
+  color: #315d8a;
+  font-weight: 750;
+  text-decoration: none;
+}
+
+.serv5-machine-contact-rail > a:hover { color: #e87928; }
+.serv5-machine-hours { margin-inline-start: auto; }
+.serv5-machine-location { flex-basis: 100%; }
+
+.serv5-machine-map { margin-top: 0.8rem; }
+
+.serv5-machine-map-label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.5rem 0.1rem;
+  color: #355575;
+  font-size: 0.7rem;
+}
+
+.serv5-machine-map-label a { color: #2563eb; font-weight: 750; text-decoration: none; }
+.serv5-machine-map iframe { display: block; width: 100%; height: 155px; border: 0; border-radius: 0.8rem; }
+
+.serv5-idea-machine :focus-visible { outline: 3px solid rgba(37, 99, 235, 0.35); outline-offset: 3px; }
+
+@media (max-width: 1100px) {
+  .serv5-machine-header { grid-template-columns: minmax(0, 1fr); gap: 0.65rem; }
+  .serv5-machine-header p { max-width: 600px; }
+  .serv5-transform-stage { min-height: 500px; }
+  .serv5-transform-node-title { font-size: 0.75rem; }
+  .serv5-transmission-fields { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .transmission-message { grid-column: span 2; }
+}
+
+@media (max-width: 760px) {
+  .serv5-idea-machine { padding-block: 3.8rem; }
+  .serv5-machine-header { margin-bottom: 1.4rem; }
+  .serv5-machine-header h2 { font-size: clamp(2rem, 9vw, 3.2rem); }
+  .serv5-machine-header h2 span { white-space: normal; }
+  .serv5-transform-stage {
+    display: flex;
+    min-height: 0;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 1.8rem 0.3rem 0.7rem;
+    overflow: visible;
+  }
+  .serv5-transform-atmosphere { width: min(85vw, 400px); }
+  .serv5-transform-wiring { display: none; }
+  .serv5-transform-core { position: relative; inset: auto; width: 210px; transform: none; }
+  .serv5-transform-core-mark { width: 116px; height: 116px; }
+  .serv5-transform-core-mark img { width: 67px; height: 67px; }
+  .serv5-transform-core-orbit { width: 145px; }
+  .core-orbit-two { top: -13px; width: 170px; }
+  .serv5-transform-output { margin-top: 1.6rem; }
+  .serv5-transform-nodes {
+    position: relative;
+    inset: auto;
+    display: grid;
+    width: 100%;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.2rem 1rem;
+  }
+  .serv5-transform-node {
+    position: relative;
+    top: auto !important;
+    left: auto !important;
+    width: 100%;
+    max-width: none;
+    min-height: 2.8rem;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    padding: 0.5rem 0.12rem;
+    transform: none;
+  }
+  .serv5-transform-node-title { font-size: 0.68rem; }
+  .serv5-transform-node-number { font-size: 0.52rem; }
+  .serv5-transform-node:last-child { grid-column: 1 / -1; }
+  .serv5-transform-readout { display: none; }
+  .serv5-transmission-rail { margin-top: 0.4rem; padding: 1rem 0.8rem 0.7rem; }
+  .serv5-transmission-heading { flex-wrap: wrap; gap: 0.4rem 0.7rem; }
+  .serv5-transmission-heading strong { font-size: 0.78rem; }
+  .serv5-transmission-service { flex-basis: 100%; margin-inline-start: 0; }
+  .serv5-transmission-fields { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.8rem; }
+  .transmission-message { grid-column: 1 / -1; }
+  .serv5-transmission-submit { grid-column: 1 / -1; }
+  .serv5-machine-hours { margin-inline-start: 0; }
+}
+
+@media (max-width: 430px) {
+  .serv5-transform-stage { padding-inline: 0; }
+  .serv5-transform-node-title { font-size: 0.62rem; }
+  .serv5-transform-output span { font-size: 0.42rem; }
+  .serv5-transmission-fields { grid-template-columns: minmax(0, 1fr); }
+  .transmission-message,
+  .serv5-transmission-submit { grid-column: auto; }
+  .serv5-machine-contact-rail { gap: 0.6rem 0.9rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .orbit-outer,
+  .core-orbit-one,
+  .core-orbit-two { animation: none !important; }
+}
+
+/* ----------------------------------------------------
    4. READY FOR LIFTOFF (LIGHT PALETTE WITH VIBRANT SYSTEM GRADIENT MIX)
    ---------------------------------------------------- */
 .serv5-liftoff-section {
