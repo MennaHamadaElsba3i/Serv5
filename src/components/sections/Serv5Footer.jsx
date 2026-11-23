@@ -16,7 +16,7 @@ export default function Serv5Footer({ onOpenConsultation, lang = 'ar' }) {
   ];
 
   return (
-    <footer className="serv5-footer-section" id="serv5-footer">
+    <footer className="serv5-footer-section" id="serv5-footer" data-home-scroll-section="footer">
       <div className="serv5-footer-container">
         <div className="serv5-footer-main">
           <div className="serv5-footer-brand">

@@ -11,7 +11,9 @@ import './styles/tailwind.css';
 import './styles/world.css';
 import './styles/hosting-lab.css';
 import './styles/serv5-revamped.css';
+import './styles/home-tail.css';
 import './styles/serv5-journal.css';
+import './styles/serv5-hello.css';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>

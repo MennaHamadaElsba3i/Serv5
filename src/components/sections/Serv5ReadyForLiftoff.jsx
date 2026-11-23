@@ -18,7 +18,11 @@ export default function Serv5ReadyForLiftoff({ onOpenConsultation, lang = 'ar' }
       ];
 
   return (
-    <section className="serv5-liftoff-section" id="ready-for-liftoff">
+    <section
+      className="serv5-liftoff-section"
+      id="ready-for-liftoff"
+      data-home-scroll-section="liftoff"
+    >
       <div className="serv5-liftoff-banner">
         <div
           className="absolute -top-32 -right-32 w-[620px] h-[620px] rounded-full pointer-events-none"

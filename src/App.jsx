@@ -41,6 +41,24 @@ export default function App() {
     document.documentElement.lang = lang;
   }, [lang]);
 
+  useEffect(() => {
+    if (!isHomePage || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    const root = document.querySelector('.home-scroll-motion');
+    const sections = root?.querySelectorAll('[data-home-scroll-section]');
+    if (!root || !sections?.length || !('IntersectionObserver' in window)) return;
+
+    root.classList.add('home-scroll-motion-ready');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        entry.target.classList.toggle('is-home-scroll-visible', entry.isIntersecting);
+      });
+    }, { threshold: 0.12 });
+
+    sections.forEach((section) => observer.observe(section));
+    return () => observer.disconnect();
+  }, [isHomePage]);
+
   const toggleLanguage = () => {
     setLang((prev) => (prev === 'ar' ? 'en' : 'ar'));
   };
@@ -81,7 +99,7 @@ export default function App() {
   }
 
   return (
-    <div className={`serv5-world-root ${lang === 'ar' ? 'dir-rtl' : 'dir-ltr'}`}>
+    <div className={`serv5-world-root home-scroll-motion ${lang === 'ar' ? 'dir-rtl' : 'dir-ltr'}`}>
       {/* CONTEXTUAL MAGNETIC & DYNAMIC ACTION CURSOR */}
       <Serv5ContextualCursor lang={lang} />
 
@@ -154,12 +172,16 @@ export default function App() {
         {/* 10. GET IN TOUCH / DIRECT CONTACT (Mansoura Coordinates from Serv5.eg) */}
         <Serv5GetInTouch onOpenConsultation={handleOpenConsultation} lang={lang} />
 
-        {/* 11. READY FOR LIFTOFF? (High-Energy CTA from Serv5.eg) */}
-        <Serv5ReadyForLiftoff onOpenConsultation={handleOpenConsultation} lang={lang} />
       </main>
 
-      {/* 12. COMPREHENSIVE SERV5 FOOTER */}
-      <Serv5Footer onOpenConsultation={handleOpenConsultation} lang={lang} />
+      {/* 11 + 12. TAIL STACK — THE CTA IS PINNED ON TOP WHILE THE FOOTER SLIDES OUT FROM UNDERNEATH IT */}
+      <div className="home-tail-stack">
+        {/* 11. READY FOR LIFTOFF? (High-Energy CTA from Serv5.eg) */}
+        <Serv5ReadyForLiftoff onOpenConsultation={handleOpenConsultation} lang={lang} />
+
+        {/* 12. COMPREHENSIVE SERV5 FOOTER */}
+        <Serv5Footer onOpenConsultation={handleOpenConsultation} lang={lang} />
+      </div>
 
       {/* STRATEGIC CONSULTATION MODAL */}
       <ProjectConsultationModal

@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import { AnimatePresence, motion } from 'framer-motion';
+import React, { useEffect, useState } from 'react';
 
 const headquarters = {
   name: 'SERV5 Mansoura Headquarters',
@@ -10,175 +9,270 @@ const headquarters = {
   phone: '00201288863831',
   email: 'sales@serv5.com',
   whatsapp: '201288863831',
-  hoursAr: 'السبت - الخميس: 9:00 ص - 6:00 م (الدعم الفني السحابي 24/7)',
-  hoursEn: 'Sat - Thu: 9:00 AM - 6:00 PM (Cloud NOC: 24/7/365)'
+  hoursAr: 'السبت - الخميس: 9:00 ص - 6:00 م',
+  hoursEn: 'Sat - Thu: 9:00 AM - 6:00 PM'
 };
 
-const solutions = [
-  { id: 'web', ar: 'موقع أو منصة ويب', en: 'Web platform', outputAr: 'واجهة · صفحات · تكامل', outputEn: 'INTERFACE · PAGES · INTEGRATION', point: [50, 9] },
-  { id: 'mobile', ar: 'تطبيق جوال', en: 'Mobile application', outputAr: 'شاشات · تفاعل · خدمات', outputEn: 'SCREENS · INTERACTION · SERVICES', point: [81, 28] },
-  { id: 'ecommerce', ar: 'تجارة إلكترونية', en: 'E-commerce', outputAr: 'منتجات · دفع · توصيل', outputEn: 'CATALOG · CHECKOUT · DELIVERY', point: [70, 88] },
-  { id: 'erp', ar: 'نظام إداري / ERP', en: 'Administrative system / ERP', outputAr: 'عمليات · بيانات · فروع', outputEn: 'OPERATIONS · DATA · BRANCHES', point: [30, 88] },
-  { id: 'custom', ar: 'برمجيات مخصصة', en: 'Custom software', outputAr: 'منطق · وحدات · ربط', outputEn: 'LOGIC · MODULES · CONNECTIONS', point: [19, 28] }
-];
+const examples = {
+  ar: ['متجر إلكتروني يبيع أونلاين', 'تطبيق لعملائي', 'موقع جديد لشركتي', 'نظام إداري لفروعي'],
+  en: ['An online store that sells', 'An app for my customers', 'A new website for my company', 'A system for my branches']
+};
 
-function TransformationMachine({ selectedSolution, setSelectedSolution, isRtl }) {
-  const selected = solutions.find(({ id }) => id === selectedSolution) || solutions[0];
-
-  return (
-    <div className={`serv5-transform-stage serv5-transform-${selectedSolution}`}>
-      <div className="serv5-transform-atmosphere" aria-hidden="true" />
-      <svg className="serv5-transform-wiring" viewBox="0 0 1000 500" preserveAspectRatio="none" aria-hidden="true">
-        <ellipse className="serv5-transform-orbit orbit-outer" cx="500" cy="250" rx="390" ry="198" />
-        <ellipse className="serv5-transform-orbit orbit-inner" cx="500" cy="250" rx="238" ry="122" />
-        {solutions.map((solution) => {
-          const [x, y] = solution.point;
-          const nodeX = x * 10;
-          const nodeY = y * 5;
-          return (
-            <path
-              key={solution.id}
-              className={`serv5-transform-wire ${selectedSolution === solution.id ? 'is-live' : ''}`}
-              d={`M500 250 C ${500 + (nodeX - 500) * 0.4} ${250 + (nodeY - 250) * 0.08}, ${nodeX} ${nodeY + (nodeY < 250 ? 25 : -25)}, ${nodeX} ${nodeY}`}
-            />
-          );
-        })}
-      </svg>
-
-      <div className="serv5-transform-core" role="group" aria-label={isRtl ? 'نواة سيرف فايف' : 'SERV5 transformation core'}>
-        <span className="serv5-transform-core-orbit core-orbit-one" aria-hidden="true" />
-        <span className="serv5-transform-core-orbit core-orbit-two" aria-hidden="true" />
-        <div className="serv5-transform-core-mark">
-          <img src="/serv5-official-logo.webp" alt="SERV5" />
-        </div>
-        <AnimatePresence mode="wait" initial={false}>
-          <motion.div
-            key={selected.id}
-            className="serv5-transform-output"
-            initial={{ opacity: 0, y: 8, filter: 'blur(4px)' }}
-            animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-            exit={{ opacity: 0, y: -5, filter: 'blur(4px)' }}
-            transition={{ duration: 0.24 }}
-          >
-            <strong>{isRtl ? selected.ar : selected.en}</strong>
-            <span>{isRtl ? selected.outputAr : selected.outputEn}</span>
-          </motion.div>
-        </AnimatePresence>
-      </div>
-
-      <div className="serv5-transform-readout readout-start" aria-hidden="true">{isRtl ? 'إشارة الفكرة' : 'IDEA SIGNAL'} <i /></div>
-      <div className="serv5-transform-readout readout-end" aria-hidden="true"><i /> {isRtl ? 'شكل رقمي' : 'DIGITAL FORM'}</div>
-
-      <div className="serv5-transform-nodes" role="group" aria-label={isRtl ? 'اختيار نوع الحل الرقمي' : 'Choose a digital solution'}>
-        {solutions.map((solution, index) => (
-          <button
-            key={solution.id}
-            type="button"
-            className={`serv5-transform-node node-${solution.id} ${selectedSolution === solution.id ? 'is-selected' : ''}`}
-            style={{ '--node-x': `${solution.point[0]}%`, '--node-y': `${solution.point[1]}%` }}
-            onClick={() => setSelectedSolution(solution.id)}
-            aria-pressed={selectedSolution === solution.id}
-          >
-            <span className="serv5-transform-node-number">0{index + 1}</span>
-            <span className="serv5-transform-node-title">{isRtl ? solution.ar : solution.en}</span>
-            <span className="serv5-transform-node-dot" aria-hidden="true" />
-          </button>
-        ))}
-      </div>
-    </div>
-  );
-}
+const copy = {
+  ar: {
+    eyebrow: 'الخطوة الأخيرة',
+    title: 'فكرتك في سطر واحد.',
+    titleAccent: 'والباقي علينا.',
+    intro: 'مش محتاج بريف ولا عرض تقديمي. اكتب السطر، ابعت، ونتكلم.',
+    chatName: 'فريق SERV5',
+    chatSub: 'بنرد خلال 24 ساعة عمل',
+    online: 'متاحين الآن',
+    greeting: 'إيه الفكرة اللي في دماغك؟ سطر واحد يكفي 👇',
+    ideaLabel: 'الفكرة',
+    ideaPlaceholder: 'مثال: ',
+    nameLabel: 'اسمك',
+    namePlaceholder: 'اسمك',
+    phoneLabel: 'رقمك / واتساب',
+    meterEmpty: 'فاضل 3 خانات وخلاص',
+    meterOne: 'فاضل خانتين',
+    meterTwo: 'فاضلة خانة واحدة',
+    meterReady: 'تمام، الرسالة جاهزة',
+    send: 'ابعت الفكرة',
+    note: 'هيفتح واتساب برسالة جاهزة تراجعها قبل الإرسال.',
+    previewLabel: 'هتتبعت كده على واتساب',
+    sent: 'فتحنا واتساب برسالتك ✅',
+    sentFallback: 'لو مقفول، افتح الرابط ده',
+    sideTitle: 'أو كلّمنا مباشرة',
+    call: 'اتصال',
+    whatsapp: 'واتساب',
+    email: 'إيميل',
+    hours: 'مواعيد العمل',
+    location: 'المقر الرئيسي — المنصورة',
+    directions: 'الاتجاهات'
+  },
+  en: {
+    eyebrow: 'ONE LAST STEP',
+    title: 'Your idea in one line.',
+    titleAccent: 'We handle the rest.',
+    intro: 'No brief, no deck. Write the line, send it, and we talk.',
+    chatName: 'SERV5 team',
+    chatSub: 'We reply within 24 business hours',
+    online: 'Online now',
+    greeting: 'What is the idea in your head? One line is enough 👇',
+    ideaLabel: 'The idea',
+    ideaPlaceholder: 'e.g. ',
+    nameLabel: 'Your name',
+    namePlaceholder: 'Your name',
+    phoneLabel: 'Phone / WhatsApp',
+    meterEmpty: '3 boxes left, that’s it',
+    meterOne: '2 boxes left',
+    meterTwo: '1 box left',
+    meterReady: 'All set, your message is ready',
+    send: 'Send the idea',
+    note: 'WhatsApp opens with a prepared message you review first.',
+    previewLabel: 'This is what gets sent on WhatsApp',
+    sent: 'WhatsApp opened with your message ✅',
+    sentFallback: 'If it did not open, use this link',
+    sideTitle: 'Or talk to us directly',
+    call: 'Call',
+    whatsapp: 'WhatsApp',
+    email: 'Email',
+    hours: 'Working hours',
+    location: 'Headquarters — Mansoura',
+    directions: 'Directions'
+  }
+};
 
 export default function Serv5GetInTouch({ lang = 'ar' }) {
   const isRtl = lang === 'ar';
-  const [selectedSolution, setSelectedSolution] = useState('web');
-  const [formData, setFormData] = useState({ name: '', phone: '', email: '', message: '' });
-  const selected = solutions.find(({ id }) => id === selectedSolution) || solutions[0];
+  const t = copy[isRtl ? 'ar' : 'en'];
+  const list = examples[isRtl ? 'ar' : 'en'];
 
-  const updateForm = (key, value) => setFormData((current) => ({ ...current, [key]: value }));
+  const [form, setForm] = useState({ idea: '', name: '', phone: '' });
+  const [exampleIndex, setExampleIndex] = useState(0);
+  const [sentLink, setSentLink] = useState('');
+
+  useEffect(() => {
+    if (form.idea.trim()) return undefined;
+    const timer = window.setInterval(() => {
+      setExampleIndex((index) => (index + 1) % list.length);
+    }, 2800);
+    return () => window.clearInterval(timer);
+  }, [form.idea, list.length]);
+
+  const updateField = (key, value) => setForm((current) => ({ ...current, [key]: value }));
+
+  const checks = [Boolean(form.idea.trim()), Boolean(form.name.trim()), Boolean(form.phone.trim())];
+  const filled = checks.filter(Boolean).length;
+  const ready = filled === checks.length;
+
+  const buildMessage = () => [
+    isRtl ? 'مرحبًا SERV5 👋' : 'Hello SERV5 👋',
+    isRtl ? `أنا ${form.name.trim()}.` : `I am ${form.name.trim()}.`,
+    isRtl ? `فكرتي: ${form.idea.trim()}` : `My idea: ${form.idea.trim()}`,
+    isRtl ? `رقمي: ${form.phone.trim()}` : `My number: ${form.phone.trim()}`
+  ].join('\n');
+
+  const whatsappLink = `https://wa.me/${headquarters.whatsapp}?text=${encodeURIComponent(buildMessage())}`;
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const summary = [
-      isRtl ? 'مرحباً SERV5، أود مناقشة مشروع رقمي.' : 'Hello SERV5, I would like to discuss a digital project.',
-      `${isRtl ? 'نوع الحل' : 'Solution'}: ${isRtl ? selected.ar : selected.en}`,
-      `${isRtl ? 'الاسم' : 'Name'}: ${formData.name}`,
-      `${isRtl ? 'الهاتف' : 'Phone'}: ${formData.phone}`,
-      `${isRtl ? 'البريد الإلكتروني' : 'Email'}: ${formData.email}`,
-      `${isRtl ? 'وصف المشروع' : 'Project brief'}: ${formData.message}`
-    ].join('\n');
-
-    window.open(`https://wa.me/${headquarters.whatsapp}?text=${encodeURIComponent(summary)}`, '_blank', 'noopener,noreferrer');
+    if (!ready) return;
+    window.open(whatsappLink, '_blank', 'noopener,noreferrer');
+    setSentLink(whatsappLink);
   };
 
+  const meterText = ready
+    ? t.meterReady
+    : filled === 0
+      ? t.meterEmpty
+      : filled === 1
+        ? t.meterOne
+        : t.meterTwo;
+
   return (
-    <section className="serv5-revamped-section serv5-contact-section serv5-idea-machine" id="contact" dir={isRtl ? 'rtl' : 'ltr'}>
+    <section className="serv5-revamped-section serv5-hello-section" id="contact" dir={isRtl ? 'rtl' : 'ltr'}>
       <div className="serv5-container">
-        <motion.header
-          className="serv5-machine-header"
-          initial={{ opacity: 0, y: 18 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.55, ease: 'easeOut' }}
-        >
-          <span className="serv5-machine-eyebrow"><span />{isRtl ? 'من الفكرة إلى التنفيذ' : 'IDEA IN / DIGITAL SOLUTION OUT'}</span>
-          <h2>{isRtl ? 'كل فكرة لها شكلها.' : 'Every idea has a shape.'} <span>{isRtl ? 'خلّينا نكتشفه.' : 'Let’s find it.'}</span></h2>
-          <p>{isRtl ? 'اختار نوع الحل. شاهد ملامحه تتجمع حول نواة واحدة، ثم أرسل لنا إشارتك.' : 'Choose a solution. Watch its pieces gather around one core, then send us your signal.'}</p>
-        </motion.header>
+        <header className="serv5-hello-header">
+          <span className="serv5-hello-eyebrow">{t.eyebrow}</span>
+          <h2 className="serv5-hello-title">
+            {t.title} <span>{t.titleAccent}</span>
+          </h2>
+          <p>{t.intro}</p>
+        </header>
 
-        <motion.div
-          className="serv5-machine-universe"
-          initial={{ opacity: 0, scale: 0.985 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true, amount: 0.12 }}
-          transition={{ duration: 0.65, ease: 'easeOut' }}
-        >
-          <TransformationMachine selectedSolution={selectedSolution} setSelectedSolution={setSelectedSolution} isRtl={isRtl} />
-
-          <form className="serv5-transmission-rail" onSubmit={handleSubmit}>
-            <div className="serv5-transmission-heading">
-              <span className="serv5-transmission-index">TRANSMISSION / 01</span>
-              <strong>{isRtl ? 'أرسل الفكرة إلى النواة' : 'Send your idea into the system'}</strong>
-              <span className="serv5-transmission-service">{isRtl ? selected.ar : selected.en}</span>
+        <div className="serv5-hello-grid">
+          {/* ONE CARD · THREE BOXES · ONE BUTTON */}
+          <div className="serv5-hello-chat">
+            <div className="serv5-hello-chat-top">
+              <span className="serv5-hello-avatar">
+                <img src="/serv5-official-logo.webp" alt="SERV5" />
+              </span>
+              <span className="serv5-hello-chat-id">
+                <strong>{t.chatName}</strong>
+                <small>{t.chatSub}</small>
+              </span>
+              <span className="serv5-hello-live"><i aria-hidden="true" />{t.online}</span>
             </div>
 
-            <div className="serv5-transmission-fields">
-              <label>
-                <span>{isRtl ? 'الاسم' : 'NAME'}</span>
-                <input type="text" autoComplete="name" required value={formData.name} onChange={(event) => updateForm('name', event.target.value)} placeholder={isRtl ? 'اسمك' : 'Your name'} />
+            <form className="serv5-hello-body" onSubmit={handleSubmit}>
+              <p className="serv5-hello-greeting">{t.greeting}</p>
+
+              <label className={`serv5-hello-field serv5-hello-field-idea ${checks[0] ? 'is-ready' : ''}`}>
+                <span className="serv5-hello-field-label">
+                  <i className="serv5-hello-tick" aria-hidden="true" />
+                  {t.ideaLabel}
+                </span>
+                <textarea
+                  rows={2}
+                  required
+                  value={form.idea}
+                  onChange={(event) => updateField('idea', event.target.value)}
+                  placeholder={`${t.ideaPlaceholder}${list[exampleIndex]}`}
+                />
               </label>
-              <label>
-                <span>{isRtl ? 'الهاتف / واتساب' : 'PHONE / WHATSAPP'}</span>
-                <input type="tel" dir="ltr" autoComplete="tel" required value={formData.phone} onChange={(event) => updateForm('phone', event.target.value)} placeholder="+20 1XX XXX XXXX" />
-              </label>
-              <label>
-                <span>{isRtl ? 'البريد الإلكتروني' : 'EMAIL'}</span>
-                <input type="email" dir="ltr" autoComplete="email" required value={formData.email} onChange={(event) => updateForm('email', event.target.value)} placeholder="you@company.com" />
-              </label>
-              <label className="transmission-message">
-                <span>{isRtl ? 'وصف الفكرة' : 'THE IDEA'}</span>
-                <textarea required rows={2} value={formData.message} onChange={(event) => updateForm('message', event.target.value)} placeholder={isRtl ? 'ما الذي تريد أن ينجزه الحل؟' : 'What do you want this solution to make possible?'} />
-              </label>
-              <button type="submit" className="serv5-transmission-submit">
-                <span>{isRtl ? 'تابع إلى واتساب' : 'Continue to WhatsApp'}</span>
-                <span className="transmission-arrow" aria-hidden="true">↗</span>
+
+              <div className="serv5-hello-row">
+                <label className={`serv5-hello-field ${checks[1] ? 'is-ready' : ''}`}>
+                  <span className="serv5-hello-field-label">
+                    <i className="serv5-hello-tick" aria-hidden="true" />
+                    {t.nameLabel}
+                  </span>
+                  <input
+                    type="text"
+                    required
+                    autoComplete="name"
+                    value={form.name}
+                    onChange={(event) => updateField('name', event.target.value)}
+                    placeholder={t.namePlaceholder}
+                  />
+                </label>
+
+                <label className={`serv5-hello-field ${checks[2] ? 'is-ready' : ''}`}>
+                  <span className="serv5-hello-field-label">
+                    <i className="serv5-hello-tick" aria-hidden="true" />
+                    {t.phoneLabel}
+                  </span>
+                  <input
+                    type="tel"
+                    required
+                    dir="ltr"
+                    autoComplete="tel"
+                    value={form.phone}
+                    onChange={(event) => updateField('phone', event.target.value)}
+                    placeholder="+20 1XX XXX XXXX"
+                  />
+                </label>
+              </div>
+
+              {form.idea.trim() && (
+                <div className="serv5-hello-preview">
+                  <small>{t.previewLabel}</small>
+                  <span>{form.idea.trim()}</span>
+                </div>
+              )}
+
+              <div className="serv5-hello-meter">
+                <span className="serv5-hello-meter-track" aria-hidden="true">
+                  <span style={{ width: `${(filled / checks.length) * 100}%` }} />
+                </span>
+                <span className="serv5-hello-meter-text" aria-live="polite">{meterText}</span>
+              </div>
+
+              <button type="submit" className="serv5-hello-send" disabled={!ready}>
+                <span>{t.send}</span>
+                <i aria-hidden="true">↗</i>
               </button>
+
+              <p className="serv5-hello-note">{t.note}</p>
+
+              {sentLink && (
+                <div className="serv5-hello-sent" role="status">
+                  <strong>{t.sent}</strong>
+                  <a href={sentLink} target="_blank" rel="noopener noreferrer">{t.sentFallback}</a>
+                </div>
+              )}
+            </form>
+          </div>
+
+          {/* DIRECT LINES + MAP */}
+          <aside className="serv5-hello-side">
+            <div className="serv5-hello-side-card">
+              <strong className="serv5-hello-side-title">{t.sideTitle}</strong>
+
+              <a className="serv5-hello-side-link" href={`tel:${headquarters.phone}`}>
+                <span className="serv5-hello-side-tag">{t.call}</span>
+                <span dir="ltr">{headquarters.phone}</span>
+              </a>
+              <a className="serv5-hello-side-link" href={`https://wa.me/${headquarters.whatsapp}`} target="_blank" rel="noopener noreferrer">
+                <span className="serv5-hello-side-tag">{t.whatsapp}</span>
+                <span dir="ltr">+20 128 886 3831</span>
+              </a>
+              <a className="serv5-hello-side-link" href={`mailto:${headquarters.email}`}>
+                <span className="serv5-hello-side-tag">{t.email}</span>
+                <span dir="ltr">{headquarters.email}</span>
+              </a>
+
+              <p className="serv5-hello-side-hours">
+                <span>{t.hours}</span>
+                {isRtl ? headquarters.hoursAr : headquarters.hoursEn}
+              </p>
             </div>
-            <p className="serv5-transmission-note">{isRtl ? 'يفتح واتساب برسالة جاهزة لمراجعتها وإرسالها.' : 'WhatsApp opens with a prepared message for you to review and send.'}</p>
-          </form>
-        </motion.div>
 
-        <div className="serv5-machine-contact-rail">
-          <a href={`tel:${headquarters.phone}`}><span dir="ltr">{headquarters.phone}</span></a>
-          <a href={`mailto:${headquarters.email}`}>{headquarters.email}</a>
-          <a href={`https://wa.me/${headquarters.whatsapp}`} target="_blank" rel="noopener noreferrer">WhatsApp</a>
-          <span className="serv5-machine-hours">{isRtl ? headquarters.hoursAr : headquarters.hoursEn}</span>
-          <a className="serv5-machine-location" href={headquarters.directionsUrl} target="_blank" rel="noopener noreferrer">{isRtl ? headquarters.addressAr : headquarters.address}</a>
-        </div>
-
-        <div className="serv5-machine-map">
-          <div className="serv5-machine-map-label"><strong>{isRtl ? 'المقر الرئيسي — المنصورة' : headquarters.name}</strong><a href={headquarters.directionsUrl} target="_blank" rel="noopener noreferrer">{isRtl ? 'الاتجاهات' : 'Directions'} ↗</a></div>
-          <iframe src={headquarters.googleMapsUrl} title={headquarters.name} loading="lazy" referrerPolicy="no-referrer-when-downgrade" allowFullScreen />
+            <div className="serv5-hello-map">
+              <div className="serv5-hello-map-head">
+                <strong>{t.location}</strong>
+                <a href={headquarters.directionsUrl} target="_blank" rel="noopener noreferrer">{t.directions} ↗</a>
+              </div>
+              <iframe
+                src={headquarters.googleMapsUrl}
+                title={headquarters.name}
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                allowFullScreen
+              />
+            </div>
+          </aside>
         </div>
       </div>
     </section>

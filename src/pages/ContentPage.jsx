@@ -23,9 +23,6 @@ import NewestPostsSection from '../components/sections/NewestPostsSection';
 import Serv5NewestPosts from '../components/sections/Serv5NewestPosts';
 import Serv5ProductsShowcase from '../components/sections/Serv5ProductsShowcase';
 import Serv5GetInTouch from '../components/sections/Serv5GetInTouch';
-import HostingTerminal from '../components/hosting/HostingTerminal';
-import MigrationLab from '../components/hosting/MigrationLab';
-import PlanConfigurator from '../components/hosting/PlanConfigurator';
 import TiltCard from '../components/hosting/TiltCard';
 
 const servicePages = {
@@ -105,7 +102,6 @@ function SimplePage({ isRtl, title, description, sections }) {
 function HostingPage({ isRtl, onOpenConsultation }) {
   const pageRef = useRef(null);
   const [eggOpen, setEggOpen] = useState(false);
-  const [recommendedPlanId, setRecommendedPlanId] = useState('starter');
   const eggClicks = useRef(0);
   const eggTimer = useRef(null);
 
@@ -173,49 +169,43 @@ function HostingPage({ isRtl, onOpenConsultation }) {
   const plans = isRtl
     ? [
       {
-        id: 'starter',
         name: 'الباقة السحابية للمبتدئين',
         audience: 'مثالية للمدونات والمواقع التعريفية الناشئة',
         price: '39',
         features: ['10 جيجابايت NVMe', 'استضافة موقع واحد', 'شهادة SSL مجانية', '10 حسابات بريد إلكتروني', 'دومين مجاني للسنة الأولى', 'لوحة تحكم cPanel قياسية']
       },
       {
-        id: 'professional',
         name: 'باقة الشركات الاحترافية',
         audience: 'للشركات المتوسطة والمتاجر الإلكترونية النامية',
         price: '119',
+        featured: true,
         features: ['50 جيجابايت NVMe', 'استضافة حتى 5 مواقع', 'نسخ احتياطي يومي (الاحتفاظ 15 يومًا)', 'قواعد بيانات وحسابات بريد غير محدودة', 'دومين مجاني وعنوان مخصص', 'تسريع LiteSpeed الذكي', 'دعم فني ذو أولوية']
       },
       {
-        id: 'enterprise',
         name: 'باقة النخبة للمؤسسات الكبرى',
         audience: 'للتطبيقات والمنصات ذات الحركة العالية والملفات الكبيرة',
         price: '289',
-        featured: true,
         features: ['مساحة تخزين NVMe غير محدودة', 'استضافة عدد غير محدود من المواقع', 'نسخ احتياطي لقواعد البيانات كل ساعة', 'جدار حماية متقدم مخصص للخادم', 'نقل مجاني بالكامل وبشكل آمن', 'مدير حساب مخصص لمشروعك', 'دعم فني لكبار الشخصيات 24/7']
       }
     ]
     : [
       {
-        id: 'starter',
         name: 'Starter Cloud Hosting',
         audience: 'Ideal for blogs and early-stage business websites',
         price: '39',
         features: ['10 GB NVMe storage', 'Host one website', 'Free SSL certificate', '10 email accounts', 'Free domain for your first year', 'Standard cPanel control panel']
       },
       {
-        id: 'professional',
         name: 'Professional Business Hosting',
         audience: 'For growing businesses and online stores',
         price: '119',
+        featured: true,
         features: ['50 GB NVMe storage', 'Host up to 5 websites', 'Daily backups with 15-day retention', 'Unlimited databases and email accounts', 'Free domain and dedicated IP address', 'Smart LiteSpeed caching', 'Priority technical support']
       },
       {
-        id: 'enterprise',
         name: 'Enterprise Hosting',
         audience: 'For high-traffic applications and platforms with large files',
         price: '289',
-        featured: true,
         features: ['Unlimited NVMe storage', 'Host unlimited websites', 'Hourly database backups', 'Advanced firewall protection for your server', 'Free, secure website migration', 'Dedicated account manager', '24/7 priority technical support']
       }
     ];
@@ -250,7 +240,7 @@ function HostingPage({ isRtl, onOpenConsultation }) {
 
   return (
     <div className="hosting-page" dir={isRtl ? 'rtl' : 'ltr'} ref={pageRef}>
-      <section className="hosting-hero">
+      <section className="hosting-hero hosting-reveal" data-hosting-reveal>
         <div className="container hosting-hero-grid">
           <div className="hosting-hero-copy hosting-reveal" data-hosting-reveal>
             <span className="hosting-eyebrow">
@@ -284,24 +274,24 @@ function HostingPage({ isRtl, onOpenConsultation }) {
                   </p>
                 </div>
               )}
-              <div
+              <TiltCard
+                as="div"
                 className="hosting-server-card"
                 onClick={handleEggClick}
                 title={isRtl ? 'الخادم يعمل' : 'Server online'}
               >
-              <div className="hosting-server-card-top">
-                <span className="hosting-server-symbol"><Server size={19} /></span>
-                <span className="hosting-live-status"><i />{isRtl ? 'الخادم يعمل' : 'SERVER ONLINE'}</span>
-              </div>
-              <div className="hosting-uptime-value">99.9<span>%</span></div>
-              <p>{isRtl ? 'جاهزية واستقرار مستمر' : 'uptime and reliability'}</p>
-              <div className="hosting-pulse-chart"><i /><i /><i /><i /><i /><i /><i /><i /><i /><i /><i /><i /></div>
-              <div className="hosting-server-meta">
-                <span><HardDrive size={14} />NVMe SSD</span>
-                <span><LockKeyhole size={14} />{isRtl ? 'محمي' : 'SECURE'}</span>
-              </div>
-              </div>
-              <HostingTerminal />
+                <div className="hosting-server-card-top">
+                  <span className="hosting-server-symbol"><Server size={19} /></span>
+                  <span className="hosting-live-status"><i />{isRtl ? 'الخادم يعمل' : 'SERVER ONLINE'}</span>
+                </div>
+                <div className="hosting-uptime-value">99.9<span>%</span></div>
+                <p>{isRtl ? 'جاهزية واستقرار مستمر' : 'uptime and reliability'}</p>
+                <div className="hosting-pulse-chart"><i /><i /><i /><i /><i /><i /><i /><i /><i /><i /><i /><i /></div>
+                <div className="hosting-server-meta">
+                  <span><HardDrive size={14} />NVMe SSD</span>
+                  <span><LockKeyhole size={14} />{isRtl ? 'محمي' : 'SECURE'}</span>
+                </div>
+              </TiltCard>
             </div>
             <span className="hosting-float-chip hosting-float-chip-top"><Zap size={15} />{isRtl ? 'سرعة فائقة' : 'HIGH SPEED'}</span>
             <span className="hosting-float-chip hosting-float-chip-bottom"><BadgeCheck size={15} />{isRtl ? 'أمان مستمر' : 'ALWAYS SECURE'}</span>
@@ -309,7 +299,7 @@ function HostingPage({ isRtl, onOpenConsultation }) {
         </div>
       </section>
 
-      <section className="hosting-benefits-section">
+      <section className="hosting-benefits-section hosting-reveal" data-hosting-reveal>
         <div className="container">
           <header className="hosting-section-heading hosting-reveal" data-hosting-reveal>
             <span>{isRtl ? 'مصممة لأداء يعتمد عليه' : 'BUILT FOR RELIABLE PERFORMANCE'}</span>
@@ -332,31 +322,21 @@ function HostingPage({ isRtl, onOpenConsultation }) {
         </div>
       </section>
 
-      <section className="hosting-plan-section">
+      <section className="hosting-plan-section hosting-reveal" data-hosting-reveal>
         <div className="container">
           <header className="hosting-section-heading hosting-reveal" data-hosting-reveal>
             <span>{isRtl ? 'باقات واضحة تناسب احتياجك' : 'SIMPLE PLANS, CLEAR CHOICES'}</span>
             <h2>{isRtl ? 'اختر باقة الاستضافة المثالية لأعمالك' : 'Find the right hosting plan for your business'}</h2>
           </header>
-          <PlanConfigurator
-            lang={isRtl ? 'ar' : 'en'}
-            plans={plans}
-            onChange={setRecommendedPlanId}
-          />
           <div className="hosting-plan-layout">
             {plans.map((plan, index) => (
               <TiltCard
                 as="article"
-                className={`hosting-plan-card hosting-reveal${plan.featured ? ' is-featured' : ''}${plan.id === recommendedPlanId ? ' is-recommended' : ''}`}
+                className={`hosting-plan-card hosting-reveal${plan.featured ? ' is-featured' : ''}`}
                 data-hosting-reveal
                 style={{ '--hosting-delay': `${index * 100}ms` }}
                 key={plan.name}
               >
-                {plan.id === recommendedPlanId && (
-                  <span className="hosting-plan-recommended-flag">
-                    {isRtl ? 'مناسبة لاحتياجك' : 'FITS YOUR NEEDS'}
-                  </span>
-                )}
                 {plan.featured && (
                   <span className="hosting-plan-badge">
                     {isRtl ? 'الأكثر شيوعًا' : 'MOST POPULAR'}
@@ -388,9 +368,8 @@ function HostingPage({ isRtl, onOpenConsultation }) {
         </div>
       </section>
 
-      <section className="hosting-migration-section">
+      <section className="hosting-migration-section hosting-reveal" data-hosting-reveal>
         <div className="container hosting-migration-grid">
-          <MigrationLab lang={isRtl ? 'ar' : 'en'} />
           <div className="hosting-migration-copy hosting-reveal" data-hosting-reveal>
             <span className="hosting-eyebrow">{isRtl ? 'نقل آمن ومجاني' : 'FREE, SECURE WEBSITE MIGRATION'}</span>
             <h2>{isRtl ? 'انقل موقعك إلينا بكل سهولة وبدون أي توقف' : 'Move your website to SERV5—without downtime'}</h2>
@@ -400,8 +379,15 @@ function HostingPage({ isRtl, onOpenConsultation }) {
                 : 'Already hosting your website elsewhere? Our team will migrate your files, databases and settings while keeping your site online throughout the process.'}
             </p>
             <ul className="hosting-migration-list">
-              {migrationSteps.map((step) => (
-                <li key={step}><Check size={16} />{step}</li>
+              {migrationSteps.map((step, index) => (
+                <li
+                  className="hosting-reveal"
+                  data-hosting-reveal
+                  style={{ '--hosting-delay': `${index * 75}ms` }}
+                  key={step}
+                >
+                  <Check size={16} />{step}
+                </li>
               ))}
             </ul>
             <button type="button" className="hosting-primary-action" onClick={() => onOpenConsultation(isRtl ? 'طلب نقل موقع للاستضافة' : 'Request Website Migration')}>
@@ -412,7 +398,7 @@ function HostingPage({ isRtl, onOpenConsultation }) {
         </div>
       </section>
 
-      <section className="hosting-trust-section">
+      <section className="hosting-trust-section hosting-reveal" data-hosting-reveal>
         <div className="container">
           <header className="hosting-section-heading hosting-trust-heading hosting-reveal" data-hosting-reveal>
             <span>{isRtl ? 'أمان وسرعة ودعم مستمر' : 'SECURITY, SPEED AND SUPPORT'}</span>
