@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import Navbar from './components/layout/Navbar';
 import HeroSection from './components/sections/HeroSection';
 
@@ -10,6 +11,7 @@ import Serv5Testimonials from './components/sections/Serv5Testimonials';
 import Serv5GetInTouch from './components/sections/Serv5GetInTouch';
 import Serv5ReadyForLiftoff from './components/sections/Serv5ReadyForLiftoff';
 import Serv5Footer from './components/sections/Serv5Footer';
+import ContentPage from './pages/ContentPage';
 import ProjectConsultationModal from './components/modals/ProjectConsultationModal';
 import RobotMascotGuide from './components/mascot/RobotMascotGuide';
 import Serv5KineticIntro from './components/intro/Serv5KineticIntro';
@@ -17,6 +19,8 @@ import Serv5ContextualCursor from './components/ui/Serv5ContextualCursor';
 import { Play } from 'lucide-react';
 
 export default function App() {
+  const location = useLocation();
+  const isHomePage = location.pathname === '/' || location.pathname === '';
   const [lang, setLang] = useState('ar');
   const [modalOpen, setModalOpen] = useState(false);
   const [modalSubject, setModalSubject] = useState('General Consultation');
@@ -49,6 +53,32 @@ export default function App() {
   const handleCloseConsultation = () => {
     setModalOpen(false);
   };
+
+  if (!isHomePage) {
+    return (
+      <div className={`serv5-world-root ${lang === 'ar' ? 'dir-rtl' : 'dir-ltr'}`}>
+        <Serv5ContextualCursor lang={lang} />
+        <Navbar
+          onOpenConsultation={handleOpenConsultation}
+          lang={lang}
+          onToggleLang={toggleLanguage}
+        />
+        <main className="world-main-content content-page-main">
+          <ContentPage
+            pathname={location.pathname}
+            lang={lang}
+            onOpenConsultation={handleOpenConsultation}
+          />
+        </main>
+        <Serv5Footer onOpenConsultation={handleOpenConsultation} lang={lang} />
+        <ProjectConsultationModal
+          isOpen={modalOpen}
+          onClose={handleCloseConsultation}
+          initialSubject={modalSubject}
+        />
+      </div>
+    );
+  }
 
   return (
     <div className={`serv5-world-root ${lang === 'ar' ? 'dir-rtl' : 'dir-ltr'}`}>
