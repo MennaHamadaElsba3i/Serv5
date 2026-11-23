@@ -23,6 +23,7 @@ import NewestPostsSection from '../components/sections/NewestPostsSection';
 import Serv5NewestPosts from '../components/sections/Serv5NewestPosts';
 import Serv5ProductsShowcase from '../components/sections/Serv5ProductsShowcase';
 import Serv5GetInTouch from '../components/sections/Serv5GetInTouch';
+import Serv5WebDesignPage from '../components/pages/Serv5WebDesignPage';
 import TiltCard from '../components/hosting/TiltCard';
 
 const servicePages = {
@@ -430,7 +431,9 @@ export default function ContentPage({ pathname, lang = 'ar', onOpenConsultation 
   useEffect(() => {
     const pageTitle = pathname === '/services/web-hosting'
       ? (isRtl ? 'استضافة المواقع' : 'Web Hosting')
-      : pathname;
+      : pathname === '/services/web-design'
+        ? (isRtl ? 'تصميم المواقع' : 'Web Design')
+        : pathname;
     document.title = `${isRtl ? 'سيرف فايف' : 'SERV5'} | ${pageTitle}`;
   }, [pathname, isRtl]);
 
@@ -543,6 +546,9 @@ export default function ContentPage({ pathname, lang = 'ar', onOpenConsultation 
     const slug = pathname.split('/')[2];
     if (slug === 'web-hosting') {
       return <HostingPage isRtl={isRtl} onOpenConsultation={onOpenConsultation} />;
+    }
+    if (slug === 'web-design') {
+      return <Serv5WebDesignPage lang={lang} onOpenConsultation={onOpenConsultation} />;
     }
     if (slug && servicePages[slug]) {
       const content = servicePages[slug][isRtl ? 'ar' : 'en'];
