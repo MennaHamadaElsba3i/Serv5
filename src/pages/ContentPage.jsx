@@ -1,8 +1,7 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import {
   Activity,
-  ArrowLeftRight,
   ArrowUpRight,
   BadgeCheck,
   Check,
@@ -24,6 +23,10 @@ import NewestPostsSection from '../components/sections/NewestPostsSection';
 import Serv5NewestPosts from '../components/sections/Serv5NewestPosts';
 import Serv5ProductsShowcase from '../components/sections/Serv5ProductsShowcase';
 import Serv5GetInTouch from '../components/sections/Serv5GetInTouch';
+import HostingTerminal from '../components/hosting/HostingTerminal';
+import MigrationLab from '../components/hosting/MigrationLab';
+import PlanConfigurator from '../components/hosting/PlanConfigurator';
+import TiltCard from '../components/hosting/TiltCard';
 
 const servicePages = {
   'web-hosting': {
@@ -101,6 +104,27 @@ function SimplePage({ isRtl, title, description, sections }) {
 
 function HostingPage({ isRtl, onOpenConsultation }) {
   const pageRef = useRef(null);
+  const [eggOpen, setEggOpen] = useState(false);
+  const [recommendedPlanId, setRecommendedPlanId] = useState('starter');
+  const eggClicks = useRef(0);
+  const eggTimer = useRef(null);
+
+  useEffect(() => () => clearTimeout(eggTimer.current), []);
+
+  // Easter egg: three quick taps on the server card wakes the mascot up.
+  const handleEggClick = () => {
+    eggClicks.current += 1;
+    clearTimeout(eggTimer.current);
+
+    if (eggClicks.current < 3) {
+      eggTimer.current = setTimeout(() => { eggClicks.current = 0; }, 1100);
+      return;
+    }
+
+    eggClicks.current = 0;
+    setEggOpen(true);
+    eggTimer.current = setTimeout(() => setEggOpen(false), 7000);
+  };
 
   useEffect(() => {
     const page = pageRef.current;
@@ -149,18 +173,21 @@ function HostingPage({ isRtl, onOpenConsultation }) {
   const plans = isRtl
     ? [
       {
+        id: 'starter',
         name: 'الباقة السحابية للمبتدئين',
         audience: 'مثالية للمدونات والمواقع التعريفية الناشئة',
         price: '39',
         features: ['10 جيجابايت NVMe', 'استضافة موقع واحد', 'شهادة SSL مجانية', '10 حسابات بريد إلكتروني', 'دومين مجاني للسنة الأولى', 'لوحة تحكم cPanel قياسية']
       },
       {
+        id: 'professional',
         name: 'باقة الشركات الاحترافية',
         audience: 'للشركات المتوسطة والمتاجر الإلكترونية النامية',
         price: '119',
         features: ['50 جيجابايت NVMe', 'استضافة حتى 5 مواقع', 'نسخ احتياطي يومي (الاحتفاظ 15 يومًا)', 'قواعد بيانات وحسابات بريد غير محدودة', 'دومين مجاني وعنوان مخصص', 'تسريع LiteSpeed الذكي', 'دعم فني ذو أولوية']
       },
       {
+        id: 'enterprise',
         name: 'باقة النخبة للمؤسسات الكبرى',
         audience: 'للتطبيقات والمنصات ذات الحركة العالية والملفات الكبيرة',
         price: '289',
@@ -170,18 +197,21 @@ function HostingPage({ isRtl, onOpenConsultation }) {
     ]
     : [
       {
+        id: 'starter',
         name: 'Starter Cloud Hosting',
         audience: 'Ideal for blogs and early-stage business websites',
         price: '39',
         features: ['10 GB NVMe storage', 'Host one website', 'Free SSL certificate', '10 email accounts', 'Free domain for your first year', 'Standard cPanel control panel']
       },
       {
+        id: 'professional',
         name: 'Professional Business Hosting',
         audience: 'For growing businesses and online stores',
         price: '119',
         features: ['50 GB NVMe storage', 'Host up to 5 websites', 'Daily backups with 15-day retention', 'Unlimited databases and email accounts', 'Free domain and dedicated IP address', 'Smart LiteSpeed caching', 'Priority technical support']
       },
       {
+        id: 'enterprise',
         name: 'Enterprise Hosting',
         audience: 'For high-traffic applications and platforms with large files',
         price: '289',
@@ -242,7 +272,23 @@ function HostingPage({ isRtl, onOpenConsultation }) {
             <div className="hosting-orbit hosting-orbit-outer" />
             <div className="hosting-orbit hosting-orbit-inner" />
             <div className="hosting-visual-glow" />
-            <div className="hosting-server-card">
+            <div className="hosting-visual-stack">
+              {eggOpen && (
+                <div className="hosting-egg" role="status">
+                  <img src="/serv5-robot-mascot.png" alt="" />
+                  <p>
+                    <strong>SERV5 BOT</strong>
+                    {isRtl
+                      ? 'تلات ضغطات؟ الخادم ده حسّ بيك 👀 — كل حاجة تمام، بس خلي بالك من الصيانة المجدولة.'
+                      : 'Three taps? This server felt that 👀 — all good, just mind the scheduled maintenance.'}
+                  </p>
+                </div>
+              )}
+              <div
+                className="hosting-server-card"
+                onClick={handleEggClick}
+                title={isRtl ? 'الخادم يعمل' : 'Server online'}
+              >
               <div className="hosting-server-card-top">
                 <span className="hosting-server-symbol"><Server size={19} /></span>
                 <span className="hosting-live-status"><i />{isRtl ? 'الخادم يعمل' : 'SERVER ONLINE'}</span>
@@ -254,6 +300,8 @@ function HostingPage({ isRtl, onOpenConsultation }) {
                 <span><HardDrive size={14} />NVMe SSD</span>
                 <span><LockKeyhole size={14} />{isRtl ? 'محمي' : 'SECURE'}</span>
               </div>
+              </div>
+              <HostingTerminal />
             </div>
             <span className="hosting-float-chip hosting-float-chip-top"><Zap size={15} />{isRtl ? 'سرعة فائقة' : 'HIGH SPEED'}</span>
             <span className="hosting-float-chip hosting-float-chip-bottom"><BadgeCheck size={15} />{isRtl ? 'أمان مستمر' : 'ALWAYS SECURE'}</span>
@@ -290,14 +338,25 @@ function HostingPage({ isRtl, onOpenConsultation }) {
             <span>{isRtl ? 'باقات واضحة تناسب احتياجك' : 'SIMPLE PLANS, CLEAR CHOICES'}</span>
             <h2>{isRtl ? 'اختر باقة الاستضافة المثالية لأعمالك' : 'Find the right hosting plan for your business'}</h2>
           </header>
+          <PlanConfigurator
+            lang={isRtl ? 'ar' : 'en'}
+            plans={plans}
+            onChange={setRecommendedPlanId}
+          />
           <div className="hosting-plan-layout">
             {plans.map((plan, index) => (
-              <article
-                className={`hosting-plan-card hosting-reveal${plan.featured ? ' is-featured' : ''}`}
+              <TiltCard
+                as="article"
+                className={`hosting-plan-card hosting-reveal${plan.featured ? ' is-featured' : ''}${plan.id === recommendedPlanId ? ' is-recommended' : ''}`}
                 data-hosting-reveal
                 style={{ '--hosting-delay': `${index * 100}ms` }}
                 key={plan.name}
               >
+                {plan.id === recommendedPlanId && (
+                  <span className="hosting-plan-recommended-flag">
+                    {isRtl ? 'مناسبة لاحتياجك' : 'FITS YOUR NEEDS'}
+                  </span>
+                )}
                 {plan.featured && (
                   <span className="hosting-plan-badge">
                     {isRtl ? 'الأكثر شيوعًا' : 'MOST POPULAR'}
@@ -323,7 +382,7 @@ function HostingPage({ isRtl, onOpenConsultation }) {
                     <li key={feature}><Check size={15} />{feature}</li>
                   ))}
                 </ul>
-              </article>
+              </TiltCard>
             ))}
           </div>
         </div>
@@ -331,12 +390,7 @@ function HostingPage({ isRtl, onOpenConsultation }) {
 
       <section className="hosting-migration-section">
         <div className="container hosting-migration-grid">
-          <div className="hosting-migration-visual hosting-reveal" data-hosting-reveal aria-hidden="true">
-            <div className="hosting-migration-node old"><Server size={24} /><span>{isRtl ? 'استضافتك الحالية' : 'CURRENT HOST'}</span></div>
-            <div className="hosting-migration-route"><span><ArrowLeftRight size={20} /></span><i /><i /><i /></div>
-            <div className="hosting-migration-node new"><CloudCog size={26} /><span>SERV5 CLOUD</span></div>
-            <div className="hosting-migration-shield"><ShieldCheck size={22} /></div>
-          </div>
+          <MigrationLab lang={isRtl ? 'ar' : 'en'} />
           <div className="hosting-migration-copy hosting-reveal" data-hosting-reveal>
             <span className="hosting-eyebrow">{isRtl ? 'نقل آمن ومجاني' : 'FREE, SECURE WEBSITE MIGRATION'}</span>
             <h2>{isRtl ? 'انقل موقعك إلينا بكل سهولة وبدون أي توقف' : 'Move your website to SERV5—without downtime'}</h2>

@@ -1,0 +1,514 @@
+/* =========================================================
+   HOSTING LAB — LIVE TERMINAL, PLAN CONFIGURATOR, MIGRATION, TILT
+   Used by src/pages/ContentPage.jsx (HostingPage) and
+   src/components/hosting/*.
+   ========================================================= */
+
+.hosting-visual-stack {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.85rem;
+  width: min(100%, 360px);
+}
+
+.hosting-server-card {
+  cursor: pointer;
+}
+
+/* Keep the floating chip clear of the new terminal panel */
+.hosting-hero-visual .hosting-float-chip-bottom {
+  bottom: 46%;
+  inset-inline-start: -1.15rem;
+}
+
+/* ---------- live SSH terminal ---------- */
+
+.hosting-terminal {
+  width: min(100%, 340px);
+  overflow: hidden;
+  border: 1px solid rgba(30, 41, 59, 0.9);
+  border-radius: 16px;
+  background: linear-gradient(160deg, #0b1220, #111c31 58%, #0b1220);
+  box-shadow: 0 18px 38px rgba(15, 23, 42, 0.26), inset 0 1px 0 rgba(148, 163, 184, 0.12);
+  direction: ltr;
+  text-align: start;
+  font-family: var(--font-mono, ui-monospace, monospace);
+}
+
+.hosting-terminal-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.42rem 0.65rem;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.16);
+  background: rgba(148, 163, 184, 0.1);
+}
+
+.hosting-terminal-dots {
+  display: flex;
+  gap: 0.26rem;
+}
+
+.hosting-terminal-dots i {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #f87171;
+}
+
+.hosting-terminal-dots i:nth-child(2) { background: #fbbf24; }
+.hosting-terminal-dots i:nth-child(3) { background: #4ade80; }
+
+.hosting-terminal-title {
+  margin-inline-start: 0.3rem;
+  color: #94a3b8;
+  font-size: 0.58rem;
+  letter-spacing: 0.04em;
+}
+
+.hosting-terminal-badge {
+  margin-inline-start: auto;
+  padding: 0.08rem 0.4rem;
+  border: 1px solid rgba(74, 222, 128, 0.35);
+  border-radius: 999px;
+  color: #4ade80;
+  font-size: 0.52rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+
+.hosting-terminal-body {
+  min-height: 118px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.26rem;
+  padding: 0.6rem 0.7rem 0.7rem;
+  color: #cbd5e1;
+  font-size: 0.65rem;
+  line-height: 1.45;
+}
+
+.hosting-terminal-line {
+  display: flex;
+  gap: 0.4rem;
+  margin: 0;
+  white-space: nowrap;
+}
+
+.hosting-terminal-prompt { color: #38bdf8; }
+.hosting-terminal-line--cmd { color: #e2e8f0; }
+.hosting-terminal-line--ok { color: #4ade80; }
+
+.hosting-terminal-caret {
+  display: inline-block;
+  width: 6px;
+  height: 11px;
+  margin-inline-start: 1px;
+  background: #38bdf8;
+  animation: hosting-caret-blink 1s steps(1) infinite;
+}
+
+@keyframes hosting-caret-blink {
+  50% { opacity: 0; }
+}
+
+/* ---------- robot easter egg ---------- */
+
+.hosting-egg {
+  position: absolute;
+  z-index: 6;
+  inset-inline-start: 0;
+  bottom: -1.9rem;
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  max-width: 290px;
+  padding: 0.6rem 0.75rem;
+  border: 1px solid #dbeafe;
+  border-radius: 14px;
+  background: #ffffff;
+  box-shadow: 0 16px 34px rgba(30, 64, 175, 0.18);
+  animation: hosting-egg-in 0.32s cubic-bezier(0.2, 0.8, 0.3, 1);
+}
+
+.hosting-egg img {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.hosting-egg p {
+  margin: 0;
+  color: #334155;
+  font-size: 0.71rem;
+  line-height: 1.5;
+}
+
+.hosting-egg strong {
+  display: block;
+  margin-bottom: 0.15rem;
+  color: #2563eb;
+  font-size: 0.56rem;
+  letter-spacing: 0.08em;
+}
+
+@keyframes hosting-egg-in {
+  from { opacity: 0; transform: translateY(10px) scale(0.94); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* ---------- plan configurator ---------- */
+
+.hosting-configurator {
+  max-width: 1180px;
+  margin: 0 auto 1.55rem;
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr) minmax(210px, 0.72fr);
+  align-items: center;
+  gap: 1.1rem 2rem;
+  padding: 1.15rem 1.4rem;
+  border: 1px solid #dbeafe;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.88);
+  box-shadow: 0 16px 34px rgba(30, 64, 175, 0.07);
+}
+
+.hosting-configurator-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: #ea580c;
+  font-size: 0.66rem;
+  font-weight: 850;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+.hosting-configurator-intro h3 {
+  margin: 0.4rem 0 0.35rem;
+  color: #0f172a;
+  font-size: 1.12rem;
+  font-weight: 850;
+  line-height: 1.3;
+}
+
+.hosting-configurator-intro p {
+  margin: 0;
+  color: #64748b;
+  font-size: 0.83rem;
+  line-height: 1.65;
+}
+
+.hosting-configurator-form {
+  display: grid;
+  gap: 0.85rem;
+}
+
+.hosting-config-field {
+  display: block;
+  margin: 0;
+}
+
+.hosting-config-label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  color: #475569;
+  font-size: 0.78rem;
+  font-weight: 750;
+}
+
+.hosting-config-value {
+  color: #1d4ed8;
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 0.82rem;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+}
+
+.hosting-config-field input[type='range'] {
+  width: 100%;
+  margin: 0.4rem 0 0.2rem;
+  accent-color: #2563eb;
+  cursor: pointer;
+}
+
+.hosting-config-scale {
+  display: flex;
+  justify-content: space-between;
+  color: #94a3b8;
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 0.58rem;
+}
+
+.hosting-config-scale i { font-style: normal; }
+
+.hosting-configurator-result {
+  display: flex;
+  flex-direction: column;
+  gap: 0.28rem;
+  padding: 0.9rem 1rem;
+  border: 1px solid #bfdbfe;
+  border-radius: 14px;
+  background:
+    radial-gradient(circle at 88% 0%, rgba(251, 146, 60, 0.16), transparent 70%),
+    linear-gradient(150deg, #eff6ff, #ffffff);
+}
+
+.hosting-config-result-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: #ea580c;
+  font-size: 0.6rem;
+  font-weight: 850;
+  letter-spacing: 0.08em;
+}
+
+.hosting-config-result-label svg { color: #ea580c; }
+
+.hosting-configurator-result strong {
+  color: #1e3a8a;
+  font-size: 0.92rem;
+  font-weight: 850;
+  line-height: 1.4;
+}
+
+.hosting-config-result-price {
+  display: flex;
+  align-items: baseline;
+  gap: 0.4rem;
+  color: #0f172a;
+  font-size: 1.6rem;
+  font-weight: 900;
+  letter-spacing: -0.04em;
+}
+
+.hosting-config-result-price i {
+  color: #64748b;
+  font-size: 0.62rem;
+  font-style: normal;
+  font-weight: 700;
+  letter-spacing: 0;
+}
+
+.hosting-config-result-note {
+  color: #64748b;
+  font-size: 0.66rem;
+}
+
+/* ---------- plan card tilt + recommendation ---------- */
+
+.tilt-card {
+  position: relative;
+  transform-style: preserve-3d;
+}
+
+.tilt-card-glow {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  border-radius: inherit;
+  background: radial-gradient(300px circle at var(--glow-x, 50%) var(--glow-y, 50%), rgba(96, 165, 250, 0.2), transparent 62%);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.hosting-plan-card.is-tilting {
+  transition: transform 0.12s linear, box-shadow 0.3s ease, border-color 0.3s ease;
+  transform: perspective(1000px) rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg)) translateY(-6px);
+}
+
+.hosting-plan-card.is-tilting .tilt-card-glow {
+  opacity: 1;
+}
+
+.hosting-plan-card > *:not(.tilt-card-glow) {
+  position: relative;
+  z-index: 1;
+}
+
+.hosting-plan-card.is-recommended {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2), 0 22px 48px rgba(30, 64, 175, 0.16);
+}
+
+.hosting-plan-recommended-flag {
+  position: absolute;
+  top: -0.8rem;
+  inset-inline-start: 1.1rem;
+  padding: 0.34rem 0.7rem;
+  border-radius: 999px;
+  background: linear-gradient(110deg, #2563eb, #1d4ed8);
+  color: #ffffff;
+  box-shadow: 0 7px 16px rgba(37, 99, 235, 0.28);
+  font-size: 0.64rem;
+  font-weight: 850;
+}
+
+/* ---------- migration lab ---------- */
+
+.migration-lab {
+  touch-action: none;
+  user-select: none;
+}
+
+.migration-lab .hosting-migration-node.draggable {
+  animation: none;
+  cursor: grab;
+  touch-action: none;
+  transition: transform 0.18s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.migration-lab.is-dragging .hosting-migration-node.draggable {
+  cursor: grabbing;
+  border-color: #93c5fd;
+  box-shadow: 0 22px 40px rgba(30, 64, 175, 0.22);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.migration-lab.is-migrating .hosting-migration-node.draggable,
+.migration-lab.is-done .hosting-migration-node.draggable {
+  opacity: 0.35;
+  cursor: default;
+}
+
+.migration-lab .hosting-migration-node.new {
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.migration-lab.is-over-target .hosting-migration-node.new {
+  border-color: #fb923c;
+  box-shadow: 0 0 0 3px rgba(251, 146, 60, 0.22), 0 18px 34px rgba(234, 88, 12, 0.18);
+  animation: hosting-drop-pulse 0.9s ease-in-out infinite;
+}
+
+.migration-lab.is-migrating .hosting-migration-route i {
+  animation-duration: 0.55s;
+}
+
+.migration-lab-hint {
+  position: absolute;
+  z-index: 3;
+  top: 0.9rem;
+  inset-inline-start: 1rem;
+  padding: 0.32rem 0.65rem;
+  border: 1px solid #dbeafe;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.9);
+  color: #2563eb;
+  font-size: 0.63rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+}
+
+.migration-lab-progress {
+  position: absolute;
+  z-index: 3;
+  inset-inline: 12%;
+  bottom: 14px;
+  height: 6px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: #e2e8f0;
+}
+
+.migration-lab-progress i {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #60a5fa, #f97316);
+  transition: width 0.1s linear;
+}
+
+.migration-lab-success {
+  position: absolute;
+  z-index: 4;
+  inset-inline-end: 0.9rem;
+  top: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.35rem 0.7rem;
+  border: 1px solid #bbf7d0;
+  border-radius: 999px;
+  background: #ecfdf5;
+  color: #15803d;
+  font-size: 0.63rem;
+  font-weight: 800;
+  animation: hosting-egg-in 0.3s ease;
+}
+
+.migration-lab-reset {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  margin-inline-start: 0.35rem;
+  padding: 0.18rem 0.5rem;
+  border: 1px solid #86efac;
+  border-radius: 999px;
+  background: #ffffff;
+  color: #15803d;
+  font-size: 0.6rem;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.migration-lab-reset:hover { background: #f0fdf4; }
+
+@keyframes hosting-drop-pulse {
+  50% { transform: scale(1.05); }
+}
+
+@media (max-width: 991px) {
+  .hosting-configurator {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
+
+  .hosting-configurator-result {
+    grid-column: 1 / -1;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.5rem 0.9rem;
+  }
+
+  .hosting-configurator-result strong { font-size: 0.86rem; }
+  .hosting-config-result-note { width: 100%; }
+}
+
+@media (max-width: 767px) {
+  .hosting-configurator {
+    grid-template-columns: 1fr;
+    padding: 1rem 1.1rem;
+  }
+
+  .hosting-terminal,
+  .hosting-visual-stack {
+    width: min(100%, 320px);
+  }
+
+  .hosting-egg {
+    inset-inline-start: 50%;
+    transform: translateX(-50%);
+    max-width: 270px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hosting-terminal-caret,
+  .hosting-egg,
+  .migration-lab-success {
+    animation: none;
+  }
+
+  .hosting-plan-card.is-tilting {
+    transform: none;
+  }
+}
