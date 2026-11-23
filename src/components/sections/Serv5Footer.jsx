@@ -71,6 +71,9 @@ export default function Serv5Footer({ onOpenConsultation, lang = 'ar' }) {
           </p>
         </div>
       </div>
+      <div className="serv5-footer-watermark" aria-hidden="true">
+        SERV5
+      </div>
     </footer>
   );
 }
