@@ -380,9 +380,9 @@
   transform: translateY(-1px);
 }
 
-/* 4. PROTOCOL STEPS & LINKED ROADWAY ANIMATION */
+/* 4. PROTOCOL STEPS & PROFESSIONAL REACT BITS CONNECTED ROADMAP */
 .bank-steps-section {
-  padding: 5rem 1.5rem;
+  padding: 5.5rem 1.5rem;
   background: linear-gradient(180deg, rgba(239, 246, 255, 0.5) 0%, rgba(248, 250, 252, 0.8) 100%);
   border-top: 1px solid #e2e8f0;
   border-bottom: 1px solid #e2e8f0;
@@ -392,12 +392,12 @@
 
 .section-head-center {
   text-align: center;
-  margin-bottom: 2.75rem;
+  margin-bottom: 3.25rem;
 }
 
 .bank-section-eyebrow {
   display: inline-block;
-  font-size: 0.8rem;
+  font-size: 0.82rem;
   font-weight: 800;
   color: #2563eb;
   text-transform: uppercase;
@@ -413,517 +413,542 @@
   letter-spacing: -0.02em;
 }
 
-/* 4.1 CONNECTED ROADWAY RIBBON (TOP PROGRESS BAR) */
-.bank-roadmap-track-wrap {
-  max-width: 960px;
-  margin: 0 auto 3rem;
+/* 4.1 HIGHWAY CONTROL DASHBOARD */
+.connected-roadmap-container {
+  max-width: 1260px;
+  margin: 0 auto 3.5rem;
+  position: relative;
+}
+
+.roadmap-control-dashboard {
   padding: 1.25rem 1.75rem;
   border-radius: 1.25rem;
   background: #ffffff;
   border: 1.5px solid #e2e8f0;
-  box-shadow: 0 4px 20px rgba(15, 23, 42, 0.03);
+  box-shadow: 0 4px 20px rgba(15, 23, 42, 0.04);
+  margin-bottom: 3rem;
+  backdrop-filter: blur(12px);
 }
 
-.roadmap-header-info {
+.dashboard-top-row {
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 0.65rem;
-  margin-bottom: 1.25rem;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
 }
 
-.roadmap-live-indicator {
-  position: relative;
-  width: 10px;
-  height: 10px;
+.dashboard-status-tag {
   display: inline-flex;
   align-items: center;
-  justify-content: center;
+  gap: 0.6rem;
+  padding: 0.35rem 0.85rem;
+  border-radius: 9999px;
+  background: rgba(37, 99, 235, 0.08);
+  border: 1px solid rgba(37, 99, 235, 0.22);
 }
 
-.live-dot {
+.pulsing-beacon-dot {
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: #16a34a;
-}
-
-.live-ping {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
   background: #22c55e;
-  animation: livePing 1.8s cubic-bezier(0, 0, 0.2, 1) infinite;
+  box-shadow: 0 0 10px #22c55e;
+  animation: beaconPulse 1.8s infinite cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-@keyframes livePing {
-  75%, 100% {
-    transform: scale(2.2);
-    opacity: 0;
-  }
+@keyframes beaconPulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(1.3); }
 }
 
-.roadmap-title-text {
-  font-size: 0.88rem;
+.status-label {
+  font-size: 0.82rem;
   font-weight: 800;
-  color: #334155;
+  color: #2563eb;
   letter-spacing: 0.02em;
 }
 
-.roadmap-progress-road {
-  position: relative;
-  padding-top: 0.5rem;
+.dashboard-stepper-pills {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
-.roadmap-road-lane {
+.stepper-pill-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.35rem 0.75rem;
+  border-radius: 9999px;
+  background: #f1f5f9;
+  border: 1px solid #cbd5e1;
+  color: #64748b;
+  font-size: 0.78rem;
+  font-weight: 800;
+  cursor: pointer;
+  transition: all 0.22s ease;
+}
+
+.stepper-pill-btn .pill-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #94a3b8;
+  transition: all 0.22s ease;
+}
+
+.stepper-pill-btn:hover {
+  background: #eff6ff;
+  border-color: #93c5fd;
+  color: #1d4ed8;
+}
+
+.stepper-pill-btn.active {
+  background: #2563eb;
+  border-color: #2563eb;
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.35);
+}
+
+.stepper-pill-btn.active .pill-dot {
+  background: #ffffff;
+  box-shadow: 0 0 6px #ffffff;
+}
+
+.stepper-pill-btn.completed {
+  border-color: #10b981;
+  color: #059669;
+  background: rgba(16, 185, 129, 0.08);
+}
+
+.stepper-pill-btn.completed .pill-dot {
+  background: #10b981;
+}
+
+/* Global Laser Track in Dashboard */
+.dashboard-highway-track {
   position: relative;
   height: 6px;
-  background: #e2e8f0;
   border-radius: 9999px;
   overflow: hidden;
+  background: #e2e8f0;
 }
 
-.roadmap-road-dashes {
+.highway-base-rail {
   position: absolute;
   inset: 0;
   background: repeating-linear-gradient(
     90deg,
     transparent 0,
-    transparent 8px,
-    rgba(255, 255, 255, 0.8) 8px,
-    rgba(255, 255, 255, 0.8) 16px
+    transparent 6px,
+    rgba(255, 255, 255, 0.7) 6px,
+    rgba(255, 255, 255, 0.7) 12px
   );
-  opacity: 0.7;
+  opacity: 0.6;
 }
 
-.roadmap-energy-laser {
+.highway-active-laser {
   position: absolute;
   top: 0;
-  height: 100%;
-  width: 25%;
-  background: linear-gradient(90deg, transparent, #2563eb, #60a5fa, transparent);
+  bottom: 0;
+  background: linear-gradient(90deg, #2563eb, #38bdf8, #60a5fa);
   border-radius: 9999px;
-  filter: drop-shadow(0 0 6px #3b82f6);
+  box-shadow: 0 0 12px #3b82f6;
 }
 
-[dir="rtl"] .roadmap-energy-laser {
-  animation: roadLaserRibbonRtl 4s infinite cubic-bezier(0.4, 0, 0.2, 1);
+[dir="rtl"] .highway-active-laser {
+  right: 0;
 }
 
-[dir="ltr"] .roadmap-energy-laser {
-  animation: roadLaserRibbonLtr 4s infinite cubic-bezier(0.4, 0, 0.2, 1);
+[dir="ltr"] .highway-active-laser {
+  left: 0;
 }
 
-@keyframes roadLaserRibbonRtl {
-  0% { right: -30%; }
-  100% { right: 110%; }
-}
-
-@keyframes roadLaserRibbonLtr {
-  0% { left: -30%; }
-  100% { left: 110%; }
-}
-
-.roadmap-checkpoints-row {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 0.85rem;
-}
-
-.roadmap-checkpoint-station {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.35rem;
-  flex: 1;
-  text-align: center;
-}
-
-.station-node-dot {
-  width: 24px;
-  height: 24px;
+.highway-laser-head {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 10px;
+  height: 10px;
   border-radius: 50%;
-  background: #eff6ff;
-  border: 2px solid #2563eb;
-  color: #1d4ed8;
-  font-size: 0.72rem;
-  font-weight: 900;
+  background: #ffffff;
+  box-shadow: 0 0 10px #60a5fa, 0 0 18px #2563eb;
+}
+
+[dir="rtl"] .highway-laser-head {
+  left: 0;
+}
+
+[dir="ltr"] .highway-laser-head {
+  right: 0;
+}
+
+/* 4.2 CARDS & ROADWAYS GRID */
+.roadmap-cards-grid {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: var(--font-mono, monospace);
-  box-shadow: 0 2px 6px rgba(37, 99, 235, 0.2);
+  align-items: stretch;
+  justify-content: space-between;
+  gap: 0.75rem;
+  width: 100%;
 }
 
-.station-node-name {
-  font-size: 0.75rem;
-  font-weight: 700;
-  color: #64748b;
-  display: none;
-}
-
-@media (min-width: 640px) {
-  .station-node-name {
-    display: block;
+@media (max-width: 1023px) {
+  .roadmap-cards-grid {
+    flex-direction: column;
+    align-items: center;
+    gap: 1.25rem;
   }
 }
 
-/* 4.2 STEPS GRID & CONNECTED ROAD SYSTEM */
-.bank-steps-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 2.25rem 1.5rem;
-  max-width: 1240px;
-  margin: 0 auto 3.5rem;
+/* 4.3 SPOTLIGHT TILT CARD (REACT BITS STANDARD) */
+.roadmap-tilt-card {
+  flex: 1 1 0;
+  min-width: 0;
   position: relative;
-}
-
-@media (min-width: 640px) {
-  .bank-steps-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 2.5rem 1.75rem;
-  }
-}
-
-@media (min-width: 1024px) {
-  .bank-steps-grid {
-    grid-template-columns: repeat(4, 1fr);
-    gap: 2rem;
-  }
-}
-
-/* 4.3 STEP CARD WITH ROAD MILESTONE */
-.bank-step-card {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
+  border-radius: 1.5rem;
   padding: 2.25rem 1.6rem 1.75rem;
-  border-radius: 1.25rem;
   background: #ffffff;
   border: 1.5px solid #e2e8f0;
-  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.04);
-  transition: all 0.32s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.04);
   cursor: pointer;
-  z-index: 2;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  transform-style: preserve-3d;
+  transition: transform 0.18s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.3s ease,
+              border-color 0.3s ease;
+  user-select: none;
 }
 
-.bank-step-card:hover {
-  transform: translateY(-5px);
+@media (max-width: 1023px) {
+  .roadmap-tilt-card {
+    width: 100%;
+    max-width: 580px;
+  }
+}
+
+.roadmap-tilt-card:hover {
   border-color: #3b82f6;
-  box-shadow: 0 16px 36px rgba(37, 99, 235, 0.12), 0 0 24px rgba(59, 130, 246, 0.1);
+  box-shadow: 0 20px 45px rgba(37, 99, 235, 0.16), 0 0 24px rgba(59, 130, 246, 0.12);
 }
 
-/* Milestone Node & Beacon Pulse */
-.step-milestone-node {
+.roadmap-tilt-card.is-active {
+  border-color: #2563eb;
+  box-shadow: 0 22px 50px rgba(37, 99, 235, 0.22), 0 0 32px rgba(59, 130, 246, 0.18);
+}
+
+/* React Bits Border Beam Animation */
+.border-beam-tracer {
+  position: absolute;
+  inset: -1.5px;
+  border-radius: inherit;
+  padding: 2px;
+  background: conic-gradient(from 0deg, transparent 0%, #3b82f6 12%, #38bdf8 20%, transparent 32%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  animation: borderBeamSpin 4.5s linear infinite;
+}
+
+@keyframes borderBeamSpin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.roadmap-tilt-card:hover .border-beam-tracer,
+.roadmap-tilt-card.is-active .border-beam-tracer {
+  opacity: 1;
+}
+
+/* Dynamic Spotlight Overlay */
+.card-spotlight-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: inherit;
+  transition: opacity 0.25s ease;
+  z-index: 1;
+}
+
+.card-inner-layer {
   position: relative;
-  width: 58px;
-  height: 58px;
-  border-radius: 16px;
-  background: linear-gradient(135deg, rgba(37, 99, 235, 0.09) 0%, rgba(59, 130, 246, 0.04) 100%);
-  border: 1.5px solid rgba(37, 99, 235, 0.25);
-  color: #2563eb;
+  z-index: 2;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+}
+
+/* 4.4 MILESTONE BEACON NODE */
+.milestone-badge-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.65rem;
+  margin-bottom: 1.25rem;
+}
+
+.milestone-node-circle {
+  position: relative;
+  width: 64px;
+  height: 64px;
+  border-radius: 20px;
+  background: linear-gradient(135deg, rgba(37, 99, 235, 0.1) 0%, rgba(59, 130, 246, 0.03) 100%);
+  border: 1.5px solid rgba(37, 99, 235, 0.28);
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 1.25rem;
-  font-family: var(--font-mono, monospace);
-  font-weight: 900;
-  transition: all 0.3s ease;
+  transition: transform 0.3s ease;
 }
 
-.step-milestone-node .step-num {
-  font-size: 1.25rem;
+.roadmap-tilt-card:hover .milestone-node-circle,
+.roadmap-tilt-card.is-active .milestone-node-circle {
+  transform: scale(1.08);
+}
+
+.milestone-num {
+  font-size: 1.35rem;
   font-weight: 900;
+  color: #1e3a8a;
   line-height: 1;
 }
 
-.step-icon-badge {
+.sonar-ring-wave {
+  position: absolute;
+  inset: -6px;
+  border-radius: 24px;
+  border: 1.5px solid #3b82f6;
+  opacity: 0;
+  pointer-events: none;
+  animation: sonarWave 3s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+.sonar-ring-wave.delay {
+  animation-delay: 1.5s;
+}
+
+@keyframes sonarWave {
+  0% { transform: scale(0.92); opacity: 0.8; }
+  70% { transform: scale(1.28); opacity: 0; }
+  100% { transform: scale(1.35); opacity: 0; }
+}
+
+.milestone-icon-float {
   position: absolute;
   bottom: -6px;
-  width: 22px;
-  height: 22px;
+  width: 24px;
+  height: 24px;
   border-radius: 50%;
-  background: #2563eb;
   color: #ffffff;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.35);
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.35);
   transition: transform 0.25s ease;
 }
 
-[dir="rtl"] .step-icon-badge {
+[dir="rtl"] .milestone-icon-float {
   left: -6px;
 }
 
-[dir="ltr"] .step-icon-badge {
+[dir="ltr"] .milestone-icon-float {
   right: -6px;
 }
 
-.bank-step-card:hover .step-icon-badge {
-  transform: scale(1.15) rotate(5deg);
-  background: #1d4ed8;
+.roadmap-tilt-card:hover .milestone-icon-float {
+  transform: scale(1.18) rotate(8deg);
 }
 
-/* Sequential Beacon Radar Rings Animation */
-.step-beacon-ring {
-  position: absolute;
-  inset: -6px;
-  border-radius: 20px;
-  border: 2px solid #3b82f6;
-  opacity: 0;
-  pointer-events: none;
-  animation: roadBeacon 3.2s infinite ease-out;
-}
-
-.bank-step-card:nth-child(1) .step-beacon-ring { animation-delay: 0s; }
-.bank-step-card:nth-child(2) .step-beacon-ring { animation-delay: 0.8s; }
-.bank-step-card:nth-child(3) .step-beacon-ring { animation-delay: 1.6s; }
-.bank-step-card:nth-child(4) .step-beacon-ring { animation-delay: 2.4s; }
-
-@keyframes roadBeacon {
-  0% {
-    transform: scale(0.92);
-    opacity: 0.8;
-    box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.4);
-  }
-  70% {
-    transform: scale(1.18);
-    opacity: 0;
-    box-shadow: 0 0 16px 8px rgba(59, 130, 246, 0);
-  }
-  100% {
-    transform: scale(1.25);
-    opacity: 0;
-  }
-}
-
-.bank-step-card h4 {
-  font-size: 1.15rem;
+.milestone-subtitle {
+  font-size: 0.72rem;
   font-weight: 800;
-  color: #0f172a;
-  margin: 0 0 0.65rem;
-  letter-spacing: -0.01em;
+  color: #64748b;
+  letter-spacing: 0.03em;
 }
 
-.bank-step-card p {
-  font-size: 0.88rem;
-  line-height: 1.68;
+.card-step-title {
+  font-size: 1.15rem;
+  font-weight: 900;
+  color: #0f172a;
+  margin: 0 0 0.55rem;
+  letter-spacing: -0.015em;
+}
+
+.card-step-desc {
+  font-size: 0.86rem;
+  line-height: 1.65;
   color: #475569;
   margin: 0;
+  max-width: 260px;
 }
 
-/* 4.4 STEP CARD ACTION LINK ("LINK ROAD") */
-.step-card-footer {
+/* 4.5 ACTION LINK BUTTON */
+.card-action-footer {
   margin-top: auto;
-  padding-top: 1.35rem;
+  padding-top: 1.4rem;
   width: 100%;
 }
 
-.step-road-link-btn {
+.card-road-action-pill {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  font-size: 0.82rem;
-  font-weight: 800;
-  color: #2563eb;
-  padding: 0.45rem 1rem;
+  padding: 0.45rem 1.05rem;
   border-radius: 9999px;
   background: rgba(37, 99, 235, 0.06);
-  border: 1px solid rgba(37, 99, 235, 0.18);
-  text-decoration: none;
+  border: 1px solid rgba(37, 99, 235, 0.2);
+  color: #2563eb;
+  font-size: 0.82rem;
+  font-weight: 800;
   transition: all 0.24s ease;
-  user-select: none;
 }
 
-.step-road-link-btn:hover,
-.bank-step-card:hover .step-road-link-btn {
+.roadmap-tilt-card:hover .card-road-action-pill,
+.roadmap-tilt-card.is-active .card-road-action-pill {
   background: #2563eb;
   color: #ffffff;
   border-color: #2563eb;
-  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.28);
+  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.35);
 }
 
-.step-arrow-anim {
-  transition: transform 0.25s ease;
+.action-arrow-icon {
+  transition: transform 0.24s ease;
 }
 
-[dir="rtl"] .bank-step-card:hover .step-arrow-anim {
+[dir="rtl"] .roadmap-tilt-card:hover .action-arrow-icon {
   transform: translateX(-4px);
 }
 
-[dir="ltr"] .bank-step-card:hover .step-arrow-anim {
+[dir="ltr"] .roadmap-tilt-card:hover .action-arrow-icon {
   transform: translateX(4px);
 }
 
-/* 4.5 DESKTOP ROAD CONNECTOR (BRIDGING 01 -> 02 -> 03 -> 04) */
-.bank-road-connector {
-  display: none;
-}
-
-@media (min-width: 1024px) {
-  .bank-road-connector {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: absolute;
-    top: 64px;
-    height: 12px;
-    z-index: 3;
-    pointer-events: none;
-  }
-
-  /* In RTL: Step 1 is right, Step 2 is left -> connector extends to the left */
-  [dir="rtl"] .bank-road-connector {
-    left: calc(-2rem - 2px);
-    width: calc(2rem + 4px);
-  }
-
-  /* In LTR: Step 1 is left, Step 2 is right -> connector extends to the right */
-  [dir="ltr"] .bank-road-connector {
-    right: calc(-2rem - 2px);
-    width: calc(2rem + 4px);
-  }
-
-  .road-connector-track {
-    position: relative;
-    width: 100%;
-    height: 6px;
-    background: #cbd5e1;
-    border-radius: 9999px;
-    overflow: hidden;
-    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.15);
-  }
-
-  .road-lane-dashes {
-    position: absolute;
-    inset: 0;
-    background: repeating-linear-gradient(
-      90deg,
-      transparent 0,
-      transparent 4px,
-      #ffffff 4px,
-      #ffffff 8px
-    );
-    opacity: 0.8;
-  }
-
-  .road-energy-beam {
-    position: absolute;
-    top: 0;
-    height: 100%;
-    width: 40%;
-    background: linear-gradient(90deg, transparent, #2563eb, #38bdf8, #ffffff);
-    border-radius: 9999px;
-    filter: drop-shadow(0 0 5px #2563eb);
-  }
-
-  [dir="rtl"] .road-energy-beam {
-    animation: roadBeamRtl 2.2s infinite ease-in-out;
-  }
-
-  [dir="ltr"] .road-energy-beam {
-    animation: roadBeamLtr 2.2s infinite ease-in-out;
-  }
-
-  .bank-step-card:nth-child(1) .road-energy-beam { animation-delay: 0s; }
-  .bank-step-card:nth-child(2) .road-energy-beam { animation-delay: 0.6s; }
-  .bank-step-card:nth-child(3) .road-energy-beam { animation-delay: 1.2s; }
-
-  @keyframes roadBeamRtl {
-    0% { right: -40%; opacity: 0; }
-    20% { opacity: 1; }
-    80% { opacity: 1; }
-    100% { right: 110%; opacity: 0; }
-  }
-
-  @keyframes roadBeamLtr {
-    0% { left: -40%; opacity: 0; }
-    20% { opacity: 1; }
-    80% { opacity: 1; }
-    100% { left: 110%; opacity: 0; }
-  }
-
-  .road-connector-arrow {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 22px;
-    height: 22px;
-    border-radius: 50%;
-    background: #ffffff;
-    border: 1.5px solid #93c5fd;
-    color: #2563eb;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 2px 6px rgba(37, 99, 235, 0.25);
-    animation: roadArrowPulse 2s infinite ease-in-out;
-  }
-
-  @keyframes roadArrowPulse {
-    0%, 100% { transform: translate(-50%, -50%) scale(0.92); opacity: 0.85; }
-    50% { transform: translate(-50%, -50%) scale(1.12); opacity: 1; }
-  }
-}
-
-/* 4.6 MOBILE / TABLET ROAD CONNECTOR (VERTICAL) */
-.bank-road-connector-mobile {
+/* 4.6 CONNECTING ROAD BRIDGES (SVG HIGHWAY) */
+.road-connector-bridge {
+  flex: 0 0 54px;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  position: absolute;
-  bottom: -2.25rem;
-  left: 50%;
-  transform: translateX(-50%);
-  height: 2.25rem;
-  width: 24px;
-  z-index: 3;
+  position: relative;
+  height: 48px;
+  margin-top: 50px;
   pointer-events: none;
+  z-index: 3;
 }
 
-@media (min-width: 1024px) {
-  .bank-road-connector-mobile {
-    display: none !important;
+@media (max-width: 1023px) {
+  .road-connector-bridge {
+    flex: 0 0 40px;
+    height: 40px;
+    width: 32px;
+    margin-top: 0;
+    transform: rotate(90deg);
   }
 }
 
-.road-mobile-line {
-  position: relative;
-  width: 5px;
-  height: 100%;
-  background: #cbd5e1;
-  border-radius: 9999px;
-  overflow: hidden;
-}
-
-.road-mobile-pulse {
-  position: absolute;
+.road-bridge-svg {
   width: 100%;
-  height: 40%;
-  background: linear-gradient(180deg, transparent, #2563eb, #38bdf8);
-  border-radius: 9999px;
-  animation: roadMobilePulse 2s infinite ease-in-out;
+  height: 28px;
+  overflow: visible;
 }
 
-@keyframes roadMobilePulse {
-  0% { top: -40%; opacity: 0; }
-  25% { opacity: 1; }
-  75% { opacity: 1; }
-  100% { top: 110%; opacity: 0; }
+.road-track-asphalt {
+  stroke: #cbd5e1;
 }
 
-.road-mobile-arrow {
+.road-track-dashes {
+  stroke: #ffffff;
+  opacity: 0.9;
+}
+
+.road-laser-beam {
+  stroke-dasharray: 36 84;
+}
+
+.road-laser-beam.flow-rtl {
+  animation: roadLaserFlowRtl 2s linear infinite;
+}
+
+.road-laser-beam.flow-ltr {
+  animation: roadLaserFlowLtr 2s linear infinite;
+}
+
+@keyframes roadLaserFlowRtl {
+  0% { stroke-dashoffset: 120; }
+  100% { stroke-dashoffset: 0; }
+}
+
+@keyframes roadLaserFlowLtr {
+  0% { stroke-dashoffset: 0; }
+  100% { stroke-dashoffset: 120; }
+}
+
+/* Floating Highway Chevron Capsule */
+.road-chevron-capsule {
   position: absolute;
-  bottom: -3px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 1.5px solid #93c5fd;
   color: #2563eb;
-  filter: drop-shadow(0 2px 4px rgba(37, 99, 235, 0.3));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.28);
+  animation: chevronCapsulePulse 2s infinite ease-in-out;
+}
+
+@keyframes chevronCapsulePulse {
+  0%, 100% { transform: translate(-50%, -50%) scale(0.92); }
+  50% { transform: translate(-50%, -50%) scale(1.12); }
+}
+
+/* Comet particle gliding along the road */
+.road-energy-comet {
+  position: absolute;
+  top: 50%;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #38bdf8;
+  box-shadow: 0 0 10px #38bdf8, 0 0 18px #2563eb;
+  transform: translateY(-50%);
+}
+
+.comet-rtl {
+  animation: cometGlideRtl 2s infinite ease-in-out;
+}
+
+.comet-ltr {
+  animation: cometGlideLtr 2s infinite ease-in-out;
+}
+
+@keyframes cometGlideRtl {
+  0% { right: -10%; opacity: 0; }
+  30% { opacity: 1; }
+  70% { opacity: 1; }
+  100% { right: 110%; opacity: 0; }
+}
+
+@keyframes cometGlideLtr {
+  0% { left: -10%; opacity: 0; }
+  30% { opacity: 1; }
+  70% { opacity: 1; }
+  100% { left: 110%; opacity: 0; }
 }
 
 /* Master CTA */
@@ -1144,6 +1169,135 @@ html.dark .bank-section-eyebrow {
 [data-theme="dark"] .bank-section-title,
 html.dark .bank-section-title {
   color: #f8fafc !important;
+}
+
+/* DARK MODE: CONNECTED ROADMAP (REACT BITS OBSIDIAN LUXURY) */
+[data-theme="dark"] .roadmap-control-dashboard,
+html.dark .roadmap-control-dashboard {
+  background: rgba(13, 21, 39, 0.8) !important;
+  border-color: rgba(59, 130, 246, 0.25) !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5) !important;
+}
+
+[data-theme="dark"] .dashboard-status-tag,
+html.dark .dashboard-status-tag {
+  background: rgba(30, 58, 138, 0.35) !important;
+  border-color: rgba(96, 165, 250, 0.3) !important;
+}
+
+[data-theme="dark"] .status-label,
+html.dark .status-label {
+  color: #93c5fd !important;
+}
+
+[data-theme="dark"] .stepper-pill-btn,
+html.dark .stepper-pill-btn {
+  background: #0f172a !important;
+  border-color: rgba(255, 255, 255, 0.12) !important;
+  color: #94a3b8 !important;
+}
+
+[data-theme="dark"] .stepper-pill-btn:hover,
+html.dark .stepper-pill-btn:hover {
+  background: #1e293b !important;
+  border-color: #60a5fa !important;
+  color: #93c5fd !important;
+}
+
+[data-theme="dark"] .stepper-pill-btn.active,
+html.dark .stepper-pill-btn.active {
+  background: #1e3a8a !important;
+  border-color: #3b82f6 !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 16px rgba(59, 130, 246, 0.35) !important;
+}
+
+[data-theme="dark"] .stepper-pill-btn.completed,
+html.dark .stepper-pill-btn.completed {
+  background: rgba(16, 185, 129, 0.15) !important;
+  border-color: #10b981 !important;
+  color: #34d399 !important;
+}
+
+[data-theme="dark"] .dashboard-highway-track,
+html.dark .dashboard-highway-track {
+  background: #0f172a !important;
+}
+
+[data-theme="dark"] .roadmap-tilt-card,
+html.dark .roadmap-tilt-card {
+  background: rgba(13, 21, 39, 0.82) !important;
+  border-color: rgba(59, 130, 246, 0.25) !important;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.6) !important;
+  backdrop-filter: blur(16px);
+}
+
+[data-theme="dark"] .roadmap-tilt-card:hover,
+html.dark .roadmap-tilt-card:hover {
+  border-color: rgba(96, 165, 250, 0.6) !important;
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.8), 0 0 30px rgba(37, 99, 235, 0.25) !important;
+}
+
+[data-theme="dark"] .roadmap-tilt-card.is-active,
+html.dark .roadmap-tilt-card.is-active {
+  border-color: #3b82f6 !important;
+  box-shadow: 0 22px 52px rgba(0, 0, 0, 0.85), 0 0 36px rgba(59, 130, 246, 0.3) !important;
+}
+
+[data-theme="dark"] .milestone-node-circle,
+html.dark .milestone-node-circle {
+  background: rgba(30, 58, 138, 0.25) !important;
+  border-color: rgba(59, 130, 246, 0.4) !important;
+}
+
+[data-theme="dark"] .milestone-num,
+html.dark .milestone-num {
+  color: #f8fafc !important;
+}
+
+[data-theme="dark"] .milestone-subtitle,
+html.dark .milestone-subtitle {
+  color: #94a3b8 !important;
+}
+
+[data-theme="dark"] .card-step-title,
+html.dark .card-step-title {
+  color: #f8fafc !important;
+}
+
+[data-theme="dark"] .card-step-desc,
+html.dark .card-step-desc {
+  color: #cbd5e1 !important;
+}
+
+[data-theme="dark"] .card-road-action-pill,
+html.dark .card-road-action-pill {
+  background: rgba(30, 58, 138, 0.35) !important;
+  border-color: rgba(59, 130, 246, 0.3) !important;
+  color: #93c5fd !important;
+}
+
+[data-theme="dark"] .card-road-action-pill:hover,
+html.dark .card-road-action-pill:hover,
+[data-theme="dark"] .roadmap-tilt-card:hover .card-road-action-pill,
+html.dark .roadmap-tilt-card:hover .card-road-action-pill {
+  background: #2563eb !important;
+  border-color: #3b82f6 !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 16px rgba(59, 130, 246, 0.4) !important;
+}
+
+[data-theme="dark"] .road-track-asphalt,
+html.dark .road-track-asphalt {
+  stroke: #0f172a !important;
+}
+
+[data-theme="dark"] .road-chevron-capsule,
+html.dark .road-chevron-capsule {
+  background: #0d1527 !important;
+  border-color: #3b82f6 !important;
+  color: #60a5fa !important;
+  box-shadow: 0 2px 10px rgba(59, 130, 246, 0.45) !important;
 }
 
 [data-theme="dark"] .bank-step-card,

@@ -18,6 +18,7 @@ import {
   ChevronRight,
   ChevronLeft
 } from 'lucide-react';
+import ConnectedRoadmap from '../ui/ConnectedRoadmap';
 
 export default function Serv5BankAccountsPage({ lang = 'ar', onOpenConsultation }) {
   const isRtl = lang === 'ar';
@@ -190,69 +191,6 @@ export default function Serv5BankAccountsPage({ lang = 'ar', onOpenConsultation 
       ? 'السلام عليكم، قمت بالتحويل إلى حساب شركة سيرف فايف، وأود إرسال إيصال السداد لتأكيد مشروعي.'
       : 'Hello, I have made a bank transfer to SERV5 corporate account and would like to send my receipt to confirm the project.'
   )}`;
-
-  const steps = [
-    {
-      num: '01',
-      title: isRtl ? 'اختر وسيلة الدفع' : 'Choose Account',
-      desc: isRtl
-        ? 'اختر البنك أو المحفظة المناسبة لك في مصر أو المملكة العربية السعودية.'
-        : 'Select the convenient bank account or instant payment bridge.',
-      actionText: isRtl ? 'استعراض الحسابات' : 'Browse Accounts',
-      actionType: 'scroll',
-      target: '#bank-cards-section',
-      icon: CreditCard,
-      stepBadge: isRtl ? 'المحطة 01' : 'Stage 01'
-    },
-    {
-      num: '02',
-      title: isRtl ? 'انسخ البيانات بدقة' : 'Copy Coordinates',
-      desc: isRtl
-        ? 'استخدم زر النسخ السريع لنسخ رقم الحساب أو الآيبان بدقة لتفادي أي أخطاء في الإدخال.'
-        : 'Use one-click copy buttons for precision and error-free transfer.',
-      actionText: isRtl ? 'الانتقال للنسخ' : 'Quick Copy',
-      actionType: 'scroll',
-      target: '#bank-cards-section',
-      icon: Copy,
-      stepBadge: isRtl ? 'المحطة 02' : 'Stage 02'
-    },
-    {
-      num: '03',
-      title: isRtl ? 'نفّذ التحويل البنكي' : 'Execute Transfer',
-      desc: isRtl
-        ? 'أدخل اسم مشروعك أو رقم عرض السعر في خانة وصف الحوالة لتسهيل مطابقتها فوراً.'
-        : 'Include your project title or quote reference in the payment note.',
-      actionText: isRtl ? 'إرشادات التحويل' : 'Transfer Guide',
-      actionType: 'scroll',
-      target: '#bank-faq-section',
-      icon: Building2,
-      stepBadge: isRtl ? 'المحطة 03' : 'Stage 03'
-    },
-    {
-      num: '04',
-      title: isRtl ? 'أرسل الإشعار عبر واتساب' : 'Send WhatsApp Slip',
-      desc: isRtl
-        ? 'شارك صورة الإيصال مع فريق المبيعات لاستلام التأكيد الرسمي وبدء التنفيذ مباشرة.'
-        : 'Forward the receipt slip to sales WhatsApp for instant project activation.',
-      actionText: isRtl ? 'إرسال الإشعار واتساب' : 'Send via WhatsApp',
-      actionType: 'link',
-      target: whatsappUrl,
-      icon: Phone,
-      stepBadge: isRtl ? 'المحطة 04' : 'Stage 04'
-    }
-  ];
-
-  const handleStepAction = (step, e) => {
-    if (step.actionType === 'scroll') {
-      e?.preventDefault();
-      const el = document.querySelector(step.target);
-      if (el) {
-        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
-    } else if (step.actionType === 'link') {
-      window.open(step.target, '_blank', 'noopener,noreferrer');
-    }
-  };
 
   return (
     <div className="bank-accounts-page" dir={isRtl ? 'rtl' : 'ltr'}>
@@ -472,108 +410,8 @@ export default function Serv5BankAccountsPage({ lang = 'ar', onOpenConsultation 
             </h2>
           </div>
 
-          {/* Connected Highway Route Ribbon */}
-          <div className="bank-roadmap-track-wrap">
-            <div className="roadmap-header-info">
-              <span className="roadmap-live-indicator">
-                <span className="live-ping"></span>
-                <span className="live-dot"></span>
-              </span>
-              <span className="roadmap-title-text">
-                {isRtl ? 'طريق السداد المعتمد: 4 خطوات متصلة' : 'Verified Payment Route: 4 Connected Steps'}
-              </span>
-            </div>
-
-            <div className="roadmap-progress-road" aria-hidden="true">
-              <div className="roadmap-road-lane">
-                <div className="roadmap-road-dashes"></div>
-                <div className="roadmap-energy-laser"></div>
-              </div>
-              <div className="roadmap-checkpoints-row">
-                {steps.map((st) => (
-                  <div key={st.num} className="roadmap-checkpoint-station">
-                    <span className="station-node-dot">{st.num}</span>
-                    <span className="station-node-name">{st.title}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          {/* Connected Step Cards with Linked Roads */}
-          <div className="bank-steps-grid">
-            {steps.map((step, idx) => {
-              const StepIcon = step.icon;
-              return (
-                <div
-                  key={step.num}
-                  className="bank-step-card"
-                  onClick={(e) => handleStepAction(step, e)}
-                  tabIndex={0}
-                  role="button"
-                  aria-label={`${step.title} - ${step.actionText}`}
-                >
-                  {/* Milestone Node with Glowing Beacon Ring */}
-                  <div className="step-milestone-node">
-                    <span className="step-beacon-ring"></span>
-                    <span className="step-num">{step.num}</span>
-                    <div className="step-icon-badge" title={step.stepBadge}>
-                      <StepIcon size={12} />
-                    </div>
-                  </div>
-
-                  <h4>{step.title}</h4>
-                  <p>{step.desc}</p>
-
-                  {/* Connected Link Road Action Button */}
-                  <div className="step-card-footer">
-                    {step.actionType === 'link' ? (
-                      <a
-                        href={step.target}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="step-road-link-btn"
-                        onClick={(e) => e.stopPropagation()}
-                      >
-                        <span>{step.actionText}</span>
-                        <ArrowIcon size={14} className="step-arrow-anim" />
-                      </a>
-                    ) : (
-                      <span className="step-road-link-btn">
-                        <span>{step.actionText}</span>
-                        <ArrowIcon size={14} className="step-arrow-anim" />
-                      </span>
-                    )}
-                  </div>
-
-                  {/* Desktop Connecting Road Segment between Steps */}
-                  {idx < steps.length - 1 && (
-                    <div className="bank-road-connector" aria-hidden="true">
-                      <div className="road-connector-track">
-                        <div className="road-lane-dashes"></div>
-                        <div className="road-energy-beam"></div>
-                      </div>
-                      <div className="road-connector-arrow">
-                        {isRtl ? <ChevronLeft size={16} /> : <ChevronRight size={16} />}
-                      </div>
-                    </div>
-                  )}
-
-                  {/* Mobile Connecting Road Segment */}
-                  {idx < steps.length - 1 && (
-                    <div className="bank-road-connector-mobile" aria-hidden="true">
-                      <div className="road-mobile-line">
-                        <div className="road-mobile-pulse"></div>
-                      </div>
-                      <div className="road-mobile-arrow">
-                        <ArrowRight size={14} className="rotate-90" />
-                      </div>
-                    </div>
-                  )}
-                </div>
-              );
-            })}
-          </div>
+          {/* Professional Connected Roadmap Component (React Bits Powered) */}
+          <ConnectedRoadmap lang={lang} whatsappUrl={whatsappUrl} />
 
           {/* Master WhatsApp Action */}
           <div className="bank-master-cta-wrap">
