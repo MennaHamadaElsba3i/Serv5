@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { ArrowUpRight, Menu, X, Phone, Globe, ChevronDown } from 'lucide-react';
+import { ArrowUpRight, Menu, X, Phone, Globe, ChevronDown, Sun, Moon } from 'lucide-react';
 
-export default function Navbar({ onOpenConsultation, lang = 'ar', onToggleLang }) {
+export default function Navbar({ onOpenConsultation, lang = 'ar', onToggleLang, theme = 'light', onToggleTheme }) {
   const location = useLocation();
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -152,6 +152,32 @@ export default function Navbar({ onOpenConsultation, lang = 'ar', onToggleLang }
 
           {/* Action CTAs */}
           <div className="navbar-actions">
+            {/* Theme Switcher Pill (Dark / Light Mode) */}
+            {onToggleTheme && (
+              <button
+                type="button"
+                onClick={onToggleTheme}
+                className="theme-switcher-pill"
+                title={
+                  theme === 'dark'
+                    ? (isRtl ? 'التبديل إلى الوضع النهاري (Light Mode)' : 'Switch to Light Mode')
+                    : (isRtl ? 'التبديل إلى الوضع الليلي (Dark Mode)' : 'Switch to Dark Mode')
+                }
+                aria-label={theme === 'dark' ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
+              >
+                <div className="theme-pill-icon-wrap">
+                  {theme === 'dark' ? (
+                    <Sun size={14} className="theme-sun-icon" />
+                  ) : (
+                    <Moon size={14} className="theme-moon-icon" />
+                  )}
+                </div>
+                <span className="theme-label">
+                  {theme === 'dark' ? (isRtl ? 'نهاري' : 'Light') : (isRtl ? 'ليلي' : 'Dark')}
+                </span>
+              </button>
+            )}
+
             {/* Language Switcher Pill */}
             {onToggleLang && (
               <button
@@ -204,6 +230,46 @@ export default function Navbar({ onOpenConsultation, lang = 'ar', onToggleLang }
       {mobileMenuOpen && (
         <div className="mobile-nav-panel">
           <div className="container">
+            {/* Mobile Nav Top Bar for Language & Theme Switching */}
+            <div className="mobile-nav-top-bar d-flex align-items-center gap-2 mb-3 pb-3 border-bottom">
+              {onToggleTheme && (
+                <button
+                  type="button"
+                  onClick={onToggleTheme}
+                  className="theme-switcher-pill"
+                  title={
+                    theme === 'dark'
+                      ? (isRtl ? 'التبديل إلى الوضع النهاري' : 'Switch to Light Mode')
+                      : (isRtl ? 'التبديل إلى الوضع الليلي' : 'Switch to Dark Mode')
+                  }
+                >
+                  <div className="theme-pill-icon-wrap">
+                    {theme === 'dark' ? (
+                      <Sun size={14} className="theme-sun-icon" />
+                    ) : (
+                      <Moon size={14} className="theme-moon-icon" />
+                    )}
+                  </div>
+                  <span className="theme-label">
+                    {theme === 'dark'
+                      ? (isRtl ? 'الوضع النهاري' : 'Light Mode')
+                      : (isRtl ? 'الوضع الليلي' : 'Dark Mode')}
+                  </span>
+                </button>
+              )}
+              {onToggleLang && (
+                <button
+                  type="button"
+                  onClick={onToggleLang}
+                  className="lang-switcher-pill"
+                  title={isRtl ? 'Switch to English' : 'التحويل إلى العربية'}
+                >
+                  <Globe size={14} className="lang-globe-icon" />
+                  <span className="lang-label">{isRtl ? 'English' : 'العربية'}</span>
+                </button>
+              )}
+            </div>
+
             <ul className="mobile-menu-links">
               {navLinks.map((link, idx) => (
                 <li key={idx}>

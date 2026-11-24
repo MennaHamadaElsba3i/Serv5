@@ -15,6 +15,7 @@ import './styles/home-tail.css';
 import './styles/serv5-journal.css';
 import './styles/serv5-hello.css';
 import './styles/serv5-web-design.css';
+import './styles/serv5-dark-mode.css';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
