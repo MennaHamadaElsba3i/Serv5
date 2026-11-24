@@ -546,6 +546,449 @@
   transition: none;
 }
 
+/* ---------- App Universe ---------- */
+
+.app-universe-section {
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse at 50% 58%, rgba(37, 99, 235, 0.09), transparent 28rem),
+    radial-gradient(ellipse at 88% 18%, rgba(234, 88, 12, 0.06), transparent 22rem),
+    #f8fbff;
+  border-block: 1px solid #e2e8f0;
+}
+
+.app-universe-heading {
+  margin-bottom: 1.5rem;
+}
+
+.app-universe-project {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 1.1rem;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 1.1rem 1.25rem;
+  border: 1px solid rgba(148, 163, 184, 0.22);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.82);
+  box-shadow: 0 12px 36px rgba(15, 23, 42, 0.055);
+  animation: app-universe-copy-in 0.4s ease both;
+}
+
+.app-universe-project-mark {
+  display: grid;
+  justify-items: center;
+  gap: 0.35rem;
+  min-width: 78px;
+  color: var(--wd-blue);
+}
+
+.app-universe-project-mark span,
+.app-universe-project-count {
+  color: #64748b;
+  font-size: 0.65rem;
+  font-weight: 850;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.app-universe-project-copy h3 {
+  margin: 0.2rem 0 0.25rem;
+  color: var(--wd-ink);
+  font-size: clamp(1.05rem, 2vw, 1.4rem);
+  font-weight: 900;
+}
+
+.app-universe-project-copy p {
+  max-width: 650px;
+  margin: 0;
+  color: #64748b;
+  font-size: 0.86rem;
+  line-height: 1.75;
+}
+
+.app-universe-store-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.7rem 0.9rem;
+  border: 1px solid rgba(37, 99, 235, 0.22);
+  border-radius: 999px;
+  color: #1d4ed8;
+  font-size: 0.8rem;
+  font-weight: 850;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color 0.2s ease, background 0.2s ease, transform 0.2s ease;
+}
+
+.app-universe-store-link:hover {
+  transform: translateY(-2px);
+  background: #2563eb;
+  color: #fff;
+}
+
+.app-universe-stage {
+  position: relative;
+  width: min(100%, 1160px);
+  height: clamp(470px, 44vw, 590px);
+  margin: 0 auto;
+  perspective: 1450px;
+  perspective-origin: 50% 48%;
+  transform-style: preserve-3d;
+  isolation: isolate;
+}
+
+.app-universe-connections {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.app-universe-connections path {
+  stroke: rgba(37, 99, 235, 0.3);
+  stroke-width: 1.2;
+  stroke-dasharray: 4 8;
+  vector-effect: non-scaling-stroke;
+}
+
+.app-universe-connections circle {
+  fill: #ea580c;
+  stroke: rgba(234, 88, 12, 0.18);
+  stroke-width: 7;
+  vector-effect: non-scaling-stroke;
+}
+
+.app-universe-floating-screen {
+  position: absolute;
+  z-index: 1;
+  width: 184px;
+  height: 318px;
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  border-radius: 23px;
+  background-color: #0f172a;
+  background-repeat: no-repeat;
+  overflow: hidden;
+  box-shadow: 0 26px 60px rgba(15, 23, 42, 0.18), 0 0 0 1px rgba(37, 99, 235, 0.1);
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  animation: app-universe-float 8s ease-in-out infinite, app-universe-screen-in 0.65s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  transition: opacity 0.35s ease, filter 0.35s ease;
+}
+
+.app-universe-floating-screen img,
+.app-universe-phone-screen img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+}
+
+.app-universe-screen-left-back {
+  top: 12%;
+  left: calc(50% - 505px);
+  opacity: 0.7;
+  transform: translateZ(-135px) rotateY(30deg) rotateZ(-7deg) scale(0.88);
+  animation-delay: 0.2s, 0.08s;
+}
+
+.app-universe-screen-left-front {
+  top: 37%;
+  left: calc(50% - 380px);
+  z-index: 2;
+  transform: translateZ(8px) rotateY(22deg) rotateZ(-4deg);
+  animation-delay: 0.7s, 0.16s;
+}
+
+.app-universe-screen-right {
+  top: 19%;
+  left: calc(50% + 228px);
+  z-index: 2;
+  transform: translateZ(-12px) rotateY(-23deg) rotateZ(5deg);
+  animation-delay: 1.1s, 0.24s;
+}
+
+.app-universe-phone {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 4;
+  width: 238px;
+  height: 454px;
+  padding: 9px;
+  border: 1px solid #475569;
+  border-radius: 42px;
+  background: linear-gradient(145deg, #334155, #070b15 24%, #111827 76%, #475569);
+  box-shadow: 0 42px 90px rgba(15, 23, 42, 0.32), 0 0 0 5px rgba(15, 23, 42, 0.08), 0 0 55px rgba(37, 99, 235, 0.13);
+  transform: translate(-50%, -50%) translateZ(85px) rotateY(-8deg) rotateX(2deg);
+  transform-style: preserve-3d;
+  animation: app-universe-phone-in 0.7s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+.app-universe-phone-screen {
+  position: absolute;
+  inset: 9px;
+  overflow: hidden;
+  border-radius: 33px;
+  background-color: #111827;
+  background-repeat: no-repeat;
+  background: #fff;
+  animation: app-universe-screen-in 0.7s ease both;
+}
+
+.app-universe-phone-island {
+  position: absolute;
+  top: 16px;
+  left: 50%;
+  z-index: 2;
+  width: 74px;
+  height: 18px;
+  border-radius: 999px;
+  background: #05070b;
+  transform: translateX(-50%);
+}
+
+.app-universe-phone-button {
+  position: absolute;
+  right: -3px;
+  width: 3px;
+  border-radius: 0 3px 3px 0;
+  background: #64748b;
+}
+
+.app-universe-phone-button-a { top: 112px; height: 46px; }
+.app-universe-phone-button-b { top: 170px; height: 64px; }
+
+.app-universe-floor-glow {
+  position: absolute;
+  left: 50%;
+  bottom: 7%;
+  z-index: -1;
+  width: 420px;
+  height: 90px;
+  border-radius: 50%;
+  background: radial-gradient(ellipse, rgba(37, 99, 235, 0.2), rgba(37, 99, 235, 0.03) 55%, transparent 74%);
+  filter: blur(11px);
+  transform: translateX(-50%) rotateX(64deg);
+}
+
+.app-universe-selector {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.55rem;
+  max-width: 1040px;
+  margin: -0.15rem auto 0;
+}
+
+.app-universe-selector-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 42px;
+  padding: 0.55rem 0.8rem;
+  border: 1px solid #dbe4f0;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.82);
+  color: #475569;
+  font: inherit;
+  font-size: 0.77rem;
+  font-weight: 800;
+  cursor: pointer;
+  transition: border-color 0.24s ease, color 0.24s ease, background 0.24s ease, box-shadow 0.24s ease, transform 0.24s ease;
+}
+
+.app-universe-selector-item:hover {
+  transform: translateY(-2px);
+  border-color: #93c5fd;
+  color: #1d4ed8;
+}
+
+.app-universe-selector-item.is-selected {
+  border-color: #2563eb;
+  background: #eff6ff;
+  color: #1d4ed8;
+  box-shadow: 0 7px 20px rgba(37, 99, 235, 0.12);
+}
+
+.app-universe-selector-index {
+  color: #ea580c;
+  font-size: 0.63rem;
+  font-variant-numeric: tabular-nums;
+}
+
+@keyframes app-universe-float {
+  0%, 100% { translate: 0 0; }
+  50% { translate: 0 -8px; }
+}
+
+@keyframes app-universe-screen-in {
+  from { opacity: 0.28; scale: 0.94; }
+  to { opacity: 1; scale: 1; }
+}
+
+@keyframes app-universe-phone-in {
+  from { opacity: 0.4; scale: 0.94; }
+  to { opacity: 1; scale: 1; }
+}
+
+@keyframes app-universe-copy-in {
+  from { opacity: 0.5; translate: 0 5px; }
+  to { opacity: 1; translate: 0 0; }
+}
+
+@media (max-width: 1020px) {
+  .app-universe-stage {
+    height: 500px;
+  }
+
+  .app-universe-screen-left-back {
+    display: none;
+  }
+
+  .app-universe-screen-left-front {
+    left: calc(50% - 318px);
+    width: 162px;
+    height: 282px;
+  }
+
+  .app-universe-screen-right {
+    left: calc(50% + 156px);
+    width: 162px;
+    height: 282px;
+  }
+
+  .app-universe-phone {
+    width: 214px;
+    height: 414px;
+  }
+}
+
+@media (max-width: 760px) {
+  .app-universe-project {
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: 0.75rem;
+    padding: 0.95rem;
+  }
+
+  .app-universe-project-mark {
+    min-width: 54px;
+  }
+
+  .app-universe-project-mark span {
+    font-size: 0.52rem;
+  }
+
+  .app-universe-project-copy p {
+    font-size: 0.78rem;
+    line-height: 1.6;
+  }
+
+  .app-universe-store-link {
+    grid-column: 2;
+    justify-self: start;
+    min-height: 36px;
+    padding: 0.48rem 0.75rem;
+  }
+
+  .app-universe-stage {
+    height: 430px;
+    margin-top: 0.4rem;
+  }
+
+  .app-universe-screen-left-front {
+    top: 37%;
+    left: calc(50% - 172px);
+    width: 132px;
+    height: 232px;
+    opacity: 0.9;
+  }
+
+  .app-universe-screen-right {
+    top: 19%;
+    left: calc(50% + 40px);
+    width: 132px;
+    height: 232px;
+    opacity: 0.9;
+  }
+
+  .app-universe-phone {
+    width: 182px;
+    height: 358px;
+    border-radius: 35px;
+  }
+
+  .app-universe-phone-screen {
+    border-radius: 27px;
+  }
+
+  .app-universe-phone-island {
+    top: 14px;
+    width: 60px;
+    height: 15px;
+  }
+
+  .app-universe-phone-button-a { top: 92px; height: 38px; }
+  .app-universe-phone-button-b { top: 143px; height: 52px; }
+
+  .app-universe-connections path {
+    stroke-opacity: 0.65;
+  }
+
+  .app-universe-selector {
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    margin-inline: -0.5rem;
+    padding: 0.25rem 0.5rem 0.8rem;
+    overflow-x: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #93c5fd transparent;
+  }
+
+  .app-universe-selector-item {
+    flex: 0 0 auto;
+  }
+}
+
+@media (max-width: 400px) {
+  .app-universe-stage {
+    height: 390px;
+  }
+
+  .app-universe-screen-left-front {
+    left: calc(50% - 145px);
+    width: 112px;
+    height: 202px;
+  }
+
+  .app-universe-screen-right {
+    left: calc(50% + 34px);
+    width: 112px;
+    height: 202px;
+  }
+
+  .app-universe-phone {
+    width: 164px;
+    height: 326px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .app-universe-project,
+  .app-universe-floating-screen,
+  .app-universe-phone,
+  .app-universe-phone-screen {
+    animation: none;
+    transition: none;
+  }
+}
+
 .wd-work-meta {
   min-height: 0;
   display: flex;

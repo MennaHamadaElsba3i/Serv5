@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Serv5GetInTouch from '../sections/Serv5GetInTouch';
+import Serv5AppUniverse from './Serv5AppUniverse';
 import {
   ArrowUpRight,
   Check,
@@ -747,6 +748,108 @@ const seoCopy = {
   }
 };
 
+const mobileAppProjects = [
+  {
+    id: 'yalla-my-cash',
+    screens: ['yalla-1', 'yalla-2', 'yalla-3', 'yalla-4'],
+    image: 'https://api.serv5.com.eg/storage/portfolio/em7kkDf1QVVU1n6gAEjC8EdW3uE6bd48hNcesroL.webp',
+    url: 'https://apps.apple.com/us/app/yalla-my-cash/id1631066821?l=ar',
+    title: { ar: 'يالا ماي كاش', en: 'Yalla My Cash' },
+    description: {
+      ar: 'تطبيق مالي يوفر خدمة طلب وتوصيل النقود الكاش مباشرة إلى باب المنزل بسرعة وسهولة، لتوفير الوقت والجهد وتغني عن الحاجة لزيارة أجهزة الصراف الآلي (ATM).',
+      en: 'A financial application that offers direct cash delivery right to your doorstep, providing a convenient and time-saving alternative to visiting ATMs for everyday expenses or emergencies.'
+    }
+  },
+  {
+    id: 'ward-boutique',
+    screens: ['ward-1', 'ward-2', 'ward-3'],
+    image: 'https://api.serv5.com.eg/storage/portfolio/9mX94g4FmzeKkZBjoazDujOl9tP4TYV4iaUF3k34.webp',
+    url: 'https://apps.apple.com/us/app/%D9%88%D8%B1%D8%AF-%D8%A8%D9%88%D8%AA%D9%8A%D9%83/id1450749726',
+    title: { ar: 'ورد بوتيك', en: 'Ward Boutique' },
+    description: {
+      ar: 'منصة وتطبيق يتيح للمستخدمات عرض وبيع المقتنيات، الملابس، والأكسسوارات المستعملة والجديدة مجاناً من أي مكان في الوطن العربي، مما يسهل عملية التسوق وإعادة التدوير والتخلص من الأغراض غير الضرورية.',
+      en: 'A mobile platform allowing users across the Arab world to list, buy, and sell new and pre-owned clothing, accessories, and items for free, simplifying shopping and declaring unnecessary items.'
+    }
+  },
+  {
+    id: 'el-wady-el-akhdar-ios',
+    screens: ['wady-1', 'wady-2', 'wady-3', 'wady-4'],
+    image: 'https://api.serv5.com.eg/storage/portfolio/eeM54tusOVrETHMXPb7WR9MKiv7bvwZqgEGjfUao.webp',
+    url: 'https://apps.apple.com/us/app/%D8%B4%D8%B1%D9%83%D8%A9-%D8%A7%D9%84%D9%88%D8%A7%D8%AF%D9%8A-%D9%84%D9%84%D8%A7%D8%B3%D8%AA%D9%8A%D8%B1%D8%A7%D8%AF-%D9%88%D8%A7%D9%84%D8%AA%D8%B5%D8%AF%D9%8A%D8%B1/id1608770097',
+    title: { ar: 'الوادي الأخضر', en: 'El Wady El Akhdar IOS' },
+    description: {
+      ar: 'تطبيق إلكتروني لشركة متخصصة في استيراد وتصدير الآلات الزراعية والعدد اليدوية والكهربائية بقطع غيارها.',
+      en: 'An application for a company specialized in importing and exporting agricultural machinery, hand tools, and power tools along with their spare parts.'
+    }
+  },
+  {
+    id: 'orody-ios',
+    screens: ['orody-1', 'orody-2', 'orody-3', 'orody-4'],
+    image: 'https://api.serv5.com.eg/storage/portfolio/PjqST86jexvBDcmfqmFsGs7lPwEfZz1u38hHMnuG.webp',
+    url: 'https://apps.apple.com/us/app/%D8%B9%D8%B1%D9%88%D8%B6%D9%8A/id1597620341',
+    title: { ar: 'عروضي', en: 'Orody IOS' },
+    description: {
+      ar: 'تطبيق مخصص لعرض وتصفح أحدث عروض وخصومات أشهر المتاجر العادية والإلكترونية في مكان واحد.',
+      en: 'A dedicated mobile application to browse and explore the latest offers and discounts from top physical and online stores in one place.'
+    }
+  },
+  {
+    id: 'orody',
+    screens: ['orody-android-1', 'orody-android-2', 'orody-android-3', 'orody-android-4'],
+    image: 'https://api.serv5.com.eg/storage/portfolio/hstxgbjPKqPW98tZyrnLajIpEAQZ4D05H3IvTc6S.webp',
+    url: 'https://play.google.com/store/apps/details?id=com.waitbuzz.orody',
+    title: { ar: 'عروضي', en: 'Orody' },
+    description: {
+      ar: 'تطبيق مخصص لعرض وتصفح أحدث عروض وخصومات أشهر المتاجر العادية والإلكترونية في مكان واحد.',
+      en: 'A dedicated mobile application to browse and explore the latest offers and discounts from top physical and online stores in one place.'
+    }
+  },
+  {
+    id: 'sallatk-admin',
+    screens: ['sallatk'],
+    image: 'https://api.serv5.com.eg/storage/portfolio/baTmC83IhHVD5j6TqYBqHIYhp5b9rflhotJEKCH1.webp',
+    url: 'https://play.google.com/store/apps/details?id=com.sallatk.vendor.sallatk_vendor',
+    title: { ar: 'سلتك', en: 'Sallatk Admin' },
+    description: {
+      ar: 'تطبيق إلكتروني يتيح للتاجر التحكم في متجره بسهولة وسرعة، ومتابعة الطلبات الواردة والتحكم فيها، بالإضافة إلى إضافة المنتجات والتعديل عليها بكل تفاصيلها.',
+      en: 'A mobile application that enables merchants to manage their online store quickly and easily, track and process incoming orders, and seamlessly add or edit products with all details.'
+    }
+  },
+  {
+    id: 'el-wady-el-akhdar',
+    screens: ['wady-android'],
+    image: 'https://api.serv5.com.eg/storage/portfolio/lh0NTiCVpvz3nXxEF56E6fBbGAkMRuAHUs0uIvMK.webp',
+    url: 'https://play.google.com/store/apps/details?id=com.elwady.elakhdar',
+    title: { ar: 'الوادي الأخضر', en: 'El Wady El Akhdar' },
+    description: {
+      ar: 'تطبيق إلكتروني لشركة متخصصة في استيراد وتصدير الآلات الزراعية والعدد اليدوية والكهربائية بقطع غيارها.',
+      en: 'An application for a company specialized in importing and exporting agricultural machinery, hand tools, and power tools along with their spare parts.'
+    }
+  },
+  {
+    id: 'hodhood',
+    screens: ['hodhood'],
+    image: 'https://api.serv5.com.eg/storage/portfolio/wm0HiYM3umDfCCqkbC63pMKP4LVvtsaEQb19dxtD.webp',
+    url: 'https://play.google.com/store/apps/details?id=com.hodhood.app',
+    title: { ar: 'هدهد', en: 'HodHood' },
+    description: {
+      ar: 'تطبيق تسوق وتوصيل طلبات موجه للمستخدمين باللغة الألمانية.',
+      en: 'An e-commerce and delivery application tailored for German-speaking users.'
+    }
+  },
+  {
+    id: 'athath-app',
+    screens: ['athath'],
+    image: 'https://api.serv5.com.eg/storage/portfolio/8U2xFF7kDBORdo0B0kYCEH1Vt9aiTzZEALkInpTZ.webp',
+    url: 'https://play.google.com/store/apps/details?id=com.wb.furniture',
+    title: { ar: 'تطبيق أثاث', en: 'Athath App' },
+    description: {
+      ar: 'تطبيق إلكتروني متخصص في عرض وتوفير الأثاث المنزلي والديكورات الحديثة',
+      en: 'An mobile application specialized in showcasing and providing modern home furniture and decor'
+    }
+  }
+];
+
 const mobileAppsCopy = {
   ar: {
     hero: {
@@ -778,17 +881,7 @@ const mobileAppsCopy = {
       title: 'بعض من أعمالنا في تطوير تطبيقات الهاتف',
       text: 'تصفح أحدث تطبيقات الجوال التي قمنا بتطويرها لعملائنا في مختلف المجالات.',
       more: '',
-      items: [
-        { image: 'https://api.serv5.com.eg/storage/portfolio/em7kkDf1QVVU1n6gAEjC8EdW3uE6bd48hNcesroL.webp', title: 'يالا ماي كاش', tag: '' },
-        { image: 'https://api.serv5.com.eg/storage/portfolio/9mX94g4FmzeKkZBjoazDujOl9tP4TYV4iaUF3k34.webp', title: 'ورد بوتيك', tag: '' },
-        { image: 'https://api.serv5.com.eg/storage/portfolio/eeM54tusOVrETHMXPb7WR9MKiv7bvwZqgEGjfUao.webp', title: 'الوادي الأخضر', tag: '' },
-        { image: 'https://api.serv5.com.eg/storage/portfolio/PjqST86jexvBDcmfqmFsGs7lPwEfZz1u38hHMnuG.webp', title: 'عروضي', tag: '' },
-        { image: 'https://api.serv5.com.eg/storage/portfolio/hstxgbjPKqPW98tZyrnLajIpEAQZ4D05H3IvTc6S.webp', title: 'عروضي', tag: '' },
-        { image: 'https://api.serv5.com.eg/storage/portfolio/baTmC83IhHVD5j6TqYBqHIYhp5b9rflhotJEKCH1.webp', title: 'سلتك', tag: '' },
-        { image: 'https://api.serv5.com.eg/storage/portfolio/lh0NTiCVpvz3nXxEF56E6fBbGAkMRuAHUs0uIvMK.webp', title: 'الوادي الأخضر', tag: '' },
-        { image: 'https://api.serv5.com.eg/storage/portfolio/wm0HiYM3umDfCCqkbC63pMKP4LVvtsaEQb19dxtD.webp', title: 'هدهد', tag: '' },
-        { image: 'https://api.serv5.com.eg/storage/portfolio/8U2xFF7kDBORdo0B0kYCEH1Vt9aiTzZEALkInpTZ.webp', title: 'تطبيق أثاث', tag: '' }
-      ]
+      items: mobileAppProjects
     },
     ux: {
       eyebrow: '',
@@ -859,17 +952,7 @@ const mobileAppsCopy = {
       title: 'Some of our mobile app development work',
       text: 'Explore mobile apps we have recently developed for clients across different industries.',
       more: '',
-      items: [
-        { image: 'https://api.serv5.com.eg/storage/portfolio/em7kkDf1QVVU1n6gAEjC8EdW3uE6bd48hNcesroL.webp', title: 'Yalla My Cash', tag: '' },
-        { image: 'https://api.serv5.com.eg/storage/portfolio/9mX94g4FmzeKkZBjoazDujOl9tP4TYV4iaUF3k34.webp', title: 'Ward Boutique', tag: '' },
-        { image: 'https://api.serv5.com.eg/storage/portfolio/eeM54tusOVrETHMXPb7WR9MKiv7bvwZqgEGjfUao.webp', title: 'El Wady El Akhdar', tag: '' },
-        { image: 'https://api.serv5.com.eg/storage/portfolio/PjqST86jexvBDcmfqmFsGs7lPwEfZz1u38hHMnuG.webp', title: 'Orody', tag: '' },
-        { image: 'https://api.serv5.com.eg/storage/portfolio/hstxgbjPKqPW98tZyrnLajIpEAQZ4D05H3IvTc6S.webp', title: 'Orody', tag: '' },
-        { image: 'https://api.serv5.com.eg/storage/portfolio/baTmC83IhHVD5j6TqYBqHIYhp5b9rflhotJEKCH1.webp', title: 'Sallatk', tag: '' },
-        { image: 'https://api.serv5.com.eg/storage/portfolio/lh0NTiCVpvz3nXxEF56E6fBbGAkMRuAHUs0uIvMK.webp', title: 'El Wady El Akhdar', tag: '' },
-        { image: 'https://api.serv5.com.eg/storage/portfolio/wm0HiYM3umDfCCqkbC63pMKP4LVvtsaEQb19dxtD.webp', title: 'Hodhood', tag: '' },
-        { image: 'https://api.serv5.com.eg/storage/portfolio/8U2xFF7kDBORdo0B0kYCEH1Vt9aiTzZEALkInpTZ.webp', title: 'Athath App', tag: '' }
-      ]
+      items: mobileAppProjects
     },
     ux: {
       eyebrow: '',
@@ -1278,7 +1361,16 @@ export default function Serv5WebDesignPage({ lang = 'ar', onOpenConsultation, va
       </section>
 
       {/* ---------------- WORK ---------------- */}
-      {!isFocusedService && <section className="wd-section wd-work-section" ref={workRef}>
+      {isMobileApps
+        ? <Serv5AppUniverse
+          lang={lang}
+          eyebrow={t.work.eyebrow}
+          title={t.work.title}
+          text={t.work.text}
+          items={t.work.items}
+          sectionRef={workRef}
+        />
+        : !isFocusedService && <section className="wd-section wd-work-section" ref={workRef}>
         <div className="container wd-work-container">
           <header className="wd-heading wd-reveal" data-wd-reveal>
             <span>{t.work.eyebrow}</span>
