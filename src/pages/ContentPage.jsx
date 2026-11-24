@@ -24,6 +24,7 @@ import Serv5NewestPosts from '../components/sections/Serv5NewestPosts';
 import Serv5ProductsShowcase from '../components/sections/Serv5ProductsShowcase';
 import Serv5GetInTouch from '../components/sections/Serv5GetInTouch';
 import Serv5WebDesignPage from '../components/pages/Serv5WebDesignPage';
+import Serv5BankAccountsPage from '../components/pages/Serv5BankAccountsPage';
 import TiltCard from '../components/hosting/TiltCard';
 
 const servicePages = {
@@ -497,17 +498,7 @@ export default function ContentPage({ pathname, lang = 'ar', onOpenConsultation 
   }
 
   if (pathname === '/bank-accounts') {
-    return (
-      <SimplePage
-        isRtl={isRtl}
-        title={isRtl ? 'الحسابات البنكية' : 'Bank Accounts'}
-        description={isRtl ? 'للحصول على بيانات التحويل الرسمية للحسابات المعتمدة، يرجى التواصل مع فريق المبيعات.' : 'For official approved bank transfer details, please contact the SERV5 sales team.'}
-        sections={[
-          { title: isRtl ? 'تحويلات السداد' : 'Payment Transfers', text: isRtl ? 'تؤكد سيرف فايف بيانات التحويل فقط عبر قنواتها الرسمية الموثقة.' : 'SERV5 confirms transfer details only through its official verified channels.' },
-          { title: isRtl ? 'تأكيد العملية' : 'Payment Confirmation', text: isRtl ? 'بعد التحويل، شارك إثبات السداد مع فريق المبيعات لاستلام تأكيد مشروعك رسميًا.' : 'After transfer, share proof of payment with the sales team for official project confirmation.' }
-        ]}
-      />
-    );
+    return <Serv5BankAccountsPage lang={lang} onOpenConsultation={onOpenConsultation} />;
   }
 
   if (pathname === '/careers') {

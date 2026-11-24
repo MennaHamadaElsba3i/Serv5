@@ -1,0 +1,736 @@
+/* =========================================================
+   SERV5 BANK ACCOUNTS PAGE STYLING
+   Architectural Light Mode × Luxury Obsidian Dark Mode
+   ========================================================= */
+
+.bank-accounts-page {
+  padding-bottom: 5rem;
+}
+
+/* 1. HERO SECTION */
+.bank-hero-section {
+  padding: 5rem 1.5rem 2.5rem;
+  text-align: center;
+  position: relative;
+}
+
+@media (min-width: 768px) {
+  .bank-hero-section {
+    padding: 6.5rem 2rem 3.5rem;
+  }
+}
+
+.bank-hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 1rem;
+  border-radius: 9999px;
+  background: rgba(37, 99, 235, 0.08);
+  border: 1px solid rgba(37, 99, 235, 0.25);
+  color: #2563eb;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  margin-bottom: 1.25rem;
+}
+
+.bank-hero-title {
+  font-size: clamp(2.2rem, 4.2vw, 3.4rem);
+  font-weight: 900;
+  color: #0f172a;
+  line-height: 1.2;
+  letter-spacing: -0.025em;
+  margin: 0 auto 1.2rem;
+  max-width: 860px;
+}
+
+.bank-hero-desc {
+  font-size: clamp(1rem, 1.3vw, 1.15rem);
+  line-height: 1.75;
+  color: #475569;
+  max-width: 760px;
+  margin: 0 auto 2.5rem;
+}
+
+/* Security Notice Box */
+.bank-security-notice {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 1.25rem 1.5rem;
+  border-radius: 1.25rem;
+  background: linear-gradient(135deg, rgba(37, 99, 235, 0.06) 0%, rgba(234, 88, 12, 0.06) 100%);
+  border: 1.5px solid rgba(37, 99, 235, 0.22);
+  text-align: start;
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.03);
+}
+
+.security-icon-wrap {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: #2563eb;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+}
+
+.security-text-wrap strong {
+  display: block;
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin-bottom: 0.35rem;
+}
+
+.security-text-wrap p {
+  margin: 0;
+  font-size: 0.86rem;
+  line-height: 1.6;
+  color: #475569;
+}
+
+/* 2. FILTER TABS */
+.bank-tabs-section {
+  padding: 1.5rem 1.5rem 2.5rem;
+}
+
+.bank-tabs-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  flex-wrap: wrap;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.bank-tab-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1.25rem;
+  border-radius: 9999px;
+  background: #f8fafc;
+  border: 1.5px solid #e2e8f0;
+  color: #475569;
+  font-size: 0.86rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.22s ease;
+  user-select: none;
+}
+
+.bank-tab-btn:hover {
+  background: #eff6ff;
+  border-color: #93c5fd;
+  color: #1d4ed8;
+}
+
+.bank-tab-btn.active {
+  background: #2563eb;
+  border-color: #2563eb;
+  color: #ffffff;
+  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.32);
+}
+
+.bank-tab-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.3rem;
+  height: 1.3rem;
+  padding: 0 0.25rem;
+  border-radius: 9999px;
+  background: rgba(15, 23, 42, 0.08);
+  font-size: 0.72rem;
+  font-weight: 800;
+}
+
+.bank-tab-btn.active .bank-tab-count {
+  background: rgba(255, 255, 255, 0.25);
+  color: #ffffff;
+}
+
+/* 3. ACCOUNTS GRID */
+.bank-cards-section {
+  padding: 0 1.5rem 4rem;
+}
+
+.bank-cards-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.75rem;
+  max-width: 1240px;
+  margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+  .bank-cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.bank-account-card {
+  display: flex;
+  flex-direction: column;
+  border-radius: 1.5rem;
+  border: 1.5px solid #e2e8f0;
+  background: #ffffff;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.05);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.bank-account-card:hover {
+  transform: translateY(-4px);
+  border-color: #93c5fd;
+  box-shadow: 0 16px 36px rgba(37, 99, 235, 0.12);
+}
+
+/* Card Header */
+.bank-card-header {
+  padding: 1.5rem 1.75rem 1.35rem;
+  color: #ffffff;
+  position: relative;
+}
+
+.bank-card-header-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 0.85rem;
+}
+
+.bank-badge-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.25rem 0.65rem;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.bank-currency-tag {
+  font-size: 0.75rem;
+  font-weight: 800;
+  opacity: 0.92;
+  font-family: var(--font-mono, monospace);
+  padding: 0.2rem 0.55rem;
+  border-radius: 8px;
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.bank-card-title {
+  font-size: 1.35rem;
+  font-weight: 900;
+  margin: 0 0 0.6rem;
+  color: #ffffff;
+  letter-spacing: -0.01em;
+}
+
+.bank-card-beneficiary {
+  display: flex;
+  align-items: baseline;
+  gap: 0.4rem;
+  font-size: 0.82rem;
+  opacity: 0.95;
+  flex-wrap: wrap;
+}
+
+.beneficiary-label {
+  opacity: 0.8;
+}
+
+.beneficiary-name {
+  font-weight: 800;
+  color: #ffffff;
+}
+
+/* Card Body */
+.bank-card-body {
+  padding: 1.5rem 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  flex-grow: 1;
+}
+
+.bank-data-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.75rem 0.95rem;
+  border-radius: 12px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+}
+
+.data-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  min-width: 0;
+}
+
+.data-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.data-value {
+  font-size: 0.92rem;
+  color: #0f172a;
+  word-break: break-all;
+}
+
+.btn-copy-data {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.45rem 0.8rem;
+  border-radius: 8px;
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  color: #1e40af;
+  font-size: 0.75rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.btn-copy-data:hover {
+  background: #eff6ff;
+  border-color: #2563eb;
+  color: #1d4ed8;
+}
+
+.btn-copy-data.copied {
+  background: #10b981;
+  border-color: #10b981;
+  color: #ffffff;
+  box-shadow: 0 2px 8px rgba(16, 185, 129, 0.35);
+}
+
+.bank-branch-row {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.78rem;
+  color: #64748b;
+  padding: 0.25rem 0.2rem;
+}
+
+.branch-label {
+  font-weight: 700;
+}
+
+.branch-val {
+  color: #334155;
+  font-weight: 600;
+}
+
+/* Card Footer */
+.bank-card-footer {
+  padding: 1rem 1.75rem 1.25rem;
+  border-top: 1px solid #f1f5f9;
+  background: #fafcff;
+}
+
+.bank-card-whatsapp-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 0.7rem 1.25rem;
+  border-radius: 12px;
+  background: #f1f5f9;
+  border: 1px solid #e2e8f0;
+  color: #1e3a8a;
+  font-size: 0.84rem;
+  font-weight: 750;
+  text-decoration: none;
+  transition: all 0.22s ease;
+}
+
+.bank-card-whatsapp-btn:hover {
+  background: #2563eb;
+  border-color: #2563eb;
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
+  transform: translateY(-1px);
+}
+
+/* 4. PROTOCOL STEPS */
+.bank-steps-section {
+  padding: 5rem 1.5rem;
+  background: linear-gradient(180deg, rgba(239, 246, 255, 0.5) 0%, rgba(248, 250, 252, 0.8) 100%);
+  border-top: 1px solid #e2e8f0;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.section-head-center {
+  text-align: center;
+  margin-bottom: 3.5rem;
+}
+
+.bank-section-eyebrow {
+  display: inline-block;
+  font-size: 0.8rem;
+  font-weight: 800;
+  color: #2563eb;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.5rem;
+}
+
+.bank-section-title {
+  font-size: clamp(1.8rem, 3.2vw, 2.6rem);
+  font-weight: 900;
+  color: #0f172a;
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+
+.bank-steps-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  max-width: 1240px;
+  margin: 0 auto 3rem;
+}
+
+@media (min-width: 640px) {
+  .bank-steps-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .bank-steps-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.bank-step-card {
+  padding: 2rem 1.5rem;
+  border-radius: 1.25rem;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.04);
+  position: relative;
+  transition: transform 0.25s ease;
+}
+
+.bank-step-card:hover {
+  transform: translateY(-3px);
+  border-color: #93c5fd;
+}
+
+.step-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: rgba(37, 99, 235, 0.1);
+  color: #2563eb;
+  font-size: 1.15rem;
+  font-weight: 900;
+  font-family: var(--font-mono, monospace);
+  margin-bottom: 1.25rem;
+}
+
+.bank-step-card h4 {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 0 0 0.65rem;
+}
+
+.bank-step-card p {
+  font-size: 0.86rem;
+  line-height: 1.65;
+  color: #475569;
+  margin: 0;
+}
+
+/* Master CTA */
+.bank-master-cta-wrap {
+  text-align: center;
+}
+
+.bank-master-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 1.15rem 2.25rem;
+  border-radius: 9999px;
+  background: linear-gradient(135deg, #15803d 0%, #16a34a 100%);
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 800;
+  text-decoration: none;
+  box-shadow: 0 8px 24px rgba(22, 163, 74, 0.35);
+  transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.bank-master-cta-btn:hover {
+  background: linear-gradient(135deg, #166534 0%, #15803d 100%);
+  color: #ffffff;
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 14px 34px rgba(22, 163, 74, 0.45);
+}
+
+/* 5. FAQ SECTION */
+.bank-faq-section {
+  padding: 5rem 1.5rem;
+}
+
+.bank-faq-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  max-width: 1080px;
+  margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+  .bank-faq-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.bank-faq-item {
+  padding: 1.75rem;
+  border-radius: 1.25rem;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.03);
+}
+
+.bank-faq-item h4 {
+  font-size: 1rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 0 0 0.65rem;
+  line-height: 1.4;
+}
+
+.bank-faq-item p {
+  font-size: 0.88rem;
+  line-height: 1.68;
+  color: #475569;
+  margin: 0;
+}
+
+/* =========================================================
+   DARK MODE OVERRIDES FOR BANK ACCOUNTS PAGE
+   ========================================================= */
+[data-theme="dark"] .bank-hero-badge,
+html.dark .bank-hero-badge {
+  background: rgba(30, 58, 138, 0.35) !important;
+  border-color: rgba(96, 165, 250, 0.35) !important;
+  color: #93c5fd !important;
+}
+
+[data-theme="dark"] .bank-hero-title,
+html.dark .bank-hero-title {
+  color: #f8fafc !important;
+}
+
+[data-theme="dark"] .bank-hero-desc,
+html.dark .bank-hero-desc {
+  color: #cbd5e1 !important;
+}
+
+[data-theme="dark"] .bank-security-notice,
+html.dark .bank-security-notice {
+  background: linear-gradient(135deg, rgba(30, 58, 138, 0.25) 0%, rgba(234, 88, 12, 0.15) 100%) !important;
+  border-color: rgba(59, 130, 246, 0.35) !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5) !important;
+}
+
+[data-theme="dark"] .security-text-wrap strong,
+html.dark .security-text-wrap strong {
+  color: #f8fafc !important;
+}
+
+[data-theme="dark"] .security-text-wrap p,
+html.dark .security-text-wrap p {
+  color: #cbd5e1 !important;
+}
+
+[data-theme="dark"] .bank-tab-btn,
+html.dark .bank-tab-btn {
+  background: #0f172a !important;
+  border-color: rgba(255, 255, 255, 0.1) !important;
+  color: #cbd5e1 !important;
+}
+
+[data-theme="dark"] .bank-tab-btn:hover,
+html.dark .bank-tab-btn:hover {
+  background: #1e293b !important;
+  border-color: #60a5fa !important;
+  color: #93c5fd !important;
+}
+
+[data-theme="dark"] .bank-tab-btn.active,
+html.dark .bank-tab-btn.active {
+  background: #1e3a8a !important;
+  border-color: #3b82f6 !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 16px rgba(59, 130, 246, 0.3) !important;
+}
+
+[data-theme="dark"] .bank-tab-count,
+html.dark .bank-tab-count {
+  background: rgba(255, 255, 255, 0.15) !important;
+  color: #f8fafc !important;
+}
+
+[data-theme="dark"] .bank-account-card,
+html.dark .bank-account-card {
+  background: #0d1527 !important;
+  border-color: rgba(59, 130, 246, 0.25) !important;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.6) !important;
+}
+
+[data-theme="dark"] .bank-account-card:hover,
+html.dark .bank-account-card:hover {
+  border-color: rgba(96, 165, 250, 0.45) !important;
+  box-shadow: 0 18px 42px rgba(0, 0, 0, 0.75), 0 0 20px rgba(37, 99, 235, 0.18) !important;
+}
+
+[data-theme="dark"] .bank-data-row,
+html.dark .bank-data-row {
+  background: #090e1a !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+[data-theme="dark"] .data-label,
+html.dark .data-label {
+  color: #94a3b8 !important;
+}
+
+[data-theme="dark"] .data-value,
+html.dark .data-value {
+  color: #f8fafc !important;
+}
+
+[data-theme="dark"] .btn-copy-data,
+html.dark .btn-copy-data {
+  background: #111c33 !important;
+  border-color: rgba(255, 255, 255, 0.15) !important;
+  color: #93c5fd !important;
+}
+
+[data-theme="dark"] .btn-copy-data:hover,
+html.dark .btn-copy-data:hover {
+  background: #1e3a8a !important;
+  border-color: #3b82f6 !important;
+  color: #ffffff !important;
+}
+
+[data-theme="dark"] .branch-val,
+html.dark .branch-val {
+  color: #cbd5e1 !important;
+}
+
+[data-theme="dark"] .bank-card-footer,
+html.dark .bank-card-footer {
+  background: #0b1120 !important;
+  border-top-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+[data-theme="dark"] .bank-card-whatsapp-btn,
+html.dark .bank-card-whatsapp-btn {
+  background: rgba(30, 58, 138, 0.35) !important;
+  border-color: rgba(96, 165, 250, 0.25) !important;
+  color: #93c5fd !important;
+}
+
+[data-theme="dark"] .bank-card-whatsapp-btn:hover,
+html.dark .bank-card-whatsapp-btn:hover {
+  background: #2563eb !important;
+  border-color: #2563eb !important;
+  color: #ffffff !important;
+}
+
+[data-theme="dark"] .bank-steps-section,
+html.dark .bank-steps-section {
+  background: transparent !important;
+  border-top-color: rgba(255, 255, 255, 0.08) !important;
+  border-bottom-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+[data-theme="dark"] .bank-section-eyebrow,
+html.dark .bank-section-eyebrow {
+  color: #60a5fa !important;
+}
+
+[data-theme="dark"] .bank-section-title,
+html.dark .bank-section-title {
+  color: #f8fafc !important;
+}
+
+[data-theme="dark"] .bank-step-card,
+html.dark .bank-step-card {
+  background: #0d1527 !important;
+  border-color: rgba(59, 130, 246, 0.25) !important;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.5) !important;
+}
+
+[data-theme="dark"] .step-num,
+html.dark .step-num {
+  background: rgba(59, 130, 246, 0.2) !important;
+  color: #93c5fd !important;
+}
+
+[data-theme="dark"] .bank-step-card h4,
+html.dark .bank-step-card h4 {
+  color: #f8fafc !important;
+}
+
+[data-theme="dark"] .bank-step-card p,
+html.dark .bank-step-card p {
+  color: #94a3b8 !important;
+}
+
+[data-theme="dark"] .bank-faq-item,
+html.dark .bank-faq-item {
+  background: #0d1527 !important;
+  border-color: rgba(59, 130, 246, 0.25) !important;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.5) !important;
+}
+
+[data-theme="dark"] .bank-faq-item h4,
+html.dark .bank-faq-item h4 {
+  color: #f8fafc !important;
+}
+
+[data-theme="dark"] .bank-faq-item p,
+html.dark .bank-faq-item p {
+  color: #cbd5e1 !important;
+}
