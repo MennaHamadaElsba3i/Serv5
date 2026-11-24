@@ -16,7 +16,7 @@ import Serv5Footer from './components/sections/Serv5Footer';
 import ContentPage from './pages/ContentPage';
 import ProjectConsultationModal from './components/modals/ProjectConsultationModal';
 import RobotMascotGuide from './components/mascot/RobotMascotGuide';
-import Serv5KineticIntro from './components/intro/Serv5KineticIntro';
+import Serv5VideoIntro from './components/intro/Serv5VideoIntro';
 import Serv5ContextualCursor from './components/ui/Serv5ContextualCursor';
 import { Play } from 'lucide-react';
 
@@ -150,26 +150,26 @@ export default function App() {
       {/* CONTEXTUAL MAGNETIC & DYNAMIC ACTION CURSOR */}
       <Serv5ContextualCursor lang={lang} />
 
-      {/* TYSHA-INSPIRED BRUTALIST & ARCHITECTURAL KINETIC INTRO PRELOADER */}
+      {/* 3D PRESENTATION VIDEO INTRO PRELOADER */}
       {showIntro && (
-        <Serv5KineticIntro
-          key={`kinetic-intro-${introKey}`}
+        <Serv5VideoIntro
+          key={`video-intro-${introKey}`}
           onComplete={() => setShowIntro(false)}
           lang={lang}
         />
       )}
 
-      {/* FLOATING REPLAY PILL TO TRIGGER KINETIC INTRO AT ANY TIME */}
+      {/* FLOATING REPLAY PILL TO TRIGGER VIDEO INTRO AT ANY TIME */}
       {!showIntro && (
         <button
           onClick={handleReplayIntro}
           className="serv5-replay-intro-pill"
-          title={lang === 'ar' ? 'إعادة مشاهدة العرض السينمائي (TYSHA Style)' : 'Replay Cinematic Intro (TYSHA Style)'}
+          title={lang === 'ar' ? 'إعادة مشاهدة فيديو مقدمة سيرف فايف' : 'Replay SERV5 Intro Video'}
         >
           <div className="pill-play-icon">
             <Play size={10} fill="currentColor" />
           </div>
-          <span>{lang === 'ar' ? 'العرض السينمائي SERV5' : 'SERV5 Kinetic Intro'}</span>
+          <span>{lang === 'ar' ? 'فيديو مقدمة SERV5' : 'SERV5 Intro Video'}</span>
         </button>
       )}
 
