@@ -335,7 +335,7 @@ function HostingPage({ isRtl, onOpenConsultation }) {
                 as="article"
                 className={`hosting-plan-card hosting-reveal${plan.featured ? ' is-featured' : ''}`}
                 data-hosting-reveal
-                style={{ '--hosting-delay': `${index * 100}ms` }}
+                style={{ '--hosting-delay': `${index === 1 ? 0 : index === 0 ? 170 : 340}ms` }}
                 key={plan.name}
               >
                 {plan.featured && (
