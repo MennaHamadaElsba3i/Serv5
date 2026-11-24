@@ -437,6 +437,8 @@ export default function ContentPage({ pathname, lang = 'ar', onOpenConsultation 
           ? (isRtl ? 'تحسين محركات البحث SEO' : 'Search Engine Optimization')
           : pathname === '/services/mobile-apps'
             ? (isRtl ? 'تطبيقات الجوال' : 'Mobile Apps')
+        : pathname === '/services/digital-marketing'
+          ? (isRtl ? 'التسويق الرقمي' : 'Digital Marketing')
         : pathname === '/services/ui-ux'
           ? (isRtl ? 'تصميم واجهة وتجربة المستخدم' : 'UI/UX Design')
           : pathname === '/services/web-design'
@@ -569,6 +571,9 @@ export default function ContentPage({ pathname, lang = 'ar', onOpenConsultation 
     }
     if (slug === 'mobile-apps') {
       return <Serv5WebDesignPage lang={lang} onOpenConsultation={onOpenConsultation} variant="mobile-apps" />;
+    }
+    if (slug === 'digital-marketing') {
+      return <Serv5WebDesignPage lang={lang} onOpenConsultation={onOpenConsultation} variant="digital-marketing" />;
     }
     if (slug && servicePages[slug]) {
       const content = servicePages[slug][isRtl ? 'ar' : 'en'];

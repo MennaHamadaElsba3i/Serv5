@@ -27,7 +27,8 @@ import {
   Link2,
   PanelTop,
   LockKeyhole,
-  RefreshCw
+  RefreshCw,
+  Megaphone
 } from 'lucide-react';
 
 const copy = {
@@ -995,6 +996,133 @@ const mobileAppsCopy = {
   }
 };
 
+const digitalMarketingCopy = {
+  ar: {
+    hero: {
+      eyebrow: '',
+      titleTop: 'تسويق إلكتروني احترافي',
+      titleAccent: 'ينقل علامتك التجارية إلى مستوى جديد',
+      text: 'حقق نموًا حقيقيًا لأعمالك من خلال استراتيجيات تسويق رقمي متكاملة تعتمد على البيانات والتحليل، لنساعدك في الوصول إلى جمهورك المستهدف، وزيادة الوعي بعلامتك التجارية، وتحقيق أعلى معدلات التحويل والمبيعات.',
+      primary: 'ابدأ مشروعك',
+      secondary: 'اعرف المزيد',
+      chipOne: '',
+      chipTwo: ''
+    },
+    standards: {
+      eyebrow: '',
+      preamble: 'نقدم حلولًا تسويقية متكاملة تساعد الشركات على بناء حضور رقمي قوي وتحقيق نتائج قابلة للقياس عبر مختلف القنوات الرقمية.',
+      title: 'أبرز خدماتنا في التسويق الإلكتروني',
+      text: '',
+      items: [
+        { icon: 'Users', title: 'إدارة حسابات التواصل الاجتماعي', text: 'ننشئ محتوى احترافي وندير حساباتك بشكل مستمر لزيادة التفاعل وتعزيز حضور علامتك التجارية.' },
+        { icon: 'Search', title: 'تحسين محركات البحث (SEO)', text: 'نرفع ترتيب موقعك في نتائج البحث ونزيد الزيارات العضوية من خلال استراتيجيات SEO مدروسة.' },
+        { icon: 'Megaphone', title: 'إدارة الحملات الإعلانية', text: 'نخطط وننفذ حملات إعلانية احترافية على Google وMeta لتحقيق أفضل عائد على الاستثمار.' },
+        { icon: 'Palette', title: 'تصميم الهوية البصرية والمحتوى الإبداعي', text: 'نصمم هوية بصرية جذابة ومحتوى إبداعيًا يعكس شخصية علامتك التجارية ويجذب جمهورك.' },
+        { icon: 'FileText', title: 'كتابة المحتوى التسويقي', text: 'نكتب محتوى احترافيًا متوافقًا مع محركات البحث ويعزز ثقة العملاء ويزيد من فرص التحويل.' },
+        { icon: 'Activity', title: 'تحليل البيانات وتحسين الأداء', text: 'نراقب أداء الحملات باستمرار ونقدم تقارير تفصيلية تساعد على تحسين النتائج واتخاذ قرارات تسويقية دقيقة.' }
+      ]
+    },
+    work: { eyebrow: '', title: '', text: '', more: '', items: [] },
+    ux: {
+      eyebrow: '',
+      title: 'التسويق الناجح يبدأ بفهم البيانات',
+      text: 'لا نعتمد على التخمين، بل نبني استراتيجياتنا التسويقية على تحليل البيانات وسلوك العملاء، مما يساعدنا على تحسين الحملات باستمرار وتحقيق أفضل النتائج بأقل تكلفة ممكنة.',
+      points: [
+        'تقارير أداء دورية وواضحة.',
+        'تحليل سلوك العملاء والجمهور المستهدف.',
+        'قياس العائد على الاستثمار (ROI).',
+        'تحسين الحملات بشكل مستمر لتحقيق أفضل النتائج.'
+      ],
+      panelTitle: '', panelNote: '', stages: []
+    },
+    process: {
+      eyebrow: 'كيف نعمل؟',
+      title: 'لدينا خطة عمل واضحة من البداية إلى النهاية',
+      text: '',
+      callout: '',
+      steps: [
+        { icon: 'Search', title: 'المرحلة الأولى: دراسة النشاط والسوق', text: 'نقوم بتحليل نشاطك التجاري، ودراسة المنافسين، وتحديد الجمهور المستهدف ووضع أهداف تسويقية واضحة.' },
+        { icon: 'PenTool', title: 'المرحلة الثانية: إعداد الاستراتيجية', text: 'نضع خطة تسويقية متكاملة تشمل القنوات المناسبة، والرسائل التسويقية، والميزانية، وجدول التنفيذ.' },
+        { icon: 'Megaphone', title: 'المرحلة الثالثة: تنفيذ الحملات', text: 'نبدأ بإطلاق الحملات الإعلانية، وإدارة المحتوى، وتحسين ظهور علامتك التجارية عبر القنوات الرقمية المختلفة.' },
+        { icon: 'Activity', title: 'المرحلة الرابعة: التحليل والتطوير', text: 'نراقب الأداء بشكل مستمر، ونحلل النتائج، ونجري التحسينات اللازمة لتحقيق أفضل عائد على الاستثمار.' }
+      ]
+    },
+    why: {
+      eyebrow: '',
+      title: 'لماذا تختار Serv5 كشريكك في التسويق الإلكتروني؟',
+      text: 'نحن نركز على تحقيق نتائج حقيقية وملموسة وزيادة المبيعات وليس مجرد أرقام مشاهدات وهمية.',
+      points: [
+        { title: 'فريق متخصص', text: 'خبراء في التسويق الرقمي يمتلكون خبرة في إدارة الحملات وتحقيق نتائج حقيقية.' },
+        { title: 'تحسين مستمر', text: 'نراجع الحملات باستمرار ونطورها لضمان تحقيق أفضل النتائج مع مرور الوقت.' },
+        { title: 'استراتيجيات مخصصة', text: 'لا نعتمد على حلول جاهزة، بل نصمم خطة تناسب طبيعة نشاطك وأهدافك.' },
+        { title: 'نتائج قابلة للقياس', text: 'نوفر تقارير دورية توضح أداء الحملات ومؤشرات النجاح والعائد على الاستثمار.' }
+      ],
+      cta: ''
+    }
+  },
+  en: {
+    hero: {
+      eyebrow: '',
+      titleTop: 'Professional digital marketing',
+      titleAccent: 'that takes your brand to a new level',
+      text: 'Achieve real growth for your business through integrated digital marketing strategies based on data and analytics, to help you reach your target audience, increase brand awareness, and achieve the highest conversion and sales rates.',
+      primary: 'Start your project',
+      secondary: 'Learn more',
+      chipOne: '', chipTwo: ''
+    },
+    standards: {
+      eyebrow: '',
+      preamble: 'We offer integrated marketing solutions that help companies build a strong digital presence and achieve measurable results across various digital channels.',
+      title: 'Our main services in digital marketing',
+      text: '',
+      items: [
+        { icon: 'Users', title: 'Social media account management', text: 'We create professional content and continuously manage your accounts to increase engagement and enhance your brand presence.' },
+        { icon: 'Search', title: 'Search Engine Optimization (SEO)', text: 'We improve your website’s ranking in search results and increase organic traffic through well-thought-out SEO strategies.' },
+        { icon: 'Megaphone', title: 'Advertising campaign management', text: 'We plan and execute professional advertising campaigns on Google and Meta to achieve the best return on investment.' },
+        { icon: 'Palette', title: 'Visual identity design and creative content', text: 'We design an attractive visual identity and creative content that reflects your brand’s personality and appeals to your audience.' },
+        { icon: 'FileText', title: 'Marketing content writing', text: 'We write professional, search engine-friendly content that enhances customer trust and increases conversion opportunities.' },
+        { icon: 'Activity', title: 'Data analysis and performance improvement', text: 'We continuously monitor campaign performance and provide detailed reports that help improve results and make accurate marketing decisions.' }
+      ]
+    },
+    work: { eyebrow: '', title: '', text: '', more: '', items: [] },
+    ux: {
+      eyebrow: '',
+      title: 'Successful marketing starts with understanding the data.',
+      text: 'We don’t rely on guesswork; instead, we build our marketing strategies on data analysis and customer behavior, which helps us to continuously improve campaigns and achieve the best results at the lowest possible cost.',
+      points: [
+        'Regular and clear performance reports.',
+        'Analyzing the behavior of customers and the target audience.',
+        'Measuring return on investment (ROI).',
+        'Continuously improving campaigns to achieve the best results.'
+      ],
+      panelTitle: '', panelNote: '', stages: []
+    },
+    process: {
+      eyebrow: 'HOW WE WORK',
+      title: 'A clear plan from start to finish',
+      text: '', callout: '',
+      steps: [
+        { icon: 'Search', title: 'Phase 1: Activity and market study', text: 'We analyze your business activity, study your competitors, identify your target audience and set clear marketing goals.' },
+        { icon: 'PenTool', title: 'Phase 2: Strategy preparation', text: 'We develop a comprehensive marketing plan that includes appropriate channels, marketing messages, budget, and implementation schedule.' },
+        { icon: 'Megaphone', title: 'Phase 3: Implementing the campaigns', text: 'We start by launching advertising campaigns, managing content, and improving your brand’s visibility across various digital channels.' },
+        { icon: 'Activity', title: 'Phase 4: Analysis and Development', text: 'We continuously monitor performance, analyze results, and make necessary improvements to achieve the best return on investment.' }
+      ]
+    },
+    why: {
+      eyebrow: '',
+      title: 'Why choose Serv5 as your digital marketing partner?',
+      text: 'We focus on achieving real, tangible results and increasing sales, not just fake view counts.',
+      points: [
+        { title: 'Specialized team', text: 'Digital marketing experts with experience in campaign management and achieving real results.' },
+        { title: 'Continuous improvement', text: 'We constantly review and develop campaigns to ensure the best results are achieved over time.' },
+        { title: 'Customized strategies', text: 'We do not rely on ready-made solutions, but rather we design a plan that suits the nature of your activity and your goals.' },
+        { title: 'Measurable results', text: 'We provide periodic reports that illustrate campaign performance, success indicators, and return on investment.' }
+      ],
+      cta: ''
+    }
+  }
+};
+
 const iconMap = {
   Palette,
   Gauge,
@@ -1018,7 +1146,8 @@ const iconMap = {
   Link2,
   PanelTop,
   LockKeyhole,
-  RefreshCw
+  RefreshCw,
+  Megaphone
 };
 
 export default function Serv5WebDesignPage({ lang = 'ar', onOpenConsultation, variant = 'web-design' }) {
@@ -1027,12 +1156,13 @@ export default function Serv5WebDesignPage({ lang = 'ar', onOpenConsultation, va
   const isEcommerce = variant === 'ecommerce';
   const isSeo = variant === 'seo';
   const isMobileApps = variant === 'mobile-apps';
-  const isFocusedService = isEcommerce || isSeo;
+  const isDigitalMarketing = variant === 'digital-marketing';
+  const isFocusedService = isEcommerce || isSeo || isDigitalMarketing;
   const isHideHeroChips = isFocusedService || isMobileApps;
   const isHideUxPanel = isFocusedService || isMobileApps;
   const languageKey = isRtl ? 'ar' : 'en';
   const baseCopy = copy[languageKey];
-  const variantCopy = isUiUx ? uiUxCopy[languageKey] : isEcommerce ? ecommerceCopy[languageKey] : isSeo ? seoCopy[languageKey] : isMobileApps ? mobileAppsCopy[languageKey] : null;
+  const variantCopy = isUiUx ? uiUxCopy[languageKey] : isEcommerce ? ecommerceCopy[languageKey] : isSeo ? seoCopy[languageKey] : isMobileApps ? mobileAppsCopy[languageKey] : isDigitalMarketing ? digitalMarketingCopy[languageKey] : null;
   const t = variantCopy
     ? { ...baseCopy, ...variantCopy, work: { ...baseCopy.work, ...variantCopy.work, items: variantCopy.work.items || baseCopy.work.items } }
     : baseCopy;
@@ -1053,11 +1183,13 @@ export default function Serv5WebDesignPage({ lang = 'ar', onOpenConsultation, va
         ? (isRtl ? 'تحسين محركات البحث SEO' : 'Search Engine Optimization')
         : isMobileApps
           ? (isRtl ? 'تطبيقات الجوال' : 'Mobile Apps')
+        : isDigitalMarketing
+          ? (isRtl ? 'التسويق الرقمي' : 'Digital Marketing')
           : isUiUx
             ? (isRtl ? 'تصميم واجهة وتجربة المستخدم' : 'UI/UX Design')
             : (isRtl ? 'تصميم المواقع' : 'Web Design');
     document.title = `${isRtl ? 'سيرف فايف' : 'SERV5'} | ${pageName}`;
-  }, [isRtl, isUiUx, isEcommerce, isSeo, isMobileApps]);
+  }, [isRtl, isUiUx, isEcommerce, isSeo, isMobileApps, isDigitalMarketing]);
 
   useEffect(() => {
     const page = pageRef.current;
@@ -1277,7 +1409,7 @@ export default function Serv5WebDesignPage({ lang = 'ar', onOpenConsultation, va
   };
 
   return (
-    <div className={`wd-page${isUiUx ? ' wd-page-uiux' : ''}${isEcommerce ? ' wd-page-ecommerce' : ''}${isSeo ? ' wd-page-seo' : ''}${isMobileApps ? ' wd-page-mobile-apps' : ''}`} dir={isRtl ? 'rtl' : 'ltr'} ref={pageRef}>
+    <div className={`wd-page${isUiUx ? ' wd-page-uiux' : ''}${isEcommerce ? ' wd-page-ecommerce' : ''}${isSeo ? ' wd-page-seo' : ''}${isMobileApps ? ' wd-page-mobile-apps' : ''}${isDigitalMarketing ? ' wd-page-digital-marketing' : ''}`} dir={isRtl ? 'rtl' : 'ltr'} ref={pageRef}>
       {/* ---------------- HERO ---------------- */}
       <section className="wd-hero">
         <div className="container wd-hero-grid">
@@ -1350,6 +1482,7 @@ export default function Serv5WebDesignPage({ lang = 'ar', onOpenConsultation, va
                   style={{ '--wd-delay': `${(index % 3) * 90}ms` }}
                   key={item.title}
                 >
+                  <span className="wd-standard-index" aria-hidden="true">{`0${index + 1}`}</span>
                   <span className="wd-standard-icon"><Icon size={21} /></span>
                   <h3>{item.title}</h3>
                   <p>{item.text}</p>
