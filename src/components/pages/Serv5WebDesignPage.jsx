@@ -13,7 +13,20 @@ import {
   Rocket,
   Search,
   ShieldCheck,
-  Sparkles
+  Sparkles,
+  Activity,
+  Users,
+  ShoppingBag,
+  CreditCard,
+  Truck,
+  PackageCheck,
+  Smartphone,
+  Layers,
+  FileText,
+  Link2,
+  PanelTop,
+  LockKeyhole,
+  RefreshCw
 } from 'lucide-react';
 
 const copy = {
@@ -303,6 +316,602 @@ const copy = {
   }
 };
 
+const uiUxCopy = {
+  ar: {
+    hero: {
+      eyebrow: 'خدمات سيرف فايف',
+      titleTop: 'تصميم واجهات وتجربة مستخدم',
+      titleAccent: '(UI/UX) بإبداع وتميز',
+      text: 'نقدم لك تصاميم مبتكرة وجذابة تضمن تفاعل عملائك وبقاءهم لفترة أطول. نحول أفكارك المعقدة إلى واجهات رقمية سلسة ومذهلة وسهلة الاستخدام.',
+      primary: 'ابدأ مشروعك',
+      secondary: 'اعرف المزيد',
+      chipOne: 'تجربة تتمحور حول المستخدم',
+      chipTwo: 'واجهات سهلة على كل شاشة'
+    },
+    standards: {
+      eyebrow: 'معاييرنا',
+      title: 'معايير تصميم تجربة المستخدم المتميزة لدينا',
+      text: 'كل تفصيلة في تصميمنا مبنية على أسس علمية وفنية لضمان أفضل تجربة رقمية.',
+      items: [
+        { icon: 'Users', title: 'تصميم يركز على المستخدم', text: 'ندرس سلوك المستخدمين لضمان رحلة تصفح بديهية ومريحة.' },
+        { icon: 'MonitorSmartphone', title: 'توافق كامل مع الشاشات', text: 'واجهات تعمل بمرونة تامة على الهواتف والأجهزة اللوحية والحواسيب.' },
+        { icon: 'Gauge', title: 'سرعة أداء فائقة', text: 'عناصر واجهة خفيفة تساهم في تسريع التحميل وتحسين التفاعل.' },
+        { icon: 'ShieldCheck', title: 'سهولة الوصول', text: 'نراعي معايير الوصول ليتمكن الجميع من تصفح الموقع بسهولة.' },
+        { icon: 'Palette', title: 'هوية بصرية مميزة', text: 'ألوان وخطوط واتجاه بصري يعكس شخصية علامتك التجارية.' },
+        { icon: 'Check', title: 'تناسق العناصر', text: 'نحافظ على نمط موحد في الصفحات ليبقى الاستخدام واضحاً.' },
+        { icon: 'Activity', title: 'تحسين معدلات التحويل', text: 'نوزع الأزرار والدعوات لاتخاذ إجراء في أماكنها المناسبة.' },
+        { icon: 'Search', title: 'هيكلة معلومات واضحة', text: 'ننظم المحتوى بشكل منطقي ليسهل العثور على المطلوب.' }
+      ]
+    },
+    work: {
+      eyebrow: 'أعمالنا',
+      title: 'روائع أعمالنا البصرية',
+      text: 'بعض أعمالنا في سيرف فايف، تجارب رقمية مصممة لتكون واضحة وممتعة وسهلة الاستخدام.',
+      more: 'شاهد المزيد من أعمالنا'
+    },
+    ux: {
+      eyebrow: 'تصميم يبدأ من المستخدم',
+      title: 'تجربة الهاتف المحمول أولاً دائماً',
+      text: 'أغلب المستخدمين يتصفحون من الهاتف، لذلك نصمم التجربة للشاشات الصغيرة أولاً ثم نوسعها لباقي الأجهزة.',
+      points: [
+        'تصميم مرن يتكيف مع حجم الشاشة',
+        'أزرار وقوائم محسنة للمس',
+        'أداء سريع ومثالي لشبكات الجوال',
+        'محتوى واضح وسهل التصفح'
+      ],
+      panelTitle: 'تجربة متكاملة',
+      panelNote: 'من أول تفاعل حتى إتمام المهمة',
+      stages: [
+        { label: 'سهولة الاستخدام', value: 96, text: 'خطوات واضحة ومباشرة' },
+        { label: 'التوافق', value: 92, text: 'تجربة ثابتة على كل شاشة' },
+        { label: 'التحويل', value: 88, text: 'مسار واضح نحو الإجراء' }
+      ]
+    },
+    process: {
+      eyebrow: 'كيف نصمم',
+      title: 'رحلة تصميم واضحة من البحث إلى الإطلاق',
+      text: 'نختبر الفكرة ونبنيها خطوة بخطوة، لتعرف ما الذي يحدث في كل مرحلة.',
+      steps: [
+        { icon: 'Search', title: 'البحث والتحليل', text: 'نفهم أهداف المشروع وسلوك المستخدمين واحتياجاتهم.' },
+        { icon: 'PenTool', title: 'تخطيط الهيكل', text: 'نرسم خريطة الصفحات وتدفق الاستخدام قبل التصميم.' },
+        { icon: 'Palette', title: 'تصميم الواجهة', text: 'نصمم الشاشات ونبني نظاماً بصرياً متناسقاً.' },
+        { icon: 'MousePointerClick', title: 'النموذج التفاعلي', text: 'نختبر النموذج ونجمع الملاحظات قبل بدء التطوير.' },
+        { icon: 'Rocket', title: 'التسليم والتنفيذ', text: 'نسلم الملفات والمواصفات جاهزة لفريق التطوير.' }
+      ]
+    },
+    why: {
+      eyebrow: 'لماذا سيرف فايف',
+      title: 'نصمم تجربة يحب عملاؤك استخدامها',
+      text: 'نجمع بين فهم المستخدم والهوية البصرية واحتياجات العمل لنصنع تجربة مفيدة وواضحة.',
+      points: [
+        { title: 'قرارات مبنية على البحث', text: 'نصمم بناءً على احتياجات المستخدمين وأهداف المشروع.' },
+        { title: 'اتساق بصري ووظيفي', text: 'نظام واضح يحافظ على جودة التجربة في كل شاشة.' },
+        { title: 'نماذج قابلة للاختبار', text: 'نراجع التفاعل مبكراً قبل الانتقال إلى التطوير.' },
+        { title: 'تركيز على النتائج', text: 'مسارات أسهل تساعد المستخدم على الوصول لهدفه.' }
+      ],
+      cta: 'ابدأ تصميم تجربتك'
+    }
+  },
+  en: {
+    hero: {
+      eyebrow: 'SERV5 SERVICES',
+      titleTop: 'UI/UX design',
+      titleAccent: 'made clear, useful and memorable',
+      text: 'We turn complex ideas into engaging digital experiences that help customers stay longer, find what they need and move forward with confidence.',
+      primary: 'Start your project',
+      secondary: 'Learn more',
+      chipOne: 'Designed around real users',
+      chipTwo: 'Clear on every screen'
+    },
+    standards: {
+      eyebrow: 'OUR STANDARDS',
+      title: 'The principles behind a better user experience',
+      text: 'Every detail is shaped by practical research and design principles to make digital journeys clearer.',
+      items: [
+        { icon: 'Users', title: 'User-centred design', text: 'We study user needs to make each journey intuitive and comfortable.' },
+        { icon: 'MonitorSmartphone', title: 'Responsive across screens', text: 'Interfaces adapt to phones, tablets and desktop devices.' },
+        { icon: 'Gauge', title: 'Fast performance', text: 'Lightweight interfaces help pages load quickly and feel responsive.' },
+        { icon: 'ShieldCheck', title: 'Accessible by design', text: 'We follow accessibility practices so more people can use your site.' },
+        { icon: 'Palette', title: 'Distinct visual identity', text: 'Colour, type and visual direction reflect your brand.' },
+        { icon: 'Check', title: 'Consistent components', text: 'A shared visual system keeps every screen clear and familiar.' },
+        { icon: 'Activity', title: 'Conversion optimisation', text: 'Calls to action are placed where users need them.' },
+        { icon: 'Search', title: 'Clear information structure', text: 'Content is organised so people can find what they need.' }
+      ]
+    },
+    work: {
+      eyebrow: 'OUR WORK',
+      title: 'A selection of our digital experiences',
+      text: 'A selection of SERV5 projects designed to feel clear, useful and engaging.',
+      more: 'See more of our work'
+    },
+    ux: {
+      eyebrow: 'DESIGNED AROUND PEOPLE',
+      title: 'Mobile-first, every time',
+      text: 'Most visitors arrive on a phone, so we design for small screens first and then extend the experience to larger devices.',
+      points: [
+        'Layouts adapt to every screen size',
+        'Controls are comfortable to tap',
+        'Fast performance on mobile networks',
+        'Content stays clear and easy to scan'
+      ],
+      panelTitle: 'A connected experience',
+      panelNote: 'From the first interaction to completion',
+      stages: [
+        { label: 'Usability', value: 96, text: 'Clear, direct steps' },
+        { label: 'Consistency', value: 92, text: 'A reliable experience on each screen' },
+        { label: 'Conversion', value: 88, text: 'A clear path to action' }
+      ]
+    },
+    process: {
+      eyebrow: 'OUR DESIGN PROCESS',
+      title: 'A clear path from research to handoff',
+      text: 'We validate the idea and shape it step by step, so you know what happens at every stage.',
+      steps: [
+        { icon: 'Search', title: 'Research and analysis', text: 'We learn the project goals, user behaviour and audience needs.' },
+        { icon: 'PenTool', title: 'Structure and wireframes', text: 'We map screens and user flows before visual design begins.' },
+        { icon: 'Palette', title: 'Interface design', text: 'We design the screens and build a consistent visual system.' },
+        { icon: 'MousePointerClick', title: 'Interactive prototype', text: 'We test the prototype and gather feedback before development.' },
+        { icon: 'Rocket', title: 'Delivery and handoff', text: 'We provide the files and specifications ready for development.' }
+      ]
+    },
+    why: {
+      eyebrow: 'WHY SERV5',
+      title: 'We design experiences people want to use',
+      text: 'We bring user needs, visual identity and business goals together in one clear experience.',
+      points: [
+        { title: 'Research-led decisions', text: 'Design choices follow real user needs and project goals.' },
+        { title: 'Visual and functional consistency', text: 'A clear system keeps quality steady across screens.' },
+        { title: 'Prototypes you can test', text: 'We review interactions early, before development starts.' },
+        { title: 'Focused on outcomes', text: 'Simple paths help users reach the action they came for.' }
+      ],
+      cta: 'Start your UX project'
+    }
+  }
+};
+
+const ecommerceCopy = {
+  ar: {
+    hero: {
+      eyebrow: '',
+      titleTop: 'تصميم وبرمجة متاجر إلكترونية',
+      titleAccent: 'تحقق مبيعات أكبر',
+      text: 'أنشئ متجرك الإلكتروني باحترافية مع حلول متكاملة تجمع بين التصميم العصري، والأداء السريع، وتجربة المستخدم المميزة. في Serv5 نساعدك على إطلاق متجر إلكتروني يحقق تجربة تسوق سلسة ويزيد من معدلات التحويل والمبيعات.',
+      primary: 'ابدأ مشروعك',
+      secondary: 'اعرف المزيد',
+      chipOne: '',
+      chipTwo: ''
+    },
+    standards: {
+      eyebrow: '',
+      title: 'أبرز ميزات المتجر الإلكتروني لدينا',
+      text: 'كل ما تحتاجه لعرض منتجاتك، إدارة مخزونك، بيع السلع والتسويق لمتجرك بنجاح.',
+      items: [
+        { icon: 'PackageCheck', title: 'إدارة متكاملة للمنتجات', text: 'أضف عددًا غير محدود من المنتجات، مع إمكانية تنظيمها في تصنيفات، وإدارة الأسعار، والخصومات، والمخزون بسهولة من لوحة التحكم.' },
+        { icon: 'CreditCard', title: 'بوابات دفع إلكترونية متعددة', text: 'دعم الربط مع أشهر بوابات الدفع المحلية والعالمية لتوفير تجربة دفع آمنة وسريعة تناسب جميع العملاء.' },
+        { icon: 'Truck', title: 'تكامل مع شركات الشحن', text: 'ربط المتجر مع شركات الشحن لتتبع الطلبات، وحساب تكاليف الشحن تلقائيًا، وتحسين تجربة التوصيل.' },
+        { icon: 'Layers', title: 'إدارة الطلبات والمخزون', text: 'متابعة الطلبات لحظة بلحظة، وإدارة المخزون، واستقبال التنبيهات عند انخفاض الكميات لضمان استمرارية البيع.' },
+        { icon: 'Activity', title: 'تقارير وإحصائيات دقيقة', text: 'لوحة تحكم تعرض تقارير المبيعات، والطلبات، وأداء المنتجات، وسلوك العملاء لمساعدتك في اتخاذ قرارات مبنية على البيانات.' },
+        { icon: 'Users', title: 'دعم تعدد التجار والبائعين', text: 'السماح للتجار بالاشتراك وعرض منتجاتهم وإدارة طلباتهم بشكل مستقل بالكامل.' },
+        { icon: 'Smartphone', title: 'متجر متوافق مع جميع الأجهزة', text: 'يعمل المتجر بكفاءة على الهواتف الذكية والأجهزة اللوحية وأجهزة الكمبيوتر، لتقديم تجربة تسوق سلسة لجميع العملاء.' },
+        { icon: 'Palette', title: 'تصميم احترافي يعكس هوية علامتك', text: 'واجهات عصرية ومتجاوبة تعكس هوية نشاطك التجاري وتوفر تجربة تسوق مريحة على جميع الأجهزة.' }
+      ]
+    },
+    work: {
+      eyebrow: '',
+      title: '',
+      text: '',
+      more: ''
+    },
+    ux: {
+      eyebrow: '',
+      title: 'تجربة شراء سهلة تزيد من معدلات المبيعات',
+      text: 'نجاح أي متجر إلكتروني يعتمد على سهولة رحلة العميل. لذلك نحرص على تصميم تجربة شراء بسيطة وسريعة تقلل خطوات الدفع، وتزيد من ثقة العملاء، وتشجعهم على إتمام الطلبات.',
+      points: [
+        'خطوات شراء بسيطة وسريعة.',
+        'سرعة تحميل عالية على جميع الأجهزة.',
+        'تجربة متوافقة مع الهواتف الذكية.',
+        'صفحات منتجات مصممة لتحفيز قرار الشراء.'
+      ],
+      panelTitle: '',
+      panelNote: '',
+      stages: []
+    },
+    process: {
+      eyebrow: 'كيف نعمل؟',
+      title: 'لدينا خطة عمل واضحة من البداية إلى النهاية',
+      text: '',
+      callout: 'نحن نصنع متاجر مخصصة ومبنية هندسياً لتعظيم المبيعات وتحقيق أعلى عائد استثماري.',
+      steps: [
+        { icon: 'Search', title: 'المرحلة الأولى: دراسة النشاط والمتطلبات', text: 'نحلل طبيعة نشاطك، ونحدد الفئات المستهدفة، ونضع تصورًا واضحًا لهيكل المتجر والمنتجات.' },
+        { icon: 'Palette', title: 'المرحلة الثانية: تصميم واجهات المتجر', text: 'نصمم واجهات احترافية تركز على تجربة المستخدم وتعكس هوية علامتك التجارية.' },
+        { icon: 'Code2', title: 'المرحلة الثالثة: البرمجة والتكامل', text: 'نطور المتجر مع ربط بوابات الدفع، وشركات الشحن، وأنظمة إدارة الطلبات والمخزون.' },
+        { icon: 'Rocket', title: 'المرحلة الرابعة: الاختبار والإطلاق', text: 'نجري اختبارات شاملة للأداء والأمان قبل إطلاق المتجر، مع تقديم الدعم الفني بعد التشغيل.' }
+      ]
+    },
+    why: {
+      eyebrow: '',
+      title: 'لماذا تختار سيرف فايف لبناء متجرك؟',
+      text: '',
+      points: [
+        { title: 'تصميم مخصص لهوية علامتك', text: 'كل متجر يتم تصميمه بما يتناسب مع طبيعة نشاطك ويعكس هوية علامتك التجارية بشكل احترافي.' },
+        { title: 'حلول قابلة للتطوير', text: 'نبني متجرك بطريقة تسمح بإضافة منتجات ومزايا جديدة بسهولة مع نمو أعمالك.' },
+        { title: 'أدوات تسويقية متكاملة مدمجة', text: 'ربط مباشر بأكواد التتبع الإعلانية (سناب، فيسبوك) وتحسين سيو تلقائي.' },
+        { title: 'دعم فني مستمر', text: 'نقدم خدمات الصيانة، والتحديثات، والدعم الفني لضمان استمرار عمل متجرك بكفاءة.' }
+      ],
+      cta: ''
+    }
+  },
+  en: {
+    hero: {
+      eyebrow: '',
+      titleTop: 'Designing and programming e-commerce stores',
+      titleAccent: 'to achieve higher sales',
+      text: 'Create your online store professionally with integrated solutions that combine modern design, fast performance, and a superior user experience. At Serv5, we help you launch an online store that delivers a seamless shopping experience and increases conversion rates and sales.',
+      primary: 'Start Project',
+      secondary: 'Know more',
+      chipOne: '',
+      chipTwo: ''
+    },
+    standards: {
+      eyebrow: '',
+      title: 'Key features of our online store',
+      text: 'Everything you need to showcase your products, manage your inventory, sell goods and market your store successfully.',
+      items: [
+        { icon: 'PackageCheck', title: 'Integrated product management', text: 'Add an unlimited number of products, with the ability to organize them into categories, and easily manage prices, discounts, and inventory from the control panel.' },
+        { icon: 'CreditCard', title: 'Multiple electronic payment gateways', text: 'Supports integration with the most popular local and global payment gateways to provide a secure and fast payment experience suitable for all customers.' },
+        { icon: 'Truck', title: 'Integration with shipping companies', text: 'Linking the store with shipping companies to track orders, automatically calculate shipping costs, and improve the delivery experience.' },
+        { icon: 'Layers', title: 'Order and inventory management', text: 'Tracking orders moment by moment, managing inventory, and receiving alerts when quantities decrease to ensure continued sales.' },
+        { icon: 'Activity', title: 'Accurate reports and statistics', text: 'A dashboard that displays reports on sales, orders, product performance, and customer behavior to help you make data-driven decisions.' },
+        { icon: 'Users', title: 'Supporting multiple traders and vendors', text: 'Allowing merchants to sign up, display their products, and manage their orders completely independently.' },
+        { icon: 'Smartphone', title: 'A store compatible with all devices', text: 'The store works efficiently on smartphones, tablets and computers, to provide a seamless shopping experience for all customers.' },
+        { icon: 'Palette', title: 'A professional design that reflects your brand identity', text: 'Modern and responsive interfaces reflect your business identity and provide a convenient shopping experience on all devices.' }
+      ]
+    },
+    work: {
+      eyebrow: '',
+      title: '',
+      text: '',
+      more: ''
+    },
+    ux: {
+      eyebrow: '',
+      title: 'An easy buying experience increases sales rates.',
+      text: 'The success of any online store depends on the ease of the customer journey. Therefore, we strive to design a simple and fast shopping experience that minimizes checkout steps, increases customer trust, and encourages them to complete orders.',
+      points: [
+        'Simple and quick purchasing steps.',
+        'High download speed on all devices.',
+        'An experience compatible with smartphones.',
+        'Product pages designed to stimulate the purchase decision.'
+      ],
+      panelTitle: '',
+      panelNote: '',
+      stages: []
+    },
+    process: {
+      eyebrow: 'HOW WE WORK?',
+      title: 'We have a clear business plan from start to finish',
+      text: '',
+      callout: 'WE CREATE CUSTOM-BUILT, ENGINEERED STORES TO MAXIMIZE SALES AND ACHIEVE THE HIGHEST RETURN ON INVESTMENT.',
+      steps: [
+        { icon: 'Search', title: 'Step 1: Activity and Requirements Study', text: 'We analyze the nature of your business, identify your target groups, and develop a clear vision for the store structure and products.' },
+        { icon: 'Palette', title: 'Step 2: Storefront design', text: 'We design professional interfaces that focus on user experience and reflect your brand identity.' },
+        { icon: 'Code2', title: 'Step 3: Programming and Integration', text: 'We develop the store with the integration of payment gateways, shipping companies, and order and inventory management systems.' },
+        { icon: 'Rocket', title: 'Step 4: Testing and launching', text: 'We conduct thorough performance and security tests before launching the store, and provide technical support after launch.' }
+      ]
+    },
+    why: {
+      eyebrow: '',
+      title: 'Why choose Serv5 to build your store?',
+      text: '',
+      points: [
+        { title: 'Custom design for your brand identity', text: 'Each store is designed to suit the nature of your business and professionally reflect your brand identity.' },
+        { title: 'Scalable solutions', text: 'We build your store in a way that allows you to easily add new products and features as your business grows.' },
+        { title: 'Integrated marketing tools', text: 'Direct linking to advertising tracking codes (Snapchat, Facebook) and automatic SEO optimization.' },
+        { title: 'Ongoing technical support', text: 'We provide maintenance, updates, and technical support services to ensure your store continues to operate efficiently.' }
+      ],
+      cta: ''
+    }
+  }
+};
+
+const seoCopy = {
+  ar: {
+    hero: {
+      eyebrow: '',
+      titleTop: 'خدمات تحسين محركات البحث',
+      titleAccent: 'التي تحول الزيارات إلى عملاء',
+      text: 'في Serv5 لا ننظر إلى SEO كوسيلة لتحسين ترتيب موقعك فقط، بل كاستراتيجية متكاملة تساعدك على الوصول إلى العملاء المناسبين في الوقت المناسب. نعمل على تحسين ظهور موقعك في نتائج البحث، وزيادة الزيارات العضوية، وتحويلها إلى فرص حقيقية لنمو أعمالك.',
+      primary: 'ابدأ مشروعك',
+      secondary: 'اعرف المزيد',
+      chipOne: '',
+      chipTwo: ''
+    },
+    standards: {
+      eyebrow: '',
+      preamble: 'نعتمد على خطة عمل متكاملة تشمل جميع عناصر تحسين محركات البحث، بدايةً من التحليل وحتى المتابعة المستمرة، لضمان تحقيق نتائج طويلة المدى.',
+      title: 'منظومة SEO متكاملة لتحقيق نمو مستدام',
+      text: '',
+      items: [
+        { icon: 'Search', title: 'تحليل الموقع والمنافسين', text: 'نحلل أداء موقعك، ونحدد المشكلات التقنية، ونقارن موقعك بالمنافسين لاكتشاف فرص النمو.' },
+        { icon: 'Sparkles', title: 'استراتيجية الكلمات المفتاحية', text: 'نختار الكلمات التي يبحث عنها عملاؤك بالفعل، مع التركيز على فرص المنافسة وتحقيق أعلى قيمة تجارية.' },
+        { icon: 'PanelTop', title: 'تحسين السيو الداخلي', text: 'تحسين بنية الصفحات، والعناوين، والوصف التعريفي، والروابط الداخلية، والمحتوى بما يتوافق مع معايير Google.' },
+        { icon: 'Gauge', title: 'السيو التقني', text: 'تحسين سرعة الموقع، وتجربة المستخدم، والأرشفة، والبيانات المنظمة لضمان أفضل أداء في نتائج البحث.' },
+        { icon: 'FileText', title: 'تطوير المحتوى', text: 'إنشاء وتحسين محتوى عالي الجودة يجيب عن استفسارات العملاء ويغطي جميع مراحل رحلة الشراء.' },
+        { icon: 'Link2', title: 'بناء الروابط الخلفية', text: 'تعزيز سلطة الموقع من خلال استراتيجية Link Building تعتمد على روابط عالية الجودة وذات صلة.' }
+      ]
+    },
+    work: { eyebrow: '', title: '', text: '', more: '' },
+    ux: {
+      eyebrow: '',
+      title: 'البيانات هي أساس كل قرار نتخذه',
+      text: 'كل خطوة نقوم بها تستند إلى تحليل دقيق للبيانات. نتابع أداء الموقع والكلمات المفتاحية وسلوك المستخدمين باستمرار لضمان تطوير الاستراتيجية وتحقيق أفضل النتائج.',
+      points: [
+        'متابعة أداء الكلمات المفتاحية.',
+        'تحليل المنافسين بشكل مستمر.',
+        'قياس سلوك المستخدم داخل الموقع.',
+        'تحسين الأداء وفق تحديثات Google.'
+      ],
+      panelTitle: '',
+      panelNote: '',
+      stages: []
+    },
+    process: {
+      eyebrow: 'كيف نعمل؟',
+      title: 'لدينا خطة عمل واضحة من البداية إلى النهاية',
+      text: '',
+      callout: 'نحن نركز على تحقيق نتائج حقيقية وملموسة وزيادة المبيعات وليس مجرد أرقام مشاهدات وهمية.',
+      steps: [
+        { icon: 'Search', title: 'المرحلة الأولى: تحليل الموقع', text: 'نبدأ بفهم نشاطك التجاري، وتحليل الموقع والمنافسين، وتحديد فرص النمو.' },
+        { icon: 'PenTool', title: 'المرحلة الثانية: إعداد الاستراتيجية', text: 'نضع خطة SEO متكاملة تتضمن التحسينات التقنية، وخطة المحتوى، والكلمات المفتاحية.' },
+        { icon: 'Code2', title: 'المرحلة الثالثة: التنفيذ', text: 'تنفيذ أعمال التحسين الداخلي، والسيو التقني، وتحسين المحتوى، وبناء الروابط.' },
+        { icon: 'Activity', title: 'المرحلة الرابعة: المتابعة والتطوير', text: 'قياس النتائج، وإعداد التقارير، وتحسين الاستراتيجية بشكل مستمر.' }
+      ]
+    },
+    why: {
+      eyebrow: '',
+      title: 'لماذا تختار Serv5؟',
+      text: '',
+      points: [
+        { title: 'استراتيجيات مخصصة لكل مشروع.', text: '' },
+        { title: 'خبرة في تحسين مواقع الشركات والمتاجر الإلكترونية.', text: '' },
+        { title: 'تقارير أداء واضحة وشفافة.', text: 'تقارير واضحة أسبوعية وشهرية توضح أين يتم إنفاق ميزانيتك والنتائج المحققة.' },
+        { title: 'تحسين مستمر وفق أحدث معايير Google.', text: 'خبرة واسعة في إعلانات جوجل، منصات ميتا، تيك توك، وسناب شات.' }
+      ],
+      cta: ''
+    }
+  },
+  en: {
+    hero: {
+      eyebrow: '',
+      titleTop: 'SEO services that turn',
+      titleAccent: 'visits into customers',
+      text: 'At Serv5, we see SEO as more than a way to improve your rankings. It is a complete strategy that helps you reach the right customers at the right time. We improve your visibility in search results, grow organic traffic and turn it into real opportunities for your business.',
+      primary: 'Start your project',
+      secondary: 'Learn more',
+      chipOne: '',
+      chipTwo: ''
+    },
+    standards: {
+      eyebrow: '',
+      preamble: 'We use a complete plan covering every part of search engine optimization, from analysis through ongoing monitoring, to support long-term results.',
+      title: 'A complete SEO system for sustainable growth',
+      text: '',
+      items: [
+        { icon: 'Search', title: 'Website and competitor analysis', text: 'We review your site performance, identify technical issues and compare competitors to find growth opportunities.' },
+        { icon: 'Sparkles', title: 'Keyword strategy', text: 'We select the terms your customers are already searching for, focusing on achievable competition and commercial value.' },
+        { icon: 'PanelTop', title: 'On-page SEO', text: 'We improve page structure, titles, meta descriptions, internal links and content to align with Google guidelines.' },
+        { icon: 'Gauge', title: 'Technical SEO', text: 'We improve site speed, user experience, indexing and structured data for stronger search performance.' },
+        { icon: 'FileText', title: 'Content development', text: 'We create and improve high-quality content that answers customer questions throughout the buying journey.' },
+        { icon: 'Link2', title: 'Backlink building', text: 'We strengthen site authority through a link-building strategy based on relevant, high-quality links.' }
+      ]
+    },
+    work: { eyebrow: '', title: '', text: '', more: '' },
+    ux: {
+      eyebrow: '',
+      title: 'Data is the foundation of every decision we make',
+      text: 'Every step we take is based on careful data analysis. We continually track site performance, keywords and user behaviour to refine the strategy and achieve the best results.',
+      points: [
+        'Track keyword performance.',
+        'Continuously analyze competitors.',
+        'Measure user behaviour on your website.',
+        'Improve performance in line with Google updates.'
+      ],
+      panelTitle: '',
+      panelNote: '',
+      stages: []
+    },
+    process: {
+      eyebrow: 'HOW WE WORK',
+      title: 'A clear plan from start to finish',
+      text: '',
+      callout: 'We focus on real, measurable results and increased sales, not just vanity traffic numbers.',
+      steps: [
+        { icon: 'Search', title: 'Stage 1: Website analysis', text: 'We learn about your business, analyze your website and competitors, and identify growth opportunities.' },
+        { icon: 'PenTool', title: 'Stage 2: Strategy development', text: 'We prepare a complete SEO plan covering technical improvements, content and keywords.' },
+        { icon: 'Code2', title: 'Stage 3: Implementation', text: 'We carry out on-page improvements, technical SEO, content optimization and link building.' },
+        { icon: 'Activity', title: 'Stage 4: Monitoring and development', text: 'We measure results, prepare reports and continually improve the strategy.' }
+      ]
+    },
+    why: {
+      eyebrow: '',
+      title: 'Why choose Serv5?',
+      text: '',
+      points: [
+        { title: 'Strategies tailored to every project.', text: '' },
+        { title: 'Experience optimizing company and e-commerce websites.', text: '' },
+        { title: 'Clear and transparent performance reports.', text: 'Weekly and monthly reports show where your budget is spent and the results achieved.' },
+        { title: 'Continuous optimization using the latest Google standards.', text: 'Extensive experience with Google Ads, Meta, TikTok and Snapchat.' }
+      ],
+      cta: ''
+    }
+  }
+};
+
+const mobileAppsCopy = {
+  ar: {
+    hero: {
+      eyebrow: '',
+      titleTop: 'تصميم وتطوير تطبيقات جوال ذكية',
+      titleAccent: 'تدعم نمو أعمالك',
+      text: 'نحوّل فكرتك إلى تطبيق جوال احترافي يجمع بين التصميم العصري، والأداء السريع، وتجربة المستخدم المميزة. سواء كنت تستهدف نظام Android أو iOS، نطور تطبيقات تساعدك على الوصول إلى عملائك، وتعزيز تواجدك الرقمي، وتحقيق أهدافك التجارية.',
+      primary: 'ابدأ مشروعك',
+      secondary: 'اعرف المزيد',
+      chipOne: '',
+      chipTwo: ''
+    },
+    standards: {
+      eyebrow: '',
+      title: 'مميزات تطبيقات الجوال التي نصممها',
+      text: 'نطور تطبيقات تعتمد على أحدث التقنيات لضمان السرعة، والاستقرار، وسهولة الاستخدام، مع تجربة رقمية متكاملة تناسب احتياجات عملائك.',
+      items: [
+        { icon: 'MousePointerClick', title: 'تصميم عصري وتجربة مستخدم احترافية', text: 'واجهات استخدام جذابة وسهلة التنقل تمنح المستخدم تجربة سلسة تعزز التفاعل مع التطبيق.' },
+        { icon: 'Gauge', title: 'أداء سريع واستجابة عالية', text: 'نعتمد على تقنيات برمجية حديثة لضمان سرعة تشغيل التطبيق واستجابته على مختلف الأجهزة.' },
+        { icon: 'Smartphone', title: 'تطبيقات تعمل على Android و iOS', text: 'نطور تطبيقات متوافقة مع جميع أنظمة التشغيل لتوسيع نطاق وصولك إلى أكبر عدد من المستخدمين.' },
+        { icon: 'ShieldCheck', title: 'تسجيل دخول وحماية أمنية متكاملة', text: 'دخول آمن عبر رقم الجوال ورمز التحقق OTP أو البصمة وحسابات التواصل الاجتماعي.' },
+        { icon: 'LockKeyhole', title: 'حماية وأمان للبيانات', text: 'نطبق أعلى معايير الأمان لحماية بيانات المستخدمين وتأمين التطبيق ضد المخاطر الرقمية.' },
+        { icon: 'Activity', title: 'التكامل مع الأنظمة المختلفة', text: 'إمكانية ربط التطبيق بأنظمة الدفع الإلكتروني، وإدارة العملاء (CRM)، ولوحات التحكم، وواجهات البرمجة (APIs).' },
+        { icon: 'RefreshCw', title: 'دعم فني وتحديثات مستمرة', text: 'نقدم خدمات الصيانة والتطوير بعد الإطلاق لضمان استقرار التطبيق وإضافة المزايا الجديدة عند الحاجة.' }
+      ]
+    },
+    work: {
+      eyebrow: 'معرض التطبيقات',
+      title: 'بعض من أعمالنا في تطوير تطبيقات الهاتف',
+      text: 'تصفح أحدث تطبيقات الجوال التي قمنا بتطويرها لعملائنا في مختلف المجالات.',
+      more: '',
+      items: [
+        { image: 'https://api.serv5.com.eg/storage/portfolio/em7kkDf1QVVU1n6gAEjC8EdW3uE6bd48hNcesroL.webp', title: 'يالا ماي كاش', tag: '' },
+        { image: 'https://api.serv5.com.eg/storage/portfolio/9mX94g4FmzeKkZBjoazDujOl9tP4TYV4iaUF3k34.webp', title: 'ورد بوتيك', tag: '' },
+        { image: 'https://api.serv5.com.eg/storage/portfolio/eeM54tusOVrETHMXPb7WR9MKiv7bvwZqgEGjfUao.webp', title: 'الوادي الأخضر', tag: '' },
+        { image: 'https://api.serv5.com.eg/storage/portfolio/PjqST86jexvBDcmfqmFsGs7lPwEfZz1u38hHMnuG.webp', title: 'عروضي', tag: '' },
+        { image: 'https://api.serv5.com.eg/storage/portfolio/hstxgbjPKqPW98tZyrnLajIpEAQZ4D05H3IvTc6S.webp', title: 'عروضي', tag: '' },
+        { image: 'https://api.serv5.com.eg/storage/portfolio/baTmC83IhHVD5j6TqYBqHIYhp5b9rflhotJEKCH1.webp', title: 'سلتك', tag: '' },
+        { image: 'https://api.serv5.com.eg/storage/portfolio/lh0NTiCVpvz3nXxEF56E6fBbGAkMRuAHUs0uIvMK.webp', title: 'الوادي الأخضر', tag: '' },
+        { image: 'https://api.serv5.com.eg/storage/portfolio/wm0HiYM3umDfCCqkbC63pMKP4LVvtsaEQb19dxtD.webp', title: 'هدهد', tag: '' },
+        { image: 'https://api.serv5.com.eg/storage/portfolio/8U2xFF7kDBORdo0B0kYCEH1Vt9aiTzZEALkInpTZ.webp', title: 'تطبيق أثاث', tag: '' }
+      ]
+    },
+    ux: {
+      eyebrow: '',
+      title: 'نصمم تطبيقات يحب المستخدمون استخدامها',
+      text: 'نجاح التطبيق لا يعتمد على الفكرة فقط، بل على سهولة استخدامه. لذلك نركز على تصميم واجهات تفاعلية، وتنقل سلس، وأداء سريع يضمن تجربة استخدام مريحة تزيد من رضا العملاء ومعدلات الاحتفاظ بالمستخدمين.',
+      points: [
+        'تصميم متوافق مع أحدث معايير UI/UX.',
+        'سرعة في التنقل بين الشاشات.',
+        'تجربة استخدام سلسة على جميع الأجهزة.',
+        'واجهات عصرية تعكس هوية علامتك التجارية.'
+      ],
+      panelTitle: '',
+      panelNote: '',
+      stages: []
+    },
+    process: {
+      eyebrow: 'كيف نعمل؟',
+      title: 'لدينا خطة عمل واضحة ومدروسة من البداية وحتى النهاية',
+      text: '',
+      callout: 'نحن نحول الأفكار والمخططات المعقدة إلى تجارب مستخدم ممتعة وسريعة على الجوال.',
+      steps: [
+        { icon: 'Search', title: 'تحليل الفكرة وتحديد المتطلبات', text: 'نبدأ بفهم فكرة التطبيق، وتحليل احتياجات المشروع، وتحديد الوظائف الأساسية والجمهور المستهدف.' },
+        { icon: 'PenTool', title: 'تصميم تجربة المستخدم والواجهات', text: 'نصمم رحلة استخدام واضحة وواجهات احترافية تجمع بين الجمال وسهولة الاستخدام.' },
+        { icon: 'Code2', title: 'تطوير التطبيق والبرمجة', text: 'يقوم فريق التطوير ببناء التطبيق باستخدام أحدث التقنيات مع ضمان الأداء العالي والأمان.' },
+        { icon: 'Rocket', title: 'الاختبار والإطلاق', text: 'نجري اختبارات شاملة للتأكد من جودة التطبيق، ثم نساعدك في نشره على متجري Google Play وApp Store مع تقديم الدعم الفني بعد الإطلاق.' }
+      ]
+    },
+    why: {
+      eyebrow: '',
+      title: 'لماذا تطور تطبيقك مع فريق سيرف فايف؟',
+      text: '',
+      points: [
+        { title: 'ضمان قبول التطبيق في المتاجر', text: 'نلتزم بالمعايير القياسية لـ Google وApple لضمان قبول التطبيق ونشره سريعاً.' },
+        { title: 'أكواد برمجية نظيفة ومرتبة', text: 'كافة أجزاء التطبيق موثقة مما يتيح لك تعديله أو إضافة ميزات جديدة مستقبلاً.' },
+        { title: 'صيانة ومتابعة مجانية لمدة 6 أشهر', text: 'نتابع معك أداء التطبيق ونحل أي مشاكل فنية قد تظهر لضمان ثباته بالكامل.' },
+        { title: 'ربط API آمن ومحمي بالكامل', text: 'كافة الاتصالات والبيانات الصادرة والواردة بين السيرفر والتطبيق مشفرة ومؤمنة.' }
+      ],
+      cta: ''
+    }
+  },
+  en: {
+    hero: {
+      eyebrow: '',
+      titleTop: 'Smart mobile app design and development',
+      titleAccent: 'that supports business growth',
+      text: 'We turn your idea into a professional mobile app combining modern design, fast performance and a great user experience. Whether you target Android or iOS, we build apps that help you reach customers, strengthen your digital presence and achieve your business goals.',
+      primary: 'Start your project',
+      secondary: 'Learn more',
+      chipOne: '',
+      chipTwo: ''
+    },
+    standards: {
+      eyebrow: '',
+      title: 'Features of the mobile apps we design',
+      text: 'We build apps with modern technology for speed, stability and ease of use, creating a complete digital experience for your customers.',
+      items: [
+        { icon: 'MousePointerClick', title: 'Modern design and professional UX', text: 'Attractive, easy-to-navigate interfaces give users a smooth experience and encourage engagement.' },
+        { icon: 'Gauge', title: 'Fast performance and responsiveness', text: 'Modern development technology keeps the app fast and responsive across devices.' },
+        { icon: 'Smartphone', title: 'Apps for Android and iOS', text: 'We build apps compatible with all major operating systems to reach more users.' },
+        { icon: 'ShieldCheck', title: 'Secure sign-in and protection', text: 'Secure access through a phone number and OTP, biometrics or social accounts.' },
+        { icon: 'LockKeyhole', title: 'Data protection and security', text: 'We apply strong security practices to protect user data and guard the app against digital threats.' },
+        { icon: 'Activity', title: 'Integration with other systems', text: 'Connect the app to online payments, CRM, dashboards and APIs.' },
+        { icon: 'RefreshCw', title: 'Ongoing support and updates', text: 'We maintain and improve the app after launch to keep it stable and add features when needed.' }
+      ]
+    },
+    work: {
+      eyebrow: 'APP GALLERY',
+      title: 'Some of our mobile app development work',
+      text: 'Explore mobile apps we have recently developed for clients across different industries.',
+      more: '',
+      items: [
+        { image: 'https://api.serv5.com.eg/storage/portfolio/em7kkDf1QVVU1n6gAEjC8EdW3uE6bd48hNcesroL.webp', title: 'Yalla My Cash', tag: '' },
+        { image: 'https://api.serv5.com.eg/storage/portfolio/9mX94g4FmzeKkZBjoazDujOl9tP4TYV4iaUF3k34.webp', title: 'Ward Boutique', tag: '' },
+        { image: 'https://api.serv5.com.eg/storage/portfolio/eeM54tusOVrETHMXPb7WR9MKiv7bvwZqgEGjfUao.webp', title: 'El Wady El Akhdar', tag: '' },
+        { image: 'https://api.serv5.com.eg/storage/portfolio/PjqST86jexvBDcmfqmFsGs7lPwEfZz1u38hHMnuG.webp', title: 'Orody', tag: '' },
+        { image: 'https://api.serv5.com.eg/storage/portfolio/hstxgbjPKqPW98tZyrnLajIpEAQZ4D05H3IvTc6S.webp', title: 'Orody', tag: '' },
+        { image: 'https://api.serv5.com.eg/storage/portfolio/baTmC83IhHVD5j6TqYBqHIYhp5b9rflhotJEKCH1.webp', title: 'Sallatk', tag: '' },
+        { image: 'https://api.serv5.com.eg/storage/portfolio/lh0NTiCVpvz3nXxEF56E6fBbGAkMRuAHUs0uIvMK.webp', title: 'El Wady El Akhdar', tag: '' },
+        { image: 'https://api.serv5.com.eg/storage/portfolio/wm0HiYM3umDfCCqkbC63pMKP4LVvtsaEQb19dxtD.webp', title: 'Hodhood', tag: '' },
+        { image: 'https://api.serv5.com.eg/storage/portfolio/8U2xFF7kDBORdo0B0kYCEH1Vt9aiTzZEALkInpTZ.webp', title: 'Athath App', tag: '' }
+      ]
+    },
+    ux: {
+      eyebrow: '',
+      title: 'We design apps people love to use',
+      text: 'An app’s success depends on more than its idea; it also depends on how easy it is to use. We focus on interactive interfaces, smooth navigation and fast performance to create a comfortable experience that improves customer satisfaction and retention.',
+      points: [
+        'Designed to the latest UI/UX standards.',
+        'Fast navigation between screens.',
+        'A smooth experience across devices.',
+        'Modern interfaces that reflect your brand.'
+      ],
+      panelTitle: '',
+      panelNote: '',
+      stages: []
+    },
+    process: {
+      eyebrow: 'HOW WE WORK',
+      title: 'A clear, considered plan from start to finish',
+      text: '',
+      callout: 'We turn complex ideas and plans into enjoyable, fast mobile experiences.',
+      steps: [
+        { icon: 'Search', title: 'Analyze the idea and define requirements', text: 'We learn about the app idea, analyze project needs and identify key features and target users.' },
+        { icon: 'PenTool', title: 'Design the user experience and interfaces', text: 'We design a clear user journey and polished interfaces that balance beauty with ease of use.' },
+        { icon: 'Code2', title: 'Develop and program the app', text: 'Our development team builds the app with modern technology and a focus on performance and security.' },
+        { icon: 'Rocket', title: 'Test and launch', text: 'We thoroughly test app quality, help publish it on Google Play and the App Store, and provide support after launch.' }
+      ]
+    },
+    why: {
+      eyebrow: '',
+      title: 'Why develop your app with SERV5?',
+      text: '',
+      points: [
+        { title: 'App store approval support', text: 'We follow Google and Apple standards to help your app get approved and published quickly.' },
+        { title: 'Clean, organized code', text: 'Every part of the app is documented, making it easier to update or add features later.' },
+        { title: 'Six months of free maintenance and follow-up', text: 'We monitor app performance and fix technical issues to keep it stable.' },
+        { title: 'Secure API connections', text: 'All data and communication between the server and app are encrypted and protected.' }
+      ],
+      cta: ''
+    }
+  }
+};
+
 const iconMap = {
   Palette,
   Gauge,
@@ -313,12 +922,37 @@ const iconMap = {
   Search,
   PenTool,
   Code2,
-  Rocket
+  Rocket,
+  Activity,
+  Users,
+  ShoppingBag,
+  CreditCard,
+  Truck,
+  PackageCheck,
+  Smartphone,
+  Layers,
+  FileText,
+  Link2,
+  PanelTop,
+  LockKeyhole,
+  RefreshCw
 };
 
-export default function Serv5WebDesignPage({ lang = 'ar', onOpenConsultation }) {
+export default function Serv5WebDesignPage({ lang = 'ar', onOpenConsultation, variant = 'web-design' }) {
   const isRtl = lang === 'ar';
-  const t = copy[isRtl ? 'ar' : 'en'];
+  const isUiUx = variant === 'ui-ux';
+  const isEcommerce = variant === 'ecommerce';
+  const isSeo = variant === 'seo';
+  const isMobileApps = variant === 'mobile-apps';
+  const isFocusedService = isEcommerce || isSeo;
+  const isHideHeroChips = isFocusedService || isMobileApps;
+  const isHideUxPanel = isFocusedService || isMobileApps;
+  const languageKey = isRtl ? 'ar' : 'en';
+  const baseCopy = copy[languageKey];
+  const variantCopy = isUiUx ? uiUxCopy[languageKey] : isEcommerce ? ecommerceCopy[languageKey] : isSeo ? seoCopy[languageKey] : isMobileApps ? mobileAppsCopy[languageKey] : null;
+  const t = variantCopy
+    ? { ...baseCopy, ...variantCopy, work: { ...baseCopy.work, ...variantCopy.work, items: variantCopy.work.items || baseCopy.work.items } }
+    : baseCopy;
   const pageRef = useRef(null);
   const processRef = useRef(null);
   const workRef = useRef(null);
@@ -326,8 +960,21 @@ export default function Serv5WebDesignPage({ lang = 'ar', onOpenConsultation }) 
   const [activeProcessStep, setActiveProcessStep] = useState(0);
 
   useEffect(() => {
-    document.title = `${isRtl ? 'سيرف فايف' : 'SERV5'} | ${isRtl ? 'تصميم المواقع' : 'Web Design'}`;
-  }, [isRtl]);
+    setActiveProcessStep(0);
+  }, [variant]);
+
+  useEffect(() => {
+    const pageName = isEcommerce
+      ? (isRtl ? 'حلول المتاجر الإلكترونية' : 'E-Commerce Solutions')
+      : isSeo
+        ? (isRtl ? 'تحسين محركات البحث SEO' : 'Search Engine Optimization')
+        : isMobileApps
+          ? (isRtl ? 'تطبيقات الجوال' : 'Mobile Apps')
+          : isUiUx
+            ? (isRtl ? 'تصميم واجهة وتجربة المستخدم' : 'UI/UX Design')
+            : (isRtl ? 'تصميم المواقع' : 'Web Design');
+    document.title = `${isRtl ? 'سيرف فايف' : 'SERV5'} | ${pageName}`;
+  }, [isRtl, isUiUx, isEcommerce, isSeo, isMobileApps]);
 
   useEffect(() => {
     const page = pageRef.current;
@@ -399,8 +1046,9 @@ export default function Serv5WebDesignPage({ lang = 'ar', onOpenConsultation }) 
         }
 
         progressRing.style.strokeDashoffset = String(100 * (1 - progress));
+        const stepCount = Math.max(1, section.querySelectorAll('.wd-flow-card').length);
         setActiveProcessStep((current) => {
-          const next = Math.min(3, Math.floor(progress * 4));
+          const next = Math.min(stepCount - 1, Math.floor(progress * stepCount));
           return current === next ? current : next;
         });
       });
@@ -546,15 +1194,15 @@ export default function Serv5WebDesignPage({ lang = 'ar', onOpenConsultation }) 
   };
 
   return (
-    <div className="wd-page" dir={isRtl ? 'rtl' : 'ltr'} ref={pageRef}>
+    <div className={`wd-page${isUiUx ? ' wd-page-uiux' : ''}${isEcommerce ? ' wd-page-ecommerce' : ''}${isSeo ? ' wd-page-seo' : ''}${isMobileApps ? ' wd-page-mobile-apps' : ''}`} dir={isRtl ? 'rtl' : 'ltr'} ref={pageRef}>
       {/* ---------------- HERO ---------------- */}
       <section className="wd-hero">
         <div className="container wd-hero-grid">
           <div className="wd-hero-copy">
-            <span className="wd-eyebrow wd-reveal" data-wd-reveal>
+            {t.hero.eyebrow && <span className="wd-eyebrow wd-reveal" data-wd-reveal>
               <Sparkles size={14} />
               {t.hero.eyebrow}
-            </span>
+            </span>}
             <h1 className="wd-reveal" data-wd-reveal style={{ '--wd-delay': '80ms' }}>
               {t.hero.titleTop}
               <span className="wd-hero-accent"> {t.hero.titleAccent}</span>
@@ -584,7 +1232,7 @@ export default function Serv5WebDesignPage({ lang = 'ar', onOpenConsultation }) 
             <div className="wd-browser">
               <div className="wd-browser-bar">
                 <span /><span /><span />
-                <em>serv5.com</em>
+                {!isHideHeroChips && <em>serv5.com</em>}
               </div>
               <div className="wd-browser-shot">
                 <img src="/images/website-mockup-2.jpg" alt="" loading="lazy" />
@@ -594,8 +1242,8 @@ export default function Serv5WebDesignPage({ lang = 'ar', onOpenConsultation }) 
                 <i /><i /><i />
               </div>
             </div>
-            <span className="wd-float-chip wd-float-chip-top">{t.hero.chipOne}</span>
-            <span className="wd-float-chip wd-float-chip-bottom">{t.hero.chipTwo}</span>
+            {!isHideHeroChips && <span className="wd-float-chip wd-float-chip-top">{t.hero.chipOne}</span>}
+            {!isHideHeroChips && <span className="wd-float-chip wd-float-chip-bottom">{t.hero.chipTwo}</span>}
           </div>
         </div>
       </section>
@@ -604,9 +1252,10 @@ export default function Serv5WebDesignPage({ lang = 'ar', onOpenConsultation }) 
       <section className="wd-section wd-section-tint" id="wd-standards">
         <div className="container">
           <header className="wd-heading wd-reveal" data-wd-reveal>
-            <span>{t.standards.eyebrow}</span>
+            {t.standards.eyebrow && <span>{t.standards.eyebrow}</span>}
+            {t.standards.preamble && <p>{t.standards.preamble}</p>}
             <h2>{t.standards.title}</h2>
-            <p>{t.standards.text}</p>
+            {t.standards.text && <p>{t.standards.text}</p>}
           </header>
           <div className="wd-standards-grid">
             {t.standards.items.map((item, index) => {
@@ -629,7 +1278,7 @@ export default function Serv5WebDesignPage({ lang = 'ar', onOpenConsultation }) 
       </section>
 
       {/* ---------------- WORK ---------------- */}
-      <section className="wd-section wd-work-section" ref={workRef}>
+      {!isFocusedService && <section className="wd-section wd-work-section" ref={workRef}>
         <div className="container wd-work-container">
           <header className="wd-heading wd-reveal" data-wd-reveal>
             <span>{t.work.eyebrow}</span>
@@ -641,7 +1290,7 @@ export default function Serv5WebDesignPage({ lang = 'ar', onOpenConsultation }) 
           <div
             className="wd-work-sticky"
             role="region"
-            aria-label={isRtl ? 'معرض الأعمال الرقمية' : 'Digital work gallery'}
+            aria-label={isMobileApps ? (isRtl ? 'معرض التطبيقات' : 'App gallery') : isRtl ? 'معرض الأعمال الرقمية' : 'Digital work gallery'}
             aria-keyshortcuts="ArrowLeft ArrowRight Home End"
             tabIndex={0}
           >
@@ -667,7 +1316,7 @@ export default function Serv5WebDesignPage({ lang = 'ar', onOpenConsultation }) 
                     </div>
                     <div className="wd-work-meta">
                       <h3>{item.title}</h3>
-                      <span>{item.tag}</span>
+                      {item.tag && <span>{item.tag}</span>}
                     </div>
                   </article>
                 );
@@ -675,24 +1324,24 @@ export default function Serv5WebDesignPage({ lang = 'ar', onOpenConsultation }) 
             </div>
           </div>
         </div>
-        <div className="container wd-work-container">
+        {t.work.more && <div className="container wd-work-container">
           <div className="wd-work-more wd-reveal" data-wd-reveal>
             <Link to="/portfolio" className="wd-btn wd-btn-ghost">
               {t.work.more}
               <ArrowUpRight size={15} />
             </Link>
           </div>
-        </div>
-      </section>
+        </div>}
+      </section>}
 
       {/* ---------------- UX ---------------- */}
       <section className="wd-section wd-ux-section">
         <div className="container wd-ux-grid">
           <div className="wd-ux-copy wd-reveal" data-wd-reveal>
-            <span className="wd-eyebrow wd-eyebrow-dark">
+            {t.ux.eyebrow && <span className="wd-eyebrow wd-eyebrow-dark">
               <MousePointerClick size={14} />
               {t.ux.eyebrow}
-            </span>
+            </span>}
             <h2>{t.ux.title}</h2>
             <p>{t.ux.text}</p>
             <ul className="wd-ux-list">
@@ -705,7 +1354,7 @@ export default function Serv5WebDesignPage({ lang = 'ar', onOpenConsultation }) 
             </ul>
           </div>
 
-          <div className="wd-ux-panel wd-reveal" data-wd-reveal>
+          {!isHideUxPanel && <div className="wd-ux-panel wd-reveal" data-wd-reveal>
             <div className="wd-ux-panel-head">
               <strong>{t.ux.panelTitle}</strong>
               <span>{t.ux.panelNote}</span>
@@ -721,17 +1370,17 @@ export default function Serv5WebDesignPage({ lang = 'ar', onOpenConsultation }) 
                 <p>{stage.text}</p>
               </div>
             ))}
-          </div>
+          </div>}
         </div>
       </section>
 
       {/* ---------------- PROCESS ---------------- */}
-      <section className="wd-section wd-process-section" ref={processRef}>
+      <section className={`wd-section wd-process-section${t.process.steps.length > 4 ? ' wd-process-five-steps' : ''}`} ref={processRef}>
         <div className="container">
           <header className="wd-heading wd-reveal" data-wd-reveal>
             <span>{t.process.eyebrow}</span>
             <h2>{t.process.title}</h2>
-            <p>{t.process.text}</p>
+            {t.process.text && <p>{t.process.text}</p>}
           </header>
         </div>
         <div className="wd-process-track">
@@ -758,7 +1407,7 @@ export default function Serv5WebDesignPage({ lang = 'ar', onOpenConsultation }) 
                     <circle className="wd-flow-progress-outline" cx="50" cy="50" r="37" />
                   </svg>
                   {t.process.steps.map((step, index) => {
-                    const angle = (-90 + (isRtl ? -1 : 1) * index * 90) * (Math.PI / 180);
+                    const angle = (-90 + (isRtl ? -1 : 1) * index * (360 / t.process.steps.length)) * (Math.PI / 180);
                     return (
                       <span
                         className={`wd-flow-num${activeProcessStep === index ? ' is-active' : ''}`}
@@ -792,22 +1441,23 @@ export default function Serv5WebDesignPage({ lang = 'ar', onOpenConsultation }) 
                 </div>
           </div>
           </div>
+        {t.process.callout && <p className="wd-process-callout">{t.process.callout}</p>}
       </section>
 
       {/* ---------------- WHY ---------------- */}
       <section className="wd-section wd-section-tint">
         <div className="container wd-why-grid">
           <div className="wd-why-copy wd-reveal" data-wd-reveal>
-            <span className="wd-eyebrow">
+            {t.why.eyebrow && <span className="wd-eyebrow">
               <ShieldCheck size={14} />
               {t.why.eyebrow}
-            </span>
+            </span>}
             <h2>{t.why.title}</h2>
-            <p>{t.why.text}</p>
-            <button type="button" className="wd-btn wd-btn-primary" onClick={scrollToForm}>
+            {t.why.text && <p>{t.why.text}</p>}
+            {t.why.cta && <button type="button" className="wd-btn wd-btn-primary" onClick={scrollToForm}>
               {t.why.cta}
               <ArrowUpRight size={17} />
-            </button>
+            </button>}
           </div>
           <div className="wd-why-list">
             {t.why.points.map((point, index) => (
@@ -820,7 +1470,7 @@ export default function Serv5WebDesignPage({ lang = 'ar', onOpenConsultation }) 
                 <span><Check size={15} /></span>
                 <div>
                   <h3>{point.title}</h3>
-                  <p>{point.text}</p>
+                  {point.text && <p>{point.text}</p>}
                 </div>
               </article>
             ))}

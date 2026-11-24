@@ -431,9 +431,17 @@ export default function ContentPage({ pathname, lang = 'ar', onOpenConsultation 
   useEffect(() => {
     const pageTitle = pathname === '/services/web-hosting'
       ? (isRtl ? 'استضافة المواقع' : 'Web Hosting')
-      : pathname === '/services/web-design'
-        ? (isRtl ? 'تصميم المواقع' : 'Web Design')
-        : pathname;
+      : pathname === '/services/ecommerce'
+        ? (isRtl ? 'حلول المتاجر الإلكترونية' : 'E-Commerce Solutions')
+        : pathname === '/services/seo'
+          ? (isRtl ? 'تحسين محركات البحث SEO' : 'Search Engine Optimization')
+          : pathname === '/services/mobile-apps'
+            ? (isRtl ? 'تطبيقات الجوال' : 'Mobile Apps')
+        : pathname === '/services/ui-ux'
+          ? (isRtl ? 'تصميم واجهة وتجربة المستخدم' : 'UI/UX Design')
+          : pathname === '/services/web-design'
+            ? (isRtl ? 'تصميم المواقع' : 'Web Design')
+            : pathname;
     document.title = `${isRtl ? 'سيرف فايف' : 'SERV5'} | ${pageTitle}`;
   }, [pathname, isRtl]);
 
@@ -549,6 +557,18 @@ export default function ContentPage({ pathname, lang = 'ar', onOpenConsultation 
     }
     if (slug === 'web-design') {
       return <Serv5WebDesignPage lang={lang} onOpenConsultation={onOpenConsultation} />;
+    }
+    if (slug === 'ui-ux') {
+      return <Serv5WebDesignPage lang={lang} onOpenConsultation={onOpenConsultation} variant="ui-ux" />;
+    }
+    if (slug === 'ecommerce') {
+      return <Serv5WebDesignPage lang={lang} onOpenConsultation={onOpenConsultation} variant="ecommerce" />;
+    }
+    if (slug === 'seo') {
+      return <Serv5WebDesignPage lang={lang} onOpenConsultation={onOpenConsultation} variant="seo" />;
+    }
+    if (slug === 'mobile-apps') {
+      return <Serv5WebDesignPage lang={lang} onOpenConsultation={onOpenConsultation} variant="mobile-apps" />;
     }
     if (slug && servicePages[slug]) {
       const content = servicePages[slug][isRtl ? 'ar' : 'en'];

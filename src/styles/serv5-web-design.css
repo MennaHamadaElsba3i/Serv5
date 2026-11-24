@@ -396,6 +396,14 @@
   gap: 1.1rem;
 }
 
+.wd-page-uiux .wd-standards-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.wd-page-ecommerce .wd-standards-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
 .wd-standard-card {
   position: relative;
   padding: 1.6rem 1.4rem;
@@ -662,6 +670,30 @@
   grid-template-columns: minmax(0, 1fr) minmax(300px, 0.9fr);
   align-items: center;
   gap: clamp(2rem, 5vw, 4rem);
+}
+
+.wd-page-ecommerce .wd-ux-grid {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.wd-page-seo .wd-ux-grid {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.wd-page-mobile-apps .wd-ux-grid {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.wd-page-ecommerce .wd-ux-copy > p {
+  max-width: 860px;
+}
+
+.wd-page-seo .wd-ux-copy > p {
+  max-width: 900px;
+}
+
+.wd-page-mobile-apps .wd-ux-copy > p {
+  max-width: 900px;
 }
 
 .wd-ux-copy h2 {
@@ -986,6 +1018,18 @@
 .wd-flow-card-2 { inset-inline-end: 0; top: 27%; }
 .wd-flow-card-3 { inset-inline-end: 0; top: 61%; }
 .wd-flow-card-4 { inset-inline-start: 0; top: 73%; }
+.wd-flow-card-5 { inset-inline-start: 0; top: 39%; }
+
+.wd-process-callout {
+  max-width: 980px;
+  margin: 1.5rem auto 0;
+  padding: 0 1.5rem;
+  color: var(--wd-blue-dark);
+  text-align: center;
+  font-size: clamp(1.1rem, 2vw, 1.6rem);
+  font-weight: 900;
+  line-height: 1.6;
+}
 
 .wd-flow-card-head {
   display: flex;
@@ -1370,6 +1414,14 @@
     grid-column: auto;
   }
 
+  .wd-page-uiux .wd-standards-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .wd-page-ecommerce .wd-standards-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
   .wd-work-grid {
     width: 100%;
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1464,6 +1516,10 @@
 
   .wd-standards-grid,
   .wd-work-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .wd-page-ecommerce .wd-standards-grid {
     grid-template-columns: 1fr;
   }
 
