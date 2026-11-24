@@ -1,11 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
+import Serv5GetInTouch from '../sections/Serv5GetInTouch';
 import {
   ArrowUpRight,
   Check,
   Code2,
   Gauge,
-  Mail,
   MonitorSmartphone,
   MousePointerClick,
   Palette,
@@ -15,12 +15,6 @@ import {
   ShieldCheck,
   Sparkles
 } from 'lucide-react';
-
-const contact = {
-  phone: '00201288863831',
-  whatsapp: '201288863831',
-  email: 'sales@serv5.com'
-};
 
 const copy = {
   ar: {
@@ -77,12 +71,12 @@ const copy = {
       text: 'بعض أعمالنا في سيرف فايف، مشاريع مختلفة في المجال والهدف، لكن كلها بتجمع بين التصميم الواضح والتجربة السلسة.',
       more: 'شاهد المزيد من أعمالنا',
       items: [
-        { image: '/images/website-mockup-1.jpg', title: 'موقع شركة مقاولات', tag: 'شركات' },
-        { image: '/images/posts/post-6-website.webp', title: 'منصة أعمال رقمية', tag: 'منصات' },
-        { image: '/images/website-mockup-2.jpg', title: 'متجر إلكتروني', tag: 'تجارة إلكترونية' },
-        { image: '/images/serv5-architectural-pavilion.jpg', title: 'موقع خدمات عقارية', tag: 'عقارات' },
-        { image: '/images/serv5-coding-enterprise.jpg', title: 'موقع شركة تقنية', tag: 'تقنية' },
-        { image: '/images/serv5-tech-vision.jpg', title: 'موقع خدمات احترافية', tag: 'خدمات' }
+        { image: '/images/web-design-reference-1.png', title: 'موقع شركة الأدلاء', tag: 'مؤسسي' },
+        { image: '/images/web-design-reference-2.png', title: 'موقع بيت الأعمال', tag: 'بوابة أعمال' },
+        { image: '/images/web-design-reference-1.png', title: 'موقع شركة الأدلاء', tag: 'مؤسسي' },
+        { image: '/images/web-design-reference-2.png', title: 'موقع بيت الأعمال', tag: 'بوابة أعمال' },
+        { image: '/images/web-design-reference-1.png', title: 'موقع شركة الأدلاء', tag: 'مؤسسي' },
+        { image: '/images/web-design-reference-2.png', title: 'موقع بيت الأعمال', tag: 'بوابة أعمال' }
       ]
     },
     ux: {
@@ -219,12 +213,12 @@ const copy = {
       text: 'A selection of SERV5 projects across different industries and goals, all built on clear design and a smooth experience.',
       more: 'See more of our work',
       items: [
-        { image: '/images/website-mockup-1.jpg', title: 'Contracting company site', tag: 'Business' },
-        { image: '/images/posts/post-6-website.webp', title: 'Digital business platform', tag: 'Platforms' },
-        { image: '/images/website-mockup-2.jpg', title: 'Online store', tag: 'E-commerce' },
-        { image: '/images/serv5-architectural-pavilion.jpg', title: 'Real estate services site', tag: 'Real estate' },
-        { image: '/images/serv5-coding-enterprise.jpg', title: 'Technology company site', tag: 'Technology' },
-        { image: '/images/serv5-tech-vision.jpg', title: 'Professional services site', tag: 'Services' }
+        { image: '/images/web-design-reference-1.png', title: 'Adilla Company website', tag: 'Corporate' },
+        { image: '/images/web-design-reference-2.png', title: 'House of Business website', tag: 'Business portal' },
+        { image: '/images/web-design-reference-1.png', title: 'Adilla Company website', tag: 'Corporate' },
+        { image: '/images/web-design-reference-2.png', title: 'House of Business website', tag: 'Business portal' },
+        { image: '/images/web-design-reference-1.png', title: 'Adilla Company website', tag: 'Corporate' },
+        { image: '/images/web-design-reference-2.png', title: 'House of Business website', tag: 'Business portal' }
       ]
     },
     ux: {
@@ -326,17 +320,14 @@ export default function Serv5WebDesignPage({ lang = 'ar', onOpenConsultation }) 
   const isRtl = lang === 'ar';
   const t = copy[isRtl ? 'ar' : 'en'];
   const pageRef = useRef(null);
+  const processRef = useRef(null);
+  const workRef = useRef(null);
   const formRef = useRef(null);
-  const [form, setForm] = useState({ name: '', phone: '', email: '', service: t.form.services[0], message: '' });
-  const [sentLink, setSentLink] = useState('');
+  const [activeProcessStep, setActiveProcessStep] = useState(0);
 
   useEffect(() => {
     document.title = `${isRtl ? 'سيرف فايف' : 'SERV5'} | ${isRtl ? 'تصميم المواقع' : 'Web Design'}`;
   }, [isRtl]);
-
-  useEffect(() => {
-    setForm((prev) => ({ ...prev, service: t.form.services[0] }));
-  }, [lang]);
 
   useEffect(() => {
     const page = pageRef.current;
@@ -367,45 +358,191 @@ export default function Serv5WebDesignPage({ lang = 'ar', onOpenConsultation }) 
     return () => observer.disconnect();
   }, []);
 
+  useEffect(() => {
+    const section = processRef.current;
+    const track = section?.querySelector('.wd-process-track');
+    const flow = section?.querySelector('.wd-flow');
+    const progressRing = section?.querySelector('.wd-flow-progress-value');
+    const page = section?.closest('.wd-page');
+    if (!section || !track || !flow || !progressRing || !page) return;
+
+    let frame = 0;
+    const updateProgress = () => {
+      if (frame) cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(() => {
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        const scrollDriven = !prefersReducedMotion && window.matchMedia(
+          '(min-width: 1021px) and (min-height: 601px) and (prefers-reduced-motion: no-preference)'
+        ).matches;
+        section.classList.toggle('wd-process-scroll-ready', scrollDriven);
+        page.classList.toggle('wd-has-scroll-driven-process', scrollDriven);
+
+        if (prefersReducedMotion) {
+          progressRing.style.strokeDashoffset = '100';
+          setActiveProcessStep(0);
+          return;
+        }
+
+        let progress;
+        if (scrollDriven) {
+          const stickyTop = Number.parseFloat(window.getComputedStyle(flow).top) || 0;
+          const scrollRange = track.offsetHeight - flow.offsetHeight;
+          const distance = stickyTop - track.getBoundingClientRect().top;
+          progress = scrollRange > 0 ? Math.max(0, Math.min(1, distance / scrollRange)) : 0;
+        } else {
+          const stage = section.querySelector('.wd-flow-stage');
+          const stageRect = stage.getBoundingClientRect();
+          const scrollRange = window.innerHeight + stageRect.height;
+          progress = scrollRange > 0
+            ? Math.max(0, Math.min(1, (window.innerHeight - stageRect.top) / scrollRange))
+            : 0;
+        }
+
+        progressRing.style.strokeDashoffset = String(100 * (1 - progress));
+        setActiveProcessStep((current) => {
+          const next = Math.min(3, Math.floor(progress * 4));
+          return current === next ? current : next;
+        });
+      });
+    };
+
+    updateProgress();
+    window.addEventListener('scroll', updateProgress, { passive: true });
+    window.addEventListener('resize', updateProgress);
+    return () => {
+      if (frame) cancelAnimationFrame(frame);
+      window.removeEventListener('scroll', updateProgress);
+      window.removeEventListener('resize', updateProgress);
+      section.classList.remove('wd-process-scroll-ready');
+      page.classList.remove('wd-has-scroll-driven-process');
+      progressRing.style.strokeDashoffset = '100';
+    };
+  }, []);
+
+  useEffect(() => {
+    const section = workRef.current;
+    const track = section?.querySelector('.wd-work-track');
+    const viewport = section?.querySelector('.wd-work-sticky');
+    const gallery = section?.querySelector('.wd-work-grid');
+    const page = section?.closest('.wd-page');
+    if (!section || !track || !viewport || !gallery || !page) return;
+
+    let frame = 0;
+    let travel = 0;
+    let scrollDriven = false;
+    let baseTranslate = 0;
+    let manualOffset = 0;
+    let visibleTranslate = 0;
+    let drag = null;
+    const clamp = (value, min, max) => Math.max(min, Math.min(max, value));
+    const applyGalleryTranslate = () => {
+      visibleTranslate = clamp(baseTranslate + manualOffset, -travel, 0);
+      gallery.style.transform = `translate3d(${visibleTranslate}px, 0, 0)`;
+    };
+
+    const updateGallery = () => {
+      if (frame) cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(() => {
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        const desktopGallery = window.matchMedia(
+          '(min-width: 1021px) and (min-height: 601px)'
+        ).matches;
+        scrollDriven = desktopGallery && !prefersReducedMotion;
+        section.classList.toggle('wd-work-scroll-ready', desktopGallery);
+        page.classList.toggle('wd-has-scroll-driven-work', desktopGallery);
+
+        if (!scrollDriven) {
+          track.style.height = '';
+          gallery.style.transform = '';
+          travel = 0;
+          baseTranslate = 0;
+          manualOffset = 0;
+          visibleTranslate = 0;
+          return;
+        }
+
+        const stickyTop = Number.parseFloat(window.getComputedStyle(viewport).top) || 0;
+        const stickyHeight = viewport.offsetHeight;
+        travel = Math.max(0, gallery.offsetWidth - viewport.clientWidth);
+        track.style.height = `${stickyHeight + travel}px`;
+
+        const scrollRange = track.offsetHeight - stickyHeight;
+        const distance = stickyTop - track.getBoundingClientRect().top;
+        const progress = scrollRange > 0 ? Math.max(0, Math.min(1, distance / scrollRange)) : 0;
+        baseTranslate = -travel * progress;
+        applyGalleryTranslate();
+      });
+    };
+
+    const onPointerDown = (event) => {
+      if (!scrollDriven || !event.isPrimary || (event.pointerType === 'mouse' && event.button !== 0)) return;
+      if (!(event.target instanceof Element) || event.target.closest('a, button, input, select, textarea')) return;
+
+      drag = { pointerId: event.pointerId, startX: event.clientX, startTranslate: visibleTranslate };
+      viewport.setPointerCapture(event.pointerId);
+      section.classList.add('wd-work-dragging');
+      event.preventDefault();
+    };
+
+    const onPointerMove = (event) => {
+      if (!drag || event.pointerId !== drag.pointerId) return;
+      const nextTranslate = clamp(drag.startTranslate + event.clientX - drag.startX, -travel, 0);
+      manualOffset = nextTranslate - baseTranslate;
+      applyGalleryTranslate();
+      event.preventDefault();
+    };
+
+    const finishDrag = (event) => {
+      if (!drag || (event && event.pointerId !== drag.pointerId)) return;
+      const pointerId = drag.pointerId;
+      drag = null;
+      section.classList.remove('wd-work-dragging');
+      if (viewport.hasPointerCapture(pointerId)) viewport.releasePointerCapture(pointerId);
+    };
+
+    const onKeyDown = (event) => {
+      if (!scrollDriven) return;
+      let nextTranslate;
+      if (event.key === 'ArrowLeft') nextTranslate = visibleTranslate - 100;
+      else if (event.key === 'ArrowRight') nextTranslate = visibleTranslate + 100;
+      else if (event.key === 'Home') nextTranslate = 0;
+      else if (event.key === 'End') nextTranslate = -travel;
+      else return;
+
+      event.preventDefault();
+      manualOffset = clamp(nextTranslate, -travel, 0) - baseTranslate;
+      applyGalleryTranslate();
+    };
+
+    updateGallery();
+    window.addEventListener('scroll', updateGallery, { passive: true });
+    window.addEventListener('resize', updateGallery);
+    viewport.addEventListener('pointerdown', onPointerDown);
+    viewport.addEventListener('pointermove', onPointerMove);
+    viewport.addEventListener('pointerup', finishDrag);
+    viewport.addEventListener('pointercancel', finishDrag);
+    viewport.addEventListener('lostpointercapture', finishDrag);
+    viewport.addEventListener('keydown', onKeyDown);
+    return () => {
+      if (frame) cancelAnimationFrame(frame);
+      window.removeEventListener('scroll', updateGallery);
+      window.removeEventListener('resize', updateGallery);
+      viewport.removeEventListener('pointerdown', onPointerDown);
+      viewport.removeEventListener('pointermove', onPointerMove);
+      viewport.removeEventListener('pointerup', finishDrag);
+      viewport.removeEventListener('pointercancel', finishDrag);
+      viewport.removeEventListener('lostpointercapture', finishDrag);
+      viewport.removeEventListener('keydown', onKeyDown);
+      section.classList.remove('wd-work-scroll-ready');
+      section.classList.remove('wd-work-dragging');
+      page.classList.remove('wd-has-scroll-driven-work');
+      track.style.height = '';
+      gallery.style.transform = '';
+    };
+  }, []);
+
   const scrollToForm = () => {
     formRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  };
-
-  const buildMessage = () => {
-    const lines = isRtl
-      ? [
-        'طلب تصميم موقع من صفحة تصميم المواقع',
-        `الاسم: ${form.name}`,
-        `الهاتف: ${form.phone}`,
-        form.email ? `الإيميل: ${form.email}` : null,
-        `نوع الخدمة: ${form.service}`,
-        form.message ? `تفاصيل المشروع: ${form.message}` : null
-      ]
-      : [
-        'Website design request — web design page',
-        `Name: ${form.name}`,
-        `Phone: ${form.phone}`,
-        form.email ? `Email: ${form.email}` : null,
-        `Service: ${form.service}`,
-        form.message ? `Project details: ${form.message}` : null
-      ];
-
-    return lines.filter(Boolean).join('\n');
-  };
-
-  const isReady = form.name.trim().length > 1 && form.phone.trim().length > 5;
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    if (!isReady) return;
-    const link = `https://wa.me/${contact.whatsapp}?text=${encodeURIComponent(buildMessage())}`;
-    window.open(link, '_blank', 'noopener,noreferrer');
-    setSentLink(link);
-  };
-
-  const updateField = (field) => (event) => {
-    setForm((prev) => ({ ...prev, [field]: event.target.value }));
-    setSentLink('');
   };
 
   return (
@@ -435,7 +572,12 @@ export default function Serv5WebDesignPage({ lang = 'ar', onOpenConsultation }) 
             </div>
           </div>
 
-          <div className="wd-hero-visual" aria-hidden="true">
+          <div
+            className="wd-hero-visual wd-reveal"
+            data-wd-reveal
+            style={{ '--wd-delay': '220ms' }}
+            aria-hidden="true"
+          >
             <span className="wd-orbit wd-orbit-outer" />
             <span className="wd-orbit wd-orbit-inner" />
             <span className="wd-hero-glow" />
@@ -487,31 +629,53 @@ export default function Serv5WebDesignPage({ lang = 'ar', onOpenConsultation }) 
       </section>
 
       {/* ---------------- WORK ---------------- */}
-      <section className="wd-section">
-        <div className="container">
+      <section className="wd-section wd-work-section" ref={workRef}>
+        <div className="container wd-work-container">
           <header className="wd-heading wd-reveal" data-wd-reveal>
             <span>{t.work.eyebrow}</span>
             <h2>{t.work.title}</h2>
             <p>{t.work.text}</p>
           </header>
-          <div className="wd-work-grid">
-            {t.work.items.map((item, index) => (
-              <article
-                className="wd-work-card wd-reveal"
-                data-wd-reveal
-                style={{ '--wd-delay': `${(index % 3) * 90}ms` }}
-                key={item.title}
-              >
-                <div className="wd-work-shot">
-                  <img src={item.image} alt={item.title} loading="lazy" />
-                </div>
-                <div className="wd-work-meta">
-                  <h3>{item.title}</h3>
-                  <span>{item.tag}</span>
-                </div>
-              </article>
-            ))}
+        </div>
+        <div className="wd-work-track">
+          <div
+            className="wd-work-sticky"
+            role="region"
+            aria-label={isRtl ? 'معرض الأعمال الرقمية' : 'Digital work gallery'}
+            aria-keyshortcuts="ArrowLeft ArrowRight Home End"
+            tabIndex={0}
+          >
+            <div className="wd-work-grid">
+              {t.work.items.map((item, index) => {
+                const center = (t.work.items.length - 1) / 2;
+                const position = center ? (index - center) / center : 0;
+                const edge = Math.abs(position);
+                return (
+                  <article
+                    className="wd-work-card wd-reveal"
+                    data-wd-reveal
+                    style={{
+                      '--wd-delay': `${index * 90}ms`,
+                      '--wd-work-angle': `${-position * 42}deg`,
+                      '--wd-work-depth': `${54 - edge * 150}px`,
+                      zIndex: Math.round(10 - edge * 5)
+                    }}
+                    key={`${item.title}-${index}`}
+                  >
+                    <div className="wd-work-shot">
+                      <img src={item.image} alt={item.title} loading="lazy" draggable="false" />
+                    </div>
+                    <div className="wd-work-meta">
+                      <h3>{item.title}</h3>
+                      <span>{item.tag}</span>
+                    </div>
+                  </article>
+                );
+              })}
+            </div>
           </div>
+        </div>
+        <div className="container wd-work-container">
           <div className="wd-work-more wd-reveal" data-wd-reveal>
             <Link to="/portfolio" className="wd-btn wd-btn-ghost">
               {t.work.more}
@@ -522,7 +686,7 @@ export default function Serv5WebDesignPage({ lang = 'ar', onOpenConsultation }) 
       </section>
 
       {/* ---------------- UX ---------------- */}
-      <section className="wd-section wd-section-dark">
+      <section className="wd-section wd-ux-section">
         <div className="container wd-ux-grid">
           <div className="wd-ux-copy wd-reveal" data-wd-reveal>
             <span className="wd-eyebrow wd-eyebrow-dark">
@@ -562,32 +726,72 @@ export default function Serv5WebDesignPage({ lang = 'ar', onOpenConsultation }) 
       </section>
 
       {/* ---------------- PROCESS ---------------- */}
-      <section className="wd-section">
+      <section className="wd-section wd-process-section" ref={processRef}>
         <div className="container">
           <header className="wd-heading wd-reveal" data-wd-reveal>
             <span>{t.process.eyebrow}</span>
             <h2>{t.process.title}</h2>
             <p>{t.process.text}</p>
           </header>
-          <div className="wd-process">
-            {t.process.steps.map((step, index) => {
-              const Icon = iconMap[step.icon] || Rocket;
-              return (
-                <article
-                  className="wd-process-step wd-reveal"
-                  data-wd-reveal
-                  style={{ '--wd-delay': `${index * 110}ms` }}
-                  key={step.title}
-                >
-                  <span className="wd-process-index">{`0${index + 1}`}</span>
-                  <span className="wd-process-icon"><Icon size={20} /></span>
-                  <h3>{step.title}</h3>
-                  <p>{step.text}</p>
-                </article>
-              );
-            })}
-          </div>
         </div>
+        <div className="wd-process-track">
+          <div className="container wd-process-track-inner">
+              <div className="wd-flow">
+                <div
+                  className="wd-flow-stage wd-reveal"
+                  data-wd-reveal
+                  style={{ '--wd-delay': '120ms' }}
+                  aria-hidden="true"
+                >
+                  <svg className={`wd-flow-progress${isRtl ? ' is-rtl' : ''}`} viewBox="0 0 100 100">
+                    <circle className="wd-flow-progress-track" cx="50" cy="50" r="39.5" />
+                    <circle
+                      className="wd-flow-progress-value"
+                      cx="50"
+                      cy="50"
+                      r="39.5"
+                      pathLength="100"
+                      strokeDasharray="100"
+                      strokeDashoffset="100"
+                    />
+                    <circle className="wd-flow-progress-outline" cx="50" cy="50" r="42" />
+                    <circle className="wd-flow-progress-outline" cx="50" cy="50" r="37" />
+                  </svg>
+                  {t.process.steps.map((step, index) => {
+                    const angle = (-90 + (isRtl ? -1 : 1) * index * 90) * (Math.PI / 180);
+                    return (
+                      <span
+                        className={`wd-flow-num${activeProcessStep === index ? ' is-active' : ''}`}
+                        key={`num-${step.title}`}
+                        style={{
+                          left: `${50 + 39.5 * Math.cos(angle)}%`,
+                          top: `${50 + 39.5 * Math.sin(angle)}%`,
+                          animationDelay: `${index * 1.2}s`
+                        }}
+                      >{`0${index + 1}`}</span>
+                    );
+                  })}
+                  <img className="wd-flow-center" src="/serv5-official-logo.webp" alt="SERV5" />
+              </div>
+                {t.process.steps.map((step, index) => {
+                  const Icon = iconMap[step.icon] || Rocket;
+                  return (
+                    <article
+                      className={`wd-flow-card wd-flow-card-${index + 1}${index <= activeProcessStep ? ' is-shown' : ''}${activeProcessStep === index ? ' is-active' : ''}`}
+                      key={step.title}
+                    >
+                      <div className="wd-flow-card-head">
+                        <span className="wd-flow-card-num">{`0${index + 1}`}</span>
+                        <span className="wd-flow-icon"><Icon size={15} /></span>
+                      </div>
+                      <h3>{step.title}</h3>
+                      <p>{step.text}</p>
+                    </article>
+                  );
+                })}
+                </div>
+          </div>
+          </div>
       </section>
 
       {/* ---------------- WHY ---------------- */}
@@ -624,96 +828,8 @@ export default function Serv5WebDesignPage({ lang = 'ar', onOpenConsultation }) 
         </div>
       </section>
 
-      {/* ---------------- LEAD FORM ---------------- */}
-      <section className="wd-section wd-contact-section" ref={formRef}>
-        <div className="container">
-          <header className="wd-heading wd-reveal" data-wd-reveal>
-            <span>{t.form.eyebrow}</span>
-            <h2>{t.form.title}</h2>
-            <p>{t.form.text}</p>
-          </header>
+      <Serv5GetInTouch lang={lang} sectionRef={formRef} />
 
-          <div className="wd-form-card wd-reveal" data-wd-reveal>
-            <div className="wd-form-head">
-              <strong>{t.form.panelTitle}</strong>
-              <span className="wd-form-live"><i />{isRtl ? 'متاحين الآن' : 'Available now'}</span>
-            </div>
-
-            {sentLink ? (
-              <div className="wd-form-sent" role="status">
-                <span className="wd-form-sent-icon"><Check size={20} /></span>
-                <h3>{t.form.sentTitle}</h3>
-                <p>{t.form.sentText}</p>
-                <a href={sentLink} target="_blank" rel="noopener noreferrer">{t.form.sentLink}</a>
-              </div>
-            ) : (
-              <form onSubmit={handleSubmit}>
-                <div className="wd-form-grid">
-                  <label className="wd-field">
-                    <span>{t.form.name}</span>
-                    <input
-                      type="text"
-                      value={form.name}
-                      onChange={updateField('name')}
-                      placeholder={t.form.namePlaceholder}
-                      required
-                    />
-                  </label>
-                  <label className="wd-field">
-                    <span>{t.form.phone}</span>
-                    <input
-                      type="tel"
-                      value={form.phone}
-                      onChange={updateField('phone')}
-                      placeholder={t.form.phonePlaceholder}
-                      required
-                    />
-                  </label>
-                  <label className="wd-field">
-                    <span>{t.form.email}</span>
-                    <input
-                      type="email"
-                      value={form.email}
-                      onChange={updateField('email')}
-                      placeholder={t.form.emailPlaceholder}
-                    />
-                  </label>
-                  <label className="wd-field">
-                    <span>{t.form.service}</span>
-                    <select value={form.service} onChange={updateField('service')}>
-                      {t.form.services.map((service) => (
-                        <option value={service} key={service}>{service}</option>
-                      ))}
-                    </select>
-                  </label>
-                  <label className="wd-field wd-field-wide">
-                    <span>{t.form.message}</span>
-                    <textarea
-                      rows={3}
-                      value={form.message}
-                      onChange={updateField('message')}
-                      placeholder={t.form.messagePlaceholder}
-                    />
-                  </label>
-                </div>
-                <div className="wd-form-actions">
-                  <button type="submit" className="wd-btn wd-btn-primary" disabled={!isReady}>
-                    {t.form.submit}
-                    <ArrowUpRight size={17} />
-                  </button>
-                  <p>{t.form.note}</p>
-                </div>
-              </form>
-            )}
-
-            <div className="wd-form-direct">
-              <span>{t.form.direct}</span>
-              <a href={`tel:${contact.phone}`}>{contact.phone}</a>
-              <a href={`mailto:${contact.email}`}><Mail size={14} />{contact.email}</a>
-            </div>
-          </div>
-        </div>
-      </section>
     </div>
   );
 }

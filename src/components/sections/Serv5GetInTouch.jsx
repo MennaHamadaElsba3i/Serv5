@@ -83,7 +83,7 @@ const copy = {
   }
 };
 
-export default function Serv5GetInTouch({ lang = 'ar' }) {
+export default function Serv5GetInTouch({ lang = 'ar', sectionRef }) {
   const isRtl = lang === 'ar';
   const t = copy[isRtl ? 'ar' : 'en'];
   const list = examples[isRtl ? 'ar' : 'en'];
@@ -131,7 +131,7 @@ export default function Serv5GetInTouch({ lang = 'ar' }) {
         : t.meterTwo;
 
   return (
-    <section className="serv5-revamped-section serv5-hello-section" id="contact" dir={isRtl ? 'rtl' : 'ltr'}>
+    <section ref={sectionRef} className="serv5-revamped-section serv5-hello-section" id="contact" dir={isRtl ? 'rtl' : 'ltr'}>
       <div className="serv5-container">
         <header className="serv5-hello-header">
           <span className="serv5-hello-eyebrow">{t.eyebrow}</span>
