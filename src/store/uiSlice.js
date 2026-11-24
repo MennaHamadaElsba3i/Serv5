@@ -1,7 +1,19 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+const getInitialTheme = () => {
+  if (typeof window !== 'undefined') {
+    const saved = localStorage.getItem('serv5_theme');
+    if (saved === 'dark' || saved === 'light') return saved;
+    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      return 'dark';
+    }
+  }
+  return 'light';
+};
+
 const initialState = {
   lang: 'ar',
+  theme: getInitialTheme(),
   bgMode: 'drape', // 'drape' (Spectral Drape) or 'shell' (Astral Shell)
   pricingCycle: 'monthly', // 'monthly' or 'annual'
   activeServiceCategory: 'all',
@@ -19,6 +31,27 @@ export const uiSlice = createSlice({
     },
     toggleLanguage: (state) => {
       state.lang = state.lang === 'ar' ? 'en' : 'ar';
+    },
+    setTheme: (state, action) => {
+      state.theme = action.payload;
+      if (typeof window !== 'undefined') {
+        try {
+          localStorage.setItem('serv5_theme', action.payload);
+        } catch (e) {
+          // ignore
+        }
+      }
+    },
+    toggleTheme: (state) => {
+      const next = state.theme === 'dark' ? 'light' : 'dark';
+      state.theme = next;
+      if (typeof window !== 'undefined') {
+        try {
+          localStorage.setItem('serv5_theme', next);
+        } catch (e) {
+          // ignore
+        }
+      }
     },
     setBgMode: (state, action) => {
       state.bgMode = action.payload;
@@ -46,6 +79,8 @@ export const uiSlice = createSlice({
 export const {
   setLanguage,
   toggleLanguage,
+  setTheme,
+  toggleTheme,
   setBgMode,
   setPricingCycle,
   setActiveServiceCategory,

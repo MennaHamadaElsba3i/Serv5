@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { setTheme, toggleTheme } from './store/uiSlice';
 import Navbar from './components/layout/Navbar';
 import HeroSection from './components/sections/HeroSection';
 
@@ -20,12 +22,16 @@ import { Play } from 'lucide-react';
 
 export default function App() {
   const location = useLocation();
+  const dispatch = useDispatch();
   const isHomePage = location.pathname === '/' || location.pathname === '';
   const [lang, setLang] = useState('ar');
   const [modalOpen, setModalOpen] = useState(false);
   const [modalSubject, setModalSubject] = useState('General Consultation');
   const [showIntro, setShowIntro] = useState(true);
   const [introKey, setIntroKey] = useState(1);
+
+  const reduxTheme = useSelector((state) => state.ui?.theme) || 'light';
+  const [theme, setThemeState] = useState(reduxTheme);
 
   const handleReplayIntro = () => {
     setIntroKey(prev => prev + 1);
@@ -40,6 +46,45 @@ export default function App() {
     document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
     document.documentElement.lang = lang;
   }, [lang]);
+
+  // Synchronize theme with DOM attributes and localStorage
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', theme);
+    document.documentElement.classList.toggle('dark', theme === 'dark');
+    document.documentElement.classList.toggle('light', theme === 'light');
+    try {
+      localStorage.setItem('serv5_theme', theme);
+    } catch (e) {
+      // ignore
+    }
+  }, [theme]);
+
+  // Listen to OS system color scheme changes when user has no stored preference
+  useEffect(() => {
+    if (typeof window === 'undefined' || !window.matchMedia) return;
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    const handleSystemThemeChange = (e) => {
+      const hasStored = localStorage.getItem('serv5_theme');
+      if (!hasStored) {
+        const nextTheme = e.matches ? 'dark' : 'light';
+        setThemeState(nextTheme);
+        dispatch(setTheme(nextTheme));
+      }
+    };
+    mediaQuery.addEventListener('change', handleSystemThemeChange);
+    return () => mediaQuery.removeEventListener('change', handleSystemThemeChange);
+  }, [dispatch]);
+
+  const handleToggleTheme = () => {
+    const nextTheme = theme === 'dark' ? 'light' : 'dark';
+    // Temporarily add a class for smooth transition
+    document.documentElement.classList.add('theme-transitioning');
+    setThemeState(nextTheme);
+    dispatch(toggleTheme());
+    window.setTimeout(() => {
+      document.documentElement.classList.remove('theme-transitioning');
+    }, 400);
+  };
 
   useEffect(() => {
     if (!isHomePage || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
@@ -74,12 +119,14 @@ export default function App() {
 
   if (!isHomePage) {
     return (
-      <div className={`serv5-world-root ${lang === 'ar' ? 'dir-rtl' : 'dir-ltr'}`}>
+      <div className={`serv5-world-root theme-${theme} ${lang === 'ar' ? 'dir-rtl' : 'dir-ltr'}`}>
         <Serv5ContextualCursor lang={lang} />
         <Navbar
           onOpenConsultation={handleOpenConsultation}
           lang={lang}
           onToggleLang={toggleLanguage}
+          theme={theme}
+          onToggleTheme={handleToggleTheme}
         />
         <main className="world-main-content content-page-main">
           <ContentPage
@@ -99,7 +146,7 @@ export default function App() {
   }
 
   return (
-    <div className={`serv5-world-root home-scroll-motion ${lang === 'ar' ? 'dir-rtl' : 'dir-ltr'}`}>
+    <div className={`serv5-world-root home-scroll-motion theme-${theme} ${lang === 'ar' ? 'dir-rtl' : 'dir-ltr'}`}>
       {/* CONTEXTUAL MAGNETIC & DYNAMIC ACTION CURSOR */}
       <Serv5ContextualCursor lang={lang} />
 
@@ -140,6 +187,8 @@ export default function App() {
         onOpenConsultation={handleOpenConsultation}
         lang={lang}
         onToggleLang={toggleLanguage}
+        theme={theme}
+        onToggleTheme={handleToggleTheme}
       />
 
       {/* INTERACTIVE 3D ROBOT MASCOT & TOUR GUIDE */}
