@@ -100,9 +100,31 @@ function SimplePage({ isRtl, title, description, sections }) {
   );
 }
 
+function HostingFeatureArtwork({ index }) {
+  const ArtworkIcon = [Zap, Gauge, LockKeyhole, HardDrive, Activity, PanelTop, Headphones][index] || Server;
+
+  return (
+    <div className={`hosting-feature-art hosting-feature-art-${index}`} aria-hidden="true">
+      <div className="hosting-feature-art-orbit hosting-feature-art-orbit-a" />
+      <div className="hosting-feature-art-orbit hosting-feature-art-orbit-b" />
+      <div className="hosting-feature-art-grid" />
+      {index === 0 && <div className="hosting-feature-speed-lines"><i /><i /><i /><i /></div>}
+      {index === 1 && <div className="hosting-feature-cache-layers"><i /><i /><i /></div>}
+      {index === 2 && <div className="hosting-feature-shield"><LockKeyhole size={31} /></div>}
+      {index === 3 && <div className="hosting-feature-database"><i /><i /><i /></div>}
+      {index === 4 && <svg className="hosting-feature-pulse" viewBox="0 0 420 150" fill="none"><path d="M10 76h88l24-2 20-42 30 88 29-58 20 14h45l18-3 20-37 27 70 21-30h78" /></svg>}
+      {index === 5 && <div className="hosting-feature-console"><i /><i /><i /><span /><span /><span /></div>}
+      {index === 6 && <div className="hosting-feature-support"><i /><i /><i /><Headphones size={28} /></div>}
+      {index !== 2 && index !== 6 && <div className="hosting-feature-art-icon"><ArtworkIcon size={31} strokeWidth={1.6} /></div>}
+      <span className="hosting-feature-art-label">SERV5 <i /> {String(index + 1).padStart(2, '0')}</span>
+    </div>
+  );
+}
+
 function HostingPage({ isRtl, onOpenConsultation }) {
   const pageRef = useRef(null);
   const [eggOpen, setEggOpen] = useState(false);
+  const [activeBenefitIndex, setActiveBenefitIndex] = useState(0);
   const eggClicks = useRef(0);
   const eggTimer = useRef(null);
 
@@ -306,19 +328,47 @@ function HostingPage({ isRtl, onOpenConsultation }) {
             <span>{isRtl ? 'مصممة لأداء يعتمد عليه' : 'BUILT FOR RELIABLE PERFORMANCE'}</span>
             <h2>{isRtl ? 'كل ما يحتاجه موقعك في مكان واحد' : 'Everything your website needs, all in one place'}</h2>
           </header>
-          <div className="hosting-benefits-grid">
-            {benefits.map(({ icon: Icon, title, text }, index) => (
-              <article
-                className="hosting-benefit-card hosting-reveal"
-                data-hosting-reveal
-                style={{ '--hosting-delay': `${(index % 4) * 75}ms` }}
-                key={title}
-              >
-                <div className="hosting-benefit-icon"><Icon size={22} /></div>
-                <h3>{title}</h3>
-                <p>{text}</p>
-              </article>
-            ))}
+          <div className="hosting-feature-gallery">
+            <div className="hosting-feature-index" role="group" aria-label={isRtl ? 'مميزات الاستضافة' : 'Hosting features'}>
+              {benefits.map(({ title, text }, index) => (
+                <button
+                  type="button"
+                  id={`hosting-feature-tab-${index}`}
+                  aria-pressed={activeBenefitIndex === index}
+                  className={`hosting-feature-tab${activeBenefitIndex === index ? ' is-active' : ''}`}
+                  key={title}
+                  onClick={() => setActiveBenefitIndex(index)}
+                  onKeyDown={(event) => {
+                    let nextIndex = index;
+                    if (event.key === 'ArrowDown' || event.key === 'ArrowRight') nextIndex = (index + 1) % benefits.length;
+                    else if (event.key === 'ArrowUp' || event.key === 'ArrowLeft') nextIndex = (index - 1 + benefits.length) % benefits.length;
+                    else if (event.key === 'Home') nextIndex = 0;
+                    else if (event.key === 'End') nextIndex = benefits.length - 1;
+                    else return;
+                    event.preventDefault();
+                    setActiveBenefitIndex(nextIndex);
+                    requestAnimationFrame(() => document.getElementById(`hosting-feature-tab-${nextIndex}`)?.focus());
+                  }}
+                >
+                  <span className="hosting-feature-tab-number">{String(index + 1).padStart(2, '0')}</span>
+                  <span className="hosting-feature-tab-copy">
+                    <strong>{title}</strong>
+                    <small>{text}</small>
+                  </span>
+                  <ArrowUpRight size={17} className="hosting-feature-tab-arrow" />
+                </button>
+              ))}
+            </div>
+            <div className="hosting-feature-stage" id="hosting-feature-panel" role="region" aria-live="polite" aria-labelledby={`hosting-feature-tab-${activeBenefitIndex}`}>
+              <div className="hosting-feature-stage-content" key={`hosting-feature-${activeBenefitIndex}`}>
+                <HostingFeatureArtwork index={activeBenefitIndex} />
+                <div className="hosting-feature-detail">
+                  <span>{isRtl ? `الميزة ${String(activeBenefitIndex + 1).padStart(2, '0')}` : `FEATURE ${String(activeBenefitIndex + 1).padStart(2, '0')}`}</span>
+                  <h3>{benefits[activeBenefitIndex].title}</h3>
+                  <p>{benefits[activeBenefitIndex].text}</p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
