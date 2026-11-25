@@ -29,6 +29,7 @@ import Serv5GetInTouch from '../components/sections/Serv5GetInTouch';
 import Serv5WebDesignPage from '../components/pages/Serv5WebDesignPage';
 import Serv5BankAccountsPage from '../components/pages/Serv5BankAccountsPage';
 import TiltCard from '../components/hosting/TiltCard';
+import HeroAmbientBackground from '../components/ui/HeroAmbientBackground';
 
 const servicePages = {
   'web-hosting': {
@@ -72,6 +73,7 @@ const servicePages = {
 function PageHero({ isRtl, eyebrow, title, description }) {
   return (
     <section className="content-page-hero">
+      <HeroAmbientBackground variant="page" />
       <div className="container content-page-hero-inner">
         <span className="content-page-eyebrow">{eyebrow}</span>
         <h1>{title}</h1>
@@ -281,6 +283,7 @@ function HostingPage({ isRtl, onOpenConsultation }) {
   return (
     <div className="hosting-page" dir={isRtl ? 'rtl' : 'ltr'} ref={pageRef}>
       <section className="hosting-hero hosting-reveal" data-hosting-reveal>
+        <HeroAmbientBackground variant="split" />
         <div className="container hosting-hero-grid">
           <div className="hosting-hero-copy hosting-reveal" data-hosting-reveal>
             <span className="hosting-eyebrow">

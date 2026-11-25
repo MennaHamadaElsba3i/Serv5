@@ -1,11 +1,13 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import HeroAmbientBackground from '../ui/HeroAmbientBackground';
 
 export default function AboutSection({ onOpenConsultation, lang = 'ar' }) {
   const isRtl = lang === 'ar';
 
   return (
     <section className="world-section about-monument-section relative overflow-hidden" id="about">
+      <HeroAmbientBackground variant="about" />
       {/* Subtle Atmospheric Blue-Orange Background Glow */}
       <div
         className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[750px] h-[450px] rounded-full opacity-20 blur-[130px]"

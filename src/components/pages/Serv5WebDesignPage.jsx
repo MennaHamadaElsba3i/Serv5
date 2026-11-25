@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Serv5GetInTouch from '../sections/Serv5GetInTouch';
 import Serv5AppUniverse from './Serv5AppUniverse';
+import HeroAmbientBackground from '../ui/HeroAmbientBackground';
 import {
   ArrowUpRight,
   Check,
@@ -1428,6 +1429,7 @@ export default function Serv5WebDesignPage({ lang = 'ar', onOpenConsultation, va
     <div className={`wd-page${isUiUx ? ' wd-page-uiux' : ''}${isEcommerce ? ' wd-page-ecommerce' : ''}${isSeo ? ' wd-page-seo' : ''}${isMobileApps ? ' wd-page-mobile-apps' : ''}${isDigitalMarketing ? ' wd-page-digital-marketing' : ''}`} dir={isRtl ? 'rtl' : 'ltr'} ref={pageRef}>
       {/* ---------------- HERO ---------------- */}
       <section className="wd-hero">
+        <HeroAmbientBackground variant="split" />
         <div className="container wd-hero-grid">
           <div className="wd-hero-copy">
             {t.hero.eyebrow && <span className="wd-eyebrow wd-reveal" data-wd-reveal>

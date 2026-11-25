@@ -19,6 +19,7 @@ import {
   ChevronLeft
 } from 'lucide-react';
 import ConnectedRoadmap from '../ui/ConnectedRoadmap';
+import HeroAmbientBackground from '../ui/HeroAmbientBackground';
 
 export default function Serv5BankAccountsPage({ lang = 'ar', onOpenConsultation }) {
   const isRtl = lang === 'ar';
@@ -196,6 +197,7 @@ export default function Serv5BankAccountsPage({ lang = 'ar', onOpenConsultation 
     <div className="bank-accounts-page" dir={isRtl ? 'rtl' : 'ltr'}>
       {/* 1. HERO BANNER */}
       <section className="bank-hero-section">
+        <HeroAmbientBackground variant="bank" />
         <div className="container">
           <div className="bank-hero-badge">
             <ShieldCheck size={16} />

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import HeroAmbientBackground from '../ui/HeroAmbientBackground';
 
 const headquarters = {
   name: 'SERV5 Mansoura Headquarters',
@@ -132,6 +133,7 @@ export default function Serv5GetInTouch({ lang = 'ar', sectionRef }) {
 
   return (
     <section ref={sectionRef} className="serv5-revamped-section serv5-hello-section" id="contact" dir={isRtl ? 'rtl' : 'ltr'}>
+      <HeroAmbientBackground variant="contact" />
       <div className="serv5-container">
         <header className="serv5-hello-header">
           <span className="serv5-hello-eyebrow">{t.eyebrow}</span>

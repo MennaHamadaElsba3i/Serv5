@@ -3,22 +3,14 @@ import { ArrowRight, ArrowUpRight } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { serv5Data } from '../../data/serv5Data';
 import PartnersCarousel from './PartnersCarousel';
+import HeroAmbientBackground from '../ui/HeroAmbientBackground';
 
 export default function HeroSection({ onOpenConsultation, lang = 'ar' }) {
   const isRtl = lang === 'ar';
 
   return (
     <section className="world-hero-section world-hero-centered relative overflow-hidden" id="hero">
-      {/* Blueprint Grid & Ambient Gradient Halos */}
-      <div className="hero-blueprint-grid" aria-hidden="true" />
-
-      <div
-        className="pointer-events-none absolute -top-28 left-1/2 -translate-x-1/2 w-[880px] h-[520px] rounded-full opacity-40 blur-[130px]"
-        style={{
-          background: 'radial-gradient(ellipse at center, rgba(36, 90, 167, 0.32) 0%, rgba(234, 88, 12, 0.16) 55%, transparent 75%)'
-        }}
-        aria-hidden="true"
-      />
+      <HeroAmbientBackground variant="home" />
 
       <div className="container relative z-10">
         <div className="row justify-content-center">
