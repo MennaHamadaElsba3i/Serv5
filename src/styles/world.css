@@ -1321,34 +1321,6 @@ html[dir="ltr"] {
   perspective: 1400px;
 }
 
-@media (min-width: 992px) and (prefers-reduced-motion: no-preference) {
-  .hosting-motion-ready .hosting-plan-layout .hosting-plan-card:first-child:not(.is-visible) {
-    opacity: 0.3;
-    filter: blur(4px);
-    transform: translate3d(110%, 18px, 0) rotate(2deg) scale(0.94);
-    z-index: 1;
-  }
-
-  .hosting-motion-ready .hosting-plan-layout .hosting-plan-card:last-child:not(.is-visible) {
-    opacity: 0.3;
-    filter: blur(4px);
-    transform: translate3d(-110%, 18px, 0) rotate(-2deg) scale(0.94);
-    z-index: 1;
-  }
-
-  .hosting-page[dir="rtl"] .hosting-plan-layout .hosting-plan-card:first-child:not(.is-visible) {
-    transform: translate3d(-110%, 18px, 0) rotate(-2deg) scale(0.94);
-  }
-
-  .hosting-page[dir="rtl"] .hosting-plan-layout .hosting-plan-card:last-child:not(.is-visible) {
-    transform: translate3d(110%, 18px, 0) rotate(2deg) scale(0.94);
-  }
-
-  .hosting-motion-ready .hosting-plan-layout .hosting-plan-card.is-featured {
-    z-index: 3;
-  }
-}
-
 .hosting-plan-card {
   position: relative;
   display: flex;
