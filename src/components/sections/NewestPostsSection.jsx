@@ -1,8 +1,7 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { motion, AnimatePresence, useMotionValue, useSpring, useTransform } from 'framer-motion';
+import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import {
   ExternalLink,
-  Search,
   X,
   Sparkles,
   ArrowUpRight,
@@ -20,14 +19,11 @@ import {
 } from 'lucide-react';
 
 /* ───────────────────────────────────────────────────────────────────
-   SERV5 FEATURED WORKS — INTERACTIVE 3D ARCHITECTURE MATRIX
-   - All 6 enterprise platforms clearly visible to the client at once
-   - Natural page scroll (zero scroll-hijacking)
-   - Dynamic 3D magnetic card tilt responding to cursor coordinates
-   - Living micro-UIs with animated telemetry, routes, lasers & circuits
-   - Cursor-tracking holographic glare & traveling laser borders
-   - Interactive category filtering + live instant search
-   - Deep-dive Case Study Modal with full architecture specs
+   SERV5 WORKS — INTERACTIVE ORBITAL PROJECT EXPLORER
+   - The SERV5 logo anchors the center of the desktop orbit
+   - Project cards move to a focus point when selected
+   - Category filters and project choices remain visible and clickable
+   - Existing project previews and case-study data are reused
    ─────────────────────────────────────────────────────────────────── */
 
 /* ── 1. PIZZA PLAZA MICRO-UI: Live Fleet GPS & Order Dispatch ── */
@@ -272,168 +268,52 @@ function AlRajhiMockup({ isRtl }) {
   );
 }
 
-/* ── 3D MAGNETIC PERSPECTIVE SHOWCASE CARD ── */
-function ProjectCard3D({ project, idx, isRtl, onOpen }) {
-  const cardRef = useRef(null);
-  const x = useMotionValue(0);
-  const y = useMotionValue(0);
-
-  const mouseXSpring = useSpring(x, { stiffness: 220, damping: 22 });
-  const mouseYSpring = useSpring(y, { stiffness: 220, damping: 22 });
-
-  const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], ['10deg', '-10deg']);
-  const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ['-10deg', '10deg']);
-
-  const [glarePos, setGlarePos] = useState({ x: 50, y: 50 });
-
-  const handleMouseMove = (e) => {
-    if (!cardRef.current) return;
-    const rect = cardRef.current.getBoundingClientRect();
-    const mouseX = e.clientX - rect.left;
-    const mouseY = e.clientY - rect.top;
-    const xPct = mouseX / rect.width - 0.5;
-    const yPct = mouseY / rect.height - 0.5;
-    x.set(xPct);
-    y.set(yPct);
-    setGlarePos({
-      x: (mouseX / rect.width) * 100,
-      y: (mouseY / rect.height) * 100
-    });
-  };
-
-  const handleMouseLeave = () => {
-    x.set(0);
-    y.set(0);
-  };
-
-  const renderMicroUI = () => {
-    switch (project.id) {
-      case 'pizza-plaza':
-        return <PizzaPlazaMockup isRtl={isRtl} />;
-      case 'medpulse-cloud':
-        return <MedPulseMockup isRtl={isRtl} />;
-      case 'luxestore-arabia':
-        return <LuxeStoreMockup isRtl={isRtl} />;
-      case 'zatca-gateway':
-        return <ZatcaMockup isRtl={isRtl} />;
-      case 'nauz-cafe':
-        return <NauzCafeMockup isRtl={isRtl} />;
-      case 'alrajhi-gateway':
-        return <AlRajhiMockup isRtl={isRtl} />;
-      default:
-        return null;
-    }
-  };
-
+/* ── Featured project and its existing interface preview ── */
+function FeaturedProjectCard({ project, isRtl, onOpen }) {
   return (
-    <motion.div
-      ref={cardRef}
-      layout
-      initial={{ opacity: 0, y: 30, scale: 0.95 }}
-      whileInView={{ opacity: 1, y: 0, scale: 1 }}
-      viewport={{ once: true, amount: 0.15 }}
-      exit={{ opacity: 0, scale: 0.95 }}
-      transition={{ duration: 0.5, delay: idx * 0.06 }}
-      style={{
-        rotateX,
-        rotateY,
-        transformStyle: 'preserve-3d'
-      }}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-      onClick={onOpen}
-      className="serv5-portfolio-card"
-      role="button"
-      tabIndex={0}
-      onKeyDown={(e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault();
-          onOpen();
-        }
-      }}
+    <motion.article
+      initial={{ opacity: 0, y: 12 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -8 }}
+      transition={{ duration: 0.24, ease: 'easeOut' }}
+      className="serv5-portfolio-card serv5-project-detail"
+      dir={isRtl ? 'rtl' : 'ltr'}
     >
-      {/* Traveling Laser Border Beam */}
-      <div className="card-border-laser" />
-
-      {/* Dynamic Cursor-Tracking Glare */}
       <div
-        className="portfolio-card-glare"
-        style={{
-          background: `radial-gradient(circle 240px at ${glarePos.x}% ${glarePos.y}%, rgba(37, 99, 235, 0.12), transparent 70%)`
-        }}
-      />
-
-      {/* Top Accent Stripe */}
-      <div
-        className="portfolio-card-accent-bar"
-        style={{ background: `linear-gradient(90deg, ${project.accentColor}, #38bdf8)` }}
-      />
-
-      {/* 1. Visual Device Mockup Frame with Live Micro-UI */}
-      <div
-        className="portfolio-device-frame"
-        style={{ background: project.cardColor }}
+        className="serv5-website-preview"
+        style={{ background: project.cardColor, '--preview-accent': project.accentColor }}
       >
-        {/* Browser Header Bar */}
-        <div className="device-frame-header">
-          <div className="device-frame-dots">
-            <span className="device-dot bg-rose-400" />
-            <span className="device-dot bg-amber-400" />
-            <span className="device-dot bg-emerald-400" />
+        <div className="serv5-website-preview-nav">
+          <div className="serv5-website-preview-window-controls" aria-hidden="true">
+            <i /><i /><i />
           </div>
-
-          <div className="flex items-center gap-1.5 text-[10px] font-mono text-slate-500">
-            <span>{project.number}</span>
-            <span>·</span>
-            <span className="font-bold text-emerald-600 flex items-center gap-1">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-              LIVE TELEMETRY
-            </span>
-          </div>
+          <span className="serv5-website-preview-address" aria-hidden="true" />
+          <a
+            className="serv5-website-preview-open"
+            href={project.url}
+            target="_blank"
+            rel="noreferrer"
+            onClick={(event) => event.stopPropagation()}
+            aria-label={`${isRtl ? 'معاينة الموقع' : 'Preview website'}: ${project.title}`}
+          >
+            <span>{isRtl ? 'معاينة' : 'Preview'}</span>
+            <ExternalLink size={12} aria-hidden="true" />
+          </a>
         </div>
-
-        {/* Device Interior Content: Live Interactive Micro-UI */}
-        <div className="device-frame-body">
-          {renderMicroUI()}
+        <div className="serv5-website-preview-art">
+          <img src="/images/website-mockup-1.jpg" alt="" loading="lazy" />
         </div>
       </div>
 
-      {/* 2. Editorial Metadata */}
       <div className="portfolio-card-content">
-        <span
-          className="portfolio-card-category"
-          style={{ color: project.accentColor }}
-        >
-          {project.categoryLabel}
-        </span>
-
         <h3 className="portfolio-card-title">{project.title}</h3>
-        <p className="portfolio-card-client">{project.client}</p>
         <p className="portfolio-card-desc">{project.overview}</p>
-
-        {/* Tech Stack Chips */}
-        <div className="portfolio-tech-tags">
-          {project.techStack.slice(0, 3).map((tech, tIdx) => (
-            <span key={tIdx} className="portfolio-tech-tag">
-              {tech}
-            </span>
-          ))}
-          {project.techStack.length > 3 && (
-            <span className="portfolio-tech-tag font-bold text-blue-600">
-              +{project.techStack.length - 3}
-            </span>
-          )}
-        </div>
+        <button className="serv5-read-more" type="button" onClick={onOpen}>
+          <span>{isRtl ? 'اقرأ المزيد' : 'Read more'}</span>
+          <ArrowUpRight size={15} aria-hidden="true" />
+        </button>
       </div>
-
-      {/* 3. Card Action Footer */}
-      <div className="portfolio-card-action">
-        <span>{isRtl ? 'استكشف تفاصيل المنظومة' : 'Inspect Architecture'}</span>
-        <div className="w-7 h-7 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center portfolio-action-arrow">
-          <ArrowUpRight size={14} />
-        </div>
-      </div>
-    </motion.div>
+    </motion.article>
   );
 }
 
@@ -661,19 +541,45 @@ export default function NewestPostsSection({ onOpenConsultation, lang = 'ar' }) 
     }
   ];
 
-  // Filtering State
-  const [searchQuery, setSearchQuery] = useState('');
+  // Category selection and the featured project selection are separate controls.
   const [activeCategory, setActiveCategory] = useState('all');
+  const [activeProjectId, setActiveProjectId] = useState(projects[0]?.id ?? null);
   const [selectedProject, setSelectedProject] = useState(null);
   const [isModalAnimating, setIsModalAnimating] = useState(false);
 
+  const categories = [
+    { id: 'all', label: isRtl ? 'كل المشاريع' : 'All projects' },
+    { id: 'mobile', label: isRtl ? 'تطبيقات الجوال وPOS' : 'Mobile & POS' },
+    { id: 'ecommerce', label: isRtl ? 'التجارة الإلكترونية' : 'E-commerce' },
+    { id: 'cloud', label: isRtl ? 'السحابة وERP' : 'Cloud & ERP' },
+    { id: 'enterprise', label: isRtl ? 'حلول المؤسسات' : 'Enterprise' }
+  ];
+
   const filteredProjects = projects.filter((p) => {
-    const matchesCategory = activeCategory === 'all' || p.category === activeCategory;
-    const matchesSearch =
-      p.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      p.client.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      p.overview.toLowerCase().includes(searchQuery.toLowerCase());
-    return matchesCategory && matchesSearch;
+    return activeCategory === 'all' || p.category === activeCategory;
+  });
+
+  const selectCategory = (categoryId) => {
+    setActiveCategory(categoryId);
+    const firstProject = projects.find((project) => categoryId === 'all' || project.category === categoryId);
+    setActiveProjectId(firstProject?.id ?? null);
+  };
+
+  const featuredProject = filteredProjects.find((project) => project.id === activeProjectId) || filteredProjects[0];
+  const featuredIndex = filteredProjects.findIndex((project) => project.id === featuredProject?.id);
+
+  const orbitalProjects = filteredProjects.map((project, index) => {
+    const slot = filteredProjects.length
+      ? (index - featuredIndex + filteredProjects.length) % filteredProjects.length
+      : 0;
+    const angle = -Math.PI / 2 + (slot * Math.PI * 2) / Math.max(filteredProjects.length, 1);
+
+    return {
+      ...project,
+      orbitLeft: `${50 + Math.cos(angle) * 31}%`,
+      orbitTop: `${50 + Math.sin(angle) * 39}%`,
+      isSelected: project.id === featuredProject?.id
+    };
   });
 
   // Close modal with ESC
@@ -703,31 +609,8 @@ export default function NewestPostsSection({ onOpenConsultation, lang = 'ar' }) 
 
   return (
     <section className="newest-works-section relative overflow-hidden" id="portfolio">
-      {/* ── AMBIENT FLOATING TECH GLOW ORBS IN SECTION BACKGROUND ── */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden -z-10">
-        <motion.div
-          animate={{
-            x: [0, 30, 0],
-            y: [0, -25, 0],
-            scale: [1, 1.1, 1]
-          }}
-          transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut' }}
-          className="absolute top-1/4 -left-20 w-96 h-96 rounded-full bg-blue-400/10 blur-3xl"
-        />
-        <motion.div
-          animate={{
-            x: [0, -35, 0],
-            y: [0, 30, 0],
-            scale: [1, 1.15, 1]
-          }}
-          transition={{ duration: 15, repeat: Infinity, ease: 'easeInOut' }}
-          className="absolute bottom-1/4 -right-20 w-96 h-96 rounded-full bg-indigo-400/10 blur-3xl"
-        />
-      </div>
-
       <div className="container">
-        {/* ── HEADER & SEARCH / FILTER CONTROLS ── */}
-        <div className="newest-header-wrapper">
+        <div className="newest-header-wrapper serv5-portfolio-heading">
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -760,77 +643,107 @@ export default function NewestPostsSection({ onOpenConsultation, lang = 'ar' }) 
             </p>
           </motion.div>
 
-          {/* Search Bar + Live Count */}
-          <div className="w-full max-w-md mx-auto mb-6">
-            <div className="newest-search-bar">
-              <Search size={18} className="search-icon-dim" />
-              <input
-                type="text"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder={isRtl ? 'ابحث عن منصة، تقنية، أو قطاع عمل...' : 'Search by platform, tech, or industry...'}
-                className="newest-search-input"
-              />
-              {searchQuery && (
-                <button
-                  type="button"
-                  onClick={() => setSearchQuery('')}
-                  className="text-slate-400 hover:text-slate-600 cursor-pointer"
-                >
-                  <X size={15} />
-                </button>
-              )}
-            </div>
-          </div>
-
-          {/* Category Filter Pills */}
-          <div className="newest-category-pills">
-            <button
-              className={`cat-pill-btn ${activeCategory === 'all' ? 'active' : ''}`}
-              onClick={() => setActiveCategory('all')}
-            >
-              {isRtl ? 'كافة المنصات (6)' : 'All Works (6)'}
-            </button>
-            <button
-              className={`cat-pill-btn ${activeCategory === 'mobile' ? 'active' : ''}`}
-              onClick={() => setActiveCategory('mobile')}
-            >
-              {isRtl ? 'تطبيقات الجوال والـ POS (2)' : 'Mobile & POS (2)'}
-            </button>
-            <button
-              className={`cat-pill-btn ${activeCategory === 'ecommerce' ? 'active' : ''}`}
-              onClick={() => setActiveCategory('ecommerce')}
-            >
-              {isRtl ? 'المتاجر الإلكترونية (1)' : 'E-Commerce (1)'}
-            </button>
-            <button
-              className={`cat-pill-btn ${activeCategory === 'cloud' ? 'active' : ''}`}
-              onClick={() => setActiveCategory('cloud')}
-            >
-              {isRtl ? 'منظومات سحابية وERP (1)' : 'Cloud & ERP (1)'}
-            </button>
-            <button
-              className={`cat-pill-btn ${activeCategory === 'enterprise' ? 'active' : ''}`}
-              onClick={() => setActiveCategory('enterprise')}
-            >
-              {isRtl ? 'مؤسسات وZATCA (2)' : 'Enterprise & ZATCA (2)'}
-            </button>
-          </div>
         </div>
 
-        {/* ── ALL WORK VISIBLE: 3-COLUMN RESPONSIVE BENTO MATRIX (NO SCROLL HIJACKING) ── */}
-        <div className="serv5-portfolio-matrix">
-          <AnimatePresence mode="popLayout">
-            {filteredProjects.map((project, idx) => (
-              <ProjectCard3D
-                key={project.id}
-                project={project}
-                idx={idx}
-                isRtl={isRtl}
-                onOpen={() => handleOpenProject(project)}
-              />
-            ))}
-          </AnimatePresence>
+        <div className="serv5-portfolio-showcase">
+          <motion.div
+            className="serv5-portfolio-tabs"
+            role="group"
+            aria-label={isRtl ? 'تصنيفات الأعمال' : 'Work categories'}
+            initial={{ opacity: 0, y: 14 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.45, ease: 'easeOut' }}
+          >
+            {categories.map((category) => {
+              const count = category.id === 'all'
+                ? projects.length
+                : projects.filter((project) => project.category === category.id).length;
+
+              return (
+                <button
+                  key={category.id}
+                  type="button"
+                  aria-pressed={activeCategory === category.id}
+                  className={`cat-pill-btn ${activeCategory === category.id ? 'active' : ''}`}
+                  onClick={() => selectCategory(category.id)}
+                >
+                  <span>{category.label}</span>
+                  <span className="serv5-portfolio-tab-count">{count}</span>
+                </button>
+              );
+            })}
+          </motion.div>
+
+          <motion.div
+            className="serv5-orbital-explorer"
+            dir={isRtl ? 'rtl' : 'ltr'}
+            initial={{ opacity: 0, y: 22 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.12 }}
+            transition={{ duration: 0.6, ease: 'easeOut', delay: 0.08 }}
+          >
+            <div
+              className="serv5-orbital-stage"
+              role="group"
+              aria-label={isRtl ? 'مشاريع سيرف فايف حول شعار الشركة' : 'SERV5 projects orbiting the company logo'}
+            >
+              <div className="serv5-orbital-path serv5-orbital-path-primary" aria-hidden="true" />
+              <div className="serv5-orbital-path serv5-orbital-path-secondary" aria-hidden="true" />
+
+              <div className="serv5-orbital-core">
+                <img className="serv5-orbital-logo" src="/serv5-official-logo.webp" alt="SERV5" />
+              </div>
+
+              <div className="serv5-orbital-projects">
+                <AnimatePresence initial={false}>
+                  {orbitalProjects.map((project) => (
+                    <motion.button
+                      key={project.id}
+                      type="button"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      transition={{ duration: 0.2 }}
+                      className={`serv5-orbit-project-choice ${project.isSelected ? 'active' : ''}`}
+                      style={{
+                        left: project.orbitLeft,
+                        top: project.orbitTop,
+                        '--project-accent': project.accentColor,
+                        '--project-tint': project.cardColor
+                      }}
+                      onClick={() => setActiveProjectId(project.id)}
+                      aria-pressed={project.isSelected}
+                      aria-label={`${isRtl ? 'عرض مشروع' : 'Show project'}: ${project.title}`}
+                    >
+                      <span className="serv5-orbit-project-copy">
+                        <span className="serv5-orbit-project-title">{project.title}</span>
+                        <span className="serv5-orbit-project-category">{project.categoryLabel}</span>
+                      </span>
+                      {project.isSelected && (
+                        <span className="serv5-orbit-selected-label">
+                          {isRtl ? 'المشروع المختار' : 'Selected'}
+                        </span>
+                      )}
+                    </motion.button>
+                  ))}
+                </AnimatePresence>
+              </div>
+            </div>
+
+            <div className="serv5-project-featured">
+              <AnimatePresence mode="wait" initial={false}>
+                {featuredProject && (
+                  <FeaturedProjectCard
+                    key={featuredProject.id}
+                    project={featuredProject}
+                    isRtl={isRtl}
+                    onOpen={() => handleOpenProject(featuredProject)}
+                  />
+                )}
+              </AnimatePresence>
+            </div>
+          </motion.div>
         </div>
       </div>
 

@@ -1,0 +1,1425 @@
+/* =========================================================
+   SERV5 BANK ACCOUNTS PAGE STYLING
+   Architectural Light Mode × Luxury Obsidian Dark Mode
+   ========================================================= */
+
+.bank-accounts-page {
+  padding-bottom: 5rem;
+}
+
+/* 1. HERO SECTION */
+.bank-hero-section {
+  padding: 5rem 1.5rem 2.5rem;
+  text-align: center;
+  position: relative;
+}
+
+@media (min-width: 768px) {
+  .bank-hero-section {
+    padding: 6.5rem 2rem 3.5rem;
+  }
+}
+
+.bank-hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 1rem;
+  border-radius: 9999px;
+  background: rgba(37, 99, 235, 0.08);
+  border: 1px solid rgba(37, 99, 235, 0.25);
+  color: #2563eb;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  margin-bottom: 1.25rem;
+}
+
+.bank-hero-title {
+  font-size: clamp(2.2rem, 4.2vw, 3.4rem);
+  font-weight: 900;
+  color: #0f172a;
+  line-height: 1.2;
+  letter-spacing: -0.025em;
+  margin: 0 auto 1.2rem;
+  max-width: 860px;
+}
+
+.bank-hero-desc {
+  font-size: clamp(1rem, 1.3vw, 1.15rem);
+  line-height: 1.75;
+  color: #475569;
+  max-width: 760px;
+  margin: 0 auto 2.5rem;
+}
+
+/* Security Notice Box */
+.bank-security-notice {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 1.25rem 1.5rem;
+  border-radius: 1.25rem;
+  background: linear-gradient(135deg, rgba(37, 99, 235, 0.06) 0%, rgba(234, 88, 12, 0.06) 100%);
+  border: 1.5px solid rgba(37, 99, 235, 0.22);
+  text-align: start;
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.03);
+}
+
+.security-icon-wrap {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: #2563eb;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+}
+
+.security-text-wrap strong {
+  display: block;
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin-bottom: 0.35rem;
+}
+
+.security-text-wrap p {
+  margin: 0;
+  font-size: 0.86rem;
+  line-height: 1.6;
+  color: #475569;
+}
+
+/* 2. FILTER TABS */
+.bank-tabs-section {
+  padding: 1.5rem 1.5rem 2.5rem;
+}
+
+.bank-tabs-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  flex-wrap: wrap;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.bank-tab-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1.25rem;
+  border-radius: 9999px;
+  background: #f8fafc;
+  border: 1.5px solid #e2e8f0;
+  color: #475569;
+  font-size: 0.86rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.22s ease;
+  user-select: none;
+}
+
+.bank-tab-btn:hover {
+  background: #eff6ff;
+  border-color: #93c5fd;
+  color: #1d4ed8;
+}
+
+.bank-tab-btn.active {
+  background: #2563eb;
+  border-color: #2563eb;
+  color: #ffffff;
+  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.32);
+}
+
+.bank-tab-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.3rem;
+  height: 1.3rem;
+  padding: 0 0.25rem;
+  border-radius: 9999px;
+  background: rgba(15, 23, 42, 0.08);
+  font-size: 0.72rem;
+  font-weight: 800;
+}
+
+.bank-tab-btn.active .bank-tab-count {
+  background: rgba(255, 255, 255, 0.25);
+  color: #ffffff;
+}
+
+/* 3. ACCOUNTS GRID */
+.bank-cards-section {
+  padding: 0 1.5rem 4rem;
+}
+
+.bank-cards-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.75rem;
+  max-width: 1240px;
+  margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+  .bank-cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.bank-account-card {
+  display: flex;
+  flex-direction: column;
+  border-radius: 1.5rem;
+  border: 1.5px solid #e2e8f0;
+  background: #ffffff;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.05);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.bank-account-card:hover {
+  transform: translateY(-4px);
+  border-color: #93c5fd;
+  box-shadow: 0 16px 36px rgba(37, 99, 235, 0.12);
+}
+
+/* Card Header */
+.bank-card-header {
+  padding: 1.5rem 1.75rem 1.35rem;
+  color: #ffffff;
+  position: relative;
+}
+
+.bank-card-header-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 0.85rem;
+}
+
+.bank-badge-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.25rem 0.65rem;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.bank-currency-tag {
+  font-size: 0.75rem;
+  font-weight: 800;
+  opacity: 0.92;
+  font-family: var(--font-mono, monospace);
+  padding: 0.2rem 0.55rem;
+  border-radius: 8px;
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.bank-card-title {
+  font-size: 1.35rem;
+  font-weight: 900;
+  margin: 0 0 0.6rem;
+  color: #ffffff;
+  letter-spacing: -0.01em;
+}
+
+.bank-card-beneficiary {
+  display: flex;
+  align-items: baseline;
+  gap: 0.4rem;
+  font-size: 0.82rem;
+  opacity: 0.95;
+  flex-wrap: wrap;
+}
+
+.beneficiary-label {
+  opacity: 0.8;
+}
+
+.beneficiary-name {
+  font-weight: 800;
+  color: #ffffff;
+}
+
+/* Card Body */
+.bank-card-body {
+  padding: 1.5rem 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  flex-grow: 1;
+}
+
+.bank-data-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.75rem 0.95rem;
+  border-radius: 12px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+}
+
+.data-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  min-width: 0;
+}
+
+.data-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.data-value {
+  font-size: 0.92rem;
+  color: #0f172a;
+  word-break: break-all;
+}
+
+.btn-copy-data {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.45rem 0.8rem;
+  border-radius: 8px;
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  color: #1e40af;
+  font-size: 0.75rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.btn-copy-data:hover {
+  background: #eff6ff;
+  border-color: #2563eb;
+  color: #1d4ed8;
+}
+
+.btn-copy-data.copied {
+  background: #10b981;
+  border-color: #10b981;
+  color: #ffffff;
+  box-shadow: 0 2px 8px rgba(16, 185, 129, 0.35);
+}
+
+.bank-branch-row {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.78rem;
+  color: #64748b;
+  padding: 0.25rem 0.2rem;
+}
+
+.branch-label {
+  font-weight: 700;
+}
+
+.branch-val {
+  color: #334155;
+  font-weight: 600;
+}
+
+/* Card Footer */
+.bank-card-footer {
+  padding: 1rem 1.75rem 1.25rem;
+  border-top: 1px solid #f1f5f9;
+  background: #fafcff;
+}
+
+.bank-card-whatsapp-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 0.7rem 1.25rem;
+  border-radius: 12px;
+  background: #f1f5f9;
+  border: 1px solid #e2e8f0;
+  color: #1e3a8a;
+  font-size: 0.84rem;
+  font-weight: 750;
+  text-decoration: none;
+  transition: all 0.22s ease;
+}
+
+.bank-card-whatsapp-btn:hover {
+  background: #2563eb;
+  border-color: #2563eb;
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
+  transform: translateY(-1px);
+}
+
+/* 4. PROTOCOL STEPS & PROFESSIONAL REACT BITS CONNECTED ROADMAP */
+.bank-steps-section {
+  padding: 5.5rem 1.5rem;
+  background: linear-gradient(180deg, rgba(239, 246, 255, 0.5) 0%, rgba(248, 250, 252, 0.8) 100%);
+  border-top: 1px solid #e2e8f0;
+  border-bottom: 1px solid #e2e8f0;
+  position: relative;
+  overflow: hidden;
+}
+
+.section-head-center {
+  text-align: center;
+  margin-bottom: 3.25rem;
+}
+
+.bank-section-eyebrow {
+  display: inline-block;
+  font-size: 0.82rem;
+  font-weight: 800;
+  color: #2563eb;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.5rem;
+}
+
+.bank-section-title {
+  font-size: clamp(1.8rem, 3.2vw, 2.6rem);
+  font-weight: 900;
+  color: #0f172a;
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+
+/* 4.1 HIGHWAY CONTROL DASHBOARD */
+.connected-roadmap-container {
+  max-width: 1260px;
+  margin: 0 auto 3.5rem;
+  position: relative;
+}
+
+.roadmap-control-dashboard {
+  padding: 1.25rem 1.75rem;
+  border-radius: 1.25rem;
+  background: #ffffff;
+  border: 1.5px solid #e2e8f0;
+  box-shadow: 0 4px 20px rgba(15, 23, 42, 0.04);
+  margin-bottom: 3rem;
+  backdrop-filter: blur(12px);
+}
+
+.dashboard-top-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+
+.dashboard-status-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.35rem 0.85rem;
+  border-radius: 9999px;
+  background: rgba(37, 99, 235, 0.08);
+  border: 1px solid rgba(37, 99, 235, 0.22);
+}
+
+.pulsing-beacon-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #22c55e;
+  box-shadow: 0 0 10px #22c55e;
+  animation: beaconPulse 1.8s infinite cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes beaconPulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(1.3); }
+}
+
+.status-label {
+  font-size: 0.82rem;
+  font-weight: 800;
+  color: #2563eb;
+  letter-spacing: 0.02em;
+}
+
+.dashboard-stepper-pills {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.stepper-pill-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.35rem 0.75rem;
+  border-radius: 9999px;
+  background: #f1f5f9;
+  border: 1px solid #cbd5e1;
+  color: #64748b;
+  font-size: 0.78rem;
+  font-weight: 800;
+  cursor: pointer;
+  transition: all 0.22s ease;
+}
+
+.stepper-pill-btn .pill-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #94a3b8;
+  transition: all 0.22s ease;
+}
+
+.stepper-pill-btn:hover {
+  background: #eff6ff;
+  border-color: #93c5fd;
+  color: #1d4ed8;
+}
+
+.stepper-pill-btn.active {
+  background: #2563eb;
+  border-color: #2563eb;
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.35);
+}
+
+.stepper-pill-btn.active .pill-dot {
+  background: #ffffff;
+  box-shadow: 0 0 6px #ffffff;
+}
+
+.stepper-pill-btn.completed {
+  border-color: #10b981;
+  color: #059669;
+  background: rgba(16, 185, 129, 0.08);
+}
+
+.stepper-pill-btn.completed .pill-dot {
+  background: #10b981;
+}
+
+/* Global Laser Track in Dashboard */
+.dashboard-highway-track {
+  position: relative;
+  height: 6px;
+  border-radius: 9999px;
+  overflow: hidden;
+  background: #e2e8f0;
+}
+
+.highway-base-rail {
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    90deg,
+    transparent 0,
+    transparent 6px,
+    rgba(255, 255, 255, 0.7) 6px,
+    rgba(255, 255, 255, 0.7) 12px
+  );
+  opacity: 0.6;
+}
+
+.highway-active-laser {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, #2563eb, #38bdf8, #60a5fa);
+  border-radius: 9999px;
+  box-shadow: 0 0 12px #3b82f6;
+}
+
+[dir="rtl"] .highway-active-laser {
+  right: 0;
+}
+
+[dir="ltr"] .highway-active-laser {
+  left: 0;
+}
+
+.highway-laser-head {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #ffffff;
+  box-shadow: 0 0 10px #60a5fa, 0 0 18px #2563eb;
+}
+
+[dir="rtl"] .highway-laser-head {
+  left: 0;
+}
+
+[dir="ltr"] .highway-laser-head {
+  right: 0;
+}
+
+/* 4.2 CARDS & ROADWAYS GRID */
+.roadmap-cards-grid {
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  gap: 0.75rem;
+  width: 100%;
+}
+
+@media (max-width: 1023px) {
+  .roadmap-cards-grid {
+    flex-direction: column;
+    align-items: center;
+    gap: 1.25rem;
+  }
+}
+
+/* 4.3 SPOTLIGHT TILT CARD (REACT BITS STANDARD) */
+.roadmap-tilt-card {
+  flex: 1 1 0;
+  min-width: 0;
+  position: relative;
+  border-radius: 1.5rem;
+  padding: 2.25rem 1.6rem 1.75rem;
+  background: #ffffff;
+  border: 1.5px solid #e2e8f0;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.04);
+  cursor: pointer;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  transform-style: preserve-3d;
+  transition: transform 0.18s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.3s ease,
+              border-color 0.3s ease;
+  user-select: none;
+}
+
+@media (max-width: 1023px) {
+  .roadmap-tilt-card {
+    width: 100%;
+    max-width: 580px;
+  }
+}
+
+.roadmap-tilt-card:hover {
+  border-color: #3b82f6;
+  box-shadow: 0 20px 45px rgba(37, 99, 235, 0.16), 0 0 24px rgba(59, 130, 246, 0.12);
+}
+
+.roadmap-tilt-card.is-active {
+  border-color: #2563eb;
+  box-shadow: 0 22px 50px rgba(37, 99, 235, 0.22), 0 0 32px rgba(59, 130, 246, 0.18);
+}
+
+/* React Bits Border Beam Animation */
+.border-beam-tracer {
+  position: absolute;
+  inset: -1.5px;
+  border-radius: inherit;
+  padding: 2px;
+  background: conic-gradient(from 0deg, transparent 0%, #3b82f6 12%, #38bdf8 20%, transparent 32%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  animation: borderBeamSpin 4.5s linear infinite;
+}
+
+@keyframes borderBeamSpin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.roadmap-tilt-card:hover .border-beam-tracer,
+.roadmap-tilt-card.is-active .border-beam-tracer {
+  opacity: 1;
+}
+
+/* Dynamic Spotlight Overlay */
+.card-spotlight-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: inherit;
+  transition: opacity 0.25s ease;
+  z-index: 1;
+}
+
+.card-inner-layer {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+}
+
+/* 4.4 MILESTONE BEACON NODE */
+.milestone-badge-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.65rem;
+  margin-bottom: 1.25rem;
+}
+
+.milestone-node-circle {
+  position: relative;
+  width: 64px;
+  height: 64px;
+  border-radius: 20px;
+  background: linear-gradient(135deg, rgba(37, 99, 235, 0.1) 0%, rgba(59, 130, 246, 0.03) 100%);
+  border: 1.5px solid rgba(37, 99, 235, 0.28);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease;
+}
+
+.roadmap-tilt-card:hover .milestone-node-circle,
+.roadmap-tilt-card.is-active .milestone-node-circle {
+  transform: scale(1.08);
+}
+
+.milestone-num {
+  font-size: 1.35rem;
+  font-weight: 900;
+  color: #1e3a8a;
+  line-height: 1;
+}
+
+.sonar-ring-wave {
+  position: absolute;
+  inset: -6px;
+  border-radius: 24px;
+  border: 1.5px solid #3b82f6;
+  opacity: 0;
+  pointer-events: none;
+  animation: sonarWave 3s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+.sonar-ring-wave.delay {
+  animation-delay: 1.5s;
+}
+
+@keyframes sonarWave {
+  0% { transform: scale(0.92); opacity: 0.8; }
+  70% { transform: scale(1.28); opacity: 0; }
+  100% { transform: scale(1.35); opacity: 0; }
+}
+
+.milestone-icon-float {
+  position: absolute;
+  bottom: -6px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.35);
+  transition: transform 0.25s ease;
+}
+
+[dir="rtl"] .milestone-icon-float {
+  left: -6px;
+}
+
+[dir="ltr"] .milestone-icon-float {
+  right: -6px;
+}
+
+.roadmap-tilt-card:hover .milestone-icon-float {
+  transform: scale(1.18) rotate(8deg);
+}
+
+.milestone-subtitle {
+  font-size: 0.72rem;
+  font-weight: 800;
+  color: #64748b;
+  letter-spacing: 0.03em;
+}
+
+.card-step-title {
+  font-size: 1.15rem;
+  font-weight: 900;
+  color: #0f172a;
+  margin: 0 0 0.55rem;
+  letter-spacing: -0.015em;
+}
+
+.card-step-desc {
+  font-size: 0.86rem;
+  line-height: 1.65;
+  color: #475569;
+  margin: 0;
+  max-width: 260px;
+}
+
+/* 4.5 ACTION LINK BUTTON */
+.card-action-footer {
+  margin-top: auto;
+  padding-top: 1.4rem;
+  width: 100%;
+}
+
+.card-road-action-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.45rem 1.05rem;
+  border-radius: 9999px;
+  background: rgba(37, 99, 235, 0.06);
+  border: 1px solid rgba(37, 99, 235, 0.2);
+  color: #2563eb;
+  font-size: 0.82rem;
+  font-weight: 800;
+  transition: all 0.24s ease;
+}
+
+.roadmap-tilt-card:hover .card-road-action-pill,
+.roadmap-tilt-card.is-active .card-road-action-pill {
+  background: #2563eb;
+  color: #ffffff;
+  border-color: #2563eb;
+  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.35);
+}
+
+.action-arrow-icon {
+  transition: transform 0.24s ease;
+}
+
+[dir="rtl"] .roadmap-tilt-card:hover .action-arrow-icon {
+  transform: translateX(-4px);
+}
+
+[dir="ltr"] .roadmap-tilt-card:hover .action-arrow-icon {
+  transform: translateX(4px);
+}
+
+/* 4.6 CONNECTING ROAD BRIDGES (SVG HIGHWAY) */
+.road-connector-bridge {
+  flex: 0 0 54px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  height: 48px;
+  margin-top: 50px;
+  pointer-events: none;
+  z-index: 3;
+}
+
+@media (max-width: 1023px) {
+  .road-connector-bridge {
+    flex: 0 0 40px;
+    height: 40px;
+    width: 32px;
+    margin-top: 0;
+    transform: rotate(90deg);
+  }
+}
+
+.road-bridge-svg {
+  width: 100%;
+  height: 28px;
+  overflow: visible;
+}
+
+.road-track-asphalt {
+  stroke: #cbd5e1;
+}
+
+.road-track-dashes {
+  stroke: #ffffff;
+  opacity: 0.9;
+}
+
+.road-laser-beam {
+  stroke-dasharray: 36 84;
+}
+
+.road-laser-beam.flow-rtl {
+  animation: roadLaserFlowRtl 2s linear infinite;
+}
+
+.road-laser-beam.flow-ltr {
+  animation: roadLaserFlowLtr 2s linear infinite;
+}
+
+@keyframes roadLaserFlowRtl {
+  0% { stroke-dashoffset: 120; }
+  100% { stroke-dashoffset: 0; }
+}
+
+@keyframes roadLaserFlowLtr {
+  0% { stroke-dashoffset: 0; }
+  100% { stroke-dashoffset: 120; }
+}
+
+/* Floating Highway Chevron Capsule */
+.road-chevron-capsule {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 1.5px solid #93c5fd;
+  color: #2563eb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.28);
+  animation: chevronCapsulePulse 2s infinite ease-in-out;
+}
+
+@keyframes chevronCapsulePulse {
+  0%, 100% { transform: translate(-50%, -50%) scale(0.92); }
+  50% { transform: translate(-50%, -50%) scale(1.12); }
+}
+
+/* Comet particle gliding along the road */
+.road-energy-comet {
+  position: absolute;
+  top: 50%;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #38bdf8;
+  box-shadow: 0 0 10px #38bdf8, 0 0 18px #2563eb;
+  transform: translateY(-50%);
+}
+
+.comet-rtl {
+  animation: cometGlideRtl 2s infinite ease-in-out;
+}
+
+.comet-ltr {
+  animation: cometGlideLtr 2s infinite ease-in-out;
+}
+
+@keyframes cometGlideRtl {
+  0% { right: -10%; opacity: 0; }
+  30% { opacity: 1; }
+  70% { opacity: 1; }
+  100% { right: 110%; opacity: 0; }
+}
+
+@keyframes cometGlideLtr {
+  0% { left: -10%; opacity: 0; }
+  30% { opacity: 1; }
+  70% { opacity: 1; }
+  100% { left: 110%; opacity: 0; }
+}
+
+/* Master CTA */
+.bank-master-cta-wrap {
+  text-align: center;
+}
+
+.bank-master-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 1.15rem 2.25rem;
+  border-radius: 9999px;
+  background: linear-gradient(135deg, #15803d 0%, #16a34a 100%);
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 800;
+  text-decoration: none;
+  box-shadow: 0 8px 24px rgba(22, 163, 74, 0.35);
+  transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.bank-master-cta-btn:hover {
+  background: linear-gradient(135deg, #166534 0%, #15803d 100%);
+  color: #ffffff;
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 14px 34px rgba(22, 163, 74, 0.45);
+}
+
+/* 5. FAQ SECTION */
+.bank-faq-section {
+  padding: 5rem 1.5rem;
+}
+
+.bank-faq-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  max-width: 1080px;
+  margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+  .bank-faq-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.bank-faq-item {
+  padding: 1.75rem;
+  border-radius: 1.25rem;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.03);
+}
+
+.bank-faq-item h4 {
+  font-size: 1rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 0 0 0.65rem;
+  line-height: 1.4;
+}
+
+.bank-faq-item p {
+  font-size: 0.88rem;
+  line-height: 1.68;
+  color: #475569;
+  margin: 0;
+}
+
+/* =========================================================
+   DARK MODE OVERRIDES FOR BANK ACCOUNTS PAGE
+   ========================================================= */
+[data-theme="dark"] .bank-hero-badge,
+html.dark .bank-hero-badge {
+  background: rgba(30, 58, 138, 0.35) !important;
+  border-color: rgba(96, 165, 250, 0.35) !important;
+  color: #93c5fd !important;
+}
+
+[data-theme="dark"] .bank-hero-title,
+html.dark .bank-hero-title {
+  color: #f8fafc !important;
+}
+
+[data-theme="dark"] .bank-hero-desc,
+html.dark .bank-hero-desc {
+  color: #cbd5e1 !important;
+}
+
+[data-theme="dark"] .bank-security-notice,
+html.dark .bank-security-notice {
+  background: linear-gradient(135deg, rgba(30, 58, 138, 0.25) 0%, rgba(234, 88, 12, 0.15) 100%) !important;
+  border-color: rgba(59, 130, 246, 0.35) !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5) !important;
+}
+
+[data-theme="dark"] .security-text-wrap strong,
+html.dark .security-text-wrap strong {
+  color: #f8fafc !important;
+}
+
+[data-theme="dark"] .security-text-wrap p,
+html.dark .security-text-wrap p {
+  color: #cbd5e1 !important;
+}
+
+[data-theme="dark"] .bank-tab-btn,
+html.dark .bank-tab-btn {
+  background: #0f172a !important;
+  border-color: rgba(255, 255, 255, 0.1) !important;
+  color: #cbd5e1 !important;
+}
+
+[data-theme="dark"] .bank-tab-btn:hover,
+html.dark .bank-tab-btn:hover {
+  background: #1e293b !important;
+  border-color: #60a5fa !important;
+  color: #93c5fd !important;
+}
+
+[data-theme="dark"] .bank-tab-btn.active,
+html.dark .bank-tab-btn.active {
+  background: #1e3a8a !important;
+  border-color: #3b82f6 !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 16px rgba(59, 130, 246, 0.3) !important;
+}
+
+[data-theme="dark"] .bank-tab-count,
+html.dark .bank-tab-count {
+  background: rgba(255, 255, 255, 0.15) !important;
+  color: #f8fafc !important;
+}
+
+[data-theme="dark"] .bank-account-card,
+html.dark .bank-account-card {
+  background: #0d1527 !important;
+  border-color: rgba(59, 130, 246, 0.25) !important;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.6) !important;
+}
+
+[data-theme="dark"] .bank-account-card:hover,
+html.dark .bank-account-card:hover {
+  border-color: rgba(96, 165, 250, 0.45) !important;
+  box-shadow: 0 18px 42px rgba(0, 0, 0, 0.75), 0 0 20px rgba(37, 99, 235, 0.18) !important;
+}
+
+[data-theme="dark"] .bank-data-row,
+html.dark .bank-data-row {
+  background: #090e1a !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+[data-theme="dark"] .data-label,
+html.dark .data-label {
+  color: #94a3b8 !important;
+}
+
+[data-theme="dark"] .data-value,
+html.dark .data-value {
+  color: #f8fafc !important;
+}
+
+[data-theme="dark"] .btn-copy-data,
+html.dark .btn-copy-data {
+  background: #111c33 !important;
+  border-color: rgba(255, 255, 255, 0.15) !important;
+  color: #93c5fd !important;
+}
+
+[data-theme="dark"] .btn-copy-data:hover,
+html.dark .btn-copy-data:hover {
+  background: #1e3a8a !important;
+  border-color: #3b82f6 !important;
+  color: #ffffff !important;
+}
+
+[data-theme="dark"] .branch-val,
+html.dark .branch-val {
+  color: #cbd5e1 !important;
+}
+
+[data-theme="dark"] .bank-card-footer,
+html.dark .bank-card-footer {
+  background: #0b1120 !important;
+  border-top-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+[data-theme="dark"] .bank-card-whatsapp-btn,
+html.dark .bank-card-whatsapp-btn {
+  background: rgba(30, 58, 138, 0.35) !important;
+  border-color: rgba(96, 165, 250, 0.25) !important;
+  color: #93c5fd !important;
+}
+
+[data-theme="dark"] .bank-card-whatsapp-btn:hover,
+html.dark .bank-card-whatsapp-btn:hover {
+  background: #2563eb !important;
+  border-color: #2563eb !important;
+  color: #ffffff !important;
+}
+
+[data-theme="dark"] .bank-steps-section,
+html.dark .bank-steps-section {
+  background: transparent !important;
+  border-top-color: rgba(255, 255, 255, 0.08) !important;
+  border-bottom-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+[data-theme="dark"] .bank-section-eyebrow,
+html.dark .bank-section-eyebrow {
+  color: #60a5fa !important;
+}
+
+[data-theme="dark"] .bank-section-title,
+html.dark .bank-section-title {
+  color: #f8fafc !important;
+}
+
+/* DARK MODE: CONNECTED ROADMAP (REACT BITS OBSIDIAN LUXURY) */
+[data-theme="dark"] .roadmap-control-dashboard,
+html.dark .roadmap-control-dashboard {
+  background: rgba(13, 21, 39, 0.8) !important;
+  border-color: rgba(59, 130, 246, 0.25) !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5) !important;
+}
+
+[data-theme="dark"] .dashboard-status-tag,
+html.dark .dashboard-status-tag {
+  background: rgba(30, 58, 138, 0.35) !important;
+  border-color: rgba(96, 165, 250, 0.3) !important;
+}
+
+[data-theme="dark"] .status-label,
+html.dark .status-label {
+  color: #93c5fd !important;
+}
+
+[data-theme="dark"] .stepper-pill-btn,
+html.dark .stepper-pill-btn {
+  background: #0f172a !important;
+  border-color: rgba(255, 255, 255, 0.12) !important;
+  color: #94a3b8 !important;
+}
+
+[data-theme="dark"] .stepper-pill-btn:hover,
+html.dark .stepper-pill-btn:hover {
+  background: #1e293b !important;
+  border-color: #60a5fa !important;
+  color: #93c5fd !important;
+}
+
+[data-theme="dark"] .stepper-pill-btn.active,
+html.dark .stepper-pill-btn.active {
+  background: #1e3a8a !important;
+  border-color: #3b82f6 !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 16px rgba(59, 130, 246, 0.35) !important;
+}
+
+[data-theme="dark"] .stepper-pill-btn.completed,
+html.dark .stepper-pill-btn.completed {
+  background: rgba(16, 185, 129, 0.15) !important;
+  border-color: #10b981 !important;
+  color: #34d399 !important;
+}
+
+[data-theme="dark"] .dashboard-highway-track,
+html.dark .dashboard-highway-track {
+  background: #0f172a !important;
+}
+
+[data-theme="dark"] .roadmap-tilt-card,
+html.dark .roadmap-tilt-card {
+  background: rgba(13, 21, 39, 0.82) !important;
+  border-color: rgba(59, 130, 246, 0.25) !important;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.6) !important;
+  backdrop-filter: blur(16px);
+}
+
+[data-theme="dark"] .roadmap-tilt-card:hover,
+html.dark .roadmap-tilt-card:hover {
+  border-color: rgba(96, 165, 250, 0.6) !important;
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.8), 0 0 30px rgba(37, 99, 235, 0.25) !important;
+}
+
+[data-theme="dark"] .roadmap-tilt-card.is-active,
+html.dark .roadmap-tilt-card.is-active {
+  border-color: #3b82f6 !important;
+  box-shadow: 0 22px 52px rgba(0, 0, 0, 0.85), 0 0 36px rgba(59, 130, 246, 0.3) !important;
+}
+
+[data-theme="dark"] .milestone-node-circle,
+html.dark .milestone-node-circle {
+  background: rgba(30, 58, 138, 0.25) !important;
+  border-color: rgba(59, 130, 246, 0.4) !important;
+}
+
+[data-theme="dark"] .milestone-num,
+html.dark .milestone-num {
+  color: #f8fafc !important;
+}
+
+[data-theme="dark"] .milestone-subtitle,
+html.dark .milestone-subtitle {
+  color: #94a3b8 !important;
+}
+
+[data-theme="dark"] .card-step-title,
+html.dark .card-step-title {
+  color: #f8fafc !important;
+}
+
+[data-theme="dark"] .card-step-desc,
+html.dark .card-step-desc {
+  color: #cbd5e1 !important;
+}
+
+[data-theme="dark"] .card-road-action-pill,
+html.dark .card-road-action-pill {
+  background: rgba(30, 58, 138, 0.35) !important;
+  border-color: rgba(59, 130, 246, 0.3) !important;
+  color: #93c5fd !important;
+}
+
+[data-theme="dark"] .card-road-action-pill:hover,
+html.dark .card-road-action-pill:hover,
+[data-theme="dark"] .roadmap-tilt-card:hover .card-road-action-pill,
+html.dark .roadmap-tilt-card:hover .card-road-action-pill {
+  background: #2563eb !important;
+  border-color: #3b82f6 !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 16px rgba(59, 130, 246, 0.4) !important;
+}
+
+[data-theme="dark"] .road-track-asphalt,
+html.dark .road-track-asphalt {
+  stroke: #0f172a !important;
+}
+
+[data-theme="dark"] .road-chevron-capsule,
+html.dark .road-chevron-capsule {
+  background: #0d1527 !important;
+  border-color: #3b82f6 !important;
+  color: #60a5fa !important;
+  box-shadow: 0 2px 10px rgba(59, 130, 246, 0.45) !important;
+}
+
+[data-theme="dark"] .bank-step-card,
+html.dark .bank-step-card {
+  background: #0d1527 !important;
+  border-color: rgba(59, 130, 246, 0.25) !important;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.5) !important;
+}
+
+[data-theme="dark"] .bank-step-card:hover,
+html.dark .bank-step-card:hover {
+  border-color: rgba(96, 165, 250, 0.6) !important;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.8), 0 0 25px rgba(37, 99, 235, 0.25) !important;
+}
+
+[data-theme="dark"] .bank-roadmap-track-wrap,
+html.dark .bank-roadmap-track-wrap {
+  background: #0d1527 !important;
+  border-color: rgba(59, 130, 246, 0.25) !important;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.5) !important;
+}
+
+[data-theme="dark"] .roadmap-title-text,
+html.dark .roadmap-title-text {
+  color: #f8fafc !important;
+}
+
+[data-theme="dark"] .roadmap-road-lane,
+html.dark .roadmap-road-lane {
+  background: #1e293b !important;
+}
+
+[data-theme="dark"] .station-node-dot,
+html.dark .station-node-dot {
+  background: #0f172a !important;
+  border-color: #3b82f6 !important;
+  color: #93c5fd !important;
+  box-shadow: 0 0 12px rgba(59, 130, 246, 0.4) !important;
+}
+
+[data-theme="dark"] .station-node-name,
+html.dark .station-node-name {
+  color: #94a3b8 !important;
+}
+
+[data-theme="dark"] .step-milestone-node,
+html.dark .step-milestone-node {
+  background: rgba(30, 58, 138, 0.3) !important;
+  border-color: rgba(59, 130, 246, 0.4) !important;
+  color: #93c5fd !important;
+}
+
+[data-theme="dark"] .step-num,
+html.dark .step-num {
+  color: #f8fafc !important;
+}
+
+[data-theme="dark"] .step-road-link-btn,
+html.dark .step-road-link-btn {
+  background: rgba(30, 58, 138, 0.35) !important;
+  border-color: rgba(59, 130, 246, 0.3) !important;
+  color: #93c5fd !important;
+}
+
+[data-theme="dark"] .step-road-link-btn:hover,
+html.dark .step-road-link-btn:hover,
+[data-theme="dark"] .bank-step-card:hover .step-road-link-btn,
+html.dark .bank-step-card:hover .step-road-link-btn {
+  background: #2563eb !important;
+  border-color: #3b82f6 !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 16px rgba(59, 130, 246, 0.4) !important;
+}
+
+[data-theme="dark"] .road-connector-track,
+html.dark .road-connector-track {
+  background: #0f172a !important;
+  border: 1px solid rgba(59, 130, 246, 0.3) !important;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.5) !important;
+}
+
+[data-theme="dark"] .road-connector-arrow,
+html.dark .road-connector-arrow {
+  background: #0d1527 !important;
+  border-color: #3b82f6 !important;
+  color: #60a5fa !important;
+  box-shadow: 0 2px 10px rgba(59, 130, 246, 0.45) !important;
+}
+
+[data-theme="dark"] .road-mobile-line,
+html.dark .road-mobile-line {
+  background: #1e293b !important;
+}
+
+[data-theme="dark"] .road-mobile-arrow,
+html.dark .road-mobile-arrow {
+  color: #60a5fa !important;
+}
+
+[data-theme="dark"] .bank-step-card h4,
+html.dark .bank-step-card h4 {
+  color: #f8fafc !important;
+}
+
+[data-theme="dark"] .bank-step-card p,
+html.dark .bank-step-card p {
+  color: #94a3b8 !important;
+}
+
+[data-theme="dark"] .bank-faq-item,
+html.dark .bank-faq-item {
+  background: #0d1527 !important;
+  border-color: rgba(59, 130, 246, 0.25) !important;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.5) !important;
+}
+
+[data-theme="dark"] .bank-faq-item h4,
+html.dark .bank-faq-item h4 {
+  color: #f8fafc !important;
+}
+
+[data-theme="dark"] .bank-faq-item p,
+html.dark .bank-faq-item p {
+  color: #cbd5e1 !important;
+}

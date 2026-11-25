@@ -2,13 +2,7 @@ import React, { useState, useMemo, useRef, useEffect } from 'react';
 import {
   ArrowLeft,
   ArrowRight,
-  CheckCircle2,
-  Sparkles,
-  ShieldCheck,
-  Zap,
-  Activity,
-  ShoppingBag,
-  LayoutGrid
+  CheckCircle2
 } from 'lucide-react';
 
 export default function Serv5ProductsShowcase({ onOpenConsultation, lang = 'ar' }) {
@@ -19,10 +13,7 @@ export default function Serv5ProductsShowcase({ onOpenConsultation, lang = 'ar' 
   const allProducts = useMemo(() => [
     {
       id: 'salesawy',
-      icon: Sparkles,
       image: '/images/posts/post-4-ai-pipeline.webp',
-      badge: isRtl ? 'ذكاء اصطناعي' : 'AI Powered',
-      badgeClass: 'badge-ai',
       accentColor: '#ea580c',
       title: isRtl ? 'سيلزاوي' : 'Salesawy AI',
       subtitle: isRtl ? 'مساعد مبيعات ذكي يعمل بالذكاء الاصطناعي' : 'Autonomous AI Sales & Conversion Bot',
@@ -48,10 +39,7 @@ export default function Serv5ProductsShowcase({ onOpenConsultation, lang = 'ar' 
     },
     {
       id: 'serv5-erp',
-      icon: ShieldCheck,
       image: '/images/serv5-coding-enterprise.jpg',
-      badge: isRtl ? 'معتمد ZATCA' : 'ZATCA Certified',
-      badgeClass: 'badge-erp',
       accentColor: '#245aa7',
       title: isRtl ? 'سيرف فايف كلاود ERP' : 'Serv5 Cloud ERP',
       subtitle: isRtl ? 'نظام إدارة موارد المؤسسات والفوترة' : 'Enterprise Resource & Tax Platform',
@@ -77,10 +65,7 @@ export default function Serv5ProductsShowcase({ onOpenConsultation, lang = 'ar' 
     },
     {
       id: 'foodsuite',
-      icon: Zap,
       image: '/images/posts/post-1-pizza.webp',
-      badge: isRtl ? 'مطاعم وأساطيل' : 'F&B Fleet OS',
-      badgeClass: 'badge-food',
       accentColor: '#f97316',
       title: isRtl ? 'فود سويت' : 'FoodSuite Delivery OS',
       subtitle: isRtl ? 'منظومة طلبات طعام وأسطول توصيل' : 'Omnichannel Restaurant & Fleet OS',
@@ -106,10 +91,7 @@ export default function Serv5ProductsShowcase({ onOpenConsultation, lang = 'ar' 
     },
     {
       id: 'medpulse',
-      icon: Activity,
       image: '/images/serv5-tech-vision.jpg',
-      badge: isRtl ? 'رعاية صحية' : 'Healthcare Cloud',
-      badgeClass: 'badge-health',
       accentColor: '#0d9488',
       title: isRtl ? 'ميدبولس للعيادات' : 'MedPulse Clinic Cloud',
       subtitle: isRtl ? 'نظام العيادات والسجلات الطبية' : 'Digital EHR & Clinic Management',
@@ -135,10 +117,7 @@ export default function Serv5ProductsShowcase({ onOpenConsultation, lang = 'ar' 
     },
     {
       id: 'luxestore',
-      icon: ShoppingBag,
       image: '/images/website-mockup-1.jpg',
-      badge: isRtl ? 'تجارة إلكترونية' : 'Headless Retail',
-      badgeClass: 'badge-retail',
       accentColor: '#d97706',
       title: isRtl ? 'لوكس ستور ريتيل' : 'LuxeStore Headless',
       subtitle: isRtl ? 'متجر إلكتروني فاخر فائق السرعة' : 'Ultra-Fast Luxury Commerce Engine',
@@ -172,9 +151,6 @@ export default function Serv5ProductsShowcase({ onOpenConsultation, lang = 'ar' 
   const selectionOptions = useMemo(() => [
     {
       id: 'all',
-      icon: LayoutGrid,
-      badge: isRtl ? 'الكل' : 'All',
-      badgeClass: 'badge-all',
       title: isRtl ? 'الكل (جميع المنظومات)' : 'All Software Products',
       subtitle: isRtl ? 'استعراض كافة المنظومات بالتمرير الداخلي' : 'Scroll through all enterprise platforms'
     },
@@ -284,44 +260,26 @@ export default function Serv5ProductsShowcase({ onOpenConsultation, lang = 'ar' 
               <span className="products-selector-label">
                 {isRtl ? 'اختر المنظومة البرمجية:' : 'Select Software Platform:'}
               </span>
-              <span className="products-count-badge">
-                {allProducts.length} {isRtl ? 'منظومات' : 'Platforms'}
-              </span>
             </div>
 
             {/* Internal scrollable list containing all product choices including "الكل" */}
             <div className="products-selector-scrollbox">
               {selectionOptions.map((option) => {
                 const isSelected = selectedProductId === option.id;
-                const IconComponent = option.icon;
-
                 return (
                   <button
                     key={option.id}
                     type="button"
                     onClick={() => handleSelectProduct(option.id)}
                     className={`product-choice-row ${isSelected ? 'is-selected' : ''}`}
-                    aria-selected={isSelected}
+                    aria-pressed={isSelected}
                   >
-                    <div className="choice-icon-bubble">
-                      <IconComponent size={19} />
-                    </div>
-
                     <div className="choice-text-col">
                       <div className="choice-title-row">
                         <span className="choice-title">{option.title}</span>
-                        <span className={`choice-mini-badge ${option.badgeClass}`}>
-                          {option.badge}
-                        </span>
                       </div>
                       <span className="choice-subtitle">{option.subtitle}</span>
                     </div>
-
-                    {isSelected && (
-                      <div className="choice-active-indicator">
-                        <CheckCircle2 size={18} />
-                      </div>
-                    )}
                   </button>
                 );
               })}
@@ -350,9 +308,6 @@ export default function Serv5ProductsShowcase({ onOpenConsultation, lang = 'ar' 
                       loading="lazy"
                     />
                     <div className="products-portrait-overlay">
-                      <span className={`products-portrait-badge ${product.badgeClass}`}>
-                        {product.badge}
-                      </span>
                       <span className="products-portrait-metric">
                         {product.metricValue}
                       </span>
@@ -362,11 +317,8 @@ export default function Serv5ProductsShowcase({ onOpenConsultation, lang = 'ar' 
                   {/* 2. Product Description Next to Image */}
                   <div className="products-detail-body">
                     <div className="products-detail-header-block">
-                      <div className="products-detail-badges-row">
-                        <span className={`products-inline-badge ${product.badgeClass}`}>
-                          {product.badge}
-                        </span>
-                        <span className="products-metric-tag">
+                      <div className="products-metric-line">
+                        <span className="products-metric-text">
                           {product.metricLabel}: <strong>{product.metricValue}</strong>
                         </span>
                       </div>

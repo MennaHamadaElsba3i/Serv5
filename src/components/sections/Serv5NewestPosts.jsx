@@ -399,7 +399,7 @@ export default function Serv5NewestPosts({ onOpenConsultation, lang = 'ar' }) {
                   {col.posts.map((post, postIdx) => (
                     <motion.div
                       key={post.id}
-                      className={`serv5-square-card ${isSettled ? 'is-settled' : ''}`}
+                      className={`serv5-square-card ${post.id === 'pizza-plaza-ecosystem' ? 'is-latest-article' : ''} ${isSettled ? 'is-settled' : ''}`}
                       onClick={() => setSelectedArticle(post)}
                       role="button"
                       tabIndex={0}
@@ -438,12 +438,11 @@ export default function Serv5NewestPosts({ onOpenConsultation, lang = 'ar' }) {
                             e.target.src = '/images/serv5-tech-vision.jpg';
                           }}
                         />
-                        <span
-                          className="square-card-badge-pill"
-                          style={{ background: post.accentColor }}
-                        >
-                          {post.icon} {post.category}
-                        </span>
+                        {post.id === 'pizza-plaza-ecosystem' && (
+                          <span className="square-card-badge-pill square-card-badge-latest">
+                            {isRtl ? 'أحدث المدونات' : 'Latest article'}
+                          </span>
+                        )}
                       </div>
 
                       {/* Meta Row: Date & Reading Time */}
@@ -451,11 +450,6 @@ export default function Serv5NewestPosts({ onOpenConsultation, lang = 'ar' }) {
                         <span className="flex items-center gap-1">
                           <Calendar size={11} />
                           {post.date}
-                        </span>
-                        <span>·</span>
-                        <span className="flex items-center gap-1 text-emerald-600 font-bold">
-                          <Clock size={11} />
-                          {post.readTime}
                         </span>
                       </div>
 

@@ -171,6 +171,16 @@
   box-shadow: 0 8px 24px -6px rgba(15, 23, 42, 0.08);
 }
 
+.serv5-square-card.is-latest-article {
+  border-color: rgba(36, 90, 167, 0.42);
+  box-shadow: 0 12px 32px -10px rgba(36, 90, 167, 0.2);
+}
+
+.serv5-square-card.is-latest-article.is-settled {
+  border-color: rgba(36, 90, 167, 0.5);
+  box-shadow: 0 12px 32px -10px rgba(36, 90, 167, 0.2);
+}
+
 .serv5-square-card:hover {
   border-color: #93c5fd;
   box-shadow: 0 20px 40px -10px rgba(37, 99, 235, 0.18);
@@ -209,6 +219,44 @@
   transform: scale(1.06);
 }
 
+/* Reveal the card contents in a short sequence as each ribbon settles. */
+.serv5-square-card > :not(.square-card-accent-bar) {
+  opacity: 0;
+  transform: translateY(9px);
+  transition: opacity 0.42s ease, transform 0.42s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.serv5-square-card.is-settled > :not(.square-card-accent-bar) {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.serv5-square-card.is-settled > .square-card-media-wrap { transition-delay: 0.02s; }
+.serv5-square-card.is-settled > .square-card-meta { transition-delay: 0.08s; }
+.serv5-square-card.is-settled > .square-card-title { transition-delay: 0.14s; }
+.serv5-square-card.is-settled > .square-card-desc { transition-delay: 0.2s; }
+.serv5-square-card.is-settled > .square-card-footer { transition-delay: 0.26s; }
+
+.square-card-accent-bar {
+  overflow: hidden;
+}
+
+.square-card-accent-bar::after {
+  content: '';
+  position: absolute;
+  inset: 0 auto 0 -45%;
+  width: 35%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.72), transparent);
+  opacity: 0;
+  transform: skewX(-24deg);
+  transition: left 0.7s ease, opacity 0.25s ease;
+}
+
+.serv5-square-card:hover .square-card-accent-bar::after {
+  left: 115%;
+  opacity: 1;
+}
+
 .square-card-badge-pill {
   position: absolute;
   top: 8px;
@@ -225,6 +273,17 @@
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
 }
 
+.square-card-badge-latest {
+  background: linear-gradient(110deg, #245aa7, #3478d4);
+  box-shadow: 0 4px 12px rgba(36, 90, 167, 0.24);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.serv5-square-card.is-latest-article:hover .square-card-badge-latest {
+  transform: translateY(-2px);
+  box-shadow: 0 7px 16px rgba(36, 90, 167, 0.3);
+}
+
 [dir="rtl"] .square-card-badge-pill {
   right: 8px;
   left: auto;
@@ -233,6 +292,18 @@
 [dir="ltr"] .square-card-badge-pill {
   left: 8px;
   right: auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .serv5-square-card > :not(.square-card-accent-bar) {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .square-card-accent-bar::after {
+    display: none;
+  }
 }
 
 /* Header */

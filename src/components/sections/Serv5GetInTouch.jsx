@@ -1,367 +1,278 @@
-import React, { useState } from 'react';
-import {
-  Phone,
-  Mail,
-  MapPin,
-  Clock,
-  Send,
-  ShieldCheck,
-  MessageSquare,
-  Sparkles,
-  CheckCircle2,
-  MessageCircle,
-  ExternalLink,
-  Navigation,
-  Building2,
-  Compass,
-  Check
-} from 'lucide-react';
+import React, { useEffect, useState } from 'react';
 
-export default function Serv5GetInTouch({ onOpenConsultation, lang = 'ar' }) {
+const headquarters = {
+  name: 'SERV5 Mansoura Headquarters',
+  address: 'Egypt - Mansoura - Suez Canal St. - Engineers Tower (above Dr. Ramy pharmacy)',
+  addressAr: 'جمهورية مصر العربية - المنصورة - شارع قناة السويس - برج المهندسين (أعلى صيدلية د. رامي)',
+  googleMapsUrl: 'https://maps.google.com/maps?q=%D8%B3%D9%8A%D8%B1%D9%81+%D9%81%D8%A7%D9%8A%D9%81+%D9%84%D8%AE%D8%AF%D9%85%D8%A7%D8%AA+%D8%A7%D9%84%D9%88%D9%8A%D8%A8&t=&z=16&ie=UTF8&iwloc=&output=embed',
+  directionsUrl: 'https://maps.google.com/?q=سيرف+فايف+لخدمات+الويب+المنصورة',
+  phone: '00201288863831',
+  email: 'sales@serv5.com',
+  whatsapp: '201288863831',
+  hoursAr: 'السبت - الخميس: 9:00 ص - 6:00 م',
+  hoursEn: 'Sat - Thu: 9:00 AM - 6:00 PM'
+};
+
+const examples = {
+  ar: ['متجر إلكتروني يبيع أونلاين', 'تطبيق لعملائي', 'موقع جديد لشركتي', 'نظام إداري لفروعي'],
+  en: ['An online store that sells', 'An app for my customers', 'A new website for my company', 'A system for my branches']
+};
+
+const copy = {
+  ar: {
+    eyebrow: 'الخطوة الأخيرة',
+    title: 'فكرتك في سطر واحد.',
+    titleAccent: 'والباقي علينا.',
+    intro: 'مش محتاج بريف ولا عرض تقديمي. اكتب السطر، ابعت، ونتكلم.',
+    chatName: 'فريق SERV5',
+    chatSub: 'بنرد خلال 24 ساعة عمل',
+    online: 'متاحين الآن',
+    greeting: 'إيه الفكرة اللي في دماغك؟ سطر واحد يكفي 👇',
+    ideaLabel: 'الفكرة',
+    ideaPlaceholder: 'مثال: ',
+    nameLabel: 'اسمك',
+    namePlaceholder: 'اسمك',
+    phoneLabel: 'رقمك / واتساب',
+    meterEmpty: 'فاضل 3 خانات وخلاص',
+    meterOne: 'فاضل خانتين',
+    meterTwo: 'فاضلة خانة واحدة',
+    meterReady: 'تمام، الرسالة جاهزة',
+    send: 'ابعت الفكرة',
+    note: 'هيفتح واتساب برسالة جاهزة تراجعها قبل الإرسال.',
+    previewLabel: 'هتتبعت كده على واتساب',
+    sent: 'فتحنا واتساب برسالتك ✅',
+    sentFallback: 'لو مقفول، افتح الرابط ده',
+    sideTitle: 'أو كلّمنا مباشرة',
+    call: 'اتصال',
+    whatsapp: 'واتساب',
+    email: 'إيميل',
+    hours: 'مواعيد العمل',
+    location: 'المقر الرئيسي — المنصورة',
+    directions: 'الاتجاهات'
+  },
+  en: {
+    eyebrow: 'ONE LAST STEP',
+    title: 'Your idea in one line.',
+    titleAccent: 'We handle the rest.',
+    intro: 'No brief, no deck. Write the line, send it, and we talk.',
+    chatName: 'SERV5 team',
+    chatSub: 'We reply within 24 business hours',
+    online: 'Online now',
+    greeting: 'What is the idea in your head? One line is enough 👇',
+    ideaLabel: 'The idea',
+    ideaPlaceholder: 'e.g. ',
+    nameLabel: 'Your name',
+    namePlaceholder: 'Your name',
+    phoneLabel: 'Phone / WhatsApp',
+    meterEmpty: '3 boxes left, that’s it',
+    meterOne: '2 boxes left',
+    meterTwo: '1 box left',
+    meterReady: 'All set, your message is ready',
+    send: 'Send the idea',
+    note: 'WhatsApp opens with a prepared message you review first.',
+    previewLabel: 'This is what gets sent on WhatsApp',
+    sent: 'WhatsApp opened with your message ✅',
+    sentFallback: 'If it did not open, use this link',
+    sideTitle: 'Or talk to us directly',
+    call: 'Call',
+    whatsapp: 'WhatsApp',
+    email: 'Email',
+    hours: 'Working hours',
+    location: 'Headquarters — Mansoura',
+    directions: 'Directions'
+  }
+};
+
+export default function Serv5GetInTouch({ lang = 'ar', sectionRef }) {
   const isRtl = lang === 'ar';
+  const t = copy[isRtl ? 'ar' : 'en'];
+  const list = examples[isRtl ? 'ar' : 'en'];
 
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    projectType: 'web-development',
-    message: ''
-  });
-  const [submitted, setSubmitted] = useState(false);
+  const [form, setForm] = useState({ idea: '', name: '', phone: '' });
+  const [exampleIndex, setExampleIndex] = useState(0);
+  const [sentLink, setSentLink] = useState('');
 
-  // Official Headquarters from real Serv5 website (serv5.com.eg)
-  const headquarters = {
-    name: isRtl ? 'المقر الرئيسي المعتمد (المنصورة)' : 'Corporate Headquarters (Mansoura)',
-    city: isRtl ? 'المنصورة - مصر' : 'Mansoura, Egypt',
-    address: isRtl
-      ? 'جمهورية مصر العربية - المنصورة - شارع قناة السويس - برج المهندسين (أعلى صيدلية د. رامي)'
-      : 'Egypt - Mansoura - Suez Canal St. - Engineers Tower (above Dr. Ramy pharmacy)',
-    googleMapsUrl: 'https://maps.google.com/maps?q=%D8%B3%D9%8A%D8%B1%D9%81+%D9%81%D8%A7%D9%8A%D9%81+%D9%84%D8%AE%D8%AF%D9%85%D8%A7%D8%AA+%D8%A7%D9%84%D9%88%D9%8A%D8%A8&t=&z=16&ie=UTF8&iwloc=&output=embed',
-    directDirectionsUrl: 'https://maps.google.com/?q=سيرف+فايف+لخدمات+الويب+المنصورة',
-    phone: '00201288863831'
+  useEffect(() => {
+    if (form.idea.trim()) return undefined;
+    const timer = window.setInterval(() => {
+      setExampleIndex((index) => (index + 1) % list.length);
+    }, 2800);
+    return () => window.clearInterval(timer);
+  }, [form.idea, list.length]);
+
+  const updateField = (key, value) => setForm((current) => ({ ...current, [key]: value }));
+
+  const checks = [Boolean(form.idea.trim()), Boolean(form.name.trim()), Boolean(form.phone.trim())];
+  const filled = checks.filter(Boolean).length;
+  const ready = filled === checks.length;
+
+  const buildMessage = () => [
+    isRtl ? 'مرحبًا SERV5 👋' : 'Hello SERV5 👋',
+    isRtl ? `أنا ${form.name.trim()}.` : `I am ${form.name.trim()}.`,
+    isRtl ? `فكرتي: ${form.idea.trim()}` : `My idea: ${form.idea.trim()}`,
+    isRtl ? `رقمي: ${form.phone.trim()}` : `My number: ${form.phone.trim()}`
+  ].join('\n');
+
+  const whatsappLink = `https://wa.me/${headquarters.whatsapp}?text=${encodeURIComponent(buildMessage())}`;
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    if (!ready) return;
+    window.open(whatsappLink, '_blank', 'noopener,noreferrer');
+    setSentLink(whatsappLink);
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setSubmitted(true);
-    setTimeout(() => {
-      onOpenConsultation(`طلب تواصل مباشر من ${formData.name} (${formData.phone})`);
-      setSubmitted(false);
-      setFormData({ name: '', email: '', phone: '', projectType: 'web-development', message: '' });
-    }, 1200);
-  };
+  const meterText = ready
+    ? t.meterReady
+    : filled === 0
+      ? t.meterEmpty
+      : filled === 1
+        ? t.meterOne
+        : t.meterTwo;
 
   return (
-    <section className="serv5-revamped-section serv5-contact-section" id="contact">
+    <section ref={sectionRef} className="serv5-revamped-section serv5-hello-section" id="contact" dir={isRtl ? 'rtl' : 'ltr'}>
       <div className="serv5-container">
-        {/* Header */}
-        <div className="text-center max-w-3xl mx-auto mb-10 lg:mb-14">
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight mb-4 leading-tight">
-            {isRtl ? (
-              <>
-                تواصل معنا.{' '}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 via-amber-500 to-orange-600">
-                  لنبدأ رحلة نجاحك الرقمي.
-                </span>
-              </>
-            ) : (
-              <>
-                Contact Us.{' '}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 via-amber-500 to-orange-600">
-                  Let's Architect Your Flagship.
-                </span>
-              </>
-            )}
+        <header className="serv5-hello-header">
+          <span className="serv5-hello-eyebrow">{t.eyebrow}</span>
+          <h2 className="serv5-hello-title">
+            {t.title} <span>{t.titleAccent}</span>
           </h2>
+          <p>{t.intro}</p>
+        </header>
 
-          <p className="text-slate-600 text-base sm:text-lg leading-relaxed">
-            {isRtl
-              ? 'تواصل معنا لمناقشة أفكارك وتطلعاتك. فريقنا الهندسي متاح دائماً لدراسة المتطلبات وتقديم الاستشارة الفنية وعروض الأسعار المناسبة.'
-              : 'Connect with our engineering leadership to architect, scope, and deploy your next digital flagship.'}
-          </p>
-        </div>
-
-        {/* 2-Column Responsive Layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
-          {/* Left Column (5 cols): Official Headquarters & Coordinates */}
-          <div className="lg:col-span-5 flex flex-col justify-between">
-            <div className="serv5-contact-info-card">
-              <div>
-                <div className="flex items-center justify-between mb-4">
-                  <h3 className="text-xl sm:text-2xl font-black text-slate-900">
-                    {isRtl ? 'المقر الرئيسي المعتمد' : 'Official Coordinates'}
-                  </h3>
-                  <span className="px-3 py-1 rounded-full bg-emerald-100 text-emerald-700 text-xs font-bold flex items-center gap-1">
-                    <span className="w-2 h-2 rounded-full bg-emerald-500 animate-ping" />
-                    <span>{isRtl ? 'متاح الآن' : 'Active Response'}</span>
-                  </span>
-                </div>
-
-                <p className="text-slate-600 text-sm leading-relaxed mb-6">
-                  {isRtl
-                    ? 'سيرف فايف لتقنية المعلومات والحلول الرقمية المتكاملة، مسجلة رسمياً بسجل تجاري وبطاقة ضريبية معتمدة.'
-                    : 'SERV5 Information Technology — Certified Enterprise Cloud Solutions & Software Engineering.'}
-                </p>
-
-                {/* Coordinates Stack */}
-                <div className="space-y-4">
-                  {/* Address */}
-                  <div className="serv5-contact-item">
-                    <div className="serv5-contact-icon-box">
-                      <MapPin size={20} />
-                    </div>
-                    <div>
-                      <h4 className="font-bold text-slate-900 text-sm">
-                        {isRtl ? 'العنوان والمقر الرئيسي' : 'Egypt Corporate HQ'}
-                      </h4>
-                      <p className="text-slate-600 text-xs mt-0.5 leading-relaxed">
-                        {isRtl
-                          ? 'جمهورية مصر العربية - المنصورة - شارع قناة السويس - برج المهندسين'
-                          : 'Engineers Tower, Suez Canal St., Mansoura, Egypt'}
-                      </p>
-                    </div>
-                  </div>
-
-                  {/* Phone */}
-                  <div className="serv5-contact-item">
-                    <div className="serv5-contact-icon-box">
-                      <Phone size={20} />
-                    </div>
-                    <div>
-                      <h4 className="font-bold text-slate-900 text-sm">
-                        {isRtl ? 'الهاتف والخط الساخن الموحد' : 'Direct Phone & Hotline'}
-                      </h4>
-                      <a
-                        href="tel:00201288863831"
-                        dir="ltr"
-                        className="inline-block text-blue-600 hover:text-blue-800 font-bold text-sm mt-0.5 transition-colors"
-                      >
-                        00201288863831
-                      </a>
-                    </div>
-                  </div>
-
-                  {/* Email */}
-                  <div className="serv5-contact-item">
-                    <div className="serv5-contact-icon-box">
-                      <Mail size={20} />
-                    </div>
-                    <div>
-                      <h4 className="font-bold text-slate-900 text-sm">
-                        {isRtl ? 'البريد الإلكتروني للمبيعات' : 'Sales & Enterprise Inquiries'}
-                      </h4>
-                      <a
-                        href="mailto:sales@serv5.com"
-                        className="text-blue-600 hover:text-blue-800 font-bold text-xs mt-0.5 transition-colors"
-                      >
-                        sales@serv5.com
-                      </a>
-                    </div>
-                  </div>
-
-                  {/* Hours */}
-                  <div className="serv5-contact-item">
-                    <div className="serv5-contact-icon-box">
-                      <Clock size={20} />
-                    </div>
-                    <div>
-                      <h4 className="font-bold text-slate-900 text-sm">
-                        {isRtl ? 'ساعات العمل الرسمية' : 'Operating Hours'}
-                      </h4>
-                      <p className="text-slate-600 text-xs mt-0.5">
-                        {isRtl
-                          ? 'السبت - الخميس: 9:00 ص - 6:00 م (الدعم الفني السحابي 24/7)'
-                          : 'Sat - Thu: 9:00 AM - 6:00 PM (Cloud NOC: 24/7/365)'}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Direct WhatsApp Callout Button */}
-              <div className="mt-6 pt-4 border-t border-slate-200">
-                <a
-                  href="https://wa.me/201288863831?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%20%D8%B3%D9%8A%D8%B1%D9%81%20%D9%81%D8%A7%D9%8A%D9%81%D8%8C%20%D8%A3%D8%B1%D9%8A%D8%AF%20%D8%A7%D8%B3%D8%AA%D8%B4%D8%A7%D8%B1%D8%A9%20%D8%AD%D9%88%D9%84%20%D9%85%D8%B4%D8%B1%D9%88%D8%B9%D9%8A"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm shadow-md transition-all cursor-pointer"
-                >
-                  <MessageCircle size={18} />
-                  <span>{isRtl ? 'محادثة فورية عبر واتساب (WhatsApp)' : 'Instant WhatsApp Engineering Chat'}</span>
-                </a>
-              </div>
-            </div>
-          </div>
-
-          {/* Right Column (7 cols): Interactive Clean Form & Compact Map */}
-          <div className="lg:col-span-7 flex flex-col gap-4">
-            <div className="serv5-contact-form-card">
-              <div className="mb-6">
-                <h3 className="text-xl sm:text-2xl font-black text-slate-900">
-                  {isRtl ? 'أرسل لنا تفاصيل مشروعك' : 'Request Architecture Consultation'}
-                </h3>
-                <p className="text-slate-600 text-sm mt-1">
-                  {isRtl
-                    ? 'املأ النموذج وسيقوم مهندس استشاري متخصص بالتواصل معك خلال ساعتين عمل.'
-                    : 'Fill out the form and a senior technical lead will contact you within 2 business hours.'}
-                </p>
-              </div>
-
-              {submitted ? (
-                <div className="py-12 text-center">
-                  <div className="w-16 h-16 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto mb-4">
-                    <CheckCircle2 size={36} />
-                  </div>
-                  <h4 className="text-xl font-black text-slate-900 mb-2">
-                    {isRtl ? 'تم استلام طلبك بنجاح!' : 'Inquiry Received Successfully!'}
-                  </h4>
-                  <p className="text-slate-600 text-sm max-w-md mx-auto">
-                    {isRtl
-                      ? 'شكراً لتواصلك مع سيرف فايف. فريق المبيعات والهندسة يقوم بمراجعة طلبك للتواصل معك بأسرع وقت.'
-                      : 'Thank you for reaching out. Our engineering team is currently reviewing your scope.'}
-                  </p>
-                </div>
-              ) : (
-                <form onSubmit={handleSubmit} className="space-y-4">
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div>
-                      <label className="serv5-form-label">
-                        {isRtl ? 'الاسم بالكامل *' : 'Full Name *'}
-                      </label>
-                      <input
-                        type="text"
-                        required
-                        value={formData.name}
-                        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                        placeholder={isRtl ? 'مثال: محمد أحمد' : 'e.g. Alexander Vance'}
-                        className="serv5-form-input"
-                      />
-                    </div>
-
-                    <div>
-                      <label className="serv5-form-label">
-                        {isRtl ? 'رقم الهاتف / واتساب *' : 'Phone / WhatsApp *'}
-                      </label>
-                      <input
-                        type="tel"
-                        required
-                        value={formData.phone}
-                        onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                        placeholder={isRtl ? '01xxxxxxxxx' : '+20 128 886 3831'}
-                        className="serv5-form-input"
-                        dir="ltr"
-                      />
-                    </div>
-                  </div>
-
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div>
-                      <label className="serv5-form-label">
-                        {isRtl ? 'البريد الإلكتروني' : 'Work Email'}
-                      </label>
-                      <input
-                        type="email"
-                        value={formData.email}
-                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                        placeholder="you@company.com"
-                        className="serv5-form-input"
-                        dir="ltr"
-                      />
-                    </div>
-
-                    <div>
-                      <label className="serv5-form-label">
-                        {isRtl ? 'نوع الخدمة المطلوبة' : 'Service Domain'}
-                      </label>
-                      <select
-                        value={formData.projectType}
-                        onChange={(e) => setFormData({ ...formData, projectType: e.target.value })}
-                        className="serv5-form-select"
-                      >
-                        <option value="web-development">{isRtl ? 'تصميم وبرمجة مواقع مخصصة' : 'Custom Web Architecture'}</option>
-                        <option value="ecommerce">{isRtl ? 'إنشاء متجر إلكتروني متكامل' : 'E-Commerce Platform'}</option>
-                        <option value="mobile-apps">{isRtl ? 'تطبيقات الجوال (iOS / Android)' : 'Mobile Applications'}</option>
-                        <option value="cloud-hosting">{isRtl ? 'استضافة سحابية وسيرفرات NVMe' : 'Cloud Hosting & DevOps'}</option>
-                        <option value="ai-crm">{isRtl ? 'حلول الذكاء الاصطناعي و سيلزاوي' : 'AI Systems & CRM Automation'}</option>
-                      </select>
-                    </div>
-                  </div>
-
-                  <div>
-                    <label className="serv5-form-label">
-                      {isRtl ? 'نبذة عن المشروع أو المتطلبات *' : 'Project Scope & Requirements *'}
-                    </label>
-                    <textarea
-                      rows={4}
-                      required
-                      value={formData.message}
-                      onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                      placeholder={isRtl ? 'اشرح لنا بإيجاز أهداف مشروعك، الميزانية التقديرية، أو الموعد النهائي المقترح...' : 'Briefly describe your objectives, timelines, and technical requirements...'}
-                      className="serv5-form-textarea"
-                    />
-                  </div>
-
-                  <div className="pt-2 flex flex-col sm:flex-row items-center justify-between gap-4">
-                    <div className="flex items-center gap-2 text-xs text-slate-500">
-                      <ShieldCheck size={16} className="text-blue-600 flex-shrink-0" />
-                      <span>{isRtl ? 'بياناتك مشفرة ومحمية وفق سياسة الخصوصية' : 'Confidential NDA Protected'}</span>
-                    </div>
-
-                    <button
-                      type="submit"
-                      className="serv5-btn-primary w-full sm:w-auto"
-                    >
-                      <span>{isRtl ? 'إرسال طلب الاستشارة' : 'Submit Consultation Request'}</span>
-                      <Send size={16} />
-                    </button>
-                  </div>
-                </form>
-              )}
+        <div className="serv5-hello-grid">
+          {/* ONE CARD · THREE BOXES · ONE BUTTON */}
+          <div className="serv5-hello-chat">
+            <div className="serv5-hello-chat-top">
+              <span className="serv5-hello-avatar">
+                <img src="/serv5-official-logo.webp" alt="SERV5" />
+              </span>
+              <span className="serv5-hello-chat-id">
+                <strong>{t.chatName}</strong>
+                <small>{t.chatSub}</small>
+              </span>
+              <span className="serv5-hello-live"><i aria-hidden="true" />{t.online}</span>
             </div>
 
-            {/* Compact Map placed directly underneath the form */}
-            <div className="serv5-map-card overflow-hidden">
-              {/* Compact Map Bar */}
-              <div className="px-4 py-2.5 bg-slate-50 border-b border-slate-200 flex items-center justify-between gap-2 text-xs">
-                <div className="flex items-center gap-2 overflow-hidden">
-                  <div className="w-6 h-6 rounded-md bg-blue-600 text-white flex items-center justify-center flex-shrink-0 shadow-xs">
-                    <MapPin size={13} />
-                  </div>
-                  <div className="truncate">
-                    <span className="font-bold text-slate-800 me-1.5">{headquarters.name}</span>
-                    <span className="text-slate-500 text-[11px] hidden sm:inline">
-                      ({headquarters.address})
-                    </span>
-                  </div>
-                </div>
+            <form className="serv5-hello-body" onSubmit={handleSubmit}>
+              <p className="serv5-hello-greeting">{t.greeting}</p>
 
-                <a
-                  href={headquarters.directDirectionsUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1 px-2.5 py-1 rounded-md bg-white border border-slate-200 text-blue-600 font-bold hover:bg-blue-50 transition-all flex-shrink-0 shadow-xs text-[11px] cursor-pointer"
-                >
-                  <span>{isRtl ? 'خرائط جوجل' : 'Google Maps'}</span>
-                  <ExternalLink size={11} />
-                </a>
-              </div>
-
-              {/* Compact Google Map Iframe (175px) */}
-              <div className="relative w-full h-[175px] bg-slate-100 overflow-hidden">
-                <iframe
-                  src={headquarters.googleMapsUrl}
-                  title={headquarters.name}
-                  width="100%"
-                  height="100%"
-                  style={{ border: 0 }}
-                  allowFullScreen=""
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                  className="w-full h-full"
+              <label className={`serv5-hello-field serv5-hello-field-idea ${checks[0] ? 'is-ready' : ''}`}>
+                <span className="serv5-hello-field-label">
+                  <i className="serv5-hello-tick" aria-hidden="true" />
+                  {t.ideaLabel}
+                </span>
+                <textarea
+                  rows={2}
+                  required
+                  value={form.idea}
+                  onChange={(event) => updateField('idea', event.target.value)}
+                  placeholder={`${t.ideaPlaceholder}${list[exampleIndex]}`}
                 />
+              </label>
+
+              <div className="serv5-hello-row">
+                <label className={`serv5-hello-field ${checks[1] ? 'is-ready' : ''}`}>
+                  <span className="serv5-hello-field-label">
+                    <i className="serv5-hello-tick" aria-hidden="true" />
+                    {t.nameLabel}
+                  </span>
+                  <input
+                    type="text"
+                    required
+                    autoComplete="name"
+                    value={form.name}
+                    onChange={(event) => updateField('name', event.target.value)}
+                    placeholder={t.namePlaceholder}
+                  />
+                </label>
+
+                <label className={`serv5-hello-field ${checks[2] ? 'is-ready' : ''}`}>
+                  <span className="serv5-hello-field-label">
+                    <i className="serv5-hello-tick" aria-hidden="true" />
+                    {t.phoneLabel}
+                  </span>
+                  <input
+                    type="tel"
+                    required
+                    dir="ltr"
+                    autoComplete="tel"
+                    value={form.phone}
+                    onChange={(event) => updateField('phone', event.target.value)}
+                    placeholder="+20 1XX XXX XXXX"
+                  />
+                </label>
               </div>
-            </div>
+
+              {form.idea.trim() && (
+                <div className="serv5-hello-preview">
+                  <small>{t.previewLabel}</small>
+                  <span>{form.idea.trim()}</span>
+                </div>
+              )}
+
+              <div className="serv5-hello-meter">
+                <span className="serv5-hello-meter-track" aria-hidden="true">
+                  <span style={{ width: `${(filled / checks.length) * 100}%` }} />
+                </span>
+                <span className="serv5-hello-meter-text" aria-live="polite">{meterText}</span>
+              </div>
+
+              <button type="submit" className="serv5-hello-send" disabled={!ready}>
+                <span>{t.send}</span>
+                <i aria-hidden="true">↗</i>
+              </button>
+
+              <p className="serv5-hello-note">{t.note}</p>
+
+              {sentLink && (
+                <div className="serv5-hello-sent" role="status">
+                  <strong>{t.sent}</strong>
+                  <a href={sentLink} target="_blank" rel="noopener noreferrer">{t.sentFallback}</a>
+                </div>
+              )}
+            </form>
           </div>
+
+          {/* DIRECT LINES + MAP */}
+          <aside className="serv5-hello-side">
+            <div className="serv5-hello-side-card">
+              <strong className="serv5-hello-side-title">{t.sideTitle}</strong>
+
+              <a className="serv5-hello-side-link" href={`tel:${headquarters.phone}`}>
+                <span className="serv5-hello-side-tag">{t.call}</span>
+                <span dir="ltr">{headquarters.phone}</span>
+              </a>
+              <a className="serv5-hello-side-link" href={`https://wa.me/${headquarters.whatsapp}`} target="_blank" rel="noopener noreferrer">
+                <span className="serv5-hello-side-tag">{t.whatsapp}</span>
+                <span dir="ltr">+20 128 886 3831</span>
+              </a>
+              <a className="serv5-hello-side-link" href={`mailto:${headquarters.email}`}>
+                <span className="serv5-hello-side-tag">{t.email}</span>
+                <span dir="ltr">{headquarters.email}</span>
+              </a>
+
+              <p className="serv5-hello-side-hours">
+                <span>{t.hours}</span>
+                {isRtl ? headquarters.hoursAr : headquarters.hoursEn}
+              </p>
+            </div>
+
+            <div className="serv5-hello-map">
+              <div className="serv5-hello-map-head">
+                <strong>{t.location}</strong>
+                <a href={headquarters.directionsUrl} target="_blank" rel="noopener noreferrer">{t.directions} ↗</a>
+              </div>
+              <iframe
+                src={headquarters.googleMapsUrl}
+                title={headquarters.name}
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                allowFullScreen
+              />
+            </div>
+          </aside>
         </div>
       </div>
     </section>

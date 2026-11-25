@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 // Real Partner Logo SVG Components with Authentic Brand Geometry
 const AlRajhiLogo = () => (
@@ -148,10 +148,7 @@ const BoudlGroupLogo = () => (
   </svg>
 );
 
-export default function PartnersCarousel({ lang = 'ar' }) {
-  const isRtl = lang === 'ar';
-  const [hoveredPartner, setHoveredPartner] = useState(null);
-
+export default function PartnersCarousel() {
   // Row 1: Premier Financial, Government & Enterprise Partners
   const row1Partners = [
     { id: 'alrajhi', name: 'Al-Rajhi Bank', Component: AlRajhiLogo },
@@ -172,52 +169,30 @@ export default function PartnersCarousel({ lang = 'ar' }) {
     { id: 'boudl', name: 'Boudl Hotels & Resorts', Component: BoudlGroupLogo }
   ];
 
-  // Repeat for continuous seamless CSS animation loop
-  const row1Loop = [...row1Partners, ...row1Partners, ...row1Partners];
-  const row2Loop = [...row2Partners, ...row2Partners, ...row2Partners];
+  const partners = [...row1Partners, ...row2Partners];
+  const partnerLoop = [...partners, ...partners];
 
   return (
     <section className="partners-clean-section" id="partners" aria-label="SERV5 Clients and Partners">
-      {/* Dual Moving Logo Marquee - Perfectly Centered Criss-Cross X Pattern */}
-      <div className="partner-marquee-x-stage" dir="ltr">
-        {/* Ribbon 1: Slopes Downward from Left to Right */}
-        <div className="partner-marquee-row-x partner-row-x-1">
-          <div className="partner-marquee-track track-scroll-left">
-            {row1Loop.map((p, idx) => {
-              const LogoComp = p.Component;
-              return (
-                <div
-                  key={`r1-${idx}`}
-                  className="partner-logo-item"
-                  title={p.name}
-                  onMouseEnter={() => setHoveredPartner(p.id)}
-                  onMouseLeave={() => setHoveredPartner(null)}
-                >
-                  <LogoComp />
-                </div>
-              );
-            })}
-          </div>
-        </div>
+      <div className="partner-cards-stage" dir="ltr">
+        <div className="partner-cards-track">
+          {partnerLoop.map((partner, index) => {
+            const Logo = partner.Component;
+            const isDuplicate = index >= partners.length;
 
-        {/* Ribbon 2: Slopes Upward from Left to Right (Crossing at Dead Center) */}
-        <div className="partner-marquee-row-x partner-row-x-2">
-          <div className="partner-marquee-track track-scroll-right">
-            {row2Loop.map((p, idx) => {
-              const LogoComp = p.Component;
-              return (
-                <div
-                  key={`r2-${idx}`}
-                  className="partner-logo-item"
-                  title={p.name}
-                  onMouseEnter={() => setHoveredPartner(p.id)}
-                  onMouseLeave={() => setHoveredPartner(null)}
-                >
-                  <LogoComp />
-                </div>
-              );
-            })}
-          </div>
+            return (
+              <article
+                key={`${partner.id}-${index}`}
+                className="partner-card"
+                aria-label={isDuplicate ? undefined : partner.name}
+                aria-hidden={isDuplicate ? 'true' : undefined}
+              >
+                <span className="partner-card-logo-frame" aria-hidden="true">
+                  <Logo />
+                </span>
+              </article>
+            );
+          })}
         </div>
       </div>
     </section>

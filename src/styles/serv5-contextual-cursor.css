@@ -146,7 +146,7 @@
   box-shadow: 0 10px 25px -4px rgba(37, 99, 235, 0.35), 0 0 16px rgba(37, 99, 235, 0.35);
 }
 .serv5-cursor-follower.type-browse .cursor-badge-icon-wrap {
-  color: #93c5fd;
+  display: none;
 }
 
 /* قراءة / Read (Indigo) */
