@@ -56,10 +56,6 @@ const servicePages = {
     ar: { title: 'تحسين محركات البحث SEO', intro: 'تحسين ظهور موقعك في نتائج البحث عبر البنية التقنية والمحتوى والكلمات المفتاحية.', items: ['فحص السيو التقني', 'تحسين الصفحات والمحتوى', 'بناء الروابط الرقمية', 'متابعة الكلمات والزيارات'] },
     en: { title: 'Search Engine Optimization', intro: 'Improve search visibility through technical structure, content and keywords.', items: ['Technical SEO audit', 'Page and content optimization', 'Digital authority building', 'Keyword and traffic reporting'] }
   },
-  'digital-branding': {
-    ar: { title: 'الهوية الرقمية والصورة البصرية', intro: 'نبني هوية رقمية متناسقة تعكس قيمة علامتك وتجعل حضورك أكثر تميزاً.', items: ['هوية وعناصر بصرية', 'تصميم المطبوعات الرقمية', 'قوالب المحتوى والسوشيال', 'دليل استخدام الهوية'] },
-    en: { title: 'Digital Branding', intro: 'A consistent digital identity that reflects your brand value and strengthens presence.', items: ['Visual identity system', 'Digital collateral', 'Social content templates', 'Brand guidelines'] }
-  },
   'digital-marketing': {
     ar: { title: 'التسويق الرقمي والحملات', intro: 'حملات إعلانية مبنية على الجمهور والأرقام لتحقيق أعلى عائد استثمار.', items: ['إعلانات Google وMeta', 'إعلانات TikTok وSnapchat', 'إدارة الحملات والتحسين', 'قياس العائد والتحويل'] },
     en: { title: 'Digital Marketing', intro: 'Data-led advertising campaigns designed to reach the right audience and improve ROI.', items: ['Google and Meta Ads', 'TikTok and Snapchat Ads', 'Campaign management', 'ROI and conversion reporting'] }
@@ -663,27 +659,29 @@ export default function ContentPage({ pathname, lang = 'ar', onOpenConsultation 
         />
       );
     }
-    return (
-      <>
-        <PageHero isRtl={isRtl} eyebrow={isRtl ? 'خدماتنا' : 'Services'} title={isRtl ? 'الخدمات والحلول الرقمية' : 'Digital Services'} description={isRtl ? 'من المواقع والمتاجر إلى تطبيقات الجوال والاستضافة والحلول السحابية.' : 'From websites and stores to mobile apps, hosting and cloud solutions.'} />
-        <section className="content-page-section">
-          <div className="container content-page-grid">
-            {Object.entries(servicePages).map(([slug, page]) => {
-              const content = page[isRtl ? 'ar' : 'en'];
-              return (
-                <article className="content-page-card" key={slug}>
-                  <h2>{content.title}</h2>
-                  <p>{content.intro}</p>
-                  <Link className="content-page-link" to={`/services/${slug}`}>
-                    {isRtl ? 'عرض التفاصيل' : 'View details'}
-                  </Link>
-                </article>
-              );
-            })}
-          </div>
-        </section>
-      </>
-    );
+    if (!slug) {
+      return (
+        <>
+          <PageHero isRtl={isRtl} eyebrow={isRtl ? 'خدماتنا' : 'Services'} title={isRtl ? 'الخدمات والحلول الرقمية' : 'Digital Services'} description={isRtl ? 'من المواقع والمتاجر إلى تطبيقات الجوال والاستضافة والحلول السحابية.' : 'From websites and stores to mobile apps, hosting and cloud solutions.'} />
+          <section className="content-page-section">
+            <div className="container content-page-grid">
+              {Object.entries(servicePages).map(([serviceSlug, page]) => {
+                const content = page[isRtl ? 'ar' : 'en'];
+                return (
+                  <article className="content-page-card" key={serviceSlug}>
+                    <h2>{content.title}</h2>
+                    <p>{content.intro}</p>
+                    <Link className="content-page-link" to={`/services/${serviceSlug}`}>
+                      {isRtl ? 'عرض التفاصيل' : 'View details'}
+                    </Link>
+                  </article>
+                );
+              })}
+            </div>
+          </section>
+        </>
+      );
+    }
   }
 
   return (
