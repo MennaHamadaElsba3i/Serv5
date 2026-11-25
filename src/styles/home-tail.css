@@ -1,27 +1,18 @@
 /* =========================================================
-   ARCHITECTURAL CURTAIN FOOTER REVEAL EFFECT
-   The entire page content (.world-main-content), concluding with
-   the Liftoff section (هل لديك مشروع رقمي؟), moves naturally
-   with higher stacking context and an elegant bottom elevation shadow.
-   
-   As the visitor scrolls past the Liftoff section, the sticky footer
-   anchored at the bottom reveals seamlessly from underneath it,
-   creating the luxurious physical uncover / curtain illusion.
-   When scrolling back up, the Liftoff section glides back down over
-   the footer, tucking it away.
+   NORMAL DOCUMENT-FLOW FOOTER & TAIL STACK
+   The main content and Liftoff section flow naturally above
+   #serv5-footer, which scrolls normally at the bottom of the page.
    ========================================================= */
 
 .world-main-content {
   position: relative;
   z-index: 10;
   background-color: #ffffff;
-  box-shadow: 0 25px 60px -15px rgba(15, 23, 42, 0.28);
 }
 
 [data-theme="dark"] .world-main-content,
 html.dark .world-main-content {
   background-color: #080c14;
-  box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.7);
 }
 
 .serv5-liftoff-section {
@@ -30,18 +21,8 @@ html.dark .world-main-content {
   width: 100%;
 }
 
-@media (prefers-reduced-motion: no-preference) and (min-width: 992px) {
-  #serv5-footer {
-    position: sticky;
-    bottom: 0;
-    z-index: 1;
-    will-change: transform;
-  }
-}
-
-@media (max-width: 991px), (prefers-reduced-motion: reduce) {
-  #serv5-footer {
-    position: relative;
-    z-index: 1;
-  }
+#serv5-footer {
+  position: relative;
+  bottom: auto;
+  z-index: 1;
 }

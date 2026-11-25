@@ -473,6 +473,21 @@
   color: white;
 }
 
+@media (max-width: 767px) {
+  .serv5-replay-intro-pill {
+    bottom: 14px;
+    left: 12px;
+    padding: 7px 12px;
+    font-size: 11px;
+    gap: 7px;
+  }
+
+  .dir-rtl .serv5-replay-intro-pill {
+    left: auto;
+    right: 12px;
+  }
+}
+
 /* ==========================================================================
    SERV5 3D PRESENTATION VIDEO INTRO (THEATER & CINEMATIC MODE)
    ========================================================================== */

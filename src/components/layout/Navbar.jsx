@@ -192,7 +192,7 @@ export default function Navbar({ onOpenConsultation, lang = 'ar', onToggleLang, 
             {/* Premium Formatted Phone Number Pill */}
             <a
               href="tel:+201288744744"
-              className="nav-phone-link"
+              className="nav-phone-link d-none d-lg-inline-flex"
               title={isRtl ? 'اتصل بنا مباشرة: 01288744744' : 'Call Direct: +20 128 874 4744'}
               dir="ltr"
             >
@@ -206,7 +206,7 @@ export default function Navbar({ onOpenConsultation, lang = 'ar', onToggleLang, 
 
             <button
               onClick={() => onOpenConsultation(isRtl ? 'طلب استشارة من القائمة الرئيسية' : 'Navbar Direct Launch')}
-              className="btn-launch-nav"
+              className="btn-launch-nav d-none d-sm-inline-flex"
             >
               <span>{isRtl ? 'ابدأ مشروعك' : 'Launch Project'}</span>
               <ArrowUpRight size={15} />
@@ -214,9 +214,11 @@ export default function Navbar({ onOpenConsultation, lang = 'ar', onToggleLang, 
 
             {/* Mobile Hamburger Toggle */}
             <button
+              type="button"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               className="mobile-toggle-btn d-xl-none"
               aria-label="Toggle Navigation"
+              aria-expanded={mobileMenuOpen}
             >
               {mobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
             </button>
@@ -316,14 +318,27 @@ export default function Navbar({ onOpenConsultation, lang = 'ar', onToggleLang, 
               ))}
             </ul>
             <div className="mobile-nav-cta">
+              <a
+                href="tel:+201288744744"
+                className="nav-phone-link mobile-nav-phone d-lg-none"
+                dir="ltr"
+              >
+                <span className="phone-icon-bubble">
+                  <Phone size={12} />
+                </span>
+                <span className="nav-phone-num" dir="ltr">
+                  +20 128 874 4744
+                </span>
+              </a>
               <button
+                type="button"
                 onClick={() => {
                   setMobileMenuOpen(false);
-                  onOpenConsultation('Mobile Nav Launch');
+                  onOpenConsultation(isRtl ? 'طلب استشارة من قائمة الجوال' : 'Mobile Nav Launch');
                 }}
                 className="btn-launch-nav w-100 justify-content-center"
               >
-                <span>Launch Project</span>
+                <span>{isRtl ? 'ابدأ مشروعك' : 'Launch Project'}</span>
                 <ArrowUpRight size={16} />
               </button>
             </div>

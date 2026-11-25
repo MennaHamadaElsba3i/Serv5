@@ -2035,6 +2035,14 @@
 }
 
 @media (max-width: 560px) {
+  .wd-hero {
+    overflow: hidden;
+  }
+
+  .wd-hero-visual {
+    min-height: 290px;
+  }
+
   .wd-flow-stage {
     width: min(100%, 280px);
   }

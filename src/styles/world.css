@@ -680,24 +680,77 @@ html[dir="ltr"] {
 }
 
 .mobile-toggle-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
   background: none;
   border: none;
   color: var(--navy-primary);
   cursor: pointer;
+  flex-shrink: 0;
 }
 
 .mobile-nav-panel {
   background: #ffffff;
   border-bottom: 1px solid var(--border-subtle);
-  padding: 1.5rem 0 2rem;
+  padding: 1.25rem 0 1.75rem;
   box-shadow: 0 16px 36px rgba(20, 45, 78, 0.08);
+  max-height: calc(100dvh - 68px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+}
+
+.mobile-nav-top-bar {
+  flex-wrap: wrap;
 }
 
 .mobile-menu-links {
   list-style: none;
+  margin: 0;
+  padding: 0;
   display: flex;
   flex-direction: column;
-  gap: 1.1rem;
+  gap: 0.9rem;
+}
+
+.mobile-nav-cta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: 1.35rem;
+}
+
+.mobile-nav-phone {
+  justify-content: center;
+  width: 100%;
+  padding: 0.55rem 1rem;
+}
+
+@media (max-width: 575px) {
+  .navbar-inner {
+    gap: 0.5rem;
+  }
+
+  .navbar-actions {
+    gap: 0.45rem;
+  }
+
+  .navbar-actions .theme-switcher-pill,
+  .navbar-actions .lang-switcher-pill {
+    padding: 0.36rem 0.65rem;
+    font-size: 0.76rem;
+    gap: 0.32rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .navbar-actions .theme-switcher-pill .theme-label {
+    display: none;
+  }
 }
 
 .mobile-nav-link {
@@ -1832,6 +1885,61 @@ html[dir="ltr"] {
   gap: 1.25rem;
   flex-wrap: wrap;
   margin-bottom: 1rem;
+}
+
+@media (max-width: 991px) {
+  .world-hero-section {
+    padding: 8.25rem 0 10.5rem;
+    min-height: auto;
+  }
+}
+
+@media (max-width: 767px) {
+  .world-hero-section {
+    padding: 6.75rem 0 8.5rem;
+    min-height: auto;
+  }
+
+  .hero-main-title {
+    font-size: clamp(1.9rem, 7.6vw, 2.75rem);
+    margin-bottom: 1.15rem;
+  }
+
+  .hero-main-desc {
+    font-size: 0.96rem;
+    line-height: 1.75;
+    margin-bottom: 1.65rem;
+  }
+
+  .hero-partners-dock {
+    bottom: 1rem;
+  }
+
+  .about-monument-section {
+    padding: 5.25rem 0 4rem;
+  }
+
+  .about-monument-stage {
+    min-height: 340px;
+    padding: 1rem 0.25rem;
+  }
+
+  .about-giant-watermark {
+    font-size: clamp(8.5rem, 34vw, 14rem);
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-action-group {
+    width: 100%;
+    gap: 0.75rem;
+  }
+
+  .btn-hero-primary,
+  .btn-hero-secondary {
+    width: 100%;
+    justify-content: center;
+  }
 }
 
 .trust-divider {
