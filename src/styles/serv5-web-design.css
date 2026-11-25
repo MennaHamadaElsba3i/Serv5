@@ -1461,8 +1461,8 @@
   inset: 0;
   margin: auto;
   z-index: 3;
-  width: clamp(90px, 17%, 104px);
-  height: clamp(90px, 17%, 104px);
+  width: clamp(140px, 34%, 210px);
+  height: clamp(140px, 34%, 210px);
   object-fit: contain;
   background: transparent;
   filter: none;
@@ -1474,17 +1474,17 @@
   z-index: 2;
   display: grid;
   place-items: center;
-  width: 26px;
-  height: 26px;
+  width: 44px;
+  height: 44px;
   transform: translate(-50%, -50%);
   border-radius: 50%;
   background: #ffffff;
-  border: 1px solid #dbeafe;
-  color: #94a3b8;
-  font-size: 0.68rem;
-  font-weight: 850;
+  border: 2px solid #dbeafe;
+  color: #64748b;
+  font-size: 1rem;
+  font-weight: 900;
   letter-spacing: 0.02em;
-  box-shadow: 0 8px 18px rgba(30, 64, 175, 0.1);
+  box-shadow: 0 8px 20px rgba(30, 64, 175, 0.14);
   animation: wd-num-glow 4.8s ease-in-out infinite;
 }
 
@@ -1535,9 +1535,9 @@
 
 .wd-flow-card-num {
   color: var(--wd-blue);
-  font-size: 0.72rem;
+  font-size: 1.05rem;
   font-weight: 900;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.08em;
 }
 
 .wd-flow-icon {
@@ -1960,9 +1960,9 @@
   }
 
   .wd-flow-num {
-    width: 20px;
-    height: 20px;
-    font-size: 0.52rem;
+    width: 34px;
+    height: 34px;
+    font-size: 0.85rem;
   }
 
   .wd-flow-card {

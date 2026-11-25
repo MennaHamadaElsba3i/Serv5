@@ -2431,8 +2431,16 @@ html.dark .wd-ux-stage p {
 [data-theme="dark"] .wd-flow-num,
 html.dark .wd-flow-num {
   background: #0d1527 !important;
-  border-color: rgba(59, 130, 246, 0.35) !important;
-  color: #60a5fa !important;
+  border-color: rgba(59, 130, 246, 0.45) !important;
+  color: #93c5fd !important;
+}
+
+[data-theme="dark"] .wd-process-scroll-ready .wd-flow-num.is-active,
+html.dark .wd-process-scroll-ready .wd-flow-num.is-active {
+  background: #1e293b !important;
+  border-color: #fb923c !important;
+  color: #fb923c !important;
+  box-shadow: 0 0 0 8px rgba(251, 146, 60, 0.16) !important;
 }
 
 [data-theme="dark"] .wd-flow-card,
