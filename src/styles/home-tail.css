@@ -1,41 +1,47 @@
 /* =========================================================
-   HOME TAIL STACK
-   The closing CTA banner is pinned on top and the footer rises
-   out from underneath it while the visitor scrolls.
-
-   The footer's extra top padding is the runway the pinned banner
-   travels over; it is derived from the viewport height so the
-   reveal stays the same size on every desktop screen.
-   Below 1100px the banner stacks into a tall block, so the
-   effect is skipped and the two sections flow normally.
+   ARCHITECTURAL CURTAIN FOOTER REVEAL EFFECT
+   The entire page content (.world-main-content), concluding with
+   the Liftoff section (هل لديك مشروع رقمي؟), moves naturally
+   with higher stacking context and an elegant bottom elevation shadow.
+   
+   As the visitor scrolls past the Liftoff section, the sticky footer
+   anchored at the bottom reveals seamlessly from underneath it,
+   creating the luxurious physical uncover / curtain illusion.
+   When scrolling back up, the Liftoff section glides back down over
+   the footer, tucking it away.
    ========================================================= */
 
-.home-tail-stack {
+.world-main-content {
   position: relative;
-  isolation: isolate;
-  z-index: 25;
+  z-index: 10;
+  background-color: #ffffff;
+  box-shadow: 0 25px 60px -15px rgba(15, 23, 42, 0.28);
 }
 
-@media (prefers-reduced-motion: no-preference) and (min-width: 1100px) {
-  .home-tail-stack > [data-home-scroll-section="liftoff"] {
-    position: sticky;
-    top: 0;
-    z-index: 2;
-    /* Opaque so the footer stays hidden behind it until it rises. */
-    background: #f8fbff;
-    box-shadow: 0 30px 46px -34px rgba(15, 23, 42, 0.42);
-  }
+[data-theme="dark"] .world-main-content,
+html.dark .world-main-content {
+  background-color: #080c14;
+  box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.7);
+}
 
-  .home-tail-stack > #serv5-footer {
+.serv5-liftoff-section {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+}
+
+@media (prefers-reduced-motion: no-preference) and (min-width: 992px) {
+  #serv5-footer {
+    position: sticky;
+    bottom: 0;
+    z-index: 1;
+    will-change: transform;
+  }
+}
+
+@media (max-width: 991px), (prefers-reduced-motion: reduce) {
+  #serv5-footer {
     position: relative;
     z-index: 1;
-    padding-top: max(3rem, calc(100vh - 31rem));
-    padding-top: max(3rem, calc(100svh - 31rem));
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .home-tail-stack > [data-home-scroll-section="liftoff"] {
-    position: static;
   }
 }

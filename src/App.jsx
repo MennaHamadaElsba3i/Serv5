@@ -221,16 +221,12 @@ export default function App() {
         {/* 10. GET IN TOUCH / DIRECT CONTACT (Mansoura Coordinates from Serv5.eg) */}
         <Serv5GetInTouch onOpenConsultation={handleOpenConsultation} lang={lang} />
 
+        {/* 11. READY FOR LIFTOFF? (Closing Grand CTA Section) */}
+        <Serv5ReadyForLiftoff onOpenConsultation={handleOpenConsultation} lang={lang} />
       </main>
 
-      {/* 11 + 12. TAIL STACK — THE CTA IS PINNED ON TOP WHILE THE FOOTER SLIDES OUT FROM UNDERNEATH IT */}
-      <div className="home-tail-stack">
-        {/* 11. READY FOR LIFTOFF? (High-Energy CTA from Serv5.eg) */}
-        <Serv5ReadyForLiftoff onOpenConsultation={handleOpenConsultation} lang={lang} />
-
-        {/* 12. COMPREHENSIVE SERV5 FOOTER */}
-        <Serv5Footer onOpenConsultation={handleOpenConsultation} lang={lang} />
-      </div>
+      {/* 12. COMPREHENSIVE SERV5 FOOTER (Curtain Reveal from underneath the main content) */}
+      <Serv5Footer onOpenConsultation={handleOpenConsultation} lang={lang} />
 
       {/* STRATEGIC CONSULTATION MODAL */}
       <ProjectConsultationModal

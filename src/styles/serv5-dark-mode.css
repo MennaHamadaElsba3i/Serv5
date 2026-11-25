@@ -1521,8 +1521,8 @@ html.dark .serv5-liftoff-banner {
   box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8) !important;
 }
 
-[data-theme="dark"] .home-tail-stack > [data-home-scroll-section="liftoff"],
-html.dark .home-tail-stack > [data-home-scroll-section="liftoff"] {
+[data-theme="dark"] [data-home-scroll-section="liftoff"],
+html.dark [data-home-scroll-section="liftoff"] {
   background: #070b14 !important;
   box-shadow: 0 30px 46px -34px rgba(0, 0, 0, 0.7) !important;
 }
@@ -1546,56 +1546,101 @@ html.dark .serv5-btn-liftoff-secondary:hover {
 [data-theme="dark"] .serv5-footer-section,
 html.dark #serv5-footer,
 html.dark .serv5-footer-section {
-  background: #05080e !important;
-  border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
+  background: #040711 !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
+  color: #94a3b8 !important;
 }
 
-[data-theme="dark"] .serv5-footer-main,
-html.dark .serv5-footer-main {
-  border-bottom-color: rgba(255, 255, 255, 0.14) !important;
+[data-theme="dark"] .serv5-footer-minimal-main,
+html.dark .serv5-footer-minimal-main {
+  border-bottom-color: rgba(255, 255, 255, 0.08) !important;
 }
 
-[data-theme="dark"] .serv5-footer-brand,
-[data-theme="dark"] .serv5-footer-description,
-html.dark .serv5-footer-brand,
-html.dark .serv5-footer-description {
+[data-theme="dark"] .serv5-footer-tagline,
+html.dark .serv5-footer-tagline {
+  color: #94a3b8 !important;
+}
+
+[data-theme="dark"] .serv5-minimal-link,
+html.dark .serv5-minimal-link {
+  color: #f8fafc !important;
+}
+
+[data-theme="dark"] .serv5-minimal-link:hover,
+html.dark .serv5-minimal-link:hover {
+  color: #60a5fa !important;
+}
+
+[data-theme="dark"] .link-separator,
+html.dark .link-separator {
+  color: rgba(255, 255, 255, 0.2) !important;
+}
+
+[data-theme="dark"] .serv5-contact-pill,
+html.dark .serv5-contact-pill {
+  background: rgba(15, 23, 42, 0.75) !important;
+  border-color: rgba(255, 255, 255, 0.1) !important;
+  color: #f8fafc !important;
+}
+
+[data-theme="dark"] .serv5-contact-pill:hover,
+html.dark .serv5-contact-pill:hover {
+  background: rgba(30, 41, 59, 0.85) !important;
+  border-color: #3b82f6 !important;
+}
+
+[data-theme="dark"] .whatsapp-pill,
+html.dark .whatsapp-pill {
+  background: #10b981 !important;
+  border-color: #059669 !important;
+  color: #ffffff !important;
+}
+
+[data-theme="dark"] .serv5-footer-copy,
+html.dark .serv5-footer-copy {
+  color: #64748b !important;
+}
+
+[data-theme="dark"] .serv5-footer-copy strong,
+html.dark .serv5-footer-copy strong {
   color: #e2e8f0 !important;
 }
 
-[data-theme="dark"] .serv5-footer-link,
-html.dark .serv5-footer-link {
+[data-theme="dark"] .serv5-footer-top-btn,
+html.dark .serv5-footer-top-btn {
+  background: rgba(15, 23, 42, 0.8) !important;
+  border-color: rgba(255, 255, 255, 0.12) !important;
   color: #f8fafc !important;
 }
 
-[data-theme="dark"] .serv5-footer-link:hover,
-html.dark .serv5-footer-link:hover {
-  color: #60a5fa !important;
-}
-
-[data-theme="dark"] .serv5-footer-contact-item,
-html.dark .serv5-footer-contact-item {
-  color: #f8fafc !important;
-}
-
-[data-theme="dark"] .serv5-footer-contact-item svg,
-html.dark .serv5-footer-contact-item svg {
-  color: #60a5fa !important;
-}
-
-[data-theme="dark"] .serv5-footer-contact-item:hover,
-html.dark .serv5-footer-contact-item:hover {
-  color: #60a5fa !important;
-}
-
-[data-theme="dark"] .serv5-footer-legal,
-html.dark .serv5-footer-legal {
-  color: #cbd5e1 !important;
-  border-top-color: rgba(255, 255, 255, 0.1) !important;
+[data-theme="dark"] .serv5-footer-top-btn:hover,
+html.dark .serv5-footer-top-btn:hover {
+  background: #1e3a8a !important;
+  border-color: #60a5fa !important;
+  color: #ffffff !important;
 }
 
 [data-theme="dark"] .serv5-footer-watermark,
 html.dark .serv5-footer-watermark {
-  color: rgba(255, 255, 255, 0.035) !important;
+  color: transparent !important;
+  background: linear-gradient(180deg,
+    rgba(96, 165, 250, 0.16) 0%,
+    rgba(37, 99, 235, 0.1) 40%,
+    rgba(249, 115, 22, 0.05) 75%,
+    rgba(249, 115, 22, 0.01) 100%) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.08) !important;
+  opacity: 0.9 !important;
+}
+
+[data-theme="dark"] .serv5-footer-bottom-mist,
+html.dark .serv5-footer-bottom-mist {
+  background: linear-gradient(180deg,
+    rgba(4, 7, 17, 0) 0%,
+    rgba(4, 7, 17, 0.45) 40%,
+    rgba(4, 7, 17, 0.88) 80%,
+    #040711 100%) !important;
 }
 
 /* =========================================================
