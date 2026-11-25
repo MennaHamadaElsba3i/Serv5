@@ -2351,6 +2351,118 @@ html.dark .wd-work-more:hover {
   color: #ffffff !important;
 }
 
+/* Mobile App Universe Showcase (/services/mobile-apps) in Dark Mode */
+[data-theme="dark"] .app-universe-section,
+html.dark .app-universe-section,
+.theme-dark .app-universe-section {
+  background:
+    radial-gradient(ellipse at 50% 58%, rgba(37, 99, 235, 0.22), transparent 32rem),
+    radial-gradient(ellipse at 88% 18%, rgba(234, 88, 12, 0.14), transparent 24rem),
+    linear-gradient(180deg, #090e1a 0%, #070b14 100%) !important;
+  border-block: 1px solid rgba(59, 130, 246, 0.22) !important;
+}
+
+[data-theme="dark"] .app-universe-heading p,
+html.dark .app-universe-heading p,
+.theme-dark .app-universe-heading p {
+  color: #e2e8f0 !important;
+}
+
+[data-theme="dark"] .app-universe-project,
+html.dark .app-universe-project,
+.theme-dark .app-universe-project {
+  background: #0d1527 !important;
+  border-color: rgba(59, 130, 246, 0.28) !important;
+  box-shadow: 0 18px 44px rgba(0, 0, 0, 0.65) !important;
+}
+
+[data-theme="dark"] .app-universe-project-mark,
+html.dark .app-universe-project-mark,
+.theme-dark .app-universe-project-mark {
+  color: #60a5fa !important;
+}
+
+[data-theme="dark"] .app-universe-project-mark span,
+[data-theme="dark"] .app-universe-project-count,
+html.dark .app-universe-project-mark span,
+html.dark .app-universe-project-count,
+.theme-dark .app-universe-project-mark span,
+.theme-dark .app-universe-project-count {
+  color: #94a3b8 !important;
+}
+
+[data-theme="dark"] .app-universe-project-copy h3,
+html.dark .app-universe-project-copy h3,
+.theme-dark .app-universe-project-copy h3 {
+  color: #f8fafc !important;
+}
+
+[data-theme="dark"] .app-universe-project-copy p,
+html.dark .app-universe-project-copy p,
+.theme-dark .app-universe-project-copy p {
+  color: #e2e8f0 !important;
+}
+
+[data-theme="dark"] .app-universe-store-link,
+html.dark .app-universe-store-link,
+.theme-dark .app-universe-store-link {
+  background: rgba(30, 58, 138, 0.35) !important;
+  border-color: rgba(96, 165, 250, 0.45) !important;
+  color: #93c5fd !important;
+}
+
+[data-theme="dark"] .app-universe-store-link:hover,
+html.dark .app-universe-store-link:hover,
+.theme-dark .app-universe-store-link:hover {
+  background: #2563eb !important;
+  border-color: #3b82f6 !important;
+  color: #ffffff !important;
+}
+
+[data-theme="dark"] .app-universe-connections path,
+html.dark .app-universe-connections path,
+.theme-dark .app-universe-connections path {
+  stroke: rgba(96, 165, 250, 0.38) !important;
+}
+
+[data-theme="dark"] .app-universe-floating-screen,
+html.dark .app-universe-floating-screen,
+.theme-dark .app-universe-floating-screen {
+  border-color: rgba(96, 165, 250, 0.35) !important;
+  box-shadow: 0 26px 60px rgba(0, 0, 0, 0.65), 0 0 0 1px rgba(59, 130, 246, 0.22) !important;
+}
+
+[data-theme="dark"] .app-universe-selector-item,
+html.dark .app-universe-selector-item,
+.theme-dark .app-universe-selector-item {
+  background: #0d1527 !important;
+  border-color: rgba(59, 130, 246, 0.25) !important;
+  color: #e2e8f0 !important;
+}
+
+[data-theme="dark"] .app-universe-selector-item:hover,
+html.dark .app-universe-selector-item:hover,
+.theme-dark .app-universe-selector-item:hover {
+  background: #111c33 !important;
+  border-color: #60a5fa !important;
+  color: #ffffff !important;
+}
+
+[data-theme="dark"] .app-universe-selector-item.is-selected,
+html.dark .app-universe-selector-item.is-selected,
+.theme-dark .app-universe-selector-item.is-selected {
+  background: rgba(30, 58, 138, 0.55) !important;
+  border-color: #3b82f6 !important;
+  color: #ffffff !important;
+  box-shadow: 0 7px 22px rgba(37, 99, 235, 0.35) !important;
+}
+
+[data-theme="dark"] .app-universe-selector-index,
+html.dark .app-universe-selector-index,
+.theme-dark .app-universe-selector-index {
+  color: #fb923c !important;
+}
+
 [data-theme="dark"] .wd-ux-section,
 html.dark .wd-ux-section,
 .theme-dark .wd-ux-section {
