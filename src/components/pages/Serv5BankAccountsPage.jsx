@@ -283,41 +283,42 @@ export default function Serv5BankAccountsPage({ lang = 'ar', onOpenConsultation 
 
               return (
                 <div key={account.id} className="bank-account-card">
-                  {/* Card Header with Metallic Gradient Accent */}
-                  <div className="bank-card-header" style={{ background: account.brandGradient }}>
-                    <div className="bank-card-header-top">
-                      <div className="bank-badge-pill" style={{ borderColor: `${account.accentColor}80` }}>
-                        <Building2 size={13} />
-                        <span>{account.tag}</span>
-                      </div>
-                      <span className="bank-currency-tag">{account.currency}</span>
-                    </div>
-
-                    <div className="bank-card-brand-row">
+                  {/* Card Header with Bank Logo as Simple Atmospheric Background */}
+                  <div
+                    className="bank-card-header"
+                    style={{ '--bank-accent': account.accentColor }}
+                  >
+                    <div className="bank-card-header-bg" aria-hidden="true">
+                      <span className="bank-card-header-glow" />
                       {account.logos ? (
-                        <div className="bank-wallets-logo-strip" aria-label={account.bankEn}>
+                        <div className="bank-card-bg-wallets">
                           {account.logos.map((item) => (
-                            <span className="bank-wallet-logo-chip" key={item.alt}>
-                              <img src={item.src} alt={item.alt} className="bank-wallet-logo-img" loading="eager" />
-                            </span>
+                            <img key={item.alt} src={item.src} alt="" loading="eager" />
                           ))}
                         </div>
                       ) : account.logo && (
-                        <div className="bank-card-logo-box">
-                          <img
-                            src={account.logo}
-                            alt={account.bankEn}
-                            className="bank-card-logo-img"
-                            loading="eager"
-                          />
-                        </div>
+                        <img
+                          src={account.logo}
+                          alt=""
+                          className="bank-card-bg-logo"
+                          loading="eager"
+                        />
                       )}
-                      <div className="bank-card-title-wrap">
-                        <h3 className="bank-card-title">{account.bankName}</h3>
-                        <div className="bank-card-beneficiary">
-                          <span className="beneficiary-label">{isRtl ? 'المستفيد:' : 'Beneficiary:'}</span>
-                          <strong className="beneficiary-name">{account.beneficiary}</strong>
+                    </div>
+
+                    <div className="bank-card-header-content">
+                      <div className="bank-card-header-top">
+                        <div className="bank-badge-pill">
+                          <Building2 size={13} />
+                          <span>{account.tag}</span>
                         </div>
+                        <span className="bank-currency-tag">{account.currency}</span>
+                      </div>
+
+                      <h3 className="bank-card-title">{account.bankName}</h3>
+                      <div className="bank-card-beneficiary">
+                        <span className="beneficiary-label">{isRtl ? 'المستفيد:' : 'Beneficiary:'}</span>
+                        <strong className="beneficiary-name">{account.beneficiary}</strong>
                       </div>
                     </div>
                   </div>

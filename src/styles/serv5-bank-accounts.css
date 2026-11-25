@@ -194,11 +194,101 @@
   box-shadow: 0 16px 36px rgba(37, 99, 235, 0.12);
 }
 
-/* Card Header */
+/* Card Header — Clean Glass Nav Surface + Logo Background */
 .bank-card-header {
-  padding: 1.5rem 1.75rem 1.35rem;
-  color: #ffffff;
+  --bank-accent: #2563eb;
+  padding: 1.35rem 1.65rem 1.3rem;
+  color: #0f172a;
   position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse 65% 90% at 92% 15%, rgba(37, 99, 235, 0.06), transparent 68%),
+    linear-gradient(145deg, #f8fbff 0%, #ffffff 100%);
+  border-bottom: 1px solid #e2e8f0;
+  isolation: isolate;
+}
+
+.bank-card-header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  inset-inline: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--bank-accent), transparent 85%);
+  z-index: 3;
+}
+
+.bank-card-header-bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.bank-card-header-glow {
+  position: absolute;
+  inset-inline-end: -1.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 240px;
+  height: 150px;
+  border-radius: 50%;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(255, 255, 255, 0.96) 0%,
+    rgba(255, 255, 255, 0.72) 45%,
+    transparent 78%
+  );
+  opacity: 0.75;
+}
+
+.bank-card-bg-logo {
+  position: absolute;
+  inset-inline-end: 1.15rem;
+  bottom: 0.75rem;
+  width: 156px;
+  height: 74px;
+  object-fit: contain;
+  object-position: center;
+  opacity: 0.34;
+  filter: saturate(1.12);
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 22%, #000 100%);
+  mask-image: linear-gradient(90deg, transparent 0%, #000 22%, #000 100%);
+  transition: transform 0.35s ease, opacity 0.35s ease;
+}
+
+[dir="rtl"] .bank-card-bg-logo {
+  -webkit-mask-image: linear-gradient(270deg, transparent 0%, #000 22%, #000 100%);
+  mask-image: linear-gradient(270deg, transparent 0%, #000 22%, #000 100%);
+}
+
+.bank-card-bg-wallets {
+  position: absolute;
+  inset-inline-end: 1.15rem;
+  bottom: 0.85rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  opacity: 0.34;
+  transition: transform 0.35s ease, opacity 0.35s ease;
+}
+
+.bank-card-bg-wallets img {
+  width: 44px;
+  height: 44px;
+  object-fit: contain;
+}
+
+.bank-account-card:hover .bank-card-bg-logo,
+.bank-account-card:hover .bank-card-bg-wallets {
+  opacity: 0.48;
+  transform: scale(1.04);
+}
+
+.bank-card-header-content {
+  position: relative;
+  z-index: 2;
 }
 
 .bank-card-header-top {
@@ -206,117 +296,42 @@
   align-items: center;
   justify-content: space-between;
   gap: 0.75rem;
-  margin-bottom: 0.85rem;
+  margin-bottom: 0.9rem;
+  flex-wrap: wrap;
 }
 
 .bank-badge-pill {
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
-  padding: 0.25rem 0.65rem;
+  padding: 0.28rem 0.7rem;
   border-radius: 9999px;
-  background: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  border: 1px solid rgba(255, 255, 255, 0.25);
+  background: rgba(15, 23, 42, 0.045);
+  border: 1px solid color-mix(in srgb, var(--bank-accent) 32%, transparent);
+  color: var(--bank-accent);
   font-size: 0.72rem;
-  font-weight: 700;
+  font-weight: 800;
   letter-spacing: 0.02em;
 }
 
 .bank-currency-tag {
-  font-size: 0.75rem;
+  font-size: 0.72rem;
   font-weight: 800;
-  opacity: 0.92;
   font-family: var(--font-mono, monospace);
-  padding: 0.2rem 0.55rem;
+  padding: 0.24rem 0.6rem;
   border-radius: 8px;
-  background: rgba(0, 0, 0, 0.2);
-}
-
-.bank-card-brand-row {
-  display: flex;
-  align-items: center;
-  gap: 0.95rem;
-}
-
-.bank-card-logo-box {
-  flex: 0 0 auto;
-  width: 96px;
-  height: 54px;
-  padding: 0.42rem 0.6rem;
-  border-radius: 14px;
-  background: rgba(255, 255, 255, 0.96);
-  border: 1px solid rgba(255, 255, 255, 0.45);
-  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.22);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-}
-
-.bank-card-logo-img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  display: block;
-}
-
-.bank-wallets-logo-strip {
-  flex: 0 0 auto;
-  display: flex;
-  align-items: center;
-  gap: 0.35rem;
-  padding: 0.35rem;
-  border-radius: 14px;
-  background: rgba(255, 255, 255, 0.96);
-  border: 1px solid rgba(255, 255, 255, 0.45);
-  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.22);
-}
-
-.bank-wallet-logo-chip {
-  width: 34px;
-  height: 34px;
-  border-radius: 9px;
-  background: #ffffff;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0.2rem;
-  overflow: hidden;
-}
-
-.bank-wallet-logo-img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  display: block;
-}
-
-.bank-card-title-wrap {
-  min-width: 0;
-  flex: 1 1 auto;
+  background: rgba(15, 23, 42, 0.06);
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  color: #334155;
 }
 
 .bank-card-title {
   font-size: 1.28rem;
   font-weight: 900;
   margin: 0 0 0.45rem;
-  color: #ffffff;
+  color: #0f172a;
   letter-spacing: -0.01em;
-}
-
-@media (max-width: 480px) {
-  .bank-card-brand-row {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.7rem;
-  }
-
-  .bank-card-logo-box {
-    width: 88px;
-    height: 48px;
-  }
+  max-width: calc(100% - 140px);
 }
 
 .bank-card-beneficiary {
@@ -324,17 +339,40 @@
   align-items: baseline;
   gap: 0.4rem;
   font-size: 0.82rem;
-  opacity: 0.95;
   flex-wrap: wrap;
+  max-width: calc(100% - 140px);
 }
 
 .beneficiary-label {
-  opacity: 0.8;
+  color: #64748b;
+  font-weight: 600;
 }
 
 .beneficiary-name {
   font-weight: 800;
-  color: #ffffff;
+  color: #1e293b;
+}
+
+@media (max-width: 520px) {
+  .bank-card-title,
+  .bank-card-beneficiary {
+    max-width: 100%;
+  }
+
+  .bank-card-bg-logo {
+    width: 120px;
+    height: 58px;
+    opacity: 0.24;
+  }
+
+  .bank-card-bg-wallets {
+    opacity: 0.24;
+  }
+
+  .bank-card-bg-wallets img {
+    width: 34px;
+    height: 34px;
+  }
 }
 
 /* Card Body */
@@ -1208,6 +1246,69 @@ html.dark .bank-account-card {
 html.dark .bank-account-card:hover {
   border-color: rgba(96, 165, 250, 0.45) !important;
   box-shadow: 0 18px 42px rgba(0, 0, 0, 0.75), 0 0 20px rgba(37, 99, 235, 0.18) !important;
+}
+
+[data-theme="dark"] .bank-card-header,
+html.dark .bank-card-header {
+  background:
+    radial-gradient(ellipse 68% 95% at 92% 20%, color-mix(in srgb, var(--bank-accent) 18%, transparent), transparent 68%),
+    linear-gradient(145deg, #111b33 0%, #0b1325 100%) !important;
+  border-bottom-color: rgba(59, 130, 246, 0.2) !important;
+  color: #f8fafc !important;
+}
+
+[data-theme="dark"] .bank-card-header-glow,
+html.dark .bank-card-header-glow {
+  background: radial-gradient(
+    ellipse at center,
+    rgba(255, 255, 255, 0.88) 0%,
+    rgba(255, 255, 255, 0.44) 44%,
+    transparent 76%
+  );
+  opacity: 0.9;
+}
+
+[data-theme="dark"] .bank-card-bg-logo,
+[data-theme="dark"] .bank-card-bg-wallets,
+html.dark .bank-card-bg-logo,
+html.dark .bank-card-bg-wallets {
+  opacity: 0.72;
+}
+
+[data-theme="dark"] .bank-account-card:hover .bank-card-bg-logo,
+[data-theme="dark"] .bank-account-card:hover .bank-card-bg-wallets,
+html.dark .bank-account-card:hover .bank-card-bg-logo,
+html.dark .bank-account-card:hover .bank-card-bg-wallets {
+  opacity: 0.9;
+}
+
+[data-theme="dark"] .bank-badge-pill,
+html.dark .bank-badge-pill {
+  background: rgba(15, 23, 42, 0.68) !important;
+  border-color: color-mix(in srgb, var(--bank-accent) 50%, transparent) !important;
+  color: #e2e8f0 !important;
+}
+
+[data-theme="dark"] .bank-currency-tag,
+html.dark .bank-currency-tag {
+  background: rgba(255, 255, 255, 0.08) !important;
+  border-color: rgba(255, 255, 255, 0.14) !important;
+  color: #e2e8f0 !important;
+}
+
+[data-theme="dark"] .bank-card-title,
+html.dark .bank-card-title {
+  color: #f8fafc !important;
+}
+
+[data-theme="dark"] .beneficiary-label,
+html.dark .beneficiary-label {
+  color: #94a3b8 !important;
+}
+
+[data-theme="dark"] .beneficiary-name,
+html.dark .beneficiary-name {
+  color: #e2e8f0 !important;
 }
 
 [data-theme="dark"] .bank-data-row,
