@@ -2367,6 +2367,12 @@ html.dark .wd-ux-copy h2,
   color: #f8fafc !important;
 }
 
+[data-theme="dark"] .wd-ux-copy h2 .wd-ux-accent,
+html.dark .wd-ux-copy h2 .wd-ux-accent,
+.theme-dark .wd-ux-copy h2 .wd-ux-accent {
+  color: #fb923c !important;
+}
+
 [data-theme="dark"] .wd-ux-copy > p,
 html.dark .wd-ux-copy > p,
 .theme-dark .wd-ux-copy > p {
