@@ -17,6 +17,7 @@ import RobotMascotGuide from './components/mascot/RobotMascotGuide';
 import Serv5KineticIntro from './components/intro/Serv5KineticIntro';
 import Serv5ContextualCursor from './components/ui/Serv5ContextualCursor';
 import { Play } from 'lucide-react';
+import TechnicalSupportPage from './components/pages/TechnicalSupportPage';
 
 export default function App() {
   const [lang, setLang] = useState('ar');
@@ -51,6 +52,12 @@ export default function App() {
   const handleCloseConsultation = () => {
     setModalOpen(false);
   };
+
+  // The support redesign is a standalone route. Existing marketing routes and
+  // their data flows continue to use the current application.
+  if (/^(\/(ar|en))?\/(technical-support|services\/services-aldaam-alfny)\/?$/i.test(window.location.pathname)) {
+    return <TechnicalSupportPage />;
+  }
 
   return (
     <div className={`serv5-world-root ${lang === 'ar' ? 'dir-rtl' : 'dir-ltr'}`}>
