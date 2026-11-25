@@ -1,15 +1,12 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   Volume2,
-  VolumeX,
   Play,
   Pause,
   X,
   ArrowRight,
-  ArrowLeft,
-  Sparkles,
-  Maximize2
+  ArrowLeft
 } from 'lucide-react';
 import '../../styles/serv5-kinetic-intro.css';
 
@@ -18,8 +15,8 @@ export default function Serv5VideoIntro({ onComplete, lang = 'ar' }) {
   const ArrowIcon = isRtl ? ArrowLeft : ArrowRight;
 
   const videoRef = useRef(null);
-  const [isPlaying, setIsPlaying] = useState(true);
-  const [isMuted, setIsMuted] = useState(false);
+  const isExitingRef = useRef(false);
+  const [isPlaying, setIsPlaying] = useState(false);
   const [needsSoundGesture, setNeedsSoundGesture] = useState(false);
   const [progress, setProgress] = useState(0);
   const [currentTimeStr, setCurrentTimeStr] = useState('00:00');
@@ -33,48 +30,76 @@ export default function Serv5VideoIntro({ onComplete, lang = 'ar' }) {
     return `${m < 10 ? '0' : ''}${m}:${s < 10 ? '0' : ''}${s}`;
   };
 
-  const handleComplete = () => {
-    if (isExiting) return;
+  const enforceSound = useCallback((video) => {
+    if (!video) return;
+    video.muted = false;
+    video.defaultMuted = false;
+    if (video.volume < 1) {
+      video.volume = 1;
+    }
+  }, []);
+
+  const handleComplete = useCallback(() => {
+    if (isExitingRef.current) return;
+    isExitingRef.current = true;
     setIsExiting(true);
     setTimeout(() => {
       if (onComplete) onComplete();
     }, 650);
-  };
+  }, [onComplete]);
 
-  // Video Autoplay & Browser Audio Policy Handling
+  const playWithSound = useCallback(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    enforceSound(video);
+    const playPromise = video.play();
+
+    if (playPromise !== undefined) {
+      playPromise
+        .then(() => {
+          enforceSound(video);
+          setIsPlaying(true);
+          setNeedsSoundGesture(false);
+        })
+        .catch(() => {
+          // Never fall back to muted playback; wait for a user gesture to start with sound
+          enforceSound(video);
+          video.pause();
+          setIsPlaying(false);
+          setNeedsSoundGesture(true);
+        });
+    } else {
+      setIsPlaying(!video.paused);
+      setNeedsSoundGesture(false);
+    }
+  }, [enforceSound]);
+
+  const togglePlayPause = useCallback(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    if (video.paused) {
+      playWithSound();
+    } else {
+      video.pause();
+      setIsPlaying(false);
+    }
+  }, [playWithSound]);
+
+  // Attempt unmuted autoplay on mount; never fall back to muted playback
   useEffect(() => {
     const originalOverflow = document.body.style.overflow;
     document.body.style.overflow = 'hidden';
 
-    const video = videoRef.current;
-    if (video) {
-      video.muted = false;
-      const playPromise = video.play();
-
-      if (playPromise !== undefined) {
-        playPromise
-          .then(() => {
-            setIsPlaying(true);
-            setIsMuted(false);
-          })
-          .catch(() => {
-            // Browser blocked unmuted autoplay: fallback to muted autoplay and notify user
-            video.muted = true;
-            setIsMuted(true);
-            setNeedsSoundGesture(true);
-            video.play().then(() => setIsPlaying(true)).catch(() => {});
-          });
-      }
-    }
+    playWithSound();
 
     const handleKeyDown = (e) => {
       if (e.key === 'Escape') {
         handleComplete();
-      } else if (e.key === ' ') {
+      } else if (e.key === ' ' || e.key === 'Enter') {
         e.preventDefault();
         togglePlayPause();
-      } else if (e.key === 'm' || e.key === 'M') {
-        toggleMute();
       }
     };
 
@@ -84,43 +109,7 @@ export default function Serv5VideoIntro({ onComplete, lang = 'ar' }) {
       document.body.style.overflow = originalOverflow;
       window.removeEventListener('keydown', handleKeyDown);
     };
-  }, []);
-
-  const togglePlayPause = () => {
-    const video = videoRef.current;
-    if (!video) return;
-
-    if (video.paused) {
-      video.play();
-      setIsPlaying(true);
-    } else {
-      video.pause();
-      setIsPlaying(false);
-    }
-  };
-
-  const toggleMute = () => {
-    const video = videoRef.current;
-    if (!video) return;
-
-    video.muted = !video.muted;
-    setIsMuted(video.muted);
-    if (!video.muted) {
-      setNeedsSoundGesture(false);
-    }
-  };
-
-  const handleUnmuteGesture = () => {
-    const video = videoRef.current;
-    if (!video) return;
-    video.muted = false;
-    setIsMuted(false);
-    setNeedsSoundGesture(false);
-    if (video.paused) {
-      video.play();
-      setIsPlaying(true);
-    }
-  };
+  }, [playWithSound, togglePlayPause, handleComplete]);
 
   const handleTimeUpdate = () => {
     const video = videoRef.current;
@@ -135,8 +124,22 @@ export default function Serv5VideoIntro({ onComplete, lang = 'ar' }) {
     setDurationStr(formatTime(dur));
   };
 
+  const handleVolumeChange = () => {
+    const video = videoRef.current;
+    if (!video) return;
+    if (video.muted || video.volume < 1) {
+      enforceSound(video);
+    }
+  };
+
   const handleVideoEnded = () => {
     handleComplete();
+  };
+
+  const handleRootClick = () => {
+    if (needsSoundGesture) {
+      playWithSound();
+    }
   };
 
   return (
@@ -145,6 +148,7 @@ export default function Serv5VideoIntro({ onComplete, lang = 'ar' }) {
         <motion.div
           key="serv5-video-intro-screen"
           className="serv5-video-intro-root"
+          onClick={handleRootClick}
           initial={{ opacity: 1, y: 0 }}
           exit={{
             y: '-100%',
@@ -171,23 +175,14 @@ export default function Serv5VideoIntro({ onComplete, lang = 'ar' }) {
               </span>
             </div>
 
-            {/* Quick Actions (Sound & Skip) */}
+            {/* Skip Action */}
             <div className="video-intro-top-actions">
-              {/* Sound Toggle */}
               <button
                 type="button"
-                onClick={toggleMute}
-                className={`video-control-pill-btn ${isMuted ? 'is-muted' : ''}`}
-                title={isMuted ? (isRtl ? 'تشغيل الصوت (M)' : 'Unmute (M)') : (isRtl ? 'كتم الصوت (M)' : 'Mute (M)')}
-              >
-                {isMuted ? <VolumeX size={15} /> : <Volume2 size={15} />}
-                <span>{isMuted ? (isRtl ? 'الصوت مكتوم' : 'Muted') : (isRtl ? 'الصوت مفعّل' : 'Sound On')}</span>
-              </button>
-
-              {/* Skip to Site */}
-              <button
-                type="button"
-                onClick={handleComplete}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handleComplete();
+                }}
                 className="video-skip-site-btn"
                 title={isRtl ? 'تخطي إلى الموقع (Esc)' : 'Skip to Website (Esc)'}
               >
@@ -210,11 +205,14 @@ export default function Serv5VideoIntro({ onComplete, lang = 'ar' }) {
                 src="/serv5-intro.mp4"
                 poster="/serv5-intro-poster.jpg"
                 playsInline
-                autoPlay
                 preload="auto"
                 onTimeUpdate={handleTimeUpdate}
+                onVolumeChange={handleVolumeChange}
                 onEnded={handleVideoEnded}
-                onClick={togglePlayPause}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  togglePlayPause();
+                }}
               >
                 {/* Fallback sources */}
                 <source src="/serv5-intro.mp4" type="video/mp4" />
@@ -222,31 +220,34 @@ export default function Serv5VideoIntro({ onComplete, lang = 'ar' }) {
                 {isRtl ? 'متصفحك لا يدعم تشغيل هذا الفيديو.' : 'Your browser does not support the video tag.'}
               </video>
 
-              {/* Pause Overlay Indicator */}
+              {/* Pause / Tap-to-Start-With-Sound Overlay */}
               {!isPlaying && (
-                <div className="video-pause-overlay" onClick={togglePlayPause}>
+                <div
+                  className="video-pause-overlay"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    playWithSound();
+                  }}
+                >
                   <div className="play-pulse-circle">
                     <Play size={28} fill="currentColor" />
                   </div>
-                  <span>{isRtl ? 'انقر للاستئناف' : 'Click to Resume'}</span>
+                  <div className="video-sound-overlay-label">
+                    <Volume2 size={18} className="unmute-anim-icon" />
+                    <span>
+                      {needsSoundGesture
+                        ? (isRtl ? 'اضغط لتشغيل المقدمة بالصوت' : 'Click to Play Intro with Sound')
+                        : (isRtl ? 'انقر للاستئناف بالصوت' : 'Click to Resume with Sound')}
+                    </span>
+                  </div>
                 </div>
               )}
 
-              {/* Floating "Click to Unmute" Prompt if browser muted autoplay */}
-              {needsSoundGesture && isPlaying && (
-                <button
-                  type="button"
-                  className="floating-unmute-prompt"
-                  onClick={handleUnmuteGesture}
-                  title={isRtl ? 'انقر لتشغيل الصوت' : 'Click to Unmute'}
-                >
-                  <Volume2 size={18} className="unmute-anim-icon" />
-                  <span>{isRtl ? 'انقر للاستماع إلى الصوت 🔊' : 'Tap to enable audio 🔊'}</span>
-                </button>
-              )}
-
               {/* Bottom Integrated Controls Bar */}
-              <div className="video-player-bottom-bar">
+              <div
+                className="video-player-bottom-bar"
+                onClick={(e) => e.stopPropagation()}
+              >
                 {/* Play/Pause Button */}
                 <button
                   type="button"
@@ -257,25 +258,18 @@ export default function Serv5VideoIntro({ onComplete, lang = 'ar' }) {
                   {isPlaying ? <Pause size={15} /> : <Play size={15} fill="currentColor" />}
                 </button>
 
-                {/* Sound Button */}
-                <button
-                  type="button"
-                  className="bar-icon-btn"
-                  onClick={toggleMute}
-                  title={isMuted ? 'Unmute' : 'Mute'}
-                >
-                  {isMuted ? <VolumeX size={15} /> : <Volume2 size={15} />}
-                </button>
-
                 {/* Progress Track */}
-                <div className="video-timeline-track" onClick={(e) => {
-                  const rect = e.currentTarget.getBoundingClientRect();
-                  const clickX = e.clientX - rect.left;
-                  const ratio = Math.max(0, Math.min(1, clickX / rect.width));
-                  if (videoRef.current && videoRef.current.duration) {
-                    videoRef.current.currentTime = ratio * videoRef.current.duration;
-                  }
-                }}>
+                <div
+                  className="video-timeline-track"
+                  onClick={(e) => {
+                    const rect = e.currentTarget.getBoundingClientRect();
+                    const clickX = e.clientX - rect.left;
+                    const ratio = Math.max(0, Math.min(1, clickX / rect.width));
+                    if (videoRef.current && videoRef.current.duration) {
+                      videoRef.current.currentTime = ratio * videoRef.current.duration;
+                    }
+                  }}
+                >
                   <div
                     className="video-timeline-fill"
                     style={{ width: `${progress}%` }}
@@ -309,7 +303,7 @@ export default function Serv5VideoIntro({ onComplete, lang = 'ar' }) {
               SERV5 DIGITAL CO. · 16+ YEARS OF ENGINEERING
             </span>
             <div className="footer-keys-hint">
-              <span>{isRtl ? 'اضغط Space للإيقاف · Esc للتخطي · M للصوت' : 'Press Space to Pause · Esc to Skip · M for Mute'}</span>
+              <span>{isRtl ? 'اضغط Space للتشغيل/الإيقاف · Esc للتخطي' : 'Press Space to Play/Pause · Esc to Skip'}</span>
             </div>
             <span className="footer-locale font-mono">
               {isRtl ? 'المملكة العربية السعودية & مصر' : 'SAUDI ARABIA & EGYPT'}
