@@ -1548,14 +1548,14 @@ export default function Serv5WebDesignPage({ lang = 'ar', onOpenConsultation, va
                     data-wd-reveal
                     style={{
                       '--wd-delay': `${index * 90}ms`,
-                      '--wd-work-angle': `${-position * 42}deg`,
-                      '--wd-work-depth': `${54 - edge * 150}px`,
+                      '--wd-work-angle': `${-position * 14}deg`,
+                      '--wd-work-depth': `${18 - edge * 48}px`,
                       zIndex: Math.round(10 - edge * 5)
                     }}
                     key={`${item.title}-${index}`}
                   >
                     <div className="wd-work-shot">
-                      <img src={item.image} alt={item.title} loading="lazy" draggable="false" />
+                      <img src={item.image} alt={item.title} loading="eager" decoding="async" draggable="false" />
                     </div>
                     <div className="wd-work-meta">
                       <h3>{item.title}</h3>

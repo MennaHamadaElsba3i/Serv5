@@ -48,6 +48,7 @@ export default function Serv5BankAccountsPage({ lang = 'ar', onOpenConsultation 
     {
       id: 'nbe',
       category: 'egypt',
+      logo: '/images/banks/nbe.svg',
       bankName: isRtl ? 'البنك الأهلي المصري' : 'National Bank of Egypt (NBE)',
       bankEn: 'National Bank of Egypt',
       tag: isRtl ? 'الحساب المؤسسي الرئيسي' : 'Primary Corporate Account',
@@ -65,6 +66,7 @@ export default function Serv5BankAccountsPage({ lang = 'ar', onOpenConsultation 
     {
       id: 'banque-misr',
       category: 'egypt',
+      logo: '/images/banks/banque-misr.svg',
       bankName: isRtl ? 'بنك مصر' : 'Banque Misr',
       bankEn: 'Banque Misr',
       tag: isRtl ? 'حساب جاري مؤسسي' : 'Corporate Current Account',
@@ -82,6 +84,7 @@ export default function Serv5BankAccountsPage({ lang = 'ar', onOpenConsultation 
     {
       id: 'alrajhi',
       category: 'gulf',
+      logo: '/images/banks/alrajhi.svg',
       bankName: isRtl ? 'مصرف الراجحي (المملكة العربية السعودية)' : 'Al Rajhi Bank (Saudi Arabia & GCC)',
       bankEn: 'Al Rajhi Bank',
       tag: isRtl ? 'لعملاء السعودية والخليج' : 'Saudi Arabia & Gulf Clients',
@@ -99,6 +102,7 @@ export default function Serv5BankAccountsPage({ lang = 'ar', onOpenConsultation 
     {
       id: 'credit-agricole',
       category: 'egypt',
+      logo: '/images/banks/credit-agricole.svg',
       bankName: isRtl ? 'بنك كريدي أجريكول مصر' : 'Crédit Agricole Egypt',
       bankEn: 'Crédit Agricole Egypt',
       tag: isRtl ? 'التحويلات والعملات الدولية' : 'Multi-Currency Account',
@@ -116,6 +120,7 @@ export default function Serv5BankAccountsPage({ lang = 'ar', onOpenConsultation 
     {
       id: 'united-bank',
       category: 'egypt',
+      logo: '/images/banks/united-bank.svg',
       bankName: isRtl ? 'المصرف المتحد' : 'The United Bank of Egypt',
       bankEn: 'The United Bank of Egypt',
       tag: isRtl ? 'حساب جاري تجاري' : 'Commercial Account',
@@ -133,6 +138,7 @@ export default function Serv5BankAccountsPage({ lang = 'ar', onOpenConsultation 
     {
       id: 'instapay',
       category: 'instant',
+      logo: '/images/banks/instapay.png',
       bankName: isRtl ? 'شبكة المدفوعات اللحظية (InstaPay)' : 'InstaPay National Instant Payment',
       bankEn: 'InstaPay Egypt (IPA)',
       tag: isRtl ? 'دفع لحظي فوري 24/7' : 'Instant 24/7 Zero Fees',
@@ -150,6 +156,11 @@ export default function Serv5BankAccountsPage({ lang = 'ar', onOpenConsultation 
     {
       id: 'wallets',
       category: 'instant',
+      logos: [
+        { src: '/images/banks/vodafone.svg', alt: 'Vodafone Cash' },
+        { src: '/images/banks/orange.svg', alt: 'Orange Cash' },
+        { src: '/images/banks/etisalat.svg', alt: 'Etisalat Cash' }
+      ],
       bankName: isRtl ? 'محافظ الهاتف الذكي (كاش)' : 'Smart Mobile Wallets (Cash)',
       bankEn: 'Vodafone / Orange / Etisalat / WE Cash',
       tag: isRtl ? 'فودافون وأورنج واتصالات كاش' : 'Instant Mobile Cash',
@@ -167,6 +178,7 @@ export default function Serv5BankAccountsPage({ lang = 'ar', onOpenConsultation 
     {
       id: 'egypt-post',
       category: 'instant',
+      logo: '/images/banks/egypt-post.svg',
       bankName: isRtl ? 'الهيئة القومية للبريد المصري' : 'Egypt Post Authority',
       bankEn: 'Egypt Post Office',
       tag: isRtl ? 'إيداع وحوالات بريدية' : 'Post Office Direct Deposit',
@@ -281,10 +293,32 @@ export default function Serv5BankAccountsPage({ lang = 'ar', onOpenConsultation 
                       <span className="bank-currency-tag">{account.currency}</span>
                     </div>
 
-                    <h3 className="bank-card-title">{account.bankName}</h3>
-                    <div className="bank-card-beneficiary">
-                      <span className="beneficiary-label">{isRtl ? 'المستفيد:' : 'Beneficiary:'}</span>
-                      <strong className="beneficiary-name">{account.beneficiary}</strong>
+                    <div className="bank-card-brand-row">
+                      {account.logos ? (
+                        <div className="bank-wallets-logo-strip" aria-label={account.bankEn}>
+                          {account.logos.map((item) => (
+                            <span className="bank-wallet-logo-chip" key={item.alt}>
+                              <img src={item.src} alt={item.alt} className="bank-wallet-logo-img" loading="eager" />
+                            </span>
+                          ))}
+                        </div>
+                      ) : account.logo && (
+                        <div className="bank-card-logo-box">
+                          <img
+                            src={account.logo}
+                            alt={account.bankEn}
+                            className="bank-card-logo-img"
+                            loading="eager"
+                          />
+                        </div>
+                      )}
+                      <div className="bank-card-title-wrap">
+                        <h3 className="bank-card-title">{account.bankName}</h3>
+                        <div className="bank-card-beneficiary">
+                          <span className="beneficiary-label">{isRtl ? 'المستفيد:' : 'Beneficiary:'}</span>
+                          <strong className="beneficiary-name">{account.beneficiary}</strong>
+                        </div>
+                      </div>
                     </div>
                   </div>
 

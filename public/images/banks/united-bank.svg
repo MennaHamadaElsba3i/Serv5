@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 88" fill="none">
+  <defs>
+    <linearGradient id="ubBlue" x1="0" y1="0" x2="72" y2="72" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#003d82"/>
+      <stop offset="100%" stop-color="#0088ce"/>
+    </linearGradient>
+    <linearGradient id="ubAccent" x1="16" y1="14" x2="64" y2="62" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="100%" stop-color="#0284c7"/>
+    </linearGradient>
+  </defs>
+  <rect x="8" y="10" width="68" height="68" rx="16" fill="url(#ubBlue)"/>
+  <path d="M23 27V44C23 51.7 28.8 57 36.2 57C43.6 57 49.4 51.7 49.4 44V27H42.2V43.8C42.2 47.6 39.7 50.2 36.2 50.2C32.7 50.2 30.2 47.6 30.2 43.8V27H23Z" fill="#ffffff"/>
+  <path d="M46.5 27H57.5C62.2 27 65.5 29.9 65.5 34.1C65.5 37 63.9 39.2 61.3 40.3C64.4 41.3 66.4 43.8 66.4 47.2C66.4 52 62.7 55.2 57.3 55.2H46.5V48.8H56.4C58.6 48.8 60 47.7 60 46C60 44.3 58.6 43.2 56.4 43.2H49.8V37.3H55.9C58 37.3 59.3 36.3 59.3 34.7C59.3 33.2 58 32.2 55.9 32.2H46.5V27Z" fill="url(#ubAccent)"/>
+  <text x="90" y="39" fill="#0f2d5e" font-family="system-ui, -apple-system, 'IBM Plex Sans Arabic', sans-serif" font-size="18" font-weight="800">المصرف المتحد</text>
+  <text x="90" y="61" fill="#0066b2" font-family="system-ui, -apple-system, 'Manrope', sans-serif" font-size="14" font-weight="800" letter-spacing="0.4">THE UNITED BANK</text>
+</svg>

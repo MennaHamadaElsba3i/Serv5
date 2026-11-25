@@ -234,12 +234,89 @@
   background: rgba(0, 0, 0, 0.2);
 }
 
+.bank-card-brand-row {
+  display: flex;
+  align-items: center;
+  gap: 0.95rem;
+}
+
+.bank-card-logo-box {
+  flex: 0 0 auto;
+  width: 96px;
+  height: 54px;
+  padding: 0.42rem 0.6rem;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.96);
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.22);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.bank-card-logo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.bank-wallets-logo-strip {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.35rem;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.96);
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.22);
+}
+
+.bank-wallet-logo-chip {
+  width: 34px;
+  height: 34px;
+  border-radius: 9px;
+  background: #ffffff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.2rem;
+  overflow: hidden;
+}
+
+.bank-wallet-logo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.bank-card-title-wrap {
+  min-width: 0;
+  flex: 1 1 auto;
+}
+
 .bank-card-title {
-  font-size: 1.35rem;
+  font-size: 1.28rem;
   font-weight: 900;
-  margin: 0 0 0.6rem;
+  margin: 0 0 0.45rem;
   color: #ffffff;
   letter-spacing: -0.01em;
+}
+
+@media (max-width: 480px) {
+  .bank-card-brand-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.7rem;
+  }
+
+  .bank-card-logo-box {
+    width: 88px;
+    height: 48px;
+  }
 }
 
 .bank-card-beneficiary {
