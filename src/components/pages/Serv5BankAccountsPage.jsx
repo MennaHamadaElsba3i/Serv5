@@ -67,6 +67,7 @@ export default function Serv5BankAccountsPage({ lang = 'ar', onOpenConsultation 
       id: 'banque-misr',
       category: 'egypt',
       logo: '/images/banks/banque-misr.svg',
+      logoDark: '/images/banks/banque-misr-dark.svg',
       bankName: isRtl ? 'بنك مصر' : 'Banque Misr',
       bankEn: 'Banque Misr',
       tag: isRtl ? 'حساب جاري مؤسسي' : 'Corporate Current Account',
@@ -85,6 +86,7 @@ export default function Serv5BankAccountsPage({ lang = 'ar', onOpenConsultation 
       id: 'alrajhi',
       category: 'gulf',
       logo: '/images/banks/alrajhi.svg',
+      logoDark: '/images/banks/alrajhi-dark.svg',
       bankName: isRtl ? 'مصرف الراجحي (المملكة العربية السعودية)' : 'Al Rajhi Bank (Saudi Arabia & GCC)',
       bankEn: 'Al Rajhi Bank',
       tag: isRtl ? 'لعملاء السعودية والخليج' : 'Saudi Arabia & Gulf Clients',
@@ -121,6 +123,7 @@ export default function Serv5BankAccountsPage({ lang = 'ar', onOpenConsultation 
       id: 'united-bank',
       category: 'egypt',
       logo: '/images/banks/united-bank.svg',
+      logoDark: '/images/banks/united-bank-dark.svg',
       bankName: isRtl ? 'المصرف المتحد' : 'The United Bank of Egypt',
       bankEn: 'The United Bank of Egypt',
       tag: isRtl ? 'حساب جاري تجاري' : 'Commercial Account',
@@ -138,7 +141,8 @@ export default function Serv5BankAccountsPage({ lang = 'ar', onOpenConsultation 
     {
       id: 'instapay',
       category: 'instant',
-      logo: '/images/banks/instapay.png',
+      logo: '/images/banks/instapay-light.png',
+      logoDark: '/images/banks/instapay-dark.png',
       bankName: isRtl ? 'شبكة المدفوعات اللحظية (InstaPay)' : 'InstaPay National Instant Payment',
       bankEn: 'InstaPay Egypt (IPA)',
       tag: isRtl ? 'دفع لحظي فوري 24/7' : 'Instant 24/7 Zero Fees',
@@ -289,7 +293,6 @@ export default function Serv5BankAccountsPage({ lang = 'ar', onOpenConsultation 
                     style={{ '--bank-accent': account.accentColor }}
                   >
                     <div className="bank-card-header-bg" aria-hidden="true">
-                      <span className="bank-card-header-glow" />
                       {account.logos ? (
                         <div className="bank-card-bg-wallets">
                           {account.logos.map((item) => (
@@ -297,12 +300,22 @@ export default function Serv5BankAccountsPage({ lang = 'ar', onOpenConsultation 
                           ))}
                         </div>
                       ) : account.logo && (
-                        <img
-                          src={account.logo}
-                          alt=""
-                          className="bank-card-bg-logo"
-                          loading="eager"
-                        />
+                        <>
+                          <img
+                            src={account.logo}
+                            alt=""
+                            className={`bank-card-bg-logo${account.logoDark ? ' bank-logo-light-only' : ' bank-logo-brighten-dark'}`}
+                            loading="eager"
+                          />
+                          {account.logoDark && (
+                            <img
+                              src={account.logoDark}
+                              alt=""
+                              className="bank-card-bg-logo bank-logo-dark-only"
+                              loading="eager"
+                            />
+                          )}
+                        </>
                       )}
                     </div>
 
