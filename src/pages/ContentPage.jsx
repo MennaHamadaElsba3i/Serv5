@@ -5,15 +5,18 @@ import {
   ArrowUpRight,
   BadgeCheck,
   Check,
-  CloudCog,
   Gauge,
   HardDrive,
   Headphones,
   LockKeyhole,
   PanelTop,
+  Building2,
+  ListFilter,
+  Rocket,
   Server,
   ShieldCheck,
   Sparkles,
+  Store,
   Users,
   Zap
 } from 'lucide-react';
@@ -124,6 +127,7 @@ function HostingFeatureArtwork({ index }) {
 function HostingPage({ isRtl, onOpenConsultation }) {
   const pageRef = useRef(null);
   const [eggOpen, setEggOpen] = useState(false);
+  const [activePlanFilter, setActivePlanFilter] = useState('all');
   const [activeBenefitIndex, setActiveBenefitIndex] = useState(0);
   const eggClicks = useRef(0);
   const eggTimer = useRef(null);
@@ -232,6 +236,18 @@ function HostingPage({ isRtl, onOpenConsultation }) {
         features: ['Unlimited NVMe storage', 'Host unlimited websites', 'Hourly database backups', 'Advanced firewall protection for your server', 'Free, secure website migration', 'Dedicated account manager', '24/7 priority technical support']
       }
     ];
+
+  const planCategories = [
+    { id: 'starter', icon: Rocket, ar: 'للمواقع الناشئة', en: 'Starter websites', filterAr: 'مواقع ناشئة', filterEn: 'Starter websites' },
+    { id: 'business', icon: Store, ar: 'للشركات والمتاجر', en: 'Businesses & stores', filterAr: 'شركات ومتاجر', filterEn: 'Businesses & stores' },
+    { id: 'enterprise', icon: Building2, ar: 'للتطبيقات والمواقع عالية الحركة', en: 'High-traffic platforms', filterAr: 'منصات عالية الحركة', filterEn: 'High-traffic platforms' }
+  ];
+  const categorizedPlans = plans.map((plan, index) => ({ ...plan, ...planCategories[index] }));
+  const planFilters = [
+    { id: 'all', icon: ListFilter, ar: 'كل الباقات', en: 'All plans' },
+    ...planCategories.map(({ id, icon, filterAr, filterEn }) => ({ id, icon, ar: filterAr, en: filterEn }))
+  ];
+  const visiblePlans = categorizedPlans.filter((plan) => activePlanFilter === 'all' || plan.id === activePlanFilter);
 
   const migrationSteps = isRtl
     ? [
@@ -379,13 +395,28 @@ function HostingPage({ isRtl, onOpenConsultation }) {
             <span>{isRtl ? 'باقات واضحة تناسب احتياجك' : 'SIMPLE PLANS, CLEAR CHOICES'}</span>
             <h2>{isRtl ? 'اختر باقة الاستضافة المثالية لأعمالك' : 'Find the right hosting plan for your business'}</h2>
           </header>
-          <div className="hosting-plan-layout">
-            {plans.map((plan, index) => (
+          <div className="hosting-plan-filters" role="group" aria-label={isRtl ? 'فلترة باقات الاستضافة' : 'Filter hosting plans'}>
+            {planFilters.map(({ id, icon: FilterIcon, ar, en }) => (
+              <button
+                type="button"
+                className={`hosting-plan-filter${activePlanFilter === id ? ' is-active' : ''}`}
+                aria-pressed={activePlanFilter === id}
+                key={id}
+                onClick={() => setActivePlanFilter(id)}
+              >
+                <FilterIcon size={16} aria-hidden="true" />
+                <span>{isRtl ? ar : en}</span>
+              </button>
+            ))}
+          </div>
+          <div className={`hosting-plan-layout${activePlanFilter !== 'all' ? ' is-filtered' : ''}`}>
+            {visiblePlans.map((plan, index) => {
+              const PlanIcon = plan.icon;
+              return (
               <TiltCard
                 as="article"
-                className={`hosting-plan-card hosting-reveal${plan.featured ? ' is-featured' : ''}`}
-                data-hosting-reveal
-                style={{ '--hosting-delay': `${index === 1 ? 0 : index === 0 ? 170 : 340}ms` }}
+                className={`hosting-plan-card hosting-plan-card-${plan.id}${plan.featured ? ' is-featured' : ''}`}
+                style={{ '--hosting-delay': activePlanFilter === 'all' ? `${index === 1 ? 0 : index === 0 ? 170 : 340}ms` : '0ms' }}
                 key={plan.name}
               >
                 {plan.featured && (
@@ -394,9 +425,10 @@ function HostingPage({ isRtl, onOpenConsultation }) {
                   </span>
                 )}
                 <div className="hosting-plan-title-row">
-                  <span className="hosting-plan-icon"><CloudCog size={19} /></span>
+                  <span className={`hosting-plan-icon hosting-plan-icon-${plan.id}`}><PlanIcon size={21} strokeWidth={1.8} /></span>
                   <h3>{plan.name}</h3>
                 </div>
+                <span className={`hosting-plan-purpose hosting-plan-purpose-${plan.id}`}>{isRtl ? plan.ar : plan.en}</span>
                 <p className="hosting-plan-audience">{plan.audience}</p>
                 <div className="hosting-plan-price" dir="ltr">
                   <strong>{plan.price}</strong>
@@ -414,7 +446,8 @@ function HostingPage({ isRtl, onOpenConsultation }) {
                   ))}
                 </ul>
               </TiltCard>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>

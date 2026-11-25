@@ -28,7 +28,8 @@ export default function Serv5Footer({ onOpenConsultation, lang = 'ar' }) {
             </p>
           </div>
 
-          <nav aria-label={isRtl ? 'روابط سريعة' : 'Quick links'}>
+          <nav className="serv5-footer-nav" aria-label={isRtl ? 'روابط سريعة' : 'Quick links'}>
+            <h2 className="serv5-footer-column-title">{isRtl ? 'روابط سريعة' : 'Quick links'}</h2>
             <ul className="serv5-footer-nav-list">
               {quickLinks.map((link, idx) => (
                 <li key={idx}>
@@ -50,15 +51,18 @@ export default function Serv5Footer({ onOpenConsultation, lang = 'ar' }) {
             </ul>
           </nav>
 
-          <div className="serv5-footer-contact-list">
-            <a href="tel:00201288863831" dir="ltr" className="serv5-footer-contact-item">
-              <Phone size={16} />
-              <span>+20 128 888 63831</span>
-            </a>
-            <a href="mailto:sales@serv5.com" className="serv5-footer-contact-item">
-              <Mail size={16} />
-              <span>sales@serv5.com</span>
-            </a>
+          <div className="serv5-footer-contact">
+            <h2 className="serv5-footer-column-title">{isRtl ? 'تواصل معنا' : 'Contact us'}</h2>
+            <div className="serv5-footer-contact-list">
+              <a href="tel:00201288863831" dir="ltr" className="serv5-footer-contact-item">
+                <Phone size={16} />
+                <span>+20 128 888 63831</span>
+              </a>
+              <a href="mailto:sales@serv5.com" className="serv5-footer-contact-item">
+                <Mail size={16} />
+                <span>sales@serv5.com</span>
+              </a>
+            </div>
           </div>
         </div>
 
