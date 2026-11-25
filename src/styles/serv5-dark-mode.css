@@ -1888,12 +1888,12 @@ html.dark .faq-card {
 html.dark .faq-envelope-box {
   background: rgba(234, 88, 12, 0.2) !important;
   border-color: rgba(249, 115, 22, 0.45) !important;
-  color: #f97316 !important;
+  color: #fb923c !important;
 }
 
 [data-theme="dark"] .faq-tag,
 html.dark .faq-tag {
-  color: #f97316 !important;
+  color: #fb923c !important;
 }
 
 [data-theme="dark"] .faq-title,
@@ -1904,12 +1904,41 @@ html.dark .faq-title {
 
 [data-theme="dark"] .faq-subtitle,
 html.dark .faq-subtitle {
-  color: #94a3b8 !important;
+  color: #cbd5e1 !important;
 }
 
 [data-theme="dark"] .faq-item,
 html.dark .faq-item {
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+  background: #090e1a !important;
+  border: 1px solid rgba(59, 130, 246, 0.18) !important;
+}
+
+[data-theme="dark"] .faq-item:hover,
+html.dark .faq-item:hover {
+  background: #10192e !important;
+  border-color: rgba(96, 165, 250, 0.45) !important;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.45) !important;
+}
+
+[data-theme="dark"] .faq-item.active,
+html.dark .faq-item.active {
+  background: #111c33 !important;
+  border-color: #3b82f6 !important;
+  box-shadow: 0 14px 34px rgba(37, 99, 235, 0.22) !important;
+}
+
+[data-theme="dark"] .faq-index-badge,
+html.dark .faq-index-badge {
+  background: rgba(30, 58, 138, 0.35) !important;
+  border-color: rgba(96, 165, 250, 0.35) !important;
+  color: #93c5fd !important;
+}
+
+[data-theme="dark"] .faq-item.active .faq-index-badge,
+html.dark .faq-item.active .faq-index-badge {
+  background: #2563eb !important;
+  border-color: #3b82f6 !important;
+  color: #ffffff !important;
 }
 
 [data-theme="dark"] .faq-question-text,
@@ -1921,22 +1950,24 @@ html.dark .faq-question-text {
 [data-theme="dark"] .faq-item.active .faq-question-text,
 html.dark .faq-item:hover .faq-question-text,
 html.dark .faq-item.active .faq-question-text {
-  color: #60a5fa !important;
+  color: #93c5fd !important;
 }
 
 [data-theme="dark"] .faq-toggle-btn,
 html.dark .faq-toggle-btn {
-  color: #94a3b8 !important;
+  background: rgba(255, 255, 255, 0.08) !important;
+  color: #cbd5e1 !important;
 }
 
-[data-theme="dark"] .faq-chevron.rotated,
-html.dark .faq-chevron.rotated {
+[data-theme="dark"] .faq-item.active .faq-toggle-btn,
+html.dark .faq-item.active .faq-toggle-btn {
+  background: rgba(59, 130, 246, 0.25) !important;
   color: #60a5fa !important;
 }
 
 [data-theme="dark"] .faq-answer-text,
 html.dark .faq-answer-text {
-  color: #cbd5e1 !important;
+  color: #e2e8f0 !important;
 }
 
 /* --- 15.4 Web Hosting Service Page (/services/web-hosting) --- */

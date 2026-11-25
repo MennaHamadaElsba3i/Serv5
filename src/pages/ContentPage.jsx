@@ -544,7 +544,7 @@ export default function ContentPage({ pathname, lang = 'ar', onOpenConsultation 
           title={isRtl ? 'الأسئلة الشائعة' : 'Frequently Asked Questions'}
           description={isRtl ? 'إجابات على الاستفسارات الأكثر شيوعاً حول خدمات سيرف فايف ومشاريعها.' : 'Answers to the most common questions about SERV5 services and projects.'}
         />
-        <FaqSection />
+        <FaqSection lang={lang} />
       </>
     );
   }
