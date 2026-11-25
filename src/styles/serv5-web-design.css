@@ -1148,6 +1148,10 @@
   letter-spacing: -0.035em;
 }
 
+.wd-ux-accent {
+  color: #ea580c;
+}
+
 .wd-ux-copy > p {
   margin: 0;
   color: #1e293b;
@@ -1173,18 +1177,50 @@
   font-size: 0.98rem;
   font-weight: 600;
   line-height: 1.6;
+  transition: transform 0.25s ease, color 0.25s ease;
+  animation: wdUxListPulse 4.8s ease-in-out infinite;
+  animation-delay: calc(var(--wd-idx, 0) * 1.1s);
+}
+
+.wd-ux-list li:hover {
+  transform: translateX(4px);
+}
+
+[dir="rtl"] .wd-ux-list li:hover {
+  transform: translateX(-4px);
 }
 
 .wd-ux-list li svg {
   flex-shrink: 0;
   margin-top: 0.15rem;
   color: #059669;
+  transition: transform 0.25s ease;
+}
+
+.wd-ux-list li:hover svg {
+  transform: scale(1.15);
+}
+
+@keyframes wdUxListPulse {
+  0%, 100% {
+    opacity: 0.88;
+    transform: translateY(0);
+  }
+  20%, 35% {
+    opacity: 1;
+    transform: translateY(-2px);
+  }
+  50% {
+    opacity: 0.88;
+    transform: translateY(0);
+  }
 }
 
 .wd-motion-ready .wd-ux-list li {
   opacity: 0;
   transform: translateX(14px);
   filter: blur(3px);
+  animation: none;
   transition:
     opacity 0.6s ease var(--wd-delay, 0ms),
     transform 0.6s ease var(--wd-delay, 0ms),
@@ -1195,6 +1231,17 @@
   opacity: 1;
   transform: none;
   filter: none;
+  animation: wdUxListPulse 4.8s ease-in-out infinite;
+  animation-delay: calc(var(--wd-idx, 0) * 1.1s + 0.6s);
+}
+
+.wd-motion-ready .wd-ux-copy.is-visible .wd-ux-list li:hover {
+  animation-play-state: paused;
+  transform: translateX(4px);
+}
+
+[dir="rtl"] .wd-motion-ready .wd-ux-copy.is-visible .wd-ux-list li:hover {
+  transform: translateX(-4px);
 }
 
 .wd-ux-panel {

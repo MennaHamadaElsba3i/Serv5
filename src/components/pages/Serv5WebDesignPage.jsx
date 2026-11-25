@@ -646,6 +646,7 @@ const seoCopy = {
     ux: {
       eyebrow: '',
       title: 'البيانات هي أساس كل قرار نتخذه',
+      accentWord: 'أساس',
       text: 'كل خطوة نقوم بها تستند إلى تحليل دقيق للبيانات. نتابع أداء الموقع والكلمات المفتاحية وسلوك المستخدمين باستمرار لضمان تطوير الاستراتيجية وتحقيق أفضل النتائج.',
       points: [
         'متابعة أداء الكلمات المفتاحية.',
@@ -711,6 +712,7 @@ const seoCopy = {
     ux: {
       eyebrow: '',
       title: 'Data is the foundation of every decision we make',
+      accentWord: 'foundation',
       text: 'Every step we take is based on careful data analysis. We continually track site performance, keywords and user behaviour to refine the strategy and achieve the best results.',
       points: [
         'Track keyword performance.',
@@ -1150,6 +1152,20 @@ const iconMap = {
   Megaphone
 };
 
+const renderTitleWithAccent = (title, accentWord) => {
+  if (!accentWord || !title.includes(accentWord)) return title;
+  const idx = title.indexOf(accentWord);
+  const before = title.slice(0, idx);
+  const after = title.slice(idx + accentWord.length);
+  return (
+    <>
+      {before}
+      <span className="wd-ux-accent">{accentWord}</span>
+      {after}
+    </>
+  );
+};
+
 export default function Serv5WebDesignPage({ lang = 'ar', onOpenConsultation, variant = 'web-design' }) {
   const isRtl = lang === 'ar';
   const isUiUx = variant === 'ui-ux';
@@ -1567,11 +1583,11 @@ export default function Serv5WebDesignPage({ lang = 'ar', onOpenConsultation, va
               <MousePointerClick size={14} />
               {t.ux.eyebrow}
             </span>}
-            <h2>{t.ux.title}</h2>
+            <h2>{renderTitleWithAccent(t.ux.title, t.ux.accentWord)}</h2>
             <p>{t.ux.text}</p>
             <ul className="wd-ux-list">
               {t.ux.points.map((point, index) => (
-                <li key={point} style={{ '--wd-delay': `${index * 80}ms` }}>
+                <li key={point} style={{ '--wd-delay': `${index * 110}ms`, '--wd-idx': index }}>
                   <Check size={15} />
                   {point}
                 </li>
