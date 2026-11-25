@@ -29,8 +29,8 @@
   .home-tail-stack > #serv5-footer {
     position: relative;
     z-index: 1;
-    padding-top: calc(100vh - 29rem);
-    padding-top: calc(100svh - 29rem);
+    padding-top: max(3rem, calc(100vh - 31rem));
+    padding-top: max(3rem, calc(100svh - 31rem));
   }
 }
 
