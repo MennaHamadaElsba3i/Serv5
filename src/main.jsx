@@ -19,6 +19,7 @@ import './styles/serv5-bank-accounts.css';
 import './styles/serv5-dark-mode.css';
 import './styles/hero-ambient-bg.css';
 import './styles/source-pages.css';
+import './styles/section-rhythm.css';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>

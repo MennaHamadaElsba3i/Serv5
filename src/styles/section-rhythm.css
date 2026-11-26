@@ -1,0 +1,133 @@
+/* Shared vertical rhythm: reduce oversized gaps between sections while keeping
+   each page's existing colors, horizontal gutters, and internal layout intact. */
+.world-section {
+  padding-block: clamp(2.5rem, 3vw, 2.75rem);
+}
+
+.about-monument-section {
+  padding-block: clamp(3rem, 3.5vw, 3.25rem) clamp(2.25rem, 2.75vw, 2.5rem);
+}
+
+.content-page-section {
+  padding-block: clamp(1.5rem, 2vw, 1.75rem);
+}
+
+.hosting-plan-section,
+.hosting-migration-section,
+.hosting-trust-section,
+.hosting-benefits-section:not(.hosting-feature-story) {
+  padding-block: clamp(1.75rem, 2.5vw, 2.25rem);
+}
+
+.wd-section {
+  padding-block: clamp(1.75rem, 2.5vw, 2rem);
+}
+
+.services-vision-section {
+  padding-block: 1rem 2rem;
+}
+
+.blog-section-revamp {
+  padding-block: clamp(1.75rem, 2.5vw, 2rem);
+}
+
+.newest-works-section {
+  padding-block: clamp(2rem, 2.75vw, 2.25rem);
+}
+
+.switchboard-section,
+.products-showcase-section {
+  padding-block: clamp(1.75rem, 2.5vw, 2rem);
+}
+
+.serv5-products-section {
+  padding-block: clamp(1.75rem, 2.5vw, 2.25rem);
+}
+
+.serv5-journal-section {
+  padding-block: clamp(1.75rem, 2.5vw, 2rem) clamp(2rem, 2.75vw, 2.25rem);
+}
+
+.serv5-revamped-section {
+  padding-block: clamp(1.75rem, 2.5vw, 2rem);
+}
+
+.serv5-testimonials-v2 {
+  padding-block: clamp(2rem, 2.75vw, 2.25rem);
+}
+
+.faq-section,
+.bank-faq-section {
+  padding-block: clamp(1.75rem, 2.5vw, 2rem);
+}
+
+.bank-tabs-section {
+  padding-block: 1rem 1.5rem;
+}
+
+.bank-cards-section {
+  padding-block: 0 2rem;
+}
+
+.bank-steps-section {
+  padding-block: clamp(2rem, 2.75vw, 2.25rem);
+}
+
+.serv5-liftoff-banner {
+  padding-block: clamp(2.5rem, 3.25vw, 2.75rem);
+}
+
+@media (max-width: 767px) {
+  .world-section {
+    padding-block: 2rem;
+  }
+
+  .about-monument-section {
+    padding-block: 2.5rem 2rem;
+  }
+
+  .content-page-section {
+    padding-block: 1.25rem;
+  }
+
+  .hosting-plan-section,
+  .hosting-migration-section,
+  .hosting-trust-section,
+  .hosting-benefits-section:not(.hosting-feature-story),
+  .wd-section,
+  .blog-section-revamp,
+  .switchboard-section,
+  .products-showcase-section,
+  .serv5-products-section,
+  .serv5-revamped-section,
+  .serv5-testimonials-v2,
+  .faq-section,
+  .bank-faq-section,
+  .bank-steps-section {
+    padding-block: 1.5rem;
+  }
+
+  .services-vision-section {
+    padding-block: 0.75rem 1.5rem;
+  }
+
+  .newest-works-section {
+    padding-block: 1.75rem 2.25rem;
+  }
+
+  .serv5-journal-section {
+    padding-block: 1.5rem 2.25rem;
+  }
+
+  .bank-tabs-section {
+    padding-block: 0.75rem 1.25rem;
+  }
+
+  .bank-cards-section {
+    padding-block: 0 1.75rem;
+  }
+
+  .serv5-liftoff-banner {
+    padding-block: 2.25rem;
+  }
+}
