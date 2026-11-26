@@ -28,6 +28,7 @@ import Serv5ProductsShowcase from '../components/sections/Serv5ProductsShowcase'
 import Serv5GetInTouch from '../components/sections/Serv5GetInTouch';
 import Serv5WebDesignPage from '../components/pages/Serv5WebDesignPage';
 import Serv5BankAccountsPage from '../components/pages/Serv5BankAccountsPage';
+import { AboutContinuation, CareersPage, ProjectConsultationPage, RequestQuotePage, TechnicalSupportPage } from '../components/pages/SourcePages';
 import TiltCard from '../components/hosting/TiltCard';
 import HeroAmbientBackground from '../components/ui/HeroAmbientBackground';
 
@@ -526,12 +527,20 @@ export default function ContentPage({ pathname, lang = 'ar', onOpenConsultation 
           ? (isRtl ? 'تصميم واجهة وتجربة المستخدم' : 'UI/UX Design')
           : pathname === '/services/web-design'
             ? (isRtl ? 'تصميم المواقع' : 'Web Design')
+          : pathname === '/careers'
+            ? (isRtl ? 'الوظائف' : 'Careers')
+          : pathname === '/project-consultation'
+            ? (isRtl ? 'استشارة المشروع' : 'Project Consultation')
+          : pathname === '/request-quote'
+            ? (isRtl ? 'طلب عرض سعر' : 'Request a Quote')
+          : pathname === '/services/tech-support'
+            ? (isRtl ? 'الدعم الفني والصيانة' : 'Technical Support')
             : pathname;
     document.title = `${isRtl ? 'سيرف فايف' : 'SERV5'} | ${pageTitle}`;
   }, [pathname, isRtl]);
 
   if (pathname === '/about-us') {
-    return <AboutSection lang={lang} />;
+    return <><AboutSection lang={lang} /><AboutContinuation /></>;
   }
 
   if (pathname === '/faq') {
@@ -584,45 +593,15 @@ export default function ContentPage({ pathname, lang = 'ar', onOpenConsultation 
   }
 
   if (pathname === '/careers') {
-    return (
-      <SimplePage
-        isRtl={isRtl}
-        title={isRtl ? 'الوظائف' : 'Careers'}
-        description={isRtl ? 'انضم إلى فريق يعمل على بناء حلول برمجية ومشروعات رقمية مؤثرة.' : 'Join a team building impactful digital and software solutions.'}
-        sections={[
-          { title: isRtl ? 'بيئة العمل' : 'Our Environment', text: isRtl ? 'نوفّر بيئة مهنية تشجع الابتكار والتعلم والعمل الجماعي والتطور المستمر.' : 'We provide a professional environment that encourages innovation, learning and growth.' },
-          { title: isRtl ? 'التقديم' : 'Applications', text: isRtl ? 'للتقديم أو الاستفسار عن الفرص المتاحة، تواصل معنا عبر قسم اتصل بنا.' : 'To apply or ask about current opportunities, contact us through the contact page.' }
-        ]}
-      />
-    );
+    return <CareersPage />;
   }
 
   if (pathname === '/project-consultation') {
-    return (
-      <SimplePage
-        isRtl={isRtl}
-        title={isRtl ? 'استشارة للمشروع' : 'Project Consultation'}
-        description={isRtl ? 'نساعدك على تحديد نطاق المشروع والاحتياجات التقنية والخطة المناسبة للتنفيذ.' : 'We help define project scope, technical requirements and the right execution plan.'}
-        sections={[
-          { title: isRtl ? 'تحليل الاحتياج' : 'Requirements Analysis', text: isRtl ? 'نراجع أهدافك والجمهور والميزات المطلوبة قبل بدء التنفيذ.' : 'We review your goals, audience and required features before implementation.' },
-          { title: isRtl ? 'خطة التنفيذ' : 'Execution Plan', text: isRtl ? 'نحدد مراحل المشروع والجدول الزمني والتقنيات المناسبة.' : 'We define stages, timeline and suitable technologies.' }
-        ]}
-      />
-    );
+    return <ProjectConsultationPage />;
   }
 
   if (pathname === '/request-quote') {
-    return (
-      <SimplePage
-        isRtl={isRtl}
-        title={isRtl ? 'طلب عرض سعر' : 'Request a Quote'}
-        description={isRtl ? 'شاركنا فكرة مشروعك وسنجهز عرضاً مفصلاً يناسب نطاقه ومتطلباته.' : 'Share your project idea and receive a detailed quote based on scope and requirements.'}
-        sections={[
-          { title: isRtl ? 'بيانات المشروع' : 'Project Information', text: isRtl ? 'الهدف والجمهور ونوع المنصة والميزات المطلوبة.' : 'Goal, audience, platform type and required features.' },
-          { title: isRtl ? 'عرض سعر مفصل' : 'Detailed Estimate', text: isRtl ? 'نوضح نطاق التنفيذ والتكلفة والجدول الزمني بوضوح.' : 'A clear estimate covering scope, cost and delivery timeline.' }
-        ]}
-      />
-    );
+    return <RequestQuotePage />;
   }
 
   if (pathname.startsWith('/services')) {
@@ -647,6 +626,9 @@ export default function ContentPage({ pathname, lang = 'ar', onOpenConsultation 
     }
     if (slug === 'digital-marketing') {
       return <Serv5WebDesignPage lang={lang} onOpenConsultation={onOpenConsultation} variant="digital-marketing" />;
+    }
+    if (slug === 'tech-support') {
+      return <TechnicalSupportPage />;
     }
     if (slug && servicePages[slug]) {
       const content = servicePages[slug][isRtl ? 'ar' : 'en'];

@@ -900,6 +900,111 @@ html[dir="ltr"] {
   color: #ea580c;
 }
 
+/* Source content pages: careers, forms, about continuation and support. */
+.source-section-heading { max-width: 780px; margin: 0 auto 2.25rem; text-align: center; }
+.source-section-heading h2, .source-about-intro h2, .source-about-leadership h2, .source-about-cta h2 { color: #0f172a; font-size: clamp(1.65rem, 3vw, 2.45rem); font-weight: 850; line-height: 1.25; margin: 0 0 0.85rem; }
+.source-about-values .container > h2 { max-width: 780px; margin: 0 auto 2.25rem; color: #0f172a; text-align: center; font-size: clamp(1.65rem, 3vw, 2.45rem); font-weight: 850; }
+.source-section-heading p, .source-about-intro p, .source-about-leadership p, .source-about-cta p { color: #475569; line-height: 1.85; }
+.source-about-intro { max-width: 1050px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2.5rem 3rem; }
+.source-about-locations { grid-column: 1 / -1; margin-top: 0.5rem; }
+.source-location-list { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; margin-top: 1.25rem; }
+.source-location-list > div { display: grid; gap: 0.4rem; padding: 1rem 0; border-block: 1px solid #dbeafe; }
+.source-location-list strong { color: #1e3a8a; }
+.source-location-list span { color: #64748b; font-size: 0.9rem; }
+.source-about-values { background: #f8fafc; }
+.source-principles { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 2rem; max-width: 1000px; margin-inline: auto; }
+.source-principles article { display: flex; gap: 1rem; padding: 1.3rem 0; border-bottom: 1px solid #dbe3ef; }
+.source-principles article > span { flex: 0 0 2.2rem; color: #2563eb; font-size: 1.1rem; font-weight: 850; }
+.source-principles h3, .source-support-grid h3 { color: #1e3a8a; font-size: 1.08rem; font-weight: 800; margin: 0 0 0.45rem; }
+.source-principles p, .source-support-grid p { margin: 0; color: #64748b; line-height: 1.75; }
+.source-milestones { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: 1000px; margin: 0 auto; }
+.source-milestones article { display: grid; grid-template-columns: 5rem 1fr; gap: 1rem; padding: 1.1rem; border-bottom: 1px solid #dbe3ef; }
+.source-milestones article > strong { color: #2563eb; font-size: 1.2rem; }
+.source-milestones article span { color: #1e3a8a; font-size: 0.85rem; font-weight: 750; }
+.source-milestones article p { margin: 0.35rem 0 0; color: #64748b; line-height: 1.65; }
+.source-about-leadership { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; max-width: 1050px; }
+.source-about-leadership h3 { margin: 1.35rem 0 0.35rem; color: #1e3a8a; font-size: 1rem; }
+.source-team-list { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.75rem; }
+.source-team-list > div { padding: 0.8rem 1.1rem; border-block: 1px solid #cbd5e1; color: #334155; font-weight: 700; }
+.source-about-cta { background: linear-gradient(135deg, #eff6ff, #fff7ed); text-align: center; }
+.source-about-cta .container { max-width: 800px; }
+.source-page-cta { display: inline-flex; align-items: center; justify-content: center; gap: 0.55rem; margin-top: 1rem; padding: 0.75rem 1.2rem; border-radius: 999px; background: #2563eb; color: #fff; font-weight: 800; text-decoration: none; }
+.source-page-cta:hover { background: #1d4ed8; color: #fff; }
+
+.source-careers-section { background: #f8fafc; }
+.source-careers-tools { display: grid; gap: 1rem; max-width: 1050px; margin: 0 auto 1.8rem; }
+.source-job-search { display: flex; align-items: center; gap: 0.7rem; min-height: 48px; padding: 0 0.9rem; border: 1px solid #cbd5e1; border-radius: 12px; background: #fff; color: #64748b; }
+.source-job-search input { width: 100%; border: 0; outline: 0; background: transparent; color: #0f172a; font: inherit; }
+.source-job-filters { display: flex; flex-wrap: wrap; gap: 0.55rem; }
+.source-job-filters button { min-height: 40px; padding: 0.5rem 0.9rem; border: 1px solid #cbd5e1; border-radius: 999px; background: #fff; color: #475569; font: inherit; font-size: 0.85rem; font-weight: 700; cursor: pointer; }
+.source-job-filters button.is-active { border-color: #2563eb; background: #2563eb; color: #fff; }
+.source-job-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; max-width: 1180px; margin: auto; }
+.source-job-card { display: flex; flex-direction: column; min-height: 100%; }
+.source-job-meta, .source-job-facts { display: flex; align-items: center; justify-content: space-between; gap: 0.7rem; color: #64748b; font-size: 0.76rem; }
+.source-job-meta > span:first-child { color: #1d4ed8; font-weight: 800; }
+.source-job-open { display: inline-flex; align-items: center; gap: 0.4rem; }
+.source-job-open i { width: 7px; height: 7px; border-radius: 50%; background: #22c55e; }
+.source-job-card h2 { margin-top: 1rem; font-size: 1.15rem; }
+.source-job-card h2 small { display: block; margin-top: 0.25rem; color: #64748b; font-size: 0.78rem; font-weight: 650; }
+.source-job-card > p { flex: 1; }
+.source-job-facts { align-items: flex-start; justify-content: flex-start; flex-direction: column; margin-top: 1rem; }
+.source-job-facts span { display: inline-flex; align-items: center; gap: 0.4rem; }
+.source-job-facts svg { color: #ea580c; }
+.source-job-details { display: inline-flex; align-items: center; gap: 0.4rem; align-self: flex-start; border: 0; background: none; cursor: pointer; font: inherit; }
+.source-jobs-more { display: flex; align-items: center; justify-content: center; gap: 0.4rem; min-height: 42px; margin: 1.5rem auto 0; padding: 0.55rem 1rem; border: 1px solid #cbd5e1; border-radius: 10px; background: #fff; color: #1d4ed8; font: inherit; font-weight: 800; cursor: pointer; }
+.source-jobs-more:hover { border-color: #2563eb; background: #eff6ff; }
+.source-empty-jobs { grid-column: 1 / -1; text-align: center; padding: 3rem; color: #64748b; }
+.source-job-backdrop { position: fixed; inset: 0; z-index: 1200; display: grid; place-items: center; padding: 1rem; background: rgba(5, 12, 32, 0.68); }
+.source-job-dialog { position: relative; width: min(100%, 620px); padding: clamp(1.5rem, 4vw, 2.5rem); border: 1px solid #dbeafe; border-radius: 18px; background: #fff; box-shadow: 0 24px 70px rgba(2, 6, 23, 0.3); }
+.source-job-dialog h2 { margin: 0.7rem 0; color: #0f172a; }
+.source-job-dialog p { color: #475569; line-height: 1.8; }
+.source-job-dialog h3 { margin: 1.2rem 0 0.4rem; color: #1e3a8a; font-size: 1rem; }
+.source-job-dialog ul { display: grid; gap: 0.35rem; margin: 0; padding-inline-start: 1.2rem; color: #475569; font-size: 0.88rem; line-height: 1.65; }
+.source-job-close { position: absolute; top: 0.8rem; inset-inline-end: 0.8rem; border: 0; background: transparent; color: #64748b; font-size: 1.8rem; cursor: pointer; }
+
+.source-form-panel { max-width: 900px; margin: auto; padding: clamp(1.25rem, 4vw, 2.5rem); border: 1px solid #dbe3ef; border-radius: 20px; background: #fff; box-shadow: 0 18px 48px rgba(30, 64, 175, 0.08); }
+.source-form-heading { display: flex; align-items: flex-end; justify-content: space-between; gap: 1rem; }
+.source-form-heading h2 { margin: 0; color: #0f172a; font-size: 1.5rem; }
+.source-form-heading > span { color: #64748b; font-size: 0.85rem; font-weight: 750; white-space: nowrap; }
+.source-form-progress { height: 4px; margin: 1.25rem 0 1.8rem; overflow: hidden; border-radius: 4px; background: #e2e8f0; }
+.source-form-progress i { display: block; height: 100%; border-radius: inherit; background: linear-gradient(90deg, #2563eb, #f97316); transition: width 0.3s ease; }
+.source-choice-group { margin: 0; padding: 0; border: 0; }
+.source-choice-group legend { margin-bottom: 1rem; color: #334155; font-weight: 800; }
+.source-choice-group > div { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.7rem; }
+.source-choice-group label { display: flex; align-items: center; gap: 0.7rem; min-height: 54px; padding: 0.8rem; border: 1px solid #cbd5e1; border-radius: 12px; color: #334155; cursor: pointer; }
+.source-choice-group label.is-selected { border-color: #2563eb; background: #eff6ff; color: #1d4ed8; }
+.source-choice-group input { accent-color: #2563eb; }
+.source-form-fields { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+.source-form-fields label, .source-file-field { display: grid; gap: 0.45rem; color: #334155; font-size: 0.86rem; font-weight: 750; }
+.source-form-fields label.is-wide { grid-column: 1 / -1; }
+.source-form-fields label b { color: #dc2626; }
+.source-form-fields input, .source-form-fields select, .source-form-fields textarea { width: 100%; min-height: 46px; padding: 0.7rem 0.8rem; border: 1px solid #cbd5e1; border-radius: 10px; outline: 0; background: #f8fafc; color: #0f172a; font: inherit; }
+.source-form-fields textarea { resize: vertical; }
+.source-form-fields :is(input, select, textarea):focus { border-color: #2563eb; box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12); }
+.source-file-field { margin-top: 1rem; padding: 1rem; border: 1px dashed #94a3b8; border-radius: 12px; }
+.source-file-field input { font: inherit; }
+.source-file-field small { color: #64748b; font-weight: 500; }
+.source-form-actions { display: flex; justify-content: flex-start; gap: 0.75rem; margin-top: 1.8rem; padding-top: 1.2rem; border-top: 1px solid #e2e8f0; }
+.source-form-actions button { display: inline-flex; align-items: center; justify-content: center; gap: 0.45rem; min-height: 44px; padding: 0.65rem 1rem; border-radius: 10px; font: inherit; font-weight: 800; cursor: pointer; }
+.source-form-primary { border: 1px solid #2563eb; background: #2563eb; color: #fff; }
+.source-form-primary:disabled { opacity: 0.48; cursor: not-allowed; }
+.source-form-secondary { border: 1px solid #cbd5e1; background: #fff; color: #334155; }
+.source-form-success { text-align: center; padding: 2rem 0; }
+.source-form-success > svg { color: #16a34a; }
+.source-form-success h2 { color: #0f172a; }
+.source-form-success p { color: #475569; }
+
+.source-support-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; max-width: 1120px; margin: auto; }
+.source-support-grid .content-page-card { min-height: 0; }
+.source-support-grid .content-page-card > svg { margin-bottom: 0.85rem; color: #ea580c; }
+.source-support-copy { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 2rem; align-items: center; max-width: 1050px; }
+.source-support-copy h2 { color: #0f172a; font-size: clamp(1.6rem, 3vw, 2.4rem); }
+.source-support-copy p { color: #475569; line-height: 1.85; }
+.source-support-copy ul { display: grid; gap: 0.85rem; margin: 0; padding: 0; list-style: none; color: #334155; }
+.source-support-copy li { display: flex; align-items: flex-start; gap: 0.5rem; }
+.source-support-copy li svg { flex: 0 0 auto; color: #ea580c; }
+.source-support-punchline { margin: 2rem auto 0; text-align: center; color: #1e3a8a; font-weight: 800; }
+
 .hosting-page {
   --hosting-blue: #2563eb;
   --hosting-blue-dark: #1e3a8a;

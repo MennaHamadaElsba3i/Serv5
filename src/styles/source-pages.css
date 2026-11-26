@@ -1,0 +1,117 @@
+/* Color and contrast adaptations for the newly populated company pages. */
+[data-theme="dark"] .source-about-values,
+html.dark .source-about-values,
+[data-theme="dark"] .source-careers-section,
+html.dark .source-careers-section,
+[data-theme="dark"] .source-about-cta,
+html.dark .source-about-cta { background: rgba(7, 12, 28, 0.68) !important; }
+[data-theme="dark"] .source-section-heading h2,
+html.dark .source-section-heading h2,
+[data-theme="dark"] .source-about-intro h2,
+html.dark .source-about-intro h2,
+[data-theme="dark"] .source-about-leadership h2,
+html.dark .source-about-leadership h2,
+[data-theme="dark"] .source-about-cta h2,
+html.dark .source-about-cta h2,
+[data-theme="dark"] .source-support-copy h2,
+html.dark .source-support-copy h2,
+[data-theme="dark"] .source-form-heading h2,
+html.dark .source-form-heading h2,
+[data-theme="dark"] .source-form-success h2,
+html.dark .source-form-success h2,
+[data-theme="dark"] .source-job-dialog h2,
+html.dark .source-job-dialog h2 { color: #f8fafc !important; }
+[data-theme="dark"] .source-about-values .container > h2,
+html.dark .source-about-values .container > h2,
+[data-theme="dark"] .source-job-dialog h3,
+html.dark .source-job-dialog h3 { color: #f8fafc !important; }
+[data-theme="dark"] .source-section-heading p,
+html.dark .source-section-heading p,
+[data-theme="dark"] .source-about-intro p,
+html.dark .source-about-intro p,
+[data-theme="dark"] .source-about-leadership p,
+html.dark .source-about-leadership p,
+[data-theme="dark"] .source-about-cta p,
+html.dark .source-about-cta p,
+[data-theme="dark"] .source-location-list span,
+html.dark .source-location-list span,
+[data-theme="dark"] .source-principles p,
+html.dark .source-principles p,
+[data-theme="dark"] .source-milestones article p,
+html.dark .source-milestones article p,
+[data-theme="dark"] .source-support-grid p,
+html.dark .source-support-grid p,
+[data-theme="dark"] .source-support-copy p,
+html.dark .source-support-copy p { color: #cbd5e1 !important; }
+[data-theme="dark"] .source-location-list strong,
+html.dark .source-location-list strong,
+[data-theme="dark"] .source-principles h3,
+html.dark .source-principles h3,
+[data-theme="dark"] .source-support-grid h3,
+html.dark .source-support-grid h3,
+[data-theme="dark"] .source-about-leadership h3,
+html.dark .source-about-leadership h3,
+[data-theme="dark"] .source-milestones article span,
+html.dark .source-milestones article span,
+[data-theme="dark"] .source-team-list > div,
+html.dark .source-team-list > div,
+[data-theme="dark"] .source-support-punchline,
+html.dark .source-support-punchline { color: #bfdbfe !important; }
+[data-theme="dark"] .source-principles article,
+html.dark .source-principles article,
+[data-theme="dark"] .source-milestones article,
+html.dark .source-milestones article,
+[data-theme="dark"] .source-location-list > div,
+html.dark .source-location-list > div { border-color: rgba(148, 163, 184, 0.22) !important; }
+[data-theme="dark"] .source-job-search,
+html.dark .source-job-search,
+[data-theme="dark"] .source-job-dialog,
+html.dark .source-job-dialog,
+[data-theme="dark"] .source-form-panel,
+html.dark .source-form-panel,
+[data-theme="dark"] .source-form-secondary,
+html.dark .source-form-secondary { border-color: rgba(96, 165, 250, 0.3) !important; background: #0d1527 !important; color: #e2e8f0 !important; }
+[data-theme="dark"] .source-job-search input,
+html.dark .source-job-search input,
+[data-theme="dark"] .source-form-fields :is(input, select, textarea),
+html.dark .source-form-fields :is(input, select, textarea),
+[data-theme="dark"] .source-choice-group label,
+html.dark .source-choice-group label,
+[data-theme="dark"] .source-file-field,
+html.dark .source-file-field,
+[data-theme="dark"] .source-job-filters button,
+html.dark .source-job-filters button { border-color: rgba(148, 163, 184, 0.3) !important; background: #111d35 !important; color: #e2e8f0 !important; }
+[data-theme="dark"] .source-job-filters button.is-active,
+html.dark .source-job-filters button.is-active,
+[data-theme="dark"] .source-choice-group label.is-selected,
+html.dark .source-choice-group label.is-selected { border-color: #60a5fa !important; background: rgba(37, 99, 235, 0.22) !important; }
+[data-theme="dark"] .source-form-fields label,
+html.dark .source-form-fields label,
+[data-theme="dark"] .source-choice-group legend,
+html.dark .source-choice-group legend,
+[data-theme="dark"] .source-form-success p,
+html.dark .source-form-success p,
+[data-theme="dark"] .source-job-dialog p,
+html.dark .source-job-dialog p,
+[data-theme="dark"] .source-support-copy ul,
+html.dark .source-support-copy ul { color: #cbd5e1 !important; }
+[data-theme="dark"] .source-form-actions,
+html.dark .source-form-actions { border-color: rgba(148, 163, 184, 0.2) !important; }
+[data-theme="dark"] .source-job-dialog ul,
+html.dark .source-job-dialog ul { color: #cbd5e1 !important; }
+[data-theme="dark"] .source-jobs-more,
+html.dark .source-jobs-more { border-color: rgba(96, 165, 250, 0.35) !important; background: #0d1527 !important; color: #bfdbfe !important; }
+
+@media (max-width: 900px) {
+  .source-job-grid, .source-support-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .source-about-leadership, .source-support-copy { grid-template-columns: 1fr; }
+}
+@media (max-width: 600px) {
+  .source-about-intro, .source-principles, .source-milestones, .source-location-list,
+  .source-job-grid, .source-support-grid, .source-form-fields, .source-choice-group > div { grid-template-columns: 1fr; }
+  .source-about-locations, .source-form-fields label.is-wide { grid-column: auto; }
+  .source-job-filters { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .source-job-filters button { padding-inline: 0.45rem; font-size: 0.75rem; }
+  .source-form-actions { flex-wrap: wrap; }
+  .source-form-actions button { flex: 1; }
+}
