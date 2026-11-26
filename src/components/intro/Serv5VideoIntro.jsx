@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   Volume2,
+  VolumeX,
   Play,
   Pause,
   X,
@@ -16,8 +17,11 @@ export default function Serv5VideoIntro({ onComplete, lang = 'ar' }) {
 
   const videoRef = useRef(null);
   const isExitingRef = useRef(false);
+  const autoplayAttemptedRef = useRef(false);
   const [isPlaying, setIsPlaying] = useState(false);
-  const [needsSoundGesture, setNeedsSoundGesture] = useState(false);
+  const [isMuted, setIsMuted] = useState(false);
+  const [needsUnmuteGesture, setNeedsUnmuteGesture] = useState(false);
+  const [autoplayBlocked, setAutoplayBlocked] = useState(false);
   const [progress, setProgress] = useState(0);
   const [currentTimeStr, setCurrentTimeStr] = useState('00:00');
   const [durationStr, setDurationStr] = useState('00:10');
@@ -30,15 +34,6 @@ export default function Serv5VideoIntro({ onComplete, lang = 'ar' }) {
     return `${m < 10 ? '0' : ''}${m}:${s < 10 ? '0' : ''}${s}`;
   };
 
-  const enforceSound = useCallback((video) => {
-    if (!video) return;
-    video.muted = false;
-    video.defaultMuted = false;
-    if (video.volume < 1) {
-      video.volume = 1;
-    }
-  }, []);
-
   const handleComplete = useCallback(() => {
     if (isExitingRef.current) return;
     isExitingRef.current = true;
@@ -48,51 +43,76 @@ export default function Serv5VideoIntro({ onComplete, lang = 'ar' }) {
     }, 650);
   }, [onComplete]);
 
-  const playWithSound = useCallback(() => {
+  const startPlayback = useCallback(() => {
     const video = videoRef.current;
     if (!video) return;
 
-    enforceSound(video);
     const playPromise = video.play();
 
     if (playPromise !== undefined) {
       playPromise
-        .then(() => {
-          enforceSound(video);
-          setIsPlaying(true);
-          setNeedsSoundGesture(false);
-        })
+        .then(() => setAutoplayBlocked(false))
         .catch(() => {
-          // Never fall back to muted playback; wait for a user gesture to start with sound
-          enforceSound(video);
-          video.pause();
-          setIsPlaying(false);
-          setNeedsSoundGesture(true);
+          setAutoplayBlocked(true);
         });
     } else {
       setIsPlaying(!video.paused);
-      setNeedsSoundGesture(false);
     }
-  }, [enforceSound]);
+  }, []);
 
   const togglePlayPause = useCallback(() => {
     const video = videoRef.current;
     if (!video) return;
 
     if (video.paused) {
-      playWithSound();
+      startPlayback();
     } else {
       video.pause();
       setIsPlaying(false);
     }
-  }, [playWithSound]);
+  }, [startPlayback]);
 
-  // Attempt unmuted autoplay on mount; never fall back to muted playback
+  const toggleMute = useCallback(() => {
+    const video = videoRef.current;
+    if (!video) return;
+    video.muted = !video.muted;
+    setIsMuted(video.muted);
+    if (!video.muted) setNeedsUnmuteGesture(false);
+  }, []);
+
+  const retryAutoplay = useCallback(() => {
+    const video = videoRef.current;
+    if (!video || !video.paused || autoplayAttemptedRef.current) return;
+    autoplayAttemptedRef.current = true;
+    video.muted = false;
+    video.defaultMuted = false;
+    setIsMuted(false);
+
+    const audibleAttempt = video.play();
+    if (audibleAttempt === undefined) return;
+
+    audibleAttempt
+      .then(() => {
+        setAutoplayBlocked(false);
+        setNeedsUnmuteGesture(false);
+      })
+      .catch(() => {
+        video.muted = true;
+        video.defaultMuted = true;
+        setIsMuted(true);
+        setNeedsUnmuteGesture(true);
+        video.play()
+          .then(() => setAutoplayBlocked(false))
+          .catch(() => setAutoplayBlocked(true));
+      });
+  }, []);
+
+  // Try audible autoplay first; if the browser blocks sound, keep the video playing muted.
   useEffect(() => {
     const originalOverflow = document.body.style.overflow;
     document.body.style.overflow = 'hidden';
 
-    playWithSound();
+    retryAutoplay();
 
     const handleKeyDown = (e) => {
       if (e.key === 'Escape') {
@@ -109,7 +129,7 @@ export default function Serv5VideoIntro({ onComplete, lang = 'ar' }) {
       document.body.style.overflow = originalOverflow;
       window.removeEventListener('keydown', handleKeyDown);
     };
-  }, [playWithSound, togglePlayPause, handleComplete]);
+  }, [retryAutoplay, togglePlayPause, handleComplete]);
 
   const handleTimeUpdate = () => {
     const video = videoRef.current;
@@ -124,22 +144,8 @@ export default function Serv5VideoIntro({ onComplete, lang = 'ar' }) {
     setDurationStr(formatTime(dur));
   };
 
-  const handleVolumeChange = () => {
-    const video = videoRef.current;
-    if (!video) return;
-    if (video.muted || video.volume < 1) {
-      enforceSound(video);
-    }
-  };
-
   const handleVideoEnded = () => {
     handleComplete();
-  };
-
-  const handleRootClick = () => {
-    if (needsSoundGesture) {
-      playWithSound();
-    }
   };
 
   return (
@@ -148,7 +154,6 @@ export default function Serv5VideoIntro({ onComplete, lang = 'ar' }) {
         <motion.div
           key="serv5-video-intro-screen"
           className="serv5-video-intro-root"
-          onClick={handleRootClick}
           initial={{ opacity: 1, y: 0 }}
           exit={{
             y: '-100%',
@@ -204,10 +209,17 @@ export default function Serv5VideoIntro({ onComplete, lang = 'ar' }) {
                 className="video-element"
                 src="/serv5-intro.mp4"
                 poster="/serv5-intro-poster.jpg"
+                autoPlay
                 playsInline
                 preload="auto"
                 onTimeUpdate={handleTimeUpdate}
-                onVolumeChange={handleVolumeChange}
+                onLoadedData={retryAutoplay}
+                onPlay={() => {
+                  setIsPlaying(true);
+                  setAutoplayBlocked(false);
+                  setIsMuted(videoRef.current?.muted ?? false);
+                }}
+                onPause={() => setIsPlaying(false)}
                 onEnded={handleVideoEnded}
                 onClick={(e) => {
                   e.stopPropagation();
@@ -220,29 +232,40 @@ export default function Serv5VideoIntro({ onComplete, lang = 'ar' }) {
                 {isRtl ? 'متصفحك لا يدعم تشغيل هذا الفيديو.' : 'Your browser does not support the video tag.'}
               </video>
 
-              {/* Pause / Tap-to-Start-With-Sound Overlay */}
-              {!isPlaying && (
+              {/* Show a manual fallback only if the browser rejects autoplay. */}
+              {!isPlaying && autoplayBlocked && (
                 <div
                   className="video-pause-overlay"
                   onClick={(e) => {
                     e.stopPropagation();
-                    playWithSound();
+                    startPlayback();
                   }}
                 >
                   <div className="play-pulse-circle">
                     <Play size={28} fill="currentColor" />
                   </div>
                   <div className="video-sound-overlay-label">
-                    <Volume2 size={18} className="unmute-anim-icon" />
-                    <span>
-                      {needsSoundGesture
-                        ? (isRtl ? 'اضغط لتشغيل المقدمة بالصوت' : 'Click to Play Intro with Sound')
-                        : (isRtl ? 'انقر للاستئناف بالصوت' : 'Click to Resume with Sound')}
-                    </span>
+                    <span>{isRtl ? 'اضغطي لتشغيل الفيديو' : 'Click to play the video'}</span>
                   </div>
                 </div>
               )}
-
+              {isPlaying && needsUnmuteGesture && (
+                <button
+                  type="button"
+                  className="video-unmute-prompt"
+                  onClick={() => {
+                    const video = videoRef.current;
+                    if (!video) return;
+                    video.muted = false;
+                    video.defaultMuted = false;
+                    setIsMuted(false);
+                    setNeedsUnmuteGesture(false);
+                  }}
+                >
+                  <Volume2 size={17} />
+                  <span>{isRtl ? 'تفعيل الصوت' : 'Turn sound on'}</span>
+                </button>
+              )}
               {/* Bottom Integrated Controls Bar */}
               <div
                 className="video-player-bottom-bar"
@@ -256,6 +279,16 @@ export default function Serv5VideoIntro({ onComplete, lang = 'ar' }) {
                   title={isPlaying ? 'Pause' : 'Play'}
                 >
                   {isPlaying ? <Pause size={15} /> : <Play size={15} fill="currentColor" />}
+                </button>
+
+                <button
+                  type="button"
+                  className="bar-icon-btn"
+                  onClick={toggleMute}
+                  aria-label={isMuted ? (isRtl ? 'تشغيل الصوت' : 'Turn sound on') : (isRtl ? 'كتم الصوت' : 'Mute sound')}
+                  title={isMuted ? (isRtl ? 'تشغيل الصوت' : 'Turn sound on') : (isRtl ? 'كتم الصوت' : 'Mute sound')}
+                >
+                  {isMuted ? <VolumeX size={15} /> : <Volume2 size={15} />}
                 </button>
 
                 {/* Progress Track */}
