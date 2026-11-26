@@ -322,10 +322,29 @@
 .hosting-plan-purpose-business { border-color: rgba(234, 88, 12, 0.18); background: #fff7ed; color: #c2410c; }
 .hosting-plan-purpose-enterprise { border-color: rgba(124, 58, 237, 0.18); background: #f5f3ff; color: #6d28d9; }
 
+/* Keep package details compact and evenly paced without changing the card layout. */
+.hosting-plan-card { padding: 1.3rem; }
+.hosting-plan-title-row { gap: 0.6rem; }
+.hosting-plan-purpose { margin: 0.3rem 0 0.4rem; padding: 0.24rem 0.6rem; }
+.hosting-plan-audience { min-height: 0; margin: 0.55rem 0 0.7rem; line-height: 1.5; }
+.hosting-plan-price { margin-bottom: 0.2rem; }
+.hosting-plan-card button { margin-top: 0.75rem; padding: 0.68rem 0.9rem; }
+.hosting-plan-divider { margin-top: 0.85rem; }
+.hosting-plan-features-label { margin-top: 0.6rem; }
+.hosting-plan-card ul {
+  display: flex;
+  flex: 1 0 auto;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-top: 0.5rem;
+}
+.hosting-plan-card li { margin: 0.24rem 0; line-height: 1.45; }
+
 @media (max-width: 767px) {
   .hosting-plan-filters { width: min(100%, 560px); grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.45rem; margin-bottom: 1.5rem; }
   .hosting-plan-filter { min-height: 39px; padding: 0.45rem 0.55rem; font-size: 0.72rem; }
   .hosting-plan-layout.is-filtered { grid-template-columns: minmax(0, 1fr); }
+  .hosting-plan-card { padding: 1.1rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {
