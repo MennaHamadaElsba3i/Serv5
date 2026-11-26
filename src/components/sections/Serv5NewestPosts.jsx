@@ -29,6 +29,7 @@ export default function Serv5NewestPosts({ onOpenConsultation, lang = 'ar' }) {
 
   const [selectedArticle, setSelectedArticle] = useState(null);
   const [reelKey, setReelKey] = useState(0);
+  const [isRevealing, setIsRevealing] = useState(false);
   const [isSettled, setIsSettled] = useState(false);
 
   const sectionRef = useRef(null);
@@ -288,8 +289,12 @@ export default function Serv5NewestPosts({ onOpenConsultation, lang = 'ar' }) {
   ];
 
   const handleReplayReel = () => {
+    setIsRevealing(false);
     setIsSettled(false);
     setReelKey((prev) => prev + 1);
+    setTimeout(() => {
+      setIsRevealing(true);
+    }, 850);
     setTimeout(() => {
       setIsSettled(true);
     }, 4200);
@@ -297,20 +302,27 @@ export default function Serv5NewestPosts({ onOpenConsultation, lang = 'ar' }) {
 
   // Re-triggers automatically on refresh (if in view) and whenever user scrolls into the section from above or below
   useEffect(() => {
-    let timer;
+    let revealTimer;
+    let settleTimer;
     if (isInView && !wasInViewRef.current) {
       wasInViewRef.current = true;
+      setIsRevealing(false);
       setIsSettled(false);
       setReelKey((prev) => prev + 1);
-      timer = setTimeout(() => {
+      revealTimer = setTimeout(() => {
+        setIsRevealing(true);
+      }, 850);
+      settleTimer = setTimeout(() => {
         setIsSettled(true);
       }, 4200);
     } else if (!isInView && wasInViewRef.current) {
       wasInViewRef.current = false;
+      setIsRevealing(false);
       setIsSettled(false);
     }
     return () => {
-      if (timer) clearTimeout(timer);
+      if (revealTimer) clearTimeout(revealTimer);
+      if (settleTimer) clearTimeout(settleTimer);
     };
   }, [isInView]);
 
@@ -399,7 +411,7 @@ export default function Serv5NewestPosts({ onOpenConsultation, lang = 'ar' }) {
                   {col.posts.map((post, postIdx) => (
                     <motion.div
                       key={post.id}
-                      className={`serv5-square-card ${post.id === 'pizza-plaza-ecosystem' ? 'is-latest-article' : ''} ${isSettled ? 'is-settled' : ''}`}
+                      className={`serv5-square-card ${post.id === 'pizza-plaza-ecosystem' ? 'is-latest-article' : ''} ${isRevealing ? 'is-revealing' : ''} ${isSettled ? 'is-settled' : ''}`}
                       onClick={() => setSelectedArticle(post)}
                       role="button"
                       tabIndex={0}

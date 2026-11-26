@@ -219,23 +219,28 @@
   transform: scale(1.06);
 }
 
-/* Reveal the card contents in a short sequence as each ribbon settles. */
+/* Let the content emerge while the ribbon is still moving, then finish crisp. */
 .serv5-square-card > :not(.square-card-accent-bar) {
-  opacity: 0;
-  transform: translateY(9px);
-  transition: opacity 0.42s ease, transform 0.42s cubic-bezier(0.16, 1, 0.3, 1);
+  opacity: 0.28;
+  filter: blur(5px);
+  transform: translateY(5px);
+  transition:
+    opacity 0.72s ease,
+    filter 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.72s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.serv5-square-card.is-settled > :not(.square-card-accent-bar) {
+.serv5-square-card.is-revealing > :not(.square-card-accent-bar) {
   opacity: 1;
+  filter: blur(0);
   transform: translateY(0);
 }
 
-.serv5-square-card.is-settled > .square-card-media-wrap { transition-delay: 0.02s; }
-.serv5-square-card.is-settled > .square-card-meta { transition-delay: 0.08s; }
-.serv5-square-card.is-settled > .square-card-title { transition-delay: 0.14s; }
-.serv5-square-card.is-settled > .square-card-desc { transition-delay: 0.2s; }
-.serv5-square-card.is-settled > .square-card-footer { transition-delay: 0.26s; }
+.serv5-square-card.is-revealing > .square-card-media-wrap { transition-delay: 0.02s; }
+.serv5-square-card.is-revealing > .square-card-meta { transition-delay: 0.08s; }
+.serv5-square-card.is-revealing > .square-card-title { transition-delay: 0.15s; }
+.serv5-square-card.is-revealing > .square-card-desc { transition-delay: 0.22s; }
+.serv5-square-card.is-revealing > .square-card-footer { transition-delay: 0.29s; }
 
 .square-card-accent-bar {
   overflow: hidden;
