@@ -1011,7 +1011,7 @@ html[dir="ltr"] {
   --hosting-orange: #ea580c;
   background: #ffffff;
   color: #0f172a;
-  overflow: hidden;
+  overflow: clip;
 }
 
 .hosting-hero {
