@@ -1,17 +1,4 @@
 import React, { useState, useEffect, useRef } from 'react';
-import {
-  Search,
-  BookOpen,
-  Eye,
-  Play,
-  ArrowUpRight,
-  Compass,
-  Sparkles,
-  Phone,
-  Move,
-  MessageSquare,
-  MousePointerClick
-} from 'lucide-react';
 import '../../styles/serv5-contextual-cursor.css';
 
 /**
@@ -278,34 +265,6 @@ export default function Serv5ContextualCursor({ lang = 'ar' }) {
     return null;
   }
 
-  // Helper icon selector based on type
-  const renderIcon = () => {
-    switch (cursorState.type) {
-      case 'move':
-        return <Move size={12} className="cursor-badge-icon" />;
-      case 'search':
-        return <Search size={12} className="cursor-badge-icon" />;
-      case 'read':
-        return <BookOpen size={12} className="cursor-badge-icon" />;
-      case 'browse':
-        return <Compass size={12} className="cursor-badge-icon" />;
-      case 'explore':
-        return <Sparkles size={12} className="cursor-badge-icon" />;
-      case 'click':
-        return <MousePointerClick size={12} className="cursor-badge-icon" />;
-      case 'view':
-        return <Eye size={12} className="cursor-badge-icon" />;
-      case 'play':
-        return <Play size={12} className="cursor-badge-icon fill-current" />;
-      case 'call':
-        return <Phone size={12} className="cursor-badge-icon" />;
-      case 'contact':
-        return <MessageSquare size={12} className="cursor-badge-icon" />;
-      default:
-        return <ArrowUpRight size={12} className="cursor-badge-icon" />;
-    }
-  };
-
   const badgePositionClass = `${cursorState.flipX ? 'flip-x' : ''} ${cursorState.flipY ? 'flip-y' : ''
     }`.trim();
 
@@ -326,7 +285,6 @@ export default function Serv5ContextualCursor({ lang = 'ar' }) {
         {/* Dynamic Action Badge Pill */}
         {cursorState.active && cursorState.text && (
           <div className={`serv5-cursor-badge ${badgePositionClass}`}>
-            <span className="cursor-badge-icon-wrap">{renderIcon()}</span>
             <span className="cursor-badge-label">{cursorState.text}</span>
           </div>
         )}

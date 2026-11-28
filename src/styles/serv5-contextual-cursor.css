@@ -65,17 +65,12 @@
   transform: translate(14px, 14px);
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  justify-content: center;
   padding: 5px 12px;
   border-radius: 9999px;
-  background: rgba(15, 23, 42, 0.92);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(147, 197, 253, 0.45);
-  box-shadow: 
-    0 10px 25px -4px rgba(15, 23, 42, 0.45),
-    0 0 16px rgba(37, 99, 235, 0.35),
-    inset 0 1px 1px rgba(255, 255, 255, 0.3);
+  background: #29364b;
+  border: 1px solid rgba(147, 176, 216, 0.34);
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.2);
   white-space: nowrap;
   pointer-events: none;
   transition: transform 0.15s cubic-bezier(0.16, 1, 0.3, 1), background 0.25s ease, border-color 0.25s ease;
@@ -99,21 +94,12 @@
   transform: translate(-105%, -115%);
 }
 
-.cursor-badge-icon-wrap {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  color: #60a5fa;
-  filter: drop-shadow(0 0 6px rgba(96, 165, 250, 0.7));
-}
-
 .cursor-badge-label {
   font-family: 'Syne', 'Cairo', 'Space Grotesk', system-ui, sans-serif;
   font-size: 0.78rem;
   font-weight: 700;
   letter-spacing: 0.02em;
   color: #ffffff;
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
 }
 
 /* Contextual color & glow variants */
@@ -199,6 +185,22 @@
 .serv5-cursor-follower.type-contact .cursor-badge-icon-wrap,
 .serv5-cursor-follower.type-call .cursor-badge-icon-wrap {
   color: #2dd4bf;
+}
+
+/* Keep every contextual label on the same quiet brand surface. */
+.serv5-cursor-follower.type-move .serv5-cursor-badge,
+.serv5-cursor-follower.type-search .serv5-cursor-badge,
+.serv5-cursor-follower.type-browse .serv5-cursor-badge,
+.serv5-cursor-follower.type-testimonials .serv5-cursor-badge,
+.serv5-cursor-follower.type-read .serv5-cursor-badge,
+.serv5-cursor-follower.type-explore .serv5-cursor-badge,
+.serv5-cursor-follower.type-click .serv5-cursor-badge,
+.serv5-cursor-follower.type-play .serv5-cursor-badge,
+.serv5-cursor-follower.type-contact .serv5-cursor-badge,
+.serv5-cursor-follower.type-call .serv5-cursor-badge {
+  background: #29364b;
+  border-color: rgba(147, 176, 216, 0.34);
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.2);
 }
 
 /* Mobile & Touch Screens: Disabled */
