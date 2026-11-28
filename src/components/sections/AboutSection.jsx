@@ -1,9 +1,10 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 import HeroAmbientBackground from '../ui/HeroAmbientBackground';
 
 export default function AboutSection({ onOpenConsultation, lang = 'ar' }) {
   const isRtl = lang === 'ar';
+  const reduceMotion = useReducedMotion();
 
   return (
     <section className="world-section about-monument-section relative overflow-hidden" id="about">
@@ -22,15 +23,18 @@ export default function AboutSection({ onOpenConsultation, lang = 'ar' }) {
           {/* Giant Monument Watermark "15+" Centered Perfectly in Background with Floating Motion */}
           <div className="about-giant-watermark-wrapper" aria-hidden="true">
             <motion.div
-              initial={{ opacity: 0, scale: 0.88, y: 25 }}
-              whileInView={{ opacity: 1, scale: 1, y: 0 }}
+              initial={reduceMotion ? false : { opacity: 0, scale: 0.93, y: 18, clipPath: 'inset(12% 8% 0)' }}
+              whileInView={{ opacity: 1, scale: 1, y: 0, clipPath: 'inset(0% 0% 0%)' }}
               viewport={{ once: true, amount: 0.25 }}
-              transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1] }}
+              transition={{ duration: reduceMotion ? 0 : 0.95, ease: [0.16, 1, 0.3, 1] }}
               className="about-giant-watermark"
             >
               <motion.span
-                animate={{ y: [0, -8, 0] }}
-                transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
+                dir="ltr"
+                initial={reduceMotion ? false : { y: 8 }}
+                whileInView={{ y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: reduceMotion ? 0 : 0.8, ease: [0.16, 1, 0.3, 1] }}
                 style={{ display: 'inline-block' }}
               >
                 15<span className="watermark-plus-orange">+</span>
@@ -42,10 +46,10 @@ export default function AboutSection({ onOpenConsultation, lang = 'ar' }) {
           <div className="about-content-stack">
             {/* Prominent Centered Headline */}
             <motion.h2
-              initial={{ opacity: 0, y: 25 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={reduceMotion ? false : { opacity: 0, clipPath: 'inset(0 0 100% 0)' }}
+              whileInView={{ opacity: 1, clipPath: 'inset(0 0 0% 0)' }}
               viewport={{ once: true, amount: 0.3 }}
-              transition={{ duration: 0.85, delay: 0.28, ease: [0.16, 1, 0.3, 1] }}
+              transition={{ duration: reduceMotion ? 0 : 0.8, delay: reduceMotion ? 0 : 0.18, ease: [0.16, 1, 0.3, 1] }}
               className="about-ref-heading"
             >
               {isRtl ? (
@@ -87,10 +91,10 @@ export default function AboutSection({ onOpenConsultation, lang = 'ar' }) {
 
             {/* Refined Centered Narrative */}
             <motion.p
-              initial={{ opacity: 0, y: 20 }}
+              initial={reduceMotion ? false : { opacity: 0, y: 14 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.3 }}
-              transition={{ duration: 0.8, delay: 0.42, ease: [0.16, 1, 0.3, 1] }}
+              transition={{ duration: reduceMotion ? 0 : 0.7, delay: reduceMotion ? 0 : 0.34, ease: [0.16, 1, 0.3, 1] }}
               className="about-ref-desc"
             >
               {isRtl
@@ -101,10 +105,10 @@ export default function AboutSection({ onOpenConsultation, lang = 'ar' }) {
             {/* Living Innovation Horizon Milestones (3 Epoch Cards) */}
             <div className="about-milestones-grid mt-4">
               <motion.div
-                initial={{ opacity: 0, y: 20 }}
+                initial={reduceMotion ? false : { opacity: 0, y: 22, rotateX: 5 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.2 }}
+                transition={{ duration: reduceMotion ? 0 : 0.65, delay: reduceMotion ? 0 : 0.12, ease: [0.16, 1, 0.3, 1] }}
                 className="about-milestone-card"
               >
                 <div className="milestone-year-badge">2008</div>
@@ -119,10 +123,10 @@ export default function AboutSection({ onOpenConsultation, lang = 'ar' }) {
               </motion.div>
 
               <motion.div
-                initial={{ opacity: 0, y: 20 }}
+                initial={reduceMotion ? false : { opacity: 0, y: 22, rotateX: 5 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.35 }}
+                transition={{ duration: reduceMotion ? 0 : 0.65, delay: reduceMotion ? 0 : 0.22, ease: [0.16, 1, 0.3, 1] }}
                 className="about-milestone-card active-epoch"
               >
                 <div className="milestone-year-badge highlight">2016</div>
@@ -137,10 +141,10 @@ export default function AboutSection({ onOpenConsultation, lang = 'ar' }) {
               </motion.div>
 
               <motion.div
-                initial={{ opacity: 0, y: 20 }}
+                initial={reduceMotion ? false : { opacity: 0, y: 22, rotateX: 5 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.5 }}
+                transition={{ duration: reduceMotion ? 0 : 0.65, delay: reduceMotion ? 0 : 0.32, ease: [0.16, 1, 0.3, 1] }}
                 className="about-milestone-card"
               >
                 <div className="milestone-year-badge">2024</div>

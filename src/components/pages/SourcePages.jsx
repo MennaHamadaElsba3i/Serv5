@@ -1,4 +1,5 @@
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
+import { motion, useReducedMotion, useScroll } from 'framer-motion';
 import { ArrowUpRight, BriefcaseBusiness, Check, ChevronLeft, ChevronRight, Clock3, MapPin, Search, ShieldCheck, Wrench } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
@@ -167,19 +168,39 @@ const milestones = [
 ];
 
 export function AboutContinuation() {
+  const reduceMotion = useReducedMotion();
+  const continuationRef = useRef(null);
+  const journeyRef = useRef(null);
+  const { scrollYProgress } = useScroll({ target: journeyRef, offset: ['start 82%', 'end 48%'] });
+  useEffect(() => {
+    const root = continuationRef.current;
+    if (!root || reduceMotion || !('IntersectionObserver' in window)) return;
+    const targets = root.querySelectorAll('.about-scene-intro article, .source-about-locations, .source-location-list > div, .source-principles article, .about-scene-leadership > div > div, .source-team-list > div, .about-scene-cta .container');
+    root.classList.add('about-motion-ready');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-in-view');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.16, rootMargin: '0px 0px -6% 0px' });
+    targets.forEach((target) => observer.observe(target));
+    return () => observer.disconnect();
+  }, [reduceMotion]);
   return (
-    <div className="source-about-continuation" dir="rtl">
-      <section className="content-page-section"><div className="container source-about-intro">
+    <div className="source-about-continuation" dir="rtl" ref={continuationRef}>
+      <section className="content-page-section about-scene about-scene-intro"><div className="container source-about-intro">
         {aboutSections.map((item) => <article key={item.title}><h2>{item.title}</h2><p>{item.text}</p></article>)}
         <div className="source-about-locations"><h2>نحن هنا من أجلك</h2><p>نخدم عملائنا في جميع أنحاء العالم من خلال مكاتبنا الإقليمية الاستراتيجية.</p>
           <div className="source-location-list"><div><strong>المنصورة, مصر</strong><span>شارع قناة السويس أعلى صيدلية د. رامي</span></div><div><strong>الرياض, المملكة العربية السعودية</strong><span>حي الزهور - شارع الملك خالد</span></div><div><strong>حولي, الكويت</strong><span>حولي - شارع بيروت - المنيرة - مكتب 14</span></div></div>
         </div>
       </div></section>
-      <section className="content-page-section source-about-values"><div className="container"><h2>لماذا تختارنا؟</h2><div className="source-principles">{aboutPrinciples.map(([title, text], index) => <article key={title}><span>{String(index + 1).padStart(2, '0')}</span><div><h3>{title}</h3><p>{text}</p></div></article>)}</div></div></section>
-      <section className="content-page-section"><div className="container"><header className="source-section-heading"><h2>رحلتنا</h2><p>عقد من النمو، والابتكار، والشراكة.</p></header><div className="source-milestones">{milestones.map(([year, region, clients, text]) => <article key={year}><strong>{year}</strong><div><span>{region} • {clients}</span><p>“{text}”</p></div></article>)}</div></div></section>
-      <section className="content-page-section source-about-values"><div className="container source-about-leadership"><div><span className="content-page-eyebrow">OURLEADERSHIP</span><h2>العقول التي تقود النجاح</h2><p>وراء كل مشروع ناجح فريق يجمع بين الخبرة، الإبداع، والشغف بالتكنولوجيا، لنقدم حلولًا رقمية تلبي احتياجات عملائنا وتساعدهم على النمو.</p><h3>م/ احمد نعمان</h3><span>فريق العمل</span></div><div><h2>التعاون، والإبداع والابتكار</h2><p>خلق بيئة تفاعلية تتلاقى فيها الرؤى والأفكار لتقديم حلول برمجية استثنائية.</p><h3>التميز التقني والبرمجي</h3><p>الالتزام بكتابة أكواد نظيفة، تصميم بنية تحتية قوية، واستخدام أحدث التقنيات التقنية.</p><h3>التصميم ذو الأثر الفعال</h3><p>دمج الذوق الإبداعي بمتطلبات تجربة المستخدم لخلق هويات رقمية مذهلة تحقق النتائج.</p></div></div></section>
-      <section className="content-page-section"><div className="container"><header className="source-section-heading"><span className="content-page-eyebrow">OURTEAM</span><h2>فريقنا</h2></header><div className="source-team-list">{['م/ محمد سليمان', 'ابراهيم القباني', 'محمد كشك', 'عبدالله فايد'].map((name) => <div key={name}>{name}</div>)}</div></div></section>
-      <section className="content-page-section source-about-cta"><div className="container"><h2>هل أنت مستعد لنقل عملك إلى المستوى التالي؟</h2><p>اتصل بنا اليوم لاستكشاف كيف يمكن لحلولنا البرمجية المبتكرة أن تدفع النمو وتبسط العمليات وتطلق العنان لإمكانياتك الكاملة في العصر الرقمي.</p><Link to="/contact-us" className="source-page-cta">اتصل بنا <ArrowUpRight size={17} /></Link></div></section>
+      <section className="content-page-section source-about-values about-scene about-scene-values"><div className="container"><h2>لماذا تختارنا؟</h2><div className="source-principles">{aboutPrinciples.map(([title, text], index) => <article key={title}><span>{String(index + 1).padStart(2, '0')}</span><div><h3>{title}</h3><p>{text}</p></div></article>)}</div></div></section>
+      <section className="content-page-section about-scene about-scene-journey"><div className="container"><header className="source-section-heading"><h2>رحلتنا</h2><p>عقد من النمو، والابتكار، والشراكة.</p></header><div className="source-milestones" ref={journeyRef}><motion.span className="source-journey-thread" style={{ scaleY: reduceMotion ? 1 : scrollYProgress }} aria-hidden="true" />{milestones.map(([year, region, clients, text], index) => <motion.article key={year} initial={reduceMotion ? false : { opacity: 0, x: index % 2 ? -24 : 24 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, amount: 0.4 }} transition={{ duration: reduceMotion ? 0 : 0.65, delay: reduceMotion ? 0 : index * 0.06, ease: [0.16, 1, 0.3, 1] }}><strong>{year}</strong><div><span>{region} • {clients}</span><p>“{text}”</p></div></motion.article>)}</div></div></section>
+      <section className="content-page-section source-about-values about-scene about-scene-leadership"><div className="container source-about-leadership"><div><span className="content-page-eyebrow">OURLEADERSHIP</span><h2>العقول التي تقود النجاح</h2><p>وراء كل مشروع ناجح فريق يجمع بين الخبرة، الإبداع، والشغف بالتكنولوجيا، لنقدم حلولًا رقمية تلبي احتياجات عملائنا وتساعدهم على النمو.</p><h3>م/ احمد نعمان</h3><span>فريق العمل</span></div><div><h2>التعاون، والإبداع والابتكار</h2><p>خلق بيئة تفاعلية تتلاقى فيها الرؤى والأفكار لتقديم حلول برمجية استثنائية.</p><h3>التميز التقني والبرمجي</h3><p>الالتزام بكتابة أكواد نظيفة، تصميم بنية تحتية قوية، واستخدام أحدث التقنيات التقنية.</p><h3>التصميم ذو الأثر الفعال</h3><p>دمج الذوق الإبداعي بمتطلبات تجربة المستخدم لخلق هويات رقمية مذهلة تحقق النتائج.</p></div></div></section>
+      <section className="content-page-section about-scene about-scene-team"><div className="container"><header className="source-section-heading"><span className="content-page-eyebrow">OURTEAM</span><h2>فريقنا</h2></header><div className="source-team-list">{['م/ محمد سليمان', 'ابراهيم القباني', 'محمد كشك', 'عبدالله فايد'].map((name) => <div key={name}>{name}</div>)}</div></div></section>
+      <section className="content-page-section source-about-cta about-scene about-scene-cta"><div className="container"><h2>هل أنت مستعد لنقل عملك إلى المستوى التالي؟</h2><p>اتصل بنا اليوم لاستكشاف كيف يمكن لحلولنا البرمجية المبتكرة أن تدفع النمو وتبسط العمليات وتطلق العنان لإمكانياتك الكاملة في العصر الرقمي.</p><Link to="/contact-us" className="source-page-cta">اتصل بنا <ArrowUpRight size={17} /></Link></div></section>
     </div>
   );
 }
